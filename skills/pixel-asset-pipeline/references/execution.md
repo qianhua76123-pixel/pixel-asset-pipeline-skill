@@ -28,7 +28,7 @@ node "<skill-dir>/scripts/pixel_local.mjs" run \
 
 Processing makes no image-generation or network request. Dependency installation uses the package registry. Source revisions and notices are in [PROVENANCE.json](../scripts/runtime/PROVENANCE.json) and [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md). `--background auto` accepts existing transparency or sufficiently consistent chromatic background evidence. Uncertain/neutral backgrounds are rejected. `--background keep` retains the existing background; it does not remove it.
 
-Default longest side is256, without enlargement. `--size N` sets a longest-side limit; `--size WxH` sets a contain canvas. `--native` preserves file-pixel dimensions. These do not recover an unknown AI grid. `--palette` accepts96/default or64; `--material` accepts generic/foliage/bamboo/glass.
+Default longest side is256, without enlargement. `--size N` sets a longest-side limit; `--size WxH` sets a contain canvas. `--native` preserves file-pixel dimensions. These do not recover an unknown AI grid. Local v0.2.1 uses consistent source-cell center sampling before palette reduction to preserve linework; it does not independently vote for the most frequent exact RGB in each cell. Very thin source features below the chosen logical resolution can still disappear. `--palette` accepts96/default or64; `--material` accepts generic/foliage/bamboo/glass.
 
 Successful runs write `sprite.png`, `sprite.png.pixel.json`, and `manifest.json` into a new output directory. Keep the hash-bound sidecar beside the PNG for the completion guard. A completed result with matching settings is exported without new inference. Changed settings must be applied to the original source. Check actual stage statuses; not every stage necessarily executes.
 
