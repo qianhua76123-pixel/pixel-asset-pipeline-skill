@@ -1,0 +1,4 @@
+interface:
+  display_name: "像素素材固定流程"
+  short_description: "Prepare AI sprites with a fixed local pixel workflow"
+  default_prompt: "Use $pixel-asset-pipeline to prepare this saved image as a native pixel sprite and inspect the exported result."
