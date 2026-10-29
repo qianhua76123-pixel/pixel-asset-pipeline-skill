@@ -31,7 +31,7 @@ For an existing source, read [execution.md](references/execution.md) for command
 ## Fixed sprite workflow
 
 1. Inspect the saved file and choose its logical size. Preserve the complete frame and padding. `--native` means one file pixel per logical pixel; it does not detect a hidden AI pixel grid.
-2. Process background, strict grid, evidence-based source-color cleanup, explicit material, fixed-budget color clusters, bamboo outer contour, then native PNG export. Each stage records **run** or **skip** and its reason. Do not fabricate evidence to force a stage to run.
+2. Process background, strict grid, evidence-based source-color cleanup, explicit material, fixed-budget color clusters, bamboo outer contour, then native PNG export. The local grid samples each original cell at one consistent center position before palette reduction; exact-RGB plurality is not a structure-preserving majority vote. Each stage records **run** or **skip** and its reason. Do not fabricate evidence to force a stage to run.
 3. Default color budget is 96. Explicit 64 is a different color decision, not a guarantee of exactly 64 colors. Distant original colors can remain to protect detail.
 4. Use `foliage`, `bamboo`, or `glass` when the user or asset contract identifies the material; otherwise use generic/default. Bamboo contour runs once and permits bounded silhouette changes. Other material stages only change RGB.
 5. Do not feed a completed result recursively through inference. Local completion requires a matching sidecar and file hash; keep the sidecar with the PNG. Without it, return to the original saved source instead of trusting a filename. Studio uses saved lineage and diagnostics.
