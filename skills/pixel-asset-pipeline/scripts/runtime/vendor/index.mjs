@@ -1697,7 +1697,7 @@ function gridCuts(size, count, phase) {
   cuts2.push(size);
   return cuts2;
 }
-function sampleGrid(source, cols, rows, phaseX, phaseY, alphaMode, threshold) {
+function sampleGrid(source, cols, rows, phaseX, phaseY, alphaMode, threshold, sampler = "majority") {
   const colCuts = gridCuts(source.width, cols, phaseX), rowCuts = gridCuts(source.height, rows, phaseY);
   const data = new Uint8ClampedArray(cols * rows * 4);
   for (let row = 0; row < rows; row++) for (let col = 0; col < cols; col++) {
@@ -1715,7 +1715,19 @@ function sampleGrid(source, cols, rows, phaseX, phaseY, alphaMode, threshold) {
     const out = (row * cols + col) * 4;
     if (!visible || alphaMode === "binary" && visible * 2 < total) continue;
     let best = 0, bestCount = -1;
-    for (const [key, count] of frequency) if (count > bestCount) {
+    if (sampler === "center") {
+      const centerX = Math.floor((colCuts[col] + colCuts[col + 1]) / 2), centerY = Math.floor((rowCuts[row] + rowCuts[row + 1]) / 2);
+      let nearestDistance = Infinity;
+      for (let y = rowCuts[row]; y < rowCuts[row + 1]; y++) for (let x = colCuts[col]; x < colCuts[col + 1]; x++) {
+        const index = (y * source.width + x) * 4;
+        if (source.data[index + 3] < (alphaMode === "binary" ? threshold : 1)) continue;
+        const distance = (x - centerX) ** 2 + (y - centerY) ** 2;
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          best = source.data[index] << 16 | source.data[index + 1] << 8 | source.data[index + 2];
+        }
+      }
+    } else for (const [key, count] of frequency) if (count > bestCount) {
       bestCount = count;
       best = key;
     }
@@ -1726,23 +1738,29 @@ function sampleGrid(source, cols, rows, phaseX, phaseY, alphaMode, threshold) {
   }
   return { image: { data, width: cols, height: rows }, colCuts, rowCuts };
 }
-async function strictGrid(source, width, height) {
+async function strictGrid(source, width, height, options = {}) {
+  const sampler = options.sampler ?? "center";
+  if (sampler !== "center" && sampler !== "majority") throw new StudioError("\u4E25\u683C\u7F51\u683C\u91C7\u6837\u987B\u4E3Acenter\u6216majority");
   const layout = planPixelLayout(source.width, source.height, { fit: "contain", anchor: "center", cols: width, rows: height, scale: 1 });
   const prepared = { ...source, data: new Uint8ClampedArray(source.data) };
   binaryAlpha(prepared, 128);
-  const sourcePalette = await encode(prepared, 256, 1, true);
-  const paletteImage = await decode(sourcePalette.buffer);
-  const sampled = sampleGrid(paletteImage, layout.content.width, layout.content.height, 0, 0, "binary", 128);
+  const sourcePalette = sampler === "majority" ? await encode(prepared, 256, 1, true) : void 0;
+  const paletteImage = sourcePalette ? await decode(sourcePalette.buffer) : prepared;
+  const sampled = sampleGrid(paletteImage, layout.content.width, layout.content.height, 0, 0, "binary", 128, sampler);
   const frame = new Uint8ClampedArray(width * height * 4);
   for (let y = 0; y < sampled.image.height; y++) frame.set(sampled.image.data.subarray(y * sampled.image.width * 4, (y + 1) * sampled.image.width * 4), ((layout.content.y + y) * width + layout.content.x) * 4);
-  const encoded = await encode({ data: frame, width, height }, 256, 1, true);
+  const frameImage = { data: frame, width, height }, sampledColors = /* @__PURE__ */ new Set();
+  for (let i = 0; i < frame.length; i += 4) if (frame[i + 3]) sampledColors.add(frame[i] << 16 | frame[i + 1] << 8 | frame[i + 2]);
+  const postPalette = sampler === "majority" || sampledColors.size > 8192 ? 256 : 0;
+  const encoded = await encode(frameImage, postPalette, 1, true);
   const image = await decode(encoded.buffer);
   const palette = /* @__PURE__ */ new Map();
-  for (let i = 0; i < paletteImage.data.length; i += 4) if (paletteImage.data[i + 3]) {
-    const rgb = [paletteImage.data[i], paletteImage.data[i + 1], paletteImage.data[i + 2]];
+  const evidencePalette = sampler === "majority" ? paletteImage : image;
+  for (let i = 0; i < evidencePalette.data.length; i += 4) if (evidencePalette.data[i + 3]) {
+    const rgb = [evidencePalette.data[i], evidencePalette.data[i + 1], evidencePalette.data[i + 2]];
     palette.set(rgb[0] << 16 | rgb[1] << 8 | rgb[2], rgb);
   }
-  return { image, diagnostics: { algorithm: "fixed-grid-palette-first-majority-v1", sourceWidth: source.width, sourceHeight: source.height, width, height, fit: "contain", anchor: "center", contentX: layout.content.x, contentY: layout.content.y, contentWidth: layout.content.width, contentHeight: layout.content.height, colCuts: sampled.colCuts, rowCuts: sampled.rowCuts, alphaThreshold: 128, phaseX: 0, phaseY: 0, sampler: "majority", paletteSize: 256, dither: 0, interpolation: "nearest", verifiedUniformBlocks: true, colorQuantization: "256-entry perceptual pre-palette may create RGB colors; later refinement uses grid colors" }, evidence: { sourceRGBA: prepared, colCuts: sampled.colCuts, rowCuts: sampled.rowCuts, contentX: layout.content.x, contentY: layout.content.y, alphaThreshold: 128, paletteMappingPreserved: true, samplingPalette: [...palette.values()] } };
+  return { image, diagnostics: { algorithm: sampler === "center" ? "fixed-grid-source-center-v2" : "fixed-grid-palette-first-majority-v1", sourceWidth: source.width, sourceHeight: source.height, width, height, fit: "contain", anchor: "center", contentX: layout.content.x, contentY: layout.content.y, contentWidth: layout.content.width, contentHeight: layout.content.height, colCuts: sampled.colCuts, rowCuts: sampled.rowCuts, alphaThreshold: 128, phaseX: 0, phaseY: 0, sampler, alphaSampler: "majority-coverage", paletteSize: postPalette, dither: 0, interpolation: "nearest", verifiedUniformBlocks: true, sampledVisibleColors: sampledColors.size, colorQuantization: sampler === "majority" ? "256-entry perceptual pre-palette may create RGB colors; later refinement uses grid colors" : postPalette ? "Sample original source centers first; >8192 visible sampled colors require a 256-entry post-palette; may create RGB colors" : "Actual source RGB samples; no grid-stage color quantization" }, evidence: { sourceRGBA: prepared, colCuts: sampled.colCuts, rowCuts: sampled.rowCuts, contentX: layout.content.x, contentY: layout.content.y, alphaThreshold: 128, paletteMappingPreserved: true, samplingPalette: [...palette.values()] } };
 }
 export {
   DETAIL_PROFILE_LABELS,
