@@ -1,9 +1,15 @@
 {
   "name": "pixel-asset-pipeline",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22" },
-  "scripts": { "doctor": "node scripts/pixel_local.mjs doctor" },
-  "dependencies": { "sharp": "0.35.5" }
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "doctor": "node scripts/pixel_local.mjs doctor"
+  },
+  "dependencies": {
+    "sharp": "0.35.5"
+  }
 }

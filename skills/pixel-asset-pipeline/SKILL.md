@@ -1,11 +1,21 @@
 ---
 name: pixel-asset-pipeline
-description: Prepare saved AI-generated PNG sprites with a fixed local pixel workflow or an existing Pixel Studio service. Use for strict pixel grids, background removal, foliage/bamboo/glass refinement, color-cluster cleanup, and native PNG export. Terrain production is reference-only; image generation is not included.
+description: Generate pixel-art source images with nano-banana-2 or a custom Images/Gemini API, then prepare sprites with a fixed local pixel workflow or an existing Pixel Studio service. Use for generation, strict grids, background removal, material refinement and native PNG export. Terrain production is reference-only.
 ---
 
 # Pixel Asset Pipeline
 
-Turn a saved image into a native PNG sprite with an auditable, bounded workflow. Run the provided scripts rather than replacing the algorithms with an improvised resize or repeated smoothing.
+Generate a new source or turn a saved image into a native PNG sprite with an auditable workflow. Run the provided scripts rather than replacing the algorithms with an improvised resize or repeated smoothing.
+
+## Generate and prepare
+
+For a new asset, read [generation.md](references/generation.md). `pixel_workflow.mjs run` generates once, freezes the source, then runs the fixed recipe. Its default model is exactly `nano-banana-2`; availability and billing depend on the selected provider. Do not silently substitute another model.
+
+Use a saved Studio connection when available: `pixel_generate.mjs providers` reads public connection metadata without retrieving keys. Other AI hosts can use a custom OpenAI Images-compatible or Gemini API with a named environment variable. Credentials are never CLI values or bundled settings. This skill supports AI hosts with local file and command access; a normal web chat does not gain those capabilities from the skill.
+
+Choose `--processor local` for portable processing. Default sprite prompting requests a uniform magenta backing; actual background evidence is still checked. Choose `--processor studio` for semantic cutout through a ready service; it preflights Python and the local model before generation. `--size` describes the logical sprite canvas, while `--api-size` is the source API resolution. Keep the generated source and all reports. A successful generation is not a completed export.
+
+Use `resume --output-dir EXISTING_RUN` after a timeout. It collects the saved generation or processing job and never resubmits generation. An unknown submission outcome requires checking provider/server history. Do not rerun `run` merely to recover files.
 
 ## Choose an execution mode
 
@@ -16,7 +26,7 @@ Turn a saved image into a native PNG sprite with an auditable, bounded workflow.
 
 The local engine is self-contained. The Studio adapter is a client, not a bundled application or ML model. A failed background check is not permission to erase white/gray foreground or silently choose a model. Use Studio when available, or request a prepared transparent input.
 
-Read [execution.md](references/execution.md) for commands and recovery. Run `doctor` for the chosen mode first. Install local dependencies with `npm ci --omit=dev` in this skill directory when needed. No image-generation credentials or model weights are included.
+For an existing source, read [execution.md](references/execution.md) for commands and recovery. Run `doctor` for the chosen mode first. Install local dependencies with `npm ci --omit=dev` in this skill directory when needed. No credentials or model weights are included.
 
 ## Fixed sprite workflow
 
