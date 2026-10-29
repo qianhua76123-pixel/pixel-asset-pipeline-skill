@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 /** Portable, bounded local pixel workflow. No network calls or generation. */
 import fs from 'node:fs/promises';
+import { realpathSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import sharp from 'sharp';
+import { removeChromaShades } from './chroma-shades.mjs';
 import { strictGrid, refineBackgroundColors, refineImageDetails, refineAdaptiveColors, refineOuterContour, removeBorderKeyShades } from './runtime/vendor/index.mjs';
 
-const VERSION = '0.1.0', WORKFLOW = 'portable-pixel-fixed', RECIPE_VERSION = 1;
+const VERSION = '0.2.0', WORKFLOW = 'portable-pixel-fixed', RECIPE_VERSION = 1;
 const STAGES = ['background', 'grid', 'source-colors', 'material-detail', 'color-clusters', 'outer-contour', 'export'];
 const MAX_INPUT_PIXELS = 16_777_216, MAX_NATIVE_PIXELS = 1_048_576;
 const sha = value => createHash('sha256').update(value).digest('hex');
@@ -102,7 +104,7 @@ async function readSidecar(filename, inputHash, image) {
   try { const stat = await fs.stat(sidecarPath); if (stat.size > 128 * 1024) return { status: 'invalid', reason: 'Sidecar exceeds 128 KiB.' }; text = await fs.readFile(sidecarPath, 'utf8'); }
   catch (error) { if (error.code === 'ENOENT') return { status: 'absent' }; throw error; }
   let value; try { value = JSON.parse(text); } catch { return { status: 'invalid', reason: 'Malformed sidecar JSON.' }; }
-  const algorithms = { background: ['global-chroma-key'], grid: ['fixed-grid-palette-first-majority-v1', 'explicit-native-hard-alpha-v1'], 'source-colors': ['source-cell-local-background-color-v1'], 'material-detail': ['explicit-material-local-color-v1', 'frozen-warm-material-inner-outline-v1'], 'color-clusters': ['source-medoids-edge-potts-v1'], 'outer-contour': ['bounded-bamboo-joint-rhythm-v2'], export: ['native-png-export-v1'] };
+  const algorithms = { background: ['global-chroma-key'], grid: ['fixed-grid-palette-first-majority-v1', 'explicit-native-hard-alpha-v1'], 'source-colors': ['source-cell-local-background-color-v1', 'global-key-hue-shades-v1'], 'material-detail': ['explicit-material-local-color-v1', 'frozen-warm-material-inner-outline-v1'], 'color-clusters': ['source-medoids-edge-potts-v1'], 'outer-contour': ['bounded-bamboo-joint-rhythm-v2'], export: ['native-png-export-v1'] };
   const valid = value?.producer === WORKFLOW && value.version === RECIPE_VERSION && value.completed === true && validHash(value.sourceSha256) && value.outputSha256 === inputHash && value.width === image.width && value.height === image.height && value.recipe?.id === WORKFLOW && value.recipe.version === RECIPE_VERSION && value.recipe.width === image.width && value.recipe.height === image.height && value.recipe.sampler === 'majority' && value.recipe.alphaThreshold === 128 && value.recipe.phaseX === 0 && value.recipe.phaseY === 0 && value.recipe.exportScale === 1 && ['keep', 'chroma'].includes(value.recipe.background) && (value.recipe.background !== 'chroma' || validKey(value.recipe.keyColor)) && ['generic', 'foliage', 'bamboo', 'glass'].includes(value.recipe.material) && [64, 96].includes(value.recipe.paletteBudget) && Array.isArray(value.stageProofs) && value.stageProofs.length === STAGES.length && value.stageProofs.every((stage, i) => stage && stage.id === STAGES[i] && ['run', 'skip'].includes(stage.status) && (stage.status === 'skip' ? typeof stage.reason === 'string' && stage.reason.length > 0 : algorithms[stage.id].includes(stage.algorithm))) && [1, 4, 6].every(i => value.stageProofs[i].status === 'run') && (value.recipe.material === 'generic' ? value.stageProofs[3].status === 'skip' : value.stageProofs[3].status === 'run') && (value.recipe.material === 'bamboo' ? value.stageProofs[5].status === 'run' : value.stageProofs[5].status === 'skip');
   if (!valid) return { status: 'invalid', reason: 'Output hash, dimensions, recipe, stage IDs, or algorithm proofs do not match.' };
   try { assertNative(image); } catch (error) { return { status: 'invalid', reason: error.message }; }
@@ -146,7 +148,12 @@ export async function runPipeline(options) {
     if (rgbKey(image).size > 8192) throw Error('Native image has more than 8192 visible colors. Use an explicit strict-grid size instead of --native.');
     if (registeredSource && gridEvidence && background.keyColor) {
       const result = refineBackgroundColors(image, { ...gridEvidence, sourceRGBA: registeredSource, unmattedSourceRGBA: original, keyColor: background.keyColor });
-      image = result.image; stages.push({ id: 'source-colors', status: result.diagnostics.skipped ? 'skip' : 'run', ...(result.diagnostics.skipped ? { reason: result.diagnostics.skipReason || 'No verified source color evidence.' } : { algorithm: result.diagnostics.algorithm }), diagnostics: result.diagnostics });
+      // Recover mixed source cells first. Erasing all shaded-key source pixels
+      // before sampling can destroy a thin cell that still has valid foreground
+      // support. Only remove remaining key-family pixels after evidence repair.
+      const residual = removeChromaShades(result.image, background.keyColor);
+      const active = !result.diagnostics.skipped || residual.diagnostics.removedPixels > 0;
+      image = residual.image; stages.push({ id: 'source-colors', status: active ? 'run' : 'skip', ...(active ? { algorithm: result.diagnostics.skipped ? residual.diagnostics.algorithm : result.diagnostics.algorithm } : { reason: result.diagnostics.skipReason || 'No verified source color evidence.' }), diagnostics: { ...result.diagnostics, alphaPreserved: result.diagnostics.alphaPreserved === true && residual.diagnostics.removedPixels === 0, residualKeyShades: residual.diagnostics } });
     } else stages.push({ id: 'source-colors', status: 'skip', reason: 'No registered before/after key-removal raster and strict-grid source cells; do not infer missing original colors.' });
     if (material !== 'generic') { const result = refineImageDetails(image, { profile: material }); image = result.image; stages.push({ id: 'material-detail', status: 'run', algorithm: result.diagnostics.algorithm, diagnostics: result.diagnostics }); }
     else stages.push({ id: 'material-detail', status: 'skip', reason: 'No explicit material selected; do not guess semantics.' });
@@ -186,4 +193,4 @@ async function main() {
   if (command === 'run') return runPipeline(options);
   throw Error('Unknown command: ' + command);
 }
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main().then(value => process.stdout.write(JSON.stringify(value) + '\n')).catch(error => { process.stderr.write(JSON.stringify({ ok: false, error: error.message }) + '\n'); process.exitCode = 1; });
+if (process.argv[1] && realpathSync(path.resolve(process.argv[1])) === realpathSync(fileURLToPath(import.meta.url))) main().then(value => process.stdout.write(JSON.stringify(value) + '\n')).catch(error => { process.stderr.write(JSON.stringify({ ok: false, error: error.message }) + '\n'); process.exitCode = 1; });
