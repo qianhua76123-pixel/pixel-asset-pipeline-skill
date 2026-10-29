@@ -11,7 +11,7 @@ import { generateImage, resumeGeneration } from './pixel_generate.mjs';
 import { runPipeline, inspectFile } from './pixel_local.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-const VERSION = '0.2.0';
+const VERSION = '0.2.1';
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const secretSafe = value => String(value).replace(/\bsk-[A-Za-z0-9_-]{8,}/g, '[redacted]').replace(/(Bearer\s+)\S+/gi, '$1[redacted]').slice(0, 1800);
 const materialNames = ['generic', 'foliage', 'bamboo', 'glass'];
@@ -212,7 +212,7 @@ export async function runWorkflow(options, dependencies = {}) {
 export async function resumeWorkflow(options, dependencies = {}) {
   if (!options.outputDir) throw Error('resume requires the existing --output-dir.');
   const directory = path.resolve(options.outputDir), state = await readJson(path.join(directory, 'workflow.json'));
-  if (state.producer !== 'pixel-asset-pipeline' || state.version !== VERSION || !state.config) throw Error('Unknown workflow record.');
+  if (state.producer !== 'pixel-asset-pipeline' || !['0.2.0', VERSION].includes(state.version) || !state.config) throw Error('Unknown workflow record.');
   return advance(directory, state, options, dependencies, true);
 }
 
