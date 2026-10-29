@@ -76,7 +76,8 @@
       "sourceSha256": "c09e0b4635969d147ac79d04d2c50634b14c46d3a6eee3fc60c3c0b057a1c82a",
       "changes": [
         "Extracted decode/binaryAlpha/imageStatistics/rgbaKey/constrainPalette/encode/gridCuts/sampleGrid without math changes",
-        "Added restricted contain/majority/phase0/alpha128/scale1 orchestration and source evidence mapping; experimental engines excluded"
+        "Added restricted contain/majority/phase0/alpha128/scale1 orchestration and source evidence mapping; experimental engines excluded",
+        "v0.2.1: default source-center sampling before palette mapping prevents exact-RGB plurality from fragmenting source linework; explicit legacy majority remains available for reproduction"
       ]
     }
   ],
