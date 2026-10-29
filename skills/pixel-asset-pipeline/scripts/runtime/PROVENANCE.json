@@ -1,0 +1,84 @@
+{
+  "sourceRepository": "https://github.com/shrimbly/node-banana",
+  "sourceContext": "Pixel Studio local modifications, pinned commit",
+  "sourceCommit": "40e333545b84285d7f135eef1abfd29d2f376ffb",
+  "license": "MIT; upstream notice retained in vendor/LICENSE.upstream",
+  "files": [
+    {
+      "path": "skills/pixel-asset-pipeline/scripts/runtime/vendor/adaptive-color-refinement.ts",
+      "sourcePath": "src/lib/pixel-studio/adaptive-color-refinement.ts",
+      "sourceSha256": "839d9e59f4de9cfbf46432a9e4c9e8554dd47f1bcd3489613d697d525cb0d351",
+      "changes": []
+    },
+    {
+      "path": "skills/pixel-asset-pipeline/scripts/runtime/vendor/background-color-refinement.ts",
+      "sourcePath": "src/lib/pixel-studio/background-color-refinement.ts",
+      "sourceSha256": "b1bfcccd63ddc73d0e850c4fe3399f36e6bc1a488d27ec3ea6875876f8ca980e",
+      "changes": [
+        "Type-only image interface import redirected to local image-types",
+        "StudioError dependency redirected to local error class"
+      ]
+    },
+    {
+      "path": "skills/pixel-asset-pipeline/scripts/runtime/vendor/detail-refinement.ts",
+      "sourcePath": "src/lib/pixel-studio/detail-refinement.ts",
+      "sourceSha256": "3b3388de1eaa60faf06a1e1793352c6da055c54748fa9ca1e691a32de3370c78",
+      "changes": [
+        "Type-only image interface import redirected to local image-types",
+        "StudioError dependency redirected to local error class"
+      ]
+    },
+    {
+      "path": "skills/pixel-asset-pipeline/scripts/runtime/vendor/material-color-refinement.ts",
+      "sourcePath": "src/lib/pixel-studio/material-color-refinement.ts",
+      "sourceSha256": "69adcfed5b297598a17b7c6d52f1cc7df419882dd89ba60ec4b8785af7058d70",
+      "changes": []
+    },
+    {
+      "path": "skills/pixel-asset-pipeline/scripts/runtime/vendor/contour-detail-refinement.ts",
+      "sourcePath": "src/lib/pixel-studio/contour-detail-refinement.ts",
+      "sourceSha256": "dae0c50503fce07005d845d34f3de178b5195f6bdc6b9978c630d6c1c38d52e5",
+      "changes": []
+    },
+    {
+      "path": "skills/pixel-asset-pipeline/scripts/runtime/vendor/outer-contour-refinement.ts",
+      "sourcePath": "src/lib/pixel-studio/outer-contour-refinement.ts",
+      "sourceSha256": "5d2ba1d8ebab77ccf374e417dea4a60e7e69aa1f2e4ff5096212b0f92c3ffd85",
+      "changes": []
+    },
+    {
+      "path": "skills/pixel-asset-pipeline/scripts/runtime/vendor/contour-refinement.ts",
+      "sourcePath": "src/lib/pixel-studio/contour-refinement.ts",
+      "sourceSha256": "07f534a6dd74926e1f432bc4cc96e19e8c35aa0479bea20582728647a9e5d31d",
+      "changes": []
+    },
+    {
+      "path": "skills/pixel-asset-pipeline/scripts/runtime/vendor/pixel-layout.ts",
+      "sourcePath": "src/lib/pixel-studio/pixel-layout.ts",
+      "sourceSha256": "bc2c19baab00551bbed21c3cd228974af486f4c3444fb1ef92e4a9ebd50bea3b",
+      "changes": [
+        "Type-only image interface import redirected to local image-types",
+        "StudioError dependency redirected to local error class"
+      ]
+    },
+    {
+      "path": "skills/pixel-asset-pipeline/scripts/runtime/vendor/border-key-shades.ts",
+      "sourcePath": "src/lib/pixel-studio/border-key-shades.ts",
+      "sourceSha256": "d5c2ed402bdfc2e22976bd8d43bd0217d48a4d058c325b32f171487856041304",
+      "changes": [
+        "Type-only image interface import redirected to local image-types",
+        "StudioError dependency redirected to local error class"
+      ]
+    },
+    {
+      "path": "skills/pixel-asset-pipeline/scripts/runtime/vendor/strict-grid.ts",
+      "sourcePath": "src/lib/pixel-studio/processor.ts",
+      "sourceSha256": "c09e0b4635969d147ac79d04d2c50634b14c46d3a6eee3fc60c3c0b057a1c82a",
+      "changes": [
+        "Extracted decode/binaryAlpha/imageStatistics/rgbaKey/constrainPalette/encode/gridCuts/sampleGrid without math changes",
+        "Added restricted contain/majority/phase0/alpha128/scale1 orchestration and source evidence mapping; experimental engines excluded"
+      ]
+    }
+  ],
+  "sourceCommitLocation": "Local modified Pixel Studio snapshot; not asserted to exist in upstream GitHub history"
+}
