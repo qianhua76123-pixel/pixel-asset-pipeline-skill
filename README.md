@@ -1,6 +1,20 @@
 # Pixel Asset Pipeline Skill
 
-把已保存的 AI 像素风图片整理成可检查、可导出的原生 PNG。供具备本地文件和命令执行能力的 AI 使用，包含可运行的算法，而不只是提示词。
+用 `nano-banana-2` 或自定义生图 API 生成新素材，再通过固定算法整理成原生 PNG；也可直接处理已保存图片。供具备本地文件和命令执行能力的 AI 使用，包含可运行的代码。
+
+## 从生图到导出
+
+```sh
+node "<skill-dir>/scripts/pixel_generate.mjs" providers --mode studio
+node "<skill-dir>/scripts/pixel_workflow.mjs" run \
+  --mode studio --provider-id <saved-connection-id> --model nano-banana-2 \
+  --prompt-file brief.txt --processor local --size 256x256 \
+  --material bamboo --output-dir runs/new-basket
+```
+
+复用 Studio 设置中的连接和密钥，不修改连接默认模型。独立运行可用 `--mode api --protocol openai|gemini --base-url <url>`；密钥从 `PIXEL_IMAGE_API_KEY` 环境变量读取。支持 Images 兼容接口与 Gemini 原生接口，不包含账号或密钥。
+
+输出保存原始生成图、任务ID、各阶段报告和透明PNG。超时使用 `pixel_workflow.mjs resume --output-dir <existing-run>`，不会自动重新生图。[接口配置、完整命令及恢复](skills/pixel-asset-pipeline/references/generation.md)。
 
 ## 两种执行方式
 
@@ -11,7 +25,7 @@
 
 固定顺序：**背景 → 网格 → 有证据的去污染与补色 → 明确材质 → 色块整理 → 明确竹木轮廓 → 导出**。阶段可以有依据地跳过。默认96色预算；已完成输出有匹配记录时只导出，避免反复压色和移动边缘。
 
-本仓库不包含图片生成服务、API key、Pixel Studio UI、模型权重或用户素材。独立引擎遇到不可靠/中性背景会明确拒绝自动去底；语义抠图使用已经配置好的Studio服务。像素技术检查通过不等于手绘质量，残色和造型仍需目视验收。
+本仓库包含生图客户端，不托管模型，也不包含 API key、Pixel Studio UI、模型权重或用户素材。独立流程默认请求纯彩底；遇到不可靠/中性背景会拒绝自动去底。语义抠图可选 `--processor studio`，使用已经配置好的Studio服务。像素技术检查通过不等于手绘质量，残色和造型仍需目视验收。
 
 ## 安装为Skill
 
@@ -65,7 +79,7 @@ python3 "<skill-dir>/scripts/pixel_studio.py" run \
 
 ## Development and provenance
 
-This skill supports agents with local filesystem and command access. The independent engine includes extracted fixed algorithms; the optional Studio adapter requires an already-running compatible application. Neither submits image generation.
+This skill supports agents with local filesystem and command access. The generation client supports a saved Studio connection or a custom Images-compatible/Gemini API. It makes one image request, saves recovery state and freezes the result before processing. The independent engine includes extracted fixed algorithms; optional semantic cutout requires an already-running compatible Studio application.
 
 Run `npm ci`, `npm test`, `npm run build`, and `python3 -m unittest discover -s tests -p 'test_*.py'`. See [third-party notices](THIRD_PARTY_NOTICES.md) and [runtime provenance](skills/pixel-asset-pipeline/scripts/runtime/PROVENANCE.json) for source paths, revisions and licenses. The upstream MIT notice is preserved; native dependency licenses apply separately.
 
