@@ -21,9 +21,9 @@ node "<skill-dir>/scripts/pixel_workflow.mjs" run \
 | 方式 | 能力 | 依赖 |
 |---|---|---|
 | 独立本地引擎 | 透明图/可靠彩底、严格网格、有原图证据的补色、材质精修、碎色整理、竹木单遍外轮廓、PNG导出 | Node.js 22+、Sharp |
-| Pixel Studio适配器 | 软件现有固定流程，包括已配置的本地主体识别和保存的源图记录 | Python 3.9+、兼容Pixel Studio服务 |
+| Pixel Studio适配器 | 软件现有固定流程，包括本地主体识别、背景孔判断、依据原图的前景原色恢复和导出 | Python 3.9+、兼容Pixel Studio服务 |
 
-固定顺序：**背景 → 网格 → 有证据的去污染与补色 → 明确材质 → 色块整理 → 明确竹木轮廓 → 导出**。阶段可以有依据地跳过。默认96色预算；已完成输出有匹配记录时只导出，避免反复压色和移动边缘。
+独立本地顺序：**背景 → 网格 → 有证据的去污染与补色 → 明确材质 → 色块整理 → 明确竹木轮廓 → 导出**。Studio默认自动流程还包括背景分割和前景原色恢复；阶段可以有依据地跳过。默认96色预算，保留原色的回退和恢复可能超过预算；已完成输出有匹配记录时只导出，避免反复压色和移动边缘。
 
 本地 v0.2.1 改为先按统一的源图网格中心取样、后整理色板，避免旧版“精确RGB频次投票”把窗棂、门楣等连续结构变成碎点。更新Skill不会改变旧Studio服务的采样器；纯彩底图优先使用本地流程。
 
@@ -68,12 +68,14 @@ node "<skill-dir>/scripts/pixel_local.mjs" run \
 
 ```sh
 python3 "<skill-dir>/scripts/pixel_studio.py" doctor
-python3 "<skill-dir>/scripts/pixel_studio.py" plan --asset-id <saved-asset-id> --profile bamboo
+python3 "<skill-dir>/scripts/pixel_studio.py" plan --asset-id <original-asset-id>
 python3 "<skill-dir>/scripts/pixel_studio.py" run \
-  --input original.png --output-dir runs/studio --profile bamboo
+  --asset-id <original-asset-id> --output-dir runs/studio
 ```
 
 默认服务地址 `http://127.0.0.1:3410`。适配器不安装软件或下载模型。先检查与预览，再提交一次；超时保留任务ID，用 `status/resume` 恢复。[命令与恢复说明](skills/pixel-asset-pipeline/references/execution.md)。
+
+要使用最新自动原色恢复，请省略 `--profile`。已验证的Studio版本使用最终算法 `source-backed-final-background-refinement-v4` 和源图恢复规则 `source-connected-material-endpoint-restoration-v5`；`run-report.json` 的 `processingStages` 记录实际算法、跳过原因和改动数量。独立本地引擎不包含这项依赖Studio原图记录的恢复。显式材质选项走另一套流程；比较新算法时回到原图，旧的已完成素材仍可能只导出。自动推断会保留证据不足的亮青、粉紫等颜色，不能保证还原所有真实原色。
 
 ## 地块与瓦片集
 

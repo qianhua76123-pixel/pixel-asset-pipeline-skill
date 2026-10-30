@@ -22,8 +22,32 @@ import zlib
 
 DEFAULT_URL = "http://127.0.0.1:3410"
 STAGES = ("background", "grid", "source-colors", "material-detail", "color-clusters", "outer-contour", "export")
+SEGMENTATION_STAGES = STAGES[:-1] + ("background-segmentation", "export")
 ACTIVE = {"queued", "pending", "running"}
 MAX_PNG = 64 * 1024 * 1024
+MAX_PROCESSING_STAGES = 32
+DIAGNOSTIC_COUNTERS = (
+    "changedPixels", "recoloredPixels", "addedPixels", "removedPixels",
+    "legacyChangedPixels", "newAdditionalChangedPixels", "additionalRemovedPixels",
+    "additionalRecoloredPixels", "nativeSourceChangedPixels", "nativeSourceRecoloredPixels",
+    "nativeSourceRemovedPixels", "sourceChangesRecorded", "sourceProposedCells",
+    "changesRecorded", "changesTruncated", "sourceProposalTraceTruncated",
+    "candidateCount", "acceptedCandidates", "rejectedCandidates", "candidateRollbackCount",
+)
+DIAGNOSTIC_FLAGS = (
+    "skipped", "alphaPreserved", "restorationAlphaPreserved", "nativeSourcePassRGBOnly",
+    "existingTransparencyPreserved", "priorV3ActualRepairsPreserved",
+    "sourceAndAutomaticRepairsPreserved", "exactOriginalDonorProjection",
+    "originalVisibleDonorColorsOnly", "unchangedOutsideSourceProposals",
+    "originalPaletteOnly", "sourceColorsOnly", "exactSourceCenterProjection",
+    "legacyResultPreserved", "boundedSinglePass", "binaryAlpha", "transparentRGBZero",
+    "framePreserved", "bboxPreserved", "holePixelsPreserved", "thinStructuresPreserved",
+    "inferred", "sourceRecoveryClaimed", "automaticRollback", "reviewRequired",
+)
+DIAGNOSTIC_HASHES = (
+    "specSha256", "sourceRuleCodeSha256", "sourceRuleSpecSha256", "inputRGBAHash",
+    "outputRGBAHash", "sourceInputRGBAHash", "originalSourceRGBAHash", "sourceChangesSha256",
+)
 
 
 class ClientError(Exception):
@@ -189,10 +213,14 @@ def validate_plan(value, asset_id, expected_profile=None):
     dimensions = [manifest.get("width"), manifest.get("height")]
     if any(type(n) is not int or n <= 0 for n in dimensions) or dimensions[0] * dimensions[1] > 32_000_000:
         raise ClientError("Fixed manifest dimensions are invalid")
-    if manifest.get("sampling") != "majority" or manifest.get("paletteBudget") != 96 or manifest.get("detailProfile") != expected_profile:
+    sampling = manifest.get("sampling")
+    if sampling not in ("source-center", "majority") or manifest.get("paletteBudget") != 96 or manifest.get("detailProfile") != expected_profile:
         raise ClientError("Plan differs from the requested default recipe or explicit material")
+    policy = manifest.get("refinementPolicy")
+    if policy not in (None, "automatic-v1") or policy == "automatic-v1" and (sampling != "source-center" or expected_profile is not None):
+        raise ClientError("Unsupported automatic refinement policy")
     stages = manifest.get("stages")
-    if not isinstance(stages, list) or len(stages) != len(STAGES) or not all(isinstance(s, dict) for s in stages) or [s.get("id") for s in stages] != list(STAGES):
+    if not isinstance(stages, list) or not all(isinstance(s, dict) for s in stages) or tuple(s.get("id") for s in stages) not in (STAGES, SEGMENTATION_STAGES):
         raise ClientError("Fixed stage order does not match local-pixel-fixed/v1")
     if any(s.get("status") not in ("run", "skip") for s in stages) or review.get("generationCount") != 0:
         raise ClientError("Plan must contain only declared local stages and zero image generation")
@@ -222,15 +250,39 @@ def validate_plan(value, asset_id, expected_profile=None):
         elif stage_id == "grid":
             if data.get("role") != "pixel" or params.get("mode") != "strict":
                 raise ClientError("Experimental grid recovery is not part of the fixed workflow")
+            if params.get("sampler") != sampling or type(params.get("paletteSize")) is not int or params.get("paletteSize") != (0 if sampling == "source-center" else 256):
+                raise ClientError("Grid sampling or source palette differs from the fixed manifest")
         elif stage_id in allowed:
-            if data.get("role") != "repair" or params.get("mode") != allowed[stage_id]:
+            expected_mode = "automatic-refine" if stage_id == "outer-contour" and policy == "automatic-v1" else allowed[stage_id]
+            if data.get("role") != "repair" or params.get("mode") != expected_mode:
                 raise ClientError("Unexpected refinement operation")
             if stage_id == "material-detail" and params.get("profile") != expected_profile:
                 raise ClientError("Material refinement must use the explicitly requested material")
-            if stage_id == "outer-contour" and (expected_profile != "bamboo" or params.get("profile") != "bamboo"):
+            if stage_id == "source-colors":
+                if "keyColorMode" in params and params["keyColorMode"] != "removed-source":
+                    raise ClientError("Unsupported source cleanup key-color mode")
+                if params.get("keyColorMode") == "removed-source":
+                    if "keyColor" in params:
+                        raise ClientError("Runtime source cleanup cannot also specify a key color")
+                    if params.get("cleanKeyShades", False) is not False:
+                        raise ClientError("Runtime source cleanup must preserve alpha")
+                    if params.get("protectInkGrowth", True) is not True:
+                        raise ClientError("Runtime source cleanup requires ink-growth protection")
+            if stage_id == "source-colors" and policy == "automatic-v1" and params.get("cleanKeyShades", False) is not False:
+                raise ClientError("Automatic refinement cannot delete global key-color shades before validation")
+            if stage_id == "outer-contour" and policy == "automatic-v1" and params != {"mode": "automatic-refine"}:
+                raise ClientError("Automatic refinement takes no client material or evidence overrides")
+            if stage_id == "outer-contour" and policy is None and (expected_profile != "bamboo" or params.get("profile") != "bamboo"):
                 raise ClientError("Outer contour refinement requires explicit bamboo selection")
             if stage_id == "color-clusters" and params.get("paletteBudget") != 96:
                 raise ClientError("Unexpected palette budget")
+        elif stage_id == "background-segmentation":
+            # Optional newer-service suffix. It uses only the server's recorded
+            # source evidence, after automatic refinement; no client mask or
+            # alternate operation may enter this finite graph.
+            outer = next(s for s in stages if s["id"] == "outer-contour")
+            if policy != "automatic-v1" or outer["status"] != "run" or data.get("role") != "repair" or params != {"mode": "background-segmentation"}:
+                raise ClientError("Background segmentation requires the fixed automatic suffix without client overrides")
         elif stage_id == "export":
             if data.get("role") != "export" or params.get("format") != "png" or params.get("native") is not True or params.get("scale") != 1:
                 raise ClientError("Only native 1x PNG export is supported")
@@ -247,8 +299,60 @@ def validate_plan(value, asset_id, expected_profile=None):
     return {"inspection": value.get("inspection", {}), "plan": plan, "graph": {"nodes": safe_nodes, "edges": [{"source": ids[i], "target": ids[i + 1]} for i in range(len(ids) - 1)], "targetNodeId": ids[-1]}, "review": {"generationCount": 0, "operationCount": review.get("operationCount")}}
 
 
+def diagnostic_token(value):
+    # Diagnostics are machine codes, not free text. Never copy paths, URLs,
+    # prompts, settings or arbitrary nested proof data into the public report.
+    return value if isinstance(value, str) and re.fullmatch(r"[a-z0-9][a-z0-9_-]{0,159}", value) and clean_error(value) == value else None
+
+
+def bounded_diagnostics(value, nested=True):
+    if not isinstance(value, dict):
+        return {}
+    result = {}
+    for key in ("algorithm", "sourceRuleAlgorithm", "skipReason", "projectionStatus"):
+        token = diagnostic_token(value.get(key))
+        if token is not None:
+            result[key] = token
+    if value.get("status") in ("applied", "unchanged", "skipped", "accepted", "rejected", "run", "skip"):
+        result["status"] = value["status"]
+    for key in DIAGNOSTIC_COUNTERS:
+        count = value.get(key)
+        if type(count) is int and 0 <= count <= 2**53 - 1:
+            result[key] = count
+    for key in DIAGNOSTIC_FLAGS:
+        if type(value.get(key)) is bool:
+            result[key] = value[key]
+    for key in DIAGNOSTIC_HASHES:
+        if isinstance(value.get(key), str) and re.fullmatch(r"[a-f0-9]{64}", value[key]):
+            result[key] = value[key]
+    if nested:
+        for key in ("sourceRefinement", "sourceKernel", "baseRefinement"):
+            fields = bounded_diagnostics(value.get(key), nested=False)
+            if fields:
+                result[key] = fields
+    return result
+
+
+def processing_summary(assets):
+    stages = []
+    eligible = [a for a in assets if isinstance(a, dict) and a.get("kind") in ("remove-background", "pixel", "repair-outline", "apply-palette")]
+    for asset in eligible[:MAX_PROCESSING_STAGES]:
+        params = asset.get("params") if isinstance(asset.get("params"), dict) else {}
+        stage = {"operation": asset["kind"], "diagnostics": bounded_diagnostics(params.get("diagnostics"))}
+        for source, target in (("id", "assetId"), ("parentId", "parentAssetId")):
+            identifier = asset.get(source)
+            if isinstance(identifier, str) and re.fullmatch(r"[A-Za-z0-9_-]{1,180}", identifier) and clean_error(identifier) == identifier:
+                stage[target] = identifier
+        mode = diagnostic_token(params.get("mode"))
+        if mode is not None:
+            stage["mode"] = mode
+        stages.append(stage)
+    return {"processingStages": stages, "processingStagesTruncated": max(0, len(eligible) - MAX_PROCESSING_STAGES)}
+
+
 def summary(job):
-    return {"jobId": job["id"], "status": job.get("status"), "progress": job.get("progress"), "error": clean_error(job["error"]) if job.get("error") else None, "assetIds": [a.get("id") for a in job.get("assets", []) if isinstance(a, dict)], "exports": [{k: e.get(k) for k in ("name", "format", "width", "height", "bytes")} for e in job.get("exports", []) if isinstance(e, dict)]}
+    assets = job.get("assets", [])
+    return {"jobId": job["id"], "status": job.get("status"), "progress": job.get("progress"), "error": clean_error(job["error"]) if job.get("error") else None, "assetIds": [a.get("id") for a in assets if isinstance(a, dict)], "exports": [{k: e.get(k) for k in ("name", "format", "width", "height", "bytes")} for e in job.get("exports", []) if isinstance(e, dict)], **processing_summary(assets)}
 
 
 def new_output(value):

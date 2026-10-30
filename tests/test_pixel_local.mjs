@@ -91,18 +91,63 @@ test('64 palette is explicit, fixed, recorded and completed input cannot silentl
   await assert.rejects(fs.stat(path.join(directory, 'wrong')), /ENOENT/);
 });
 test('auto chroma uses measured four-edge proof and records actual source registration for cleanup', async t => {
-  const directory = await temporary(t), KEY = [0, 253, 253, 255], GREEN = [50, 105, 30, 255], TEAL = [0, 120, 120, 255];
+  const directory = await temporary(t), KEY = [0, 253, 253, 255], GREEN = [50, 105, 30, 255];
+  const MIXED = [...GREEN.slice(0, 3).map((v, i) => Math.round((v + KEY[i]) / 2)), 255];
   const source = await image(directory, 'cyan-source.png', 48, 32, data => {
     for (let y = 0; y < 32; y++) for (let x = 0; x < 48; x++) { const nx = Math.floor(x / 4), ny = Math.floor(y / 4), foreground = nx >= 2 && nx <= 9 && ny >= 1 && ny <= 6 && !(nx === 8 && ny === 4); set(data, 48, x, y, foreground ? GREEN : KEY); }
-    const colors = [...Array(6).fill(GREEN), ...Array(8).fill(TEAL), ...Array(2).fill(KEY)];
+    const colors = [...Array(6).fill(GREEN), ...Array(8).fill(MIXED), ...Array(2).fill(KEY)];
     for (let n = 0; n < 16; n++) set(data, 48, 16 + n % 4, 12 + Math.floor(n / 4), colors[n]);
   });
   const out = await runPipeline({ input: source.filename, 'output-dir': path.join(directory, 'out'), size: '12x12' }), m = await manifest(out), after = await decoded(out.output);
   assert.equal(stage(m, 'background').status, 'run'); assert.equal(stage(m, 'background').diagnostics.keyColor, '#00fdfd');
   assert.equal(stage(m, 'source-colors').status, 'run'); assert.equal(stage(m, 'source-colors').algorithm, 'source-cell-local-background-color-v1');
   assert.equal(stage(m, 'source-colors').diagnostics.alphaPreserved, true);
+  assert.equal(stage(m, 'source-colors').diagnostics.sourceMixtureRequired, true);
+  assert.equal(stage(m, 'source-colors').diagnostics.donorAmbiguityPolicy, 'equivalent-evidence-preserve-v1');
   assert.deepEqual(rgba(after.data, 12, 8, 6), [0, 0, 0, 0], 'original key-colored hole stays transparent');
   assert.deepEqual(rgba(after.data, 12, 4, 5), GREEN, 'registered source support repairs the mixed-source cell');
+});
+for (const [name, KEY, ACCENT] of [['cyan', [0, 253, 253, 255], [0, 120, 120, 255]], ['pink', [253, 0, 253, 255], [155, 20, 155, 255]]]) {
+  test(`saved-source workflow preserves unresolved intentional ${name} without downstream hue erasure`, async t => {
+    const directory = await temporary(t), GREEN = [50, 105, 30, 255];
+    const source = await image(directory, `${name}-accent.png`, 48, 32, data => {
+      for (let y = 0; y < 32; y++) for (let x = 0; x < 48; x++) {
+        const nx = Math.floor(x / 4), ny = Math.floor(y / 4), visible = nx >= 2 && nx <= 9 && ny >= 1 && ny <= 6 && !(nx === 8 && ny === 4);
+        set(data, 48, x, y, visible ? GREEN : KEY);
+      }
+      const colors = [...Array(6).fill(GREEN), ...Array(8).fill(ACCENT), ...Array(2).fill(KEY)];
+      for (let n = 0; n < 16; n++) set(data, 48, 16 + n % 4, 12 + Math.floor(n / 4), colors[n]);
+    });
+    const before = await fs.readFile(source.filename), out = await runPipeline({ input: source.filename, 'output-dir': path.join(directory, 'out'), size: '12x12' });
+    const m = await manifest(out), after = await decoded(out.output), d = stage(m, 'source-colors').diagnostics;
+    assert.equal(m.version, 2); assert.equal(m.recipe.cleanKeyShades, false);
+    assert.equal(d.sourceMixtureRequired, true); assert.equal(d.changedPixels, 0); assert.equal(d.alphaPreserved, true);
+    assert.equal(d.refusedReasons['insufficient-local-source-material-evidence'], 1);
+    assert.deepEqual(d.residualKeyShades, { skipped: true, skipReason: 'disabled-by-default', policy: 'preserve-unresolved-v1', removedPixels: 0 });
+    assert.deepEqual(rgba(after.data, 12, 4, 5), ACCENT);
+    for (let y = 0; y < 12; y++) for (let x = 0; x < 12; x++) {
+      const visible = x >= 2 && x <= 9 && y >= 3 && y <= 8 && !(x === 8 && y === 6);
+      assert.equal(rgba(after.data, 12, x, y)[3], visible ? 255 : 0);
+    }
+    assert.deepEqual(await fs.readFile(source.filename), before); assert.equal((await inspectFile(out.output)).verifiedCompletion, true);
+  });
+}
+test('valid version-one completion sidecars remain export-only and retain their original recipe proof', async t => {
+  const directory = await temporary(t), source = await chair(directory);
+  const out = await runPipeline({ input: source.filename, 'output-dir': path.join(directory, 'current'), native: true });
+  const legacy = path.join(directory, 'legacy-finished.png'), bytes = await fs.readFile(out.output);
+  const proof = JSON.parse(await fs.readFile(out.sidecar, 'utf8'));
+  // Version-one files have these same hash, geometry and stage proofs, without
+  // the new residual policy field. Build that historical format around a PNG.
+  proof.version = 1; proof.recipe.version = 1; delete proof.recipe.cleanKeyShades;
+  await fs.writeFile(legacy, bytes); await fs.writeFile(legacy + '.pixel.json', JSON.stringify(proof));
+  assert.equal((await inspectFile(legacy)).verifiedCompletion, true);
+  const copied = await runPipeline({ input: legacy, 'output-dir': path.join(directory, 'copied') }), m = await manifest(copied);
+  assert.equal(copied.repeatedCompletedInput, true); assert.deepEqual(await fs.readFile(copied.output), bytes);
+  assert.deepEqual(m.stages.filter(s => s.status === 'run').map(s => s.id), ['export']);
+  assert.equal(m.version, 1); assert.deepEqual(m.recipe, proof.recipe);
+  assert.deepEqual(JSON.parse(await fs.readFile(copied.sidecar, 'utf8')), proof);
+  assert.equal((await inspectFile(copied.output)).verifiedCompletion, true);
 });
 test('neutral or complex automatic background fails before writing, while explicit keep is honored', async t => {
   const directory = await temporary(t), source = await image(directory, 'white.png', 16, 16, data => { for (let y = 0; y < 16; y++) for (let x = 0; x < 16; x++) set(data, 16, x, y, x >= 5 && x <= 10 && y >= 5 && y <= 10 ? [70, 150, 80, 255] : [255, 255, 255, 255]); });

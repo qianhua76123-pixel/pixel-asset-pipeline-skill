@@ -25,6 +25,8 @@ export interface BackgroundColorChange {
 }
 export interface BackgroundColorDiagnostics {
   algorithm: "source-cell-local-background-color-v1";
+  sourceMixtureRequired: true;
+  donorAmbiguityPolicy: "equivalent-evidence-preserve-v1";
   skipped: boolean; skipReason?: string;
   keyColor: string; keyKind: "chromatic" | "neutral";
   changedPixels: number; recoloredPixels: number; candidatePixels: number; evaluatedPixels: number;
@@ -69,8 +71,10 @@ function neighbors(p: number, width: number, height: number): number[] {
  * source pixels actually removed by the registered matte. Uniform source color
  * and broad key-like material are protected; no color alone is a semantic label.
  * Small mixed source cells may borrow a clean source RGB with nearby native
- * support. Neutral fringes can additionally use a supported neighboring material
- * only when a local removed background and a tight mixture fit both exist.
+ * support and an encoded-sRGB mixture fit. Comparable evidence for materially
+ * different donors is refused. Neutral fringes can additionally use a supported
+ * neighboring material only when local removed background and a tight mixture
+ * fit both exist.
  * This cannot distinguish every intentionally painted subpixel accent from a
  * background blend. Uncertain pixels stay unchanged; alpha is never repaired.
  */
@@ -86,7 +90,7 @@ export function refineBackgroundColors(current: SourceGuidedImage, evidence?: Ba
   const key: Color = typeof suppliedKey === "string" && suppliedKey.length === 7 && /^#[0-9a-f]{6}$/i.test(suppliedKey) ? [1, 3, 5].map(i => parseInt(suppliedKey.slice(i, i + 2), 16)) as unknown as Color : [0, 0, 0];
   const neutral = Math.max(...key) - Math.min(...key) < 48;
   const diagnostics: BackgroundColorDiagnostics = {
-    algorithm: "source-cell-local-background-color-v1", skipped: false, keyColor: typeof suppliedKey === "string" ? suppliedKey.toLowerCase() : "", keyKind: neutral ? "neutral" : "chromatic",
+    algorithm: "source-cell-local-background-color-v1", sourceMixtureRequired: true, donorAmbiguityPolicy: "equivalent-evidence-preserve-v1", skipped: false, keyColor: typeof suppliedKey === "string" ? suppliedKey.toLowerCase() : "", keyKind: neutral ? "neutral" : "chromatic",
     changedPixels: 0, recoloredPixels: 0, candidatePixels: 0, evaluatedPixels: 0, protectedMaterialPixels: 0, uncertainPixels: 0, unprocessedPixels: 0,
     alphaPreserved: true, sourceColorsOnly: true, inputOrSourceColorsOnly: true, colorOrigin: "frozen-input-or-verified-source", noInterpolatedColors: true, originalPaletteOnly: true,
     colorsBefore: paletteBefore.size, colorsAfter: paletteBefore.size, newSourceColors: 0,
@@ -199,7 +203,9 @@ export function refineBackgroundColors(current: SourceGuidedImage, evidence?: Ba
     const proposals: { color: Color; kind: "source" | "native"; p: number; distance: number }[] = [...sourceColors.values()].sort((a, b) => b.count - a.count || a.p - b.p).slice(0, 16).map(x => ({ ...x, kind: "source", distance: 0 }));
     const used = new Set<number>();
     for (const n of nearby) if (!used.has(packed(n.color))) { used.add(packed(n.color)); proposals.push({ ...n, kind: "native" }); if (used.size === 16) break; }
-    let best: { proposal: typeof proposals[number]; matches: number; support: number; residual: number; score: number; reason: BackgroundColorChange["reason"] } | undefined;
+    type Qualified = { proposal: typeof proposals[number]; matches: number; support: number; residual: number; score: number; reason: BackgroundColorChange["reason"] };
+    const qualified: Qualified[] = [];
+    let best: Qualified | undefined;
     for (const proposal of proposals) {
       let support = 0;
       for (const n of nearby) { if (!compare()) break pixels; if (difference(n.color, proposal.color) <= 24) support++; }
@@ -207,9 +213,8 @@ export function refineBackgroundColors(current: SourceGuidedImage, evidence?: Ba
       let cleanMatches = 0;
       for (const item of cell.colors) { if (!compare()) break pixels; if (isCleanColor(item.color) && difference(item.color, proposal.color) <= 20) cleanMatches++; }
       const fit = mixture(original, proposal.color, key);
-      const strongChromatic = !neutral && direction(original, key) >= .995;
       let reason: BackgroundColorChange["reason"] | undefined;
-      if (cleanMatches >= minMatches && cell.keyLike >= 2 && (fit.t >= .04 && fit.t <= .9 && fit.residual <= 16 || strongChromatic && cleanMatches * 4 >= cell.visible)) reason = "source-cell-clean-material";
+      if (cleanMatches >= minMatches && cell.keyLike >= 2 && fit.t >= .04 && fit.t <= .9 && fit.residual <= 16) reason = "source-cell-clean-material";
       if (!reason && proposal.kind === "native" && exposure >= 2 && fit.t >= .08 && fit.t <= .85 && fit.residual <= 10) {
         // A neighboring real native material must itself have raw foreground
         // support. A previous edit cannot become a fabricated source witness.
@@ -229,9 +234,18 @@ export function refineBackgroundColors(current: SourceGuidedImage, evidence?: Ba
       if (!reason) continue;
       const residual = Number.isFinite(fit.residual) ? fit.residual : 255;
       const score = (reason === "source-cell-clean-material" ? -1000 : 0) - cleanMatches * 10 + residual + proposal.distance - Math.min(6, support);
+      qualified.push({ proposal, matches: cleanMatches, support, residual, score, reason });
       if (!best || score < best.score || score === best.score && (proposal.kind === "native" && best.proposal.kind !== "native" || proposal.kind === best.proposal.kind && proposal.p < best.proposal.p)) best = { proposal, matches: cleanMatches, support, residual, score, reason };
     }
     if (!best) { refuse(p, "insufficient-local-source-material-evidence"); continue; }
+    // Equal source matches, support within one (capped at six), and fit within
+    // two encoded RGB bytes do not identify a unique material. A >24-byte donor
+    // difference exceeds our native-support tolerance; locality/scan order must
+    // not decide between these otherwise comparable foreground explanations.
+    const selected = best;
+    if (qualified.some(other => other.reason === selected.reason && other.matches === selected.matches && Math.abs(Math.min(6, other.support) - Math.min(6, selected.support)) <= 1 && Math.abs(other.residual - selected.residual) <= 2 && difference(other.proposal.color, selected.proposal.color) > 24)) {
+      refuse(p, "ambiguous-local-source-material"); continue;
+    }
     const color = packed(best.proposal.color);
     if (!paletteAfter.has(color) && paletteAfter.size >= MAX_COLORS) { refuse(p, "output-color-budget"); continue; }
     paletteAfter.add(color); output.set(best.proposal.color, p * 4); diagnostics.changedPixels++; diagnostics.recoloredPixels++;

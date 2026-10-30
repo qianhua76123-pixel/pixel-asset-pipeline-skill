@@ -16,8 +16,17 @@
       "sourceSha256": "b1bfcccd63ddc73d0e850c4fe3399f36e6bc1a488d27ec3ea6875876f8ca980e",
       "changes": [
         "Type-only image interface import redirected to local image-types",
-        "StudioError dependency redirected to local error class"
-      ]
+        "StudioError dependency redirected to local error class",
+        "Synchronize required encoded-sRGB mixture fit and equivalent-evidence donor refusal with diagnostic policy flags; retain portable two-argument signature, 8192-color cap and local imports, without Studio ink-recovery dependency"
+      ],
+      "sourcePatches": [
+        {
+          "sourceCommit": "2696844e9b2fbf94f76e54b557654952695a308e",
+          "sourceSha256": "3b1b8f38489b1d87abc6044c733279427ca8e3c04201be7d53bd77b1cd4b3d58",
+          "scope": "Only background-color mixture and ambiguity preservation guard, documentation and diagnostics"
+        }
+      ],
+      "vendoredSha256": "e716805123d08713aeb2691a05bcffaead97576157289f638e2a93fa6c51cacf"
     },
     {
       "path": "skills/pixel-asset-pipeline/scripts/runtime/vendor/detail-refinement.ts",
@@ -81,5 +90,14 @@
       ]
     }
   ],
-  "sourceCommitLocation": "Local modified Pixel Studio snapshot; not asserted to exist in upstream GitHub history"
+  "sourceCommitLocation": "Local modified Pixel Studio snapshot; not asserted to exist in upstream GitHub history",
+  "portableWorkflow": {
+    "recipeVersion": 2,
+    "acceptedCompletedRecipeVersions": [
+      1,
+      2
+    ],
+    "sourceColorResidualPolicy": "preserve-unresolved-v1",
+    "change": "Disable unconditional post-cleanup hue erasure; preserve unresolved material and alpha. Existing completed recipes are copied with their original proof, without reinference."
+  }
 }

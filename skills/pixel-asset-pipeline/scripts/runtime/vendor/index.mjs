@@ -1,4 +1,5 @@
 // Derived from Pixel Studio commit 40e333545b84285d7f135eef1abfd29d2f376ffb. MIT notice: LICENSE.upstream.
+// Background-color mixture/ambiguity guard synchronized from 2696844e9b2fbf94f76e54b557654952695a308e; see ../PROVENANCE.json.
 // Rebuild with npm run build; source and provenance are shipped alongside this file.
 
 // skills/pixel-asset-pipeline/scripts/runtime/vendor/adaptive-color-refinement.ts
@@ -275,6 +276,8 @@ function refineBackgroundColors(current, evidence) {
   const neutral = Math.max(...key) - Math.min(...key) < 48;
   const diagnostics = {
     algorithm: "source-cell-local-background-color-v1",
+    sourceMixtureRequired: true,
+    donorAmbiguityPolicy: "equivalent-evidence-preserve-v1",
     skipped: false,
     keyColor: typeof suppliedKey === "string" ? suppliedKey.toLowerCase() : "",
     keyKind: neutral ? "neutral" : "chromatic",
@@ -469,6 +472,7 @@ function refineBackgroundColors(current, evidence) {
       proposals.push({ ...n, kind: "native" });
       if (used.size === 16) break;
     }
+    const qualified = [];
     let best;
     for (const proposal of proposals) {
       let support = 0;
@@ -483,9 +487,8 @@ function refineBackgroundColors(current, evidence) {
         if (isCleanColor(item.color) && difference(item.color, proposal.color) <= 20) cleanMatches++;
       }
       const fit = mixture(original, proposal.color, key);
-      const strongChromatic = !neutral && direction(original, key) >= 0.995;
       let reason;
-      if (cleanMatches >= minMatches && cell.keyLike >= 2 && (fit.t >= 0.04 && fit.t <= 0.9 && fit.residual <= 16 || strongChromatic && cleanMatches * 4 >= cell.visible)) reason = "source-cell-clean-material";
+      if (cleanMatches >= minMatches && cell.keyLike >= 2 && fit.t >= 0.04 && fit.t <= 0.9 && fit.residual <= 16) reason = "source-cell-clean-material";
       if (!reason && proposal.kind === "native" && exposure >= 2 && fit.t >= 0.08 && fit.t <= 0.85 && fit.residual <= 10) {
         const donorCell = readCell(proposal.p);
         if (!donorCell) break pixels;
@@ -510,10 +513,16 @@ function refineBackgroundColors(current, evidence) {
       if (!reason) continue;
       const residual = Number.isFinite(fit.residual) ? fit.residual : 255;
       const score = (reason === "source-cell-clean-material" ? -1e3 : 0) - cleanMatches * 10 + residual + proposal.distance - Math.min(6, support);
+      qualified.push({ proposal, matches: cleanMatches, support, residual, score, reason });
       if (!best || score < best.score || score === best.score && (proposal.kind === "native" && best.proposal.kind !== "native" || proposal.kind === best.proposal.kind && proposal.p < best.proposal.p)) best = { proposal, matches: cleanMatches, support, residual, score, reason };
     }
     if (!best) {
       refuse(p, "insufficient-local-source-material-evidence");
+      continue;
+    }
+    const selected = best;
+    if (qualified.some((other) => other.reason === selected.reason && other.matches === selected.matches && Math.abs(Math.min(6, other.support) - Math.min(6, selected.support)) <= 1 && Math.abs(other.residual - selected.residual) <= 2 && difference(other.proposal.color, selected.proposal.color) > 24)) {
+      refuse(p, "ambiguous-local-source-material");
       continue;
     }
     const color = packed(best.proposal.color);
