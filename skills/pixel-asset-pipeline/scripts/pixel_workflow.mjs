@@ -11,7 +11,7 @@ import { generateImage, resumeGeneration } from './pixel_generate.mjs';
 import { runPipeline, inspectFile } from './pixel_local.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-const VERSION = '0.2.1';
+const VERSION = '0.3.0';
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const secretSafe = value => String(value).replace(/\bsk-[A-Za-z0-9_-]{8,}/g, '[redacted]').replace(/(Bearer\s+)\S+/gi, '$1[redacted]').slice(0, 1800);
 const materialNames = ['generic', 'foliage', 'bamboo', 'glass'];
@@ -35,9 +35,9 @@ export function workflowConfig(options = {}) {
   if (options.key && background !== 'chroma') throw Error('--key requires --background chroma.');
   const size = options.size ?? '256';
   if (!/^[1-9]\d{0,3}(x[1-9]\d{0,3})?$/.test(String(size)) || String(size).split('x').some(n => Number(n) > 1024)) throw Error('--size must be 1..1024 or WIDTHxHEIGHT (each 1..1024).');
-  const palette = Number(options.palette ?? 96);
-  if (![64, 96].includes(palette)) throw Error('--palette must be 64 or 96.');
-  if (processor === 'studio' && (palette !== 96 || options.background !== undefined || options.key !== undefined)) throw Error('Studio preparation uses its fixed palette and semantic background plan. Palette and key overrides apply only to --processor local.');
+  const palette = Number(options.palette ?? (processor === 'studio' ? 96 : 24));
+  if (processor === 'studio' && (palette !== 96 || options.background !== undefined || options.key !== undefined || options.sampler !== undefined || options.keyer !== undefined || options.crop === true || options['palette-file'])) throw Error('Studio preparation uses its fixed palette and semantic background plan. Palette, key, sampler and crop overrides apply only to --processor local.');
+  if (processor === 'local' && (!Number.isSafeInteger(palette) || palette < 8 || palette > 256)) throw Error('--palette must be an integer from 8 to 256.');
   const timeout = Number(options.timeout ?? 240);
   if (!Number.isFinite(timeout) || timeout <= 0 || timeout > 1800) throw Error('--timeout must be 1..1800 seconds.');
   const style = options.style ?? 'sprite';
@@ -58,7 +58,15 @@ export function workflowConfig(options = {}) {
   if (options.providerId && !/^[A-Za-z0-9_-]{1,180}$/.test(options.providerId)) throw Error('Invalid saved provider identifier.');
   return {
     mode, processor, material, size: String(size), palette, background,
-    ...(options.key ? { key: options.key } : {}), style,
+    ...(options.key ? { key: options.key } : {}),
+    ...(options.sampler ? { sampler: options.sampler } : {}),
+    ...(options.keyer ? { keyer: options.keyer } : {}),
+    ...(options.grid ? { grid: options.grid } : {}),
+    ...(options.cleanup ? { cleanup: options.cleanup } : {}),
+    ...(options.crop ? { crop: true } : {}),
+    ...(options.padding !== undefined ? { padding: options.padding } : {}),
+    ...(options.paletteFile || options['palette-file'] ? { paletteFile: options.paletteFile ?? options['palette-file'] } : {}),
+    style,
     baseUrl: safeUrl(baseUrl, mode === 'studio', options.allowRemote),
     studioUrl: safeUrl(options.studioUrl ?? 'http://127.0.0.1:3410', true, options.allowRemote),
     providerId: options.providerId, protocol, model, apiKeyEnv,
@@ -166,7 +174,7 @@ async function advance(directory, state, options, dependencies, recovering) {
     await saveState(directory, state);
     let result;
     if (config.processor === 'local') {
-      result = await processLocal({ input: state.generation.outputPath, 'output-dir': attemptDir, size: config.size, material: config.material, palette: config.palette, background: config.background, ...(config.key ? { key: config.key } : {}) });
+      result = await processLocal({ input: state.generation.outputPath, 'output-dir': attemptDir, size: config.size, material: config.material, palette: config.palette, background: config.background, ...(config.key ? { key: config.key } : {}), ...(config.sampler ? { sampler: config.sampler } : {}), ...(config.keyer ? { keyer: config.keyer } : {}), ...(config.grid ? { grid: config.grid } : {}), ...(config.cleanup ? { cleanup: config.cleanup } : {}), ...(config.crop ? { crop: true } : {}), ...(config.padding !== undefined ? { padding: config.padding } : {}), ...(config.paletteFile ? { 'palette-file': config.paletteFile } : {}) });
     } else result = await prepare({ config, source: state.generation, directory: attemptDir, recovery: previous });
     if (!result.ok) {
       state.processing = { ...state.processing, status: result.status ?? 'failed', ...(result.jobId ? { jobId: result.jobId } : {}), report: result };
@@ -212,19 +220,19 @@ export async function runWorkflow(options, dependencies = {}) {
 export async function resumeWorkflow(options, dependencies = {}) {
   if (!options.outputDir) throw Error('resume requires the existing --output-dir.');
   const directory = path.resolve(options.outputDir), state = await readJson(path.join(directory, 'workflow.json'));
-  if (state.producer !== 'pixel-asset-pipeline' || !['0.2.0', VERSION].includes(state.version) || !state.config) throw Error('Unknown workflow record.');
+  if (state.producer !== 'pixel-asset-pipeline' || !['0.2.0', '0.2.1', VERSION].includes(state.version) || !state.config) throw Error('Unknown workflow record.');
   return advance(directory, state, options, dependencies, true);
 }
 
 const FLAGS = new Map(Object.entries({ 'output-dir': 'outputDir', 'prompt-file': 'promptFile', 'base-url': 'baseUrl', 'studio-url': 'studioUrl', 'provider-id': 'providerId', 'api-key-env': 'apiKeyEnv', 'aspect-ratio': 'aspectRatio', 'api-size': 'apiSize', 'allow-remote': 'allowRemote' }));
 function parse(argv) {
-  const command = argv.shift() ?? 'help', options = {}, allowed = new Set(['mode', 'processor', 'model', 'protocol', 'prompt', 'size', 'material', 'palette', 'background', 'key', 'resolution', 'timeout', 'style', ...FLAGS.keys()]);
+  const command = argv.shift() ?? 'help', options = {}, allowed = new Set(['mode', 'processor', 'model', 'protocol', 'prompt', 'size', 'material', 'palette', 'palette-file', 'background', 'key', 'resolution', 'timeout', 'style', 'sampler', 'keyer', 'grid', 'cleanup', 'padding', 'crop', ...FLAGS.keys()]);
   for (let i = 0; i < argv.length; i++) {
     const name = argv[i].replace(/^--/, '');
     if (!argv[i].startsWith('--') || !allowed.has(name)) throw Error('Unknown option: ' + argv[i]);
     const key = FLAGS.get(name) ?? name;
     if (Object.hasOwn(options, key)) throw Error('Duplicate option: ' + name);
-    if (name === 'allow-remote') options[key] = true;
+    if (name === 'allow-remote' || name === 'crop') options[key] = true;
     else { const value = argv[++i]; if (!value || value.startsWith('--')) throw Error('Missing value for --' + name); options[key] = value; }
   }
   return { command, options };

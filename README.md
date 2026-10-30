@@ -4,7 +4,7 @@
 
 ## 当前效果与边界
 
-截至 2026-10-30，固定网格、硬透明、原生导出与重复处理保护已有实现；部分青紫污染可以依据源图自动恢复。**尚不能保证任意 AI 图自动达到手绘生产质量。** 最新 Studio 混合方案在茉莉、蕨叶和玻璃灯上保留旧透明轮廓，灯内部粉紫明显改善；新图验证仍有粉边且只小幅改色。
+截至 2026-10-30，本地引擎 v0.3 在色键图上会去掉与底色相连的品红/青边并做边缘去溢色，按格子覆盖率取主色（不再只取中心点），默认硬限制约 24 色，并可加载 `.hex`/`.gpl` 共享色板。也可 `--crop` 后直接输出 `WxH` 精灵。**仍不能保证任意 AI 图自动达到手绘生产质量。** 旧的 `--keyer classic --sampler center --palette 96` 保留 v0.2 路径，便于对照。Studio 混合方案的历史结论不变。
 
 [算法流程、实际效果、未解决问题与经验](skills/pixel-asset-pipeline/references/algorithm-status.md) 记录了成功和失败证据。本次仅更新文档，没有跑图或修改算法。
 
@@ -26,14 +26,14 @@ node "<skill-dir>/scripts/pixel_workflow.mjs" run \
 
 | 方式 | 能力 | 依赖 |
 |---|---|---|
-| 独立本地引擎 | 透明图/可靠彩底、严格网格、有原图证据的补色、材质精修、碎色整理、竹木单遍外轮廓、PNG导出 | Node.js 22+、Sharp |
+| 独立本地引擎 | 透明图/可靠彩底、溢色边与去溢色、覆盖率网格、共享色板、有原图证据的补色、材质精修、孤立点合并、竹木单遍外轮廓、PNG导出 | Node.js 22+、Sharp |
 | Pixel Studio适配器 | 软件现有固定流程，包括本地主体识别、背景孔判断、依据原图的前景原色恢复和导出 | Python 3.9+、兼容Pixel Studio服务 |
 
 Studio 另有可选 `proper-pipeline` 完整实验与 `proper-hybrid` 混合精修模式，后者保留旧网格／alpha，再恢复有依据的颜色。它们需要服务端另行安装，**未包含在独立引擎，也不是 `pixel_studio.py run` 自动启用的路线**。见[可选服务模式](skills/pixel-asset-pipeline/references/execution.md#optional-proper-server-modes)。
 
-独立本地顺序：**背景 → 网格 → 有证据的去污染与补色 → 明确材质 → 色块整理 → 明确竹木轮廓 → 导出**。Studio默认自动流程还包括背景分割和前景原色恢复；阶段可以有依据地跳过。默认96色预算，保留原色的回退和恢复可能超过预算；已完成输出有匹配记录时只导出，避免反复压色和移动边缘。
+独立本地顺序：**背景（含溢色边）→ 覆盖率网格 → 有证据的去污染与补色 → 明确材质 → 去溢色 → 硬限色或共享色板 → 近色孤立点合并 → 明确竹木轮廓 → 导出**。先下采样，再限色。Studio默认自动流程还包括背景分割和前景原色恢复；阶段可以有依据地跳过。默认色数上限 24；`--palette-file` 把每个不透明像素锁进给定色板。已完成输出有匹配记录时只导出。
 
-本地 v0.2.1 改为先按统一的源图网格中心取样、后整理色板，避免旧版“精确RGB频次投票”把窗棂、门楣等连续结构变成碎点。更新Skill不会改变旧Studio服务的采样器；纯彩底图优先使用本地流程。
+本地 v0.3 默认按格子的前景覆盖率取最重颜色桶的中位色，避免中心一个噪点决定整格，也不把格子两侧平均成第三种颜色。`--sampler center` 仍是 v0.2 的中心取样。`--grid auto` 只在检测到明显像素格时对齐相位。更新 Skill 不会改变旧 Studio 服务的采样器。
 
 本仓库包含生图客户端，不托管模型，也不包含 API key、Pixel Studio UI、模型权重或用户素材。独立流程默认请求纯彩底；遇到不可靠/中性背景会拒绝自动去底。语义抠图可选 `--processor studio`，使用已经配置好的Studio服务。像素技术检查通过不等于手绘质量，残色和造型仍需目视验收。
 
@@ -70,7 +70,15 @@ node "<skill-dir>/scripts/pixel_local.mjs" run \
 
 输出 `sprite.png`、匹配的 `sprite.png.pixel.json` 和 `manifest.json`。保留sidecar用于重复处理保护。每次使用新输出目录，改变配置时回原始源图重跑。
 
-`--native`代表一个文件像素对应一个逻辑像素，不代表自动识别AI网格。默认最长边256、不放大。材质为 `generic/foliage/bamboo/glass`；`--palette 64`明确选择较少色块预算，预算不是硬上限。
+`--native`代表一个文件像素对应一个逻辑像素。`--grid auto` 才会尝试识别已经是像素风的放大格。默认最长边 256、不放大。`--crop` 先裁到主体再放进 `--size WxH`，避免大块底边占用格子。材质为 `generic/foliage/bamboo/glass`。`--palette N`（8–256，默认 24）是硬上限；`--palette-file` 接受 `.hex` 或 GIMP `.gpl`。
+
+同一批品红底样本的前后对照在 `examples/benchmark/`。复现：
+
+```sh
+node "<skill-dir>/scripts/pixel_benchmark.mjs" \
+  --samples examples/samples --out /tmp/pixel-benchmark \
+  --palette-file examples/palettes/village-24.hex
+```
 
 ## 调用现有Pixel Studio
 
