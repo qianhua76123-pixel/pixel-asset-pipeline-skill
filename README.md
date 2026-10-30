@@ -2,6 +2,12 @@
 
 用 `nano-banana-2` 或自定义生图 API 生成新素材，再通过固定算法整理成原生 PNG；也可直接处理已保存图片。供具备本地文件和命令执行能力的 AI 使用，包含可运行的代码。
 
+## 当前效果与边界
+
+截至 2026-10-30，固定网格、硬透明、原生导出与重复处理保护已有实现；部分青紫污染可以依据源图自动恢复。**尚不能保证任意 AI 图自动达到手绘生产质量。** 最新 Studio 混合方案在茉莉、蕨叶和玻璃灯上保留旧透明轮廓，灯内部粉紫明显改善；新图验证仍有粉边且只小幅改色。
+
+[算法流程、实际效果、未解决问题与经验](skills/pixel-asset-pipeline/references/algorithm-status.md) 记录了成功和失败证据。本次仅更新文档，没有跑图或修改算法。
+
 ## 从生图到导出
 
 ```sh
@@ -22,6 +28,8 @@ node "<skill-dir>/scripts/pixel_workflow.mjs" run \
 |---|---|---|
 | 独立本地引擎 | 透明图/可靠彩底、严格网格、有原图证据的补色、材质精修、碎色整理、竹木单遍外轮廓、PNG导出 | Node.js 22+、Sharp |
 | Pixel Studio适配器 | 软件现有固定流程，包括本地主体识别、背景孔判断、依据原图的前景原色恢复和导出 | Python 3.9+、兼容Pixel Studio服务 |
+
+Studio 另有可选 `proper-pipeline` 完整实验与 `proper-hybrid` 混合精修模式，后者保留旧网格／alpha，再恢复有依据的颜色。它们需要服务端另行安装，**未包含在独立引擎，也不是 `pixel_studio.py run` 自动启用的路线**。见[可选服务模式](skills/pixel-asset-pipeline/references/execution.md#optional-proper-server-modes)。
 
 独立本地顺序：**背景 → 网格 → 有证据的去污染与补色 → 明确材质 → 色块整理 → 明确竹木轮廓 → 导出**。Studio默认自动流程还包括背景分割和前景原色恢复；阶段可以有依据地跳过。默认96色预算，保留原色的回退和恢复可能超过预算；已完成输出有匹配记录时只导出，避免反复压色和移动边缘。
 
@@ -75,7 +83,7 @@ python3 "<skill-dir>/scripts/pixel_studio.py" run \
 
 默认服务地址 `http://127.0.0.1:3410`。适配器不安装软件或下载模型。先检查与预览，再提交一次；超时保留任务ID，用 `status/resume` 恢复。[命令与恢复说明](skills/pixel-asset-pipeline/references/execution.md)。
 
-要使用最新自动原色恢复，请省略 `--profile`。已验证的Studio版本使用最终算法 `source-backed-final-background-refinement-v4` 和源图恢复规则 `source-connected-material-endpoint-restoration-v5`；`run-report.json` 的 `processingStages` 记录实际算法、跳过原因和改动数量。独立本地引擎不包含这项依赖Studio原图记录的恢复。显式材质选项走另一套流程；比较新算法时回到原图，旧的已完成素材仍可能只导出。自动推断会保留证据不足的亮青、粉紫等颜色，不能保证还原所有真实原色。
+要使用服务默认的自动原色恢复，请省略 `--profile`。已验证的Studio版本使用最终算法 `source-backed-final-background-refinement-v4` 和源图恢复规则 `source-connected-material-endpoint-restoration-v5`；`run-report.json` 的 `processingStages` 记录实际算法、跳过原因和改动数量。独立本地引擎不包含这项依赖Studio原图记录的恢复。显式材质选项走另一套流程；比较新算法时回到原图，旧的已完成素材仍可能只导出。自动推断会保留证据不足的亮青、粉紫等颜色，不能保证还原所有真实原色。
 
 ## 地块与瓦片集
 

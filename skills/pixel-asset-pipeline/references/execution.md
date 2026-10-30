@@ -69,6 +69,34 @@ Global `--base-url`, `--allow-remote`, `--http-timeout` precede the subcommand. 
 
 `run-report.json` records imported-source hashes (when importing), the manifest, job ID, runtime processing summaries and downloaded-file hashes. For `--asset-id`, preserve or independently verify the original file's hash; a saved ID alone is not a content hash. Exit0 means completion,2 means failure or bad arguments,3 means a job is pending or its submission outcome is unknown. Use the saved ID to inspect/recover. Ctrl+C does not automatically cancel a server job. Unknown submission outcomes must not be retried automatically. Graphs containing generation or experimental grid stages are rejected.
 
+## Optional Proper server modes
+
+These modes exist in a separately installed compatible Studio; their engine code and proper-pixel-art package are **not bundled in this skill**. The current `pixel_studio.py run` adapter does not automatically select them. Updating this repository alone cannot enable them. See [algorithm-status.md](algorithm-status.md) for actual results and failures.
+
+`proper-pipeline` uses an opaque original and the server's installed Proper engine. It produces its actual recovered mesh, which need not equal the nominal target size; do not resize it silently for comparison. Previously transparent exported sprites are not a substitute for that original.
+
+For `proper-hybrid`, first read `GET /api/studio/process` on the chosen local Studio and require `properHybrid: true`. It needs an existing native result whose stored lineage includes the immutable opaque source, full-resolution cutout matte, and exact grid cuts. An arbitrary imported PNG with no such proof is rejected. The mode changes RGB while freezing the current grid and alpha, including any existing mask defects.
+
+One process request has this shape:
+
+```http
+POST http://127.0.0.1:3410/api/studio/process
+Content-Type: application/json
+
+{
+  "assetId": "<verified-native-result-id>",
+  "operation": "repair-outline",
+  "parameters": {
+    "mode": "proper-hybrid",
+    "keyPolicy": "conservative"
+  }
+}
+```
+
+The response contains a job ID; poll `GET /api/studio/jobs/<job-id>` and retain that ID on timeout. A queued job is not proof of an output. In an existing workflow, the repair node's `data` contains `role: "repair"` and the same `parameters`; connect it after the verified fixed-grid branch and before native PNG export (`native: true`, `scale: 1`). This is a service API example, not a new CLI flag.
+
+`conservative` is the default. Choose `exclusive-background` only when the asset contract explicitly says the observed background key family is not authored foreground. The glass-lamp improvement additionally relies on a neutral-glass prior; it does not establish unrestricted recovery of colored glass. Never use the mode as repeated inference on downloaded exports; use the service's verified lineage and a new comparison branch.
+
 ## Interpreting output
 
 - JSON success is not an art-quality score. Inspect the final image.

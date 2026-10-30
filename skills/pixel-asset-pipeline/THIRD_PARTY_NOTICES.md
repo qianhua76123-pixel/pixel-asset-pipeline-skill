@@ -12,8 +12,9 @@ File hashes and narrowly scoped import changes are recorded in
 `scripts/runtime/PROVENANCE.json`.
 
 The strict grid sampler in `pixel_local.mjs` adapts the same checkout's
-`processor.ts`: fixed integer cuts, hard alpha, palette-before-majority sampling,
-contain placement, and canonical transparent RGB. The source is MIT licensed;
+`processor.ts`: fixed integer cuts, hard alpha, contain placement, and canonical
+transparent RGB. Local v0.2.1 samples consistent source-cell centers before
+palette reduction; it no longer uses exact-RGB plurality sampling. The source is MIT licensed;
 the same upstream notice applies to those adaptations. The command interface,
 portable file provenance, output validation, and standalone limitations are new.
 
