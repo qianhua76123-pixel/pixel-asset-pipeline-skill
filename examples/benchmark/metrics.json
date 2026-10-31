@@ -1,0 +1,218 @@
+{
+  "bush": {
+    "beforeFull": {
+      "width": 456,
+      "height": 476,
+      "visible": 134746,
+      "colors": 98,
+      "pink": 868,
+      "pinkEdge": 837,
+      "isolated": 2816,
+      "isolatedRatio": 0.021
+    },
+    "afterFull": {
+      "width": 456,
+      "height": 476,
+      "visible": 133083,
+      "colors": 23,
+      "pink": 0,
+      "pinkEdge": 0,
+      "isolated": 1168,
+      "isolatedRatio": 0.009
+    },
+    "beforeGame": {
+      "width": 32,
+      "height": 24,
+      "visible": 341,
+      "colors": 95,
+      "pink": 2,
+      "pinkEdge": 2,
+      "isolated": 233,
+      "isolatedRatio": 0.683
+    },
+    "afterGame": {
+      "width": 32,
+      "height": 24,
+      "visible": 391,
+      "colors": 24,
+      "pink": 0,
+      "pinkEdge": 0,
+      "isolated": 135,
+      "isolatedRatio": 0.345,
+      "inPalette": 0
+    },
+    "sharedPalette": {
+      "width": 32,
+      "height": 24,
+      "visible": 391,
+      "colors": 12,
+      "pink": 0,
+      "pinkEdge": 0,
+      "isolated": 92,
+      "isolatedRatio": 0.235,
+      "inPalette": 1
+    }
+  },
+  "house": {
+    "beforeFull": {
+      "width": 922,
+      "height": 647,
+      "visible": 476516,
+      "colors": 96,
+      "pink": 162,
+      "pinkEdge": 161,
+      "isolated": 28834,
+      "isolatedRatio": 0.061
+    },
+    "afterFull": {
+      "width": 922,
+      "height": 647,
+      "visible": 475107,
+      "colors": 24,
+      "pink": 0,
+      "pinkEdge": 0,
+      "isolated": 10948,
+      "isolatedRatio": 0.023
+    },
+    "beforeGame": {
+      "width": 128,
+      "height": 88,
+      "visible": 8759,
+      "colors": 96,
+      "pink": 1,
+      "pinkEdge": 1,
+      "isolated": 3821,
+      "isolatedRatio": 0.436
+    },
+    "afterGame": {
+      "width": 128,
+      "height": 88,
+      "visible": 9707,
+      "colors": 24,
+      "pink": 0,
+      "pinkEdge": 0,
+      "isolated": 1963,
+      "isolatedRatio": 0.202,
+      "inPalette": 0
+    },
+    "sharedPalette": {
+      "width": 128,
+      "height": 88,
+      "visible": 9707,
+      "colors": 17,
+      "pink": 0,
+      "pinkEdge": 0,
+      "isolated": 987,
+      "isolatedRatio": 0.102,
+      "inPalette": 1
+    }
+  },
+  "player": {
+    "beforeFull": {
+      "width": 209,
+      "height": 429,
+      "visible": 48158,
+      "colors": 97,
+      "pink": 463,
+      "pinkEdge": 302,
+      "isolated": 1485,
+      "isolatedRatio": 0.031
+    },
+    "afterFull": {
+      "width": 209,
+      "height": 429,
+      "visible": 47247,
+      "colors": 24,
+      "pink": 29,
+      "pinkEdge": 0,
+      "isolated": 396,
+      "isolatedRatio": 0.008
+    },
+    "beforeGame": {
+      "width": 13,
+      "height": 21,
+      "visible": 111,
+      "colors": 91,
+      "pink": 1,
+      "pinkEdge": 1,
+      "isolated": 46,
+      "isolatedRatio": 0.414
+    },
+    "afterGame": {
+      "width": 13,
+      "height": 21,
+      "visible": 133,
+      "colors": 22,
+      "pink": 0,
+      "pinkEdge": 0,
+      "isolated": 16,
+      "isolatedRatio": 0.12,
+      "inPalette": 0
+    },
+    "sharedPalette": {
+      "width": 13,
+      "height": 21,
+      "visible": 133,
+      "colors": 13,
+      "pink": 0,
+      "pinkEdge": 0,
+      "isolated": 10,
+      "isolatedRatio": 0.075,
+      "inPalette": 1
+    }
+  },
+  "rooster": {
+    "beforeFull": {
+      "width": 424,
+      "height": 430,
+      "visible": 84163,
+      "colors": 96,
+      "pink": 1036,
+      "pinkEdge": 986,
+      "isolated": 1688,
+      "isolatedRatio": 0.02
+    },
+    "afterFull": {
+      "width": 424,
+      "height": 430,
+      "visible": 82540,
+      "colors": 23,
+      "pink": 0,
+      "pinkEdge": 0,
+      "isolated": 719,
+      "isolatedRatio": 0.009
+    },
+    "beforeGame": {
+      "width": 18,
+      "height": 16,
+      "visible": 118,
+      "colors": 94,
+      "pink": 0,
+      "pinkEdge": 0,
+      "isolated": 50,
+      "isolatedRatio": 0.424
+    },
+    "afterGame": {
+      "width": 18,
+      "height": 16,
+      "visible": 138,
+      "colors": 18,
+      "pink": 0,
+      "pinkEdge": 0,
+      "isolated": 27,
+      "isolatedRatio": 0.196,
+      "inPalette": 0
+    },
+    "sharedPalette": {
+      "width": 18,
+      "height": 16,
+      "visible": 138,
+      "colors": 8,
+      "pink": 0,
+      "pinkEdge": 0,
+      "isolated": 17,
+      "isolatedRatio": 0.123,
+      "inPalette": 1
+    }
+  }
+}

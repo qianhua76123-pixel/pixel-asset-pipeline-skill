@@ -120,7 +120,7 @@ for (const [name, KEY, ACCENT] of [['cyan', [0, 253, 253, 255], [0, 120, 120, 25
     });
     const before = await fs.readFile(source.filename), out = await runPipeline({ input: source.filename, 'output-dir': path.join(directory, 'out'), size: '12x12' });
     const m = await manifest(out), after = await decoded(out.output), d = stage(m, 'source-colors').diagnostics;
-    assert.equal(m.version, 2); assert.equal(m.recipe.cleanKeyShades, false);
+    assert.equal(m.version, 3); assert.equal(m.recipe.cleanKeyShades, false); assert.equal(m.recipe.keyer, 'fringe'); assert.equal(m.recipe.sampler, 'coverage');
     assert.equal(d.sourceMixtureRequired, true); assert.equal(d.changedPixels, 0); assert.equal(d.alphaPreserved, true);
     assert.equal(d.refusedReasons['insufficient-local-source-material-evidence'], 1);
     assert.deepEqual(d.residualKeyShades, { skipped: true, skipReason: 'disabled-by-default', policy: 'preserve-unresolved-v1', removedPixels: 0 });
@@ -140,6 +140,10 @@ test('valid version-one completion sidecars remain export-only and retain their 
   // Version-one files have these same hash, geometry and stage proofs, without
   // the new residual policy field. Build that historical format around a PNG.
   proof.version = 1; proof.recipe.version = 1; delete proof.recipe.cleanKeyShades;
+  // Historical recipes sampled cell centers with a 64/96 budget and did not record fringe/crop fields.
+  proof.recipe.sampler = 'center'; proof.recipe.paletteBudget = 96; proof.recipe.phaseX = 0; proof.recipe.phaseY = 0;
+  for (const field of ['keyer', 'grid', 'crop', 'padding', 'cleanup', 'paletteFile']) delete proof.recipe[field];
+  proof.stageProofs[4].algorithm = 'source-medoids-edge-potts-v1';
   await fs.writeFile(legacy, bytes); await fs.writeFile(legacy + '.pixel.json', JSON.stringify(proof));
   assert.equal((await inspectFile(legacy)).verifiedCompletion, true);
   const copied = await runPipeline({ input: legacy, 'output-dir': path.join(directory, 'copied') }), m = await manifest(copied);

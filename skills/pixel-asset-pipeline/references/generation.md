@@ -47,7 +47,7 @@ node "<skill-dir>/scripts/pixel_workflow.mjs" run \
 
 Processing keeps the established order: background → strict grid → source-evidence cleanup → explicit material → color clusters → bamboo contour when requested → native export. It does not smooth or repeatedly process a finished sprite. Background preparation before grid sampling prevents the color key being averaged into the foreground.
 
-Local v0.2.1 samples consistent original cell centers before reducing colors. This avoids the old exact-RGB voting that could turn continuous window bars into alternating dark specks. The Studio processor uses its server's own recorded sampler; updating this portable skill does not change an older service's processing algorithms. Use the local processor for a verified chroma backing when preserving source linework matters.
+Local v0.3 samples each original cell by coverage and a dominant-bucket median, then applies the palette. This avoids both a single noisy center pixel and an average of two different sides. `--sampler center` still reads one consistent source position when that comparison is needed. The Studio processor uses its server's own recorded sampler; updating this portable skill does not change an older service's processing algorithms. Use the local processor for a verified chroma backing.
 
 ## Files and recovery
 
