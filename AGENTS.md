@@ -11,3 +11,7 @@ Keep the skill folder independently installable. A copied skill must not depend 
 - Terrain guidance remains reference-only until seam checking, rule generation and engine export are implemented and tested.
 
 Use root package scripts and the Python unittest suite. Commit each completed logical change as a self-contained unit.
+
+## Explicitly requested project archive
+
+`examples/nancun-paperdoll` is a user-authorized project checkpoint containing source art, prototypes and research. Keep it outside the installable skill; preserve its provenance and unapproved-art status. This scoped archive is the exception to the general no-user-artwork rule above, not permission to add unrelated user assets or credentials.

@@ -1,0 +1,61 @@
+{
+  "status": "passed",
+  "kind": "relocated HTTP source closure; not new visual acceptance",
+  "files": [
+    {
+      "file": "index.html",
+      "status": 200,
+      "bytes": 2866
+    },
+    {
+      "file": "stable-v81/index.html",
+      "status": 200,
+      "bytes": 2685
+    },
+    {
+      "file": "stable-v81/stable-four-directions/index.html",
+      "status": 200,
+      "bytes": 3548
+    },
+    {
+      "file": "stable-v81/stable-four-directions/technical/index.html",
+      "status": 200,
+      "bytes": 8441
+    },
+    {
+      "file": "stable-v81/stable-four-directions/technical/front-wardrobe/index.html",
+      "status": 200,
+      "bytes": 7575
+    },
+    {
+      "file": "app.js",
+      "status": 200,
+      "bytes": 11476
+    },
+    {
+      "file": "style.css",
+      "status": 200,
+      "bytes": 4509
+    },
+    {
+      "file": "manifest.json",
+      "status": 200,
+      "bytes": 4407
+    },
+    {
+      "file": "bundle-data.js",
+      "status": 200,
+      "bytes": 1347507
+    },
+    {
+      "file": "rig-engine.js",
+      "status": 200,
+      "bytes": 46210
+    },
+    {
+      "file": "render-core.js",
+      "status": 200,
+      "bytes": 8418
+    }
+  ]
+}

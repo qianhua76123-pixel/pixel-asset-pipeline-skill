@@ -1,0 +1,1014 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/bone_actor.gd" id="1_f5s0c"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/lowerArmA.png" id="2_86pq0"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/handA.png" id="3_33ftg"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/lowerArmA.png" id="4_i1nbd"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/handA.png" id="5_70nj8"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/underlap-lowerArmA.png" id="6_au3jm"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/lowerArmA.png" id="7_rtb65"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/lowerArmA.png" id="8_cgtip"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/skin-lowerArmA.png" id="9_kicd0"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/underlap-lowerArmA.png" id="10_2aw1b"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/variants/heqing-underlap-upperArmA-clean.png" id="11_tu2ox"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/upperArmA.png" id="12_jhgfs"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/underlap-upperArmA.png" id="13_u4dgw"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/upperArmA.png" id="14_cfe7a"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/upperArmA.png" id="15_ad58h"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/underlap-upperArmA.png" id="16_hyrav"]
+[ext_resource type="Texture2D" path="res://assets/equipment/iron-sword.png" id="17_fobbm"]
+[ext_resource type="Texture2D" path="res://assets/equipment/wood-hoe.png" id="18_u2saa"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/lowerArmB.png" id="19_wwgg7"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/handB.png" id="20_2weo1"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/lowerArmB.png" id="21_4pfal"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/handB.png" id="22_1gxcn"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/underlap-lowerArmB.png" id="23_88s8c"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/lowerArmB.png" id="24_fa4oq"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/lowerArmB.png" id="25_axvxe"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/skin-lowerArmB.png" id="26_fl31u"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/underlap-lowerArmB.png" id="27_raff6"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/variants/heqing-underlap-upperArmB-clean.png" id="28_wt4xp"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/upperArmB.png" id="29_2kh8a"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/underlap-upperArmB.png" id="30_7xi1j"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/upperArmB.png" id="31_2nv45"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/upperArmB.png" id="32_2kt25"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/underlap-upperArmB.png" id="33_ooo2r"]
+[ext_resource type="Texture2D" path="res://assets/equipment/back-basket.png" id="34_vewo0"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/torso.png" id="35_lmjvm"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/pelvis.png" id="36_b8yae"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/torso.png" id="37_41o7o"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/pelvis.png" id="38_0s5a7"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/underlap-torso.png" id="39_cbc27"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/underlap-pelvis.png" id="40_glawv"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/torso.png" id="41_dt72g"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/pelvis.png" id="42_1xass"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/torso.png" id="43_xsn5f"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/trim.png" id="44_fs2hc"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/underlap-torso.png" id="45_n2wsp"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/shoeA.png" id="46_e84e0"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/shoeA.png" id="47_y8s35"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/shinA.png" id="48_3e11o"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/shinA.png" id="49_ws7gd"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/underlap-shinA.png" id="50_rxfl8"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/shinA.png" id="51_2713q"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/skin-shinA.png" id="52_l2br5"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/thighA.png" id="53_ip22f"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/thighA.png" id="54_rdken"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/underlap-thighA.png" id="55_dx3tq"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/thighA.png" id="56_grvy1"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/shoeB.png" id="57_m81vy"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/shoeB.png" id="58_k8r1i"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/shinB.png" id="59_g0cxc"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/shinB.png" id="60_beixi"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/underlap-shinB.png" id="61_72nj5"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/shinB.png" id="62_1ypir"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/skin-shinB.png" id="63_pyfl7"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/thighB.png" id="64_p6nax"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/thighB.png" id="65_88n3a"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/underlap-thighB.png" id="66_kgwht"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/thighB.png" id="67_aafso"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/skirt.png" id="68_a1bei"]
+[ext_resource type="Texture2D" path="res://assets/equipment/hairpin.png" id="69_jd1fh"]
+[ext_resource type="Texture2D" path="res://assets/equipment/straw-hat.png" id="70_dk2iu"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/head.png" id="71_7wyv2"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/hairFront.png" id="72_u1w0a"]
+
+[node name="NativeBoneActor" type="Node2D" unique_id=802957767]
+script = ExtResource("1_f5s0c")
+
+[node name="Skeleton2D" type="Skeleton2D" parent="." unique_id=983801657]
+
+[node name="Root" type="Bone2D" parent="Skeleton2D" unique_id=825759466]
+position = Vector2(32, 58)
+rest = Transform2D(1, 0, 0, 1, 32, 58)
+auto_calculate_length_and_angle = false
+length = 4.0
+bone_angle = 0.0
+
+[node name="Pelvis" type="Bone2D" parent="Skeleton2D/Root" unique_id=164314367]
+position = Vector2(0, -9.5)
+rest = Transform2D(1, 0, 0, 1, 0, -9.5)
+auto_calculate_length_and_angle = false
+length = 4.0
+bone_angle = 0.0
+
+[node name="Torso" type="Bone2D" parent="Skeleton2D/Root/Pelvis" unique_id=1553435567]
+position = Vector2(0, -12.5)
+rotation = 1.5707964
+rest = Transform2D(0, 1, -1, 0, 0, -12.5)
+auto_calculate_length_and_angle = false
+length = 12.5
+bone_angle = 0.0
+
+[node name="UpperArmA" type="Bone2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=862579379]
+position = Vector2(2.5, -5.5)
+rotation = -0.4636476
+scale = Vector2(0.99999994, 0.99999994)
+rest = Transform2D(0.8944272, -0.4472136, 0.4472136, 0.8944272, 2.5, -5.5)
+auto_calculate_length_and_angle = false
+length = 3.354102
+bone_angle = 0.0
+
+[node name="ForearmA" type="Bone2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=1353565794]
+position = Vector2(3.354102, -3.5527137e-15)
+rotation = 0.4636476
+scale = Vector2(0.99999994, 0.99999994)
+rest = Transform2D(0.8944272, 0.4472136, -0.4472136, 0.8944272, 3.354102, -3.5527137e-15)
+auto_calculate_length_and_angle = false
+length = 3.5
+bone_angle = 0.0
+
+[node name="underlap_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=902425004]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("2_86pq0")
+centered = false
+metadata/file = "characters/heqing/underlaps/lowerArmA.png"
+metadata/part_id = "underlap-lowerArmA"
+
+[node name="underlap_handA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=1147781076]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("3_33ftg")
+centered = false
+metadata/file = "characters/heqing/underlaps/handA.png"
+metadata/part_id = "underlap-handA"
+
+[node name="lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=486662440]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("4_i1nbd")
+centered = false
+metadata/file = "characters/heqing/parts/lowerArmA.png"
+metadata/part_id = "lowerArmA"
+
+[node name="handA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=794713753]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("5_70nj8")
+centered = false
+metadata/file = "characters/heqing/parts/handA.png"
+metadata/part_id = "handA"
+
+[node name="stone_blue_daily_underlap_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=161650098]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("6_au3jm")
+centered = false
+metadata/file = "outfits/stone-blue-daily/parts/underlap-lowerArmA.png"
+metadata/part_id = "stone-blue-daily-underlap-lowerArmA"
+
+[node name="stone_blue_daily_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=2025573597]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("7_rtb65")
+centered = false
+metadata/file = "outfits/stone-blue-daily/parts/lowerArmA.png"
+metadata/part_id = "stone-blue-daily-lowerArmA"
+
+[node name="hanfu_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=1505195224]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("8_cgtip")
+centered = false
+metadata/file = "outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/lowerArmA.png"
+metadata/part_id = "hanfu-lowerArmA"
+
+[node name="hanfu_skin_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=1196049394]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("9_kicd0")
+centered = false
+metadata/file = "outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/skin-lowerArmA.png"
+metadata/part_id = "hanfu-skin-lowerArmA"
+
+[node name="hanfu_underlap_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=55575356]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("10_2aw1b")
+centered = false
+metadata/file = "outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/underlap-lowerArmA.png"
+metadata/part_id = "hanfu-underlap-lowerArmA"
+
+[node name="underlap_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=320268090]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.205956, 16.323296)
+rotation = -1.1071488
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("11_tu2ox")
+centered = false
+metadata/file = "characters/heqing/variants/heqing-underlap-upperArmA-clean.png"
+metadata/part_id = "underlap-upperArmA"
+
+[node name="upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=389638764]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.205956, 16.323296)
+rotation = -1.1071488
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("12_jhgfs")
+centered = false
+metadata/file = "characters/heqing/parts/upperArmA.png"
+metadata/part_id = "upperArmA"
+
+[node name="stone_blue_daily_underlap_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=1446433201]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.205956, 16.323296)
+rotation = -1.1071488
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("13_u4dgw")
+centered = false
+metadata/file = "outfits/stone-blue-daily/parts/underlap-upperArmA.png"
+metadata/part_id = "stone-blue-daily-underlap-upperArmA"
+
+[node name="stone_blue_daily_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=1730049414]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.205956, 16.323296)
+rotation = -1.1071488
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("14_cfe7a")
+centered = false
+metadata/file = "outfits/stone-blue-daily/parts/upperArmA.png"
+metadata/part_id = "stone-blue-daily-upperArmA"
+
+[node name="hanfu_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=1020773007]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.205956, 16.323296)
+rotation = -1.1071488
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("15_ad58h")
+centered = false
+metadata/file = "outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/upperArmA.png"
+metadata/part_id = "hanfu-upperArmA"
+
+[node name="hanfu_underlap_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=2129225246]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.205956, 16.323296)
+rotation = -1.1071488
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("16_hyrav")
+centered = false
+metadata/file = "outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/underlap-upperArmA.png"
+metadata/part_id = "hanfu-underlap-upperArmA"
+
+[node name="UpperArmB" type="Bone2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=117770291]
+position = Vector2(2.5, 4)
+rotation = 0.4636476
+scale = Vector2(0.99999994, 0.99999994)
+rest = Transform2D(0.8944272, 0.4472136, -0.4472136, 0.8944272, 2.5, 4)
+auto_calculate_length_and_angle = false
+length = 3.354102
+bone_angle = 0.0
+
+[node name="ForearmB" type="Bone2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=1452932308]
+position = Vector2(3.354102, 7.1054274e-15)
+rotation = -0.32175055
+rest = Transform2D(0.9486833, -0.31622776, 0.31622776, 0.9486833, 3.354102, 7.1054274e-15)
+auto_calculate_length_and_angle = false
+length = 3.535534
+bone_angle = 0.0
+
+[node name="GripSlot" type="Bone2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=1443262799]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 3.0
+bone_angle = 0.0
+
+[node name="iron_sword" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB/GripSlot" unique_id=2145570496]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-5, -28)
+texture = ExtResource("17_fobbm")
+centered = false
+metadata/file = "equipment/iron-sword.png"
+metadata/part_id = "iron-sword"
+
+[node name="wood_hoe" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB/GripSlot" unique_id=2121766087]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-11, -26)
+texture = ExtResource("18_u2saa")
+centered = false
+metadata/file = "equipment/wood-hoe.png"
+metadata/part_id = "wood-hoe"
+
+[node name="underlap_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=567111074]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.33524, 32.10265)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("19_wwgg7")
+centered = false
+metadata/file = "characters/heqing/underlaps/lowerArmB.png"
+metadata/part_id = "underlap-lowerArmB"
+
+[node name="underlap_handB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=1885674778]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.33524, 32.10265)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("20_2weo1")
+centered = false
+metadata/file = "characters/heqing/underlaps/handB.png"
+metadata/part_id = "underlap-handB"
+
+[node name="lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=501637901]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.33524, 32.10265)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("21_4pfal")
+centered = false
+metadata/file = "characters/heqing/parts/lowerArmB.png"
+metadata/part_id = "lowerArmB"
+
+[node name="handB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=1918386891]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.33524, 32.10265)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("22_1gxcn")
+centered = false
+metadata/file = "characters/heqing/parts/handB.png"
+metadata/part_id = "handB"
+
+[node name="stone_blue_daily_underlap_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=1944061675]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.33524, 32.10265)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("23_88s8c")
+centered = false
+metadata/file = "outfits/stone-blue-daily/parts/underlap-lowerArmB.png"
+metadata/part_id = "stone-blue-daily-underlap-lowerArmB"
+
+[node name="stone_blue_daily_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=1216042147]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.33524, 32.10265)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("24_fa4oq")
+centered = false
+metadata/file = "outfits/stone-blue-daily/parts/lowerArmB.png"
+metadata/part_id = "stone-blue-daily-lowerArmB"
+
+[node name="hanfu_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=1761243929]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.33524, 32.10265)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("25_axvxe")
+centered = false
+metadata/file = "outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/lowerArmB.png"
+metadata/part_id = "hanfu-lowerArmB"
+
+[node name="hanfu_skin_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=962037407]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.33524, 32.10265)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("26_fl31u")
+centered = false
+metadata/file = "outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/skin-lowerArmB.png"
+metadata/part_id = "hanfu-skin-lowerArmB"
+
+[node name="hanfu_underlap_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=1628867711]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.33524, 32.10265)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("27_raff6")
+centered = false
+metadata/file = "outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/underlap-lowerArmB.png"
+metadata/part_id = "hanfu-underlap-lowerArmB"
+
+[node name="underlap_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=1368674979]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-21.913465, 42.261684)
+rotation = -2.0344439
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("28_wt4xp")
+centered = false
+metadata/file = "characters/heqing/variants/heqing-underlap-upperArmB-clean.png"
+metadata/part_id = "underlap-upperArmB"
+
+[node name="upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=8892114]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-21.913465, 42.261684)
+rotation = -2.0344439
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("29_2kh8a")
+centered = false
+metadata/file = "characters/heqing/parts/upperArmB.png"
+metadata/part_id = "upperArmB"
+
+[node name="stone_blue_daily_underlap_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=1504005659]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-21.913465, 42.261684)
+rotation = -2.0344439
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("30_7xi1j")
+centered = false
+metadata/file = "outfits/stone-blue-daily/parts/underlap-upperArmB.png"
+metadata/part_id = "stone-blue-daily-underlap-upperArmB"
+
+[node name="stone_blue_daily_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=910305197]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-21.913465, 42.261684)
+rotation = -2.0344439
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("31_2nv45")
+centered = false
+metadata/file = "outfits/stone-blue-daily/parts/upperArmB.png"
+metadata/part_id = "stone-blue-daily-upperArmB"
+
+[node name="hanfu_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=395055329]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-21.913465, 42.261684)
+rotation = -2.0344439
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("32_2kt25")
+centered = false
+metadata/file = "outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/upperArmB.png"
+metadata/part_id = "hanfu-upperArmB"
+
+[node name="hanfu_underlap_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=2112516144]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-21.913465, 42.261684)
+rotation = -2.0344439
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("33_ooo2r")
+centered = false
+metadata/file = "outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/underlap-upperArmB.png"
+metadata/part_id = "hanfu-underlap-upperArmB"
+
+[node name="BackSlot" type="Bone2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=2145779414]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 3.0
+bone_angle = 0.0
+
+[node name="back_basket" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/BackSlot" unique_id=299014535]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-10, -5)
+texture = ExtResource("34_vewo0")
+centered = false
+metadata/file = "equipment/back-basket.png"
+metadata/part_id = "back-basket"
+
+[node name="underlap_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1321585232]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36, 32)
+rotation = -1.5707964
+texture = ExtResource("35_lmjvm")
+centered = false
+metadata/file = "characters/heqing/underlaps/torso.png"
+metadata/part_id = "underlap-torso"
+
+[node name="underlap_pelvis" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=430827424]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36, 32)
+rotation = -1.5707964
+texture = ExtResource("36_b8yae")
+centered = false
+metadata/file = "characters/heqing/underlaps/pelvis.png"
+metadata/part_id = "underlap-pelvis"
+
+[node name="torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1390876028]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36, 32)
+rotation = -1.5707964
+texture = ExtResource("37_41o7o")
+centered = false
+metadata/file = "characters/heqing/parts/torso.png"
+metadata/part_id = "torso"
+
+[node name="pelvis" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=42261551]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36, 32)
+rotation = -1.5707964
+texture = ExtResource("38_0s5a7")
+centered = false
+metadata/file = "characters/heqing/parts/pelvis.png"
+metadata/part_id = "pelvis"
+
+[node name="stone_blue_daily_underlap_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1512196453]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36, 32)
+rotation = -1.5707964
+texture = ExtResource("39_cbc27")
+centered = false
+metadata/file = "outfits/stone-blue-daily/parts/underlap-torso.png"
+metadata/part_id = "stone-blue-daily-underlap-torso"
+
+[node name="stone_blue_daily_underlap_pelvis" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1761218604]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36, 32)
+rotation = -1.5707964
+texture = ExtResource("40_glawv")
+centered = false
+metadata/file = "outfits/stone-blue-daily/parts/underlap-pelvis.png"
+metadata/part_id = "stone-blue-daily-underlap-pelvis"
+
+[node name="stone_blue_daily_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1870971707]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36, 32)
+rotation = -1.5707964
+texture = ExtResource("41_dt72g")
+centered = false
+metadata/file = "outfits/stone-blue-daily/parts/torso.png"
+metadata/part_id = "stone-blue-daily-torso"
+
+[node name="stone_blue_daily_pelvis" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1146483174]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36, 32)
+rotation = -1.5707964
+texture = ExtResource("42_1xass")
+centered = false
+metadata/file = "outfits/stone-blue-daily/parts/pelvis.png"
+metadata/part_id = "stone-blue-daily-pelvis"
+
+[node name="hanfu_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=854571076]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36, 32)
+rotation = -1.5707964
+texture = ExtResource("43_xsn5f")
+centered = false
+metadata/file = "outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/torso.png"
+metadata/part_id = "hanfu-torso"
+
+[node name="hanfu_trim" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1414264837]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36, 32)
+rotation = -1.5707964
+texture = ExtResource("44_fs2hc")
+centered = false
+metadata/file = "outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/trim.png"
+metadata/part_id = "hanfu-trim"
+
+[node name="hanfu_underlap_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1159651797]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36, 32)
+rotation = -1.5707964
+texture = ExtResource("45_n2wsp")
+centered = false
+metadata/file = "outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/underlap-torso.png"
+metadata/part_id = "hanfu-underlap-torso"
+
+[node name="ThighA" type="Bone2D" parent="Skeleton2D/Root/Pelvis" unique_id=1211306392]
+position = Vector2(3, 0)
+rotation = 1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+rest = Transform2D(0.14142136, 0.98994946, -0.98994946, 0.14142136, 3, 0)
+auto_calculate_length_and_angle = false
+length = 3.535534
+bone_angle = 0.0
+
+[node name="ShinA" type="Bone2D" parent="Skeleton2D/Root/Pelvis/ThighA" unique_id=1457193644]
+position = Vector2(3.535534, 0)
+rotation = 0.14189707
+scale = Vector2(0.99999994, 0.99999994)
+rest = Transform2D(0.98994946, 0.14142136, -0.14142136, 0.98994946, 3.535534, 0)
+auto_calculate_length_and_angle = false
+length = 3.5
+bone_angle = 0.0
+
+[node name="FootA" type="Bone2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA" unique_id=1554606179]
+position = Vector2(3.5, 0)
+rotation = -0.19739556
+rest = Transform2D(0.9805807, -0.19611613, 0.19611613, 0.9805807, 3.5, 0)
+auto_calculate_length_and_angle = false
+length = 2.5495098
+bone_angle = 0.0
+
+[node name="underlap_shoeA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA/FootA" unique_id=535218296]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-61.38435, 23.926168)
+rotation = -1.3734008
+texture = ExtResource("46_e84e0")
+centered = false
+metadata/file = "characters/heqing/underlaps/shoeA.png"
+metadata/part_id = "underlap-shoeA"
+
+[node name="shoeA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA/FootA" unique_id=258331668]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-61.38435, 23.926168)
+rotation = -1.3734008
+texture = ExtResource("47_y8s35")
+centered = false
+metadata/file = "characters/heqing/parts/shoeA.png"
+metadata/part_id = "shoeA"
+
+[node name="underlap_shinA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA" unique_id=1196178923]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52, 35.5)
+rotation = -1.5707964
+texture = ExtResource("48_3e11o")
+centered = false
+metadata/file = "characters/heqing/underlaps/shinA.png"
+metadata/part_id = "underlap-shinA"
+
+[node name="shinA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA" unique_id=1881272768]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52, 35.5)
+rotation = -1.5707964
+texture = ExtResource("49_ws7gd")
+centered = false
+metadata/file = "characters/heqing/parts/shinA.png"
+metadata/part_id = "shinA"
+
+[node name="stone_blue_daily_underlap_shinA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA" unique_id=91781838]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52, 35.5)
+rotation = -1.5707964
+texture = ExtResource("50_rxfl8")
+centered = false
+metadata/file = "outfits/stone-blue-daily/parts/underlap-shinA.png"
+metadata/part_id = "stone-blue-daily-underlap-shinA"
+
+[node name="stone_blue_daily_shinA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA" unique_id=187796409]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52, 35.5)
+rotation = -1.5707964
+texture = ExtResource("51_2713q")
+centered = false
+metadata/file = "outfits/stone-blue-daily/parts/shinA.png"
+metadata/part_id = "stone-blue-daily-shinA"
+
+[node name="hanfu_skin_shinA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA" unique_id=1745598593]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52, 35.5)
+rotation = -1.5707964
+texture = ExtResource("52_l2br5")
+centered = false
+metadata/file = "outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/skin-shinA.png"
+metadata/part_id = "hanfu-skin-shinA"
+
+[node name="underlap_thighA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA" unique_id=1713239872]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52.9623, 27.789297)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("53_ip22f")
+centered = false
+metadata/file = "characters/heqing/underlaps/thighA.png"
+metadata/part_id = "underlap-thighA"
+
+[node name="thighA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA" unique_id=1344907431]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52.9623, 27.789297)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("54_rdken")
+centered = false
+metadata/file = "characters/heqing/parts/thighA.png"
+metadata/part_id = "thighA"
+
+[node name="stone_blue_daily_underlap_thighA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA" unique_id=762984647]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52.9623, 27.789297)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("55_dx3tq")
+centered = false
+metadata/file = "outfits/stone-blue-daily/parts/underlap-thighA.png"
+metadata/part_id = "stone-blue-daily-underlap-thighA"
+
+[node name="stone_blue_daily_thighA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA" unique_id=1272988467]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52.9623, 27.789297)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("56_grvy1")
+centered = false
+metadata/file = "outfits/stone-blue-daily/parts/thighA.png"
+metadata/part_id = "stone-blue-daily-thighA"
+
+[node name="ThighB" type="Bone2D" parent="Skeleton2D/Root/Pelvis" unique_id=1952098686]
+position = Vector2(-3, 0)
+rotation = 1.5707964
+rest = Transform2D(0, 1, -1, 0, -3, 0)
+auto_calculate_length_and_angle = false
+length = 3.5
+bone_angle = 0.0
+
+[node name="ShinB" type="Bone2D" parent="Skeleton2D/Root/Pelvis/ThighB" unique_id=1524468556]
+position = Vector2(3.5, 0)
+rest = Transform2D(1, 0, 0, 1, 3.5, 0)
+auto_calculate_length_and_angle = false
+length = 3.5
+bone_angle = 0.0
+
+[node name="FootB" type="Bone2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB" unique_id=79587950]
+position = Vector2(3.5, 0)
+rotation = 0.38050637
+rest = Transform2D(0.9284767, 0.37139067, -0.37139067, 0.9284767, 3.5, 0)
+auto_calculate_length_and_angle = false
+length = 2.6925824
+bone_angle = 0.0
+
+[node name="underlap_shoeB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB/FootB" unique_id=283767650]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-40.760128, 47.538006)
+rotation = -1.9513026
+texture = ExtResource("57_m81vy")
+centered = false
+metadata/file = "characters/heqing/underlaps/shoeB.png"
+metadata/part_id = "underlap-shoeB"
+
+[node name="shoeB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB/FootB" unique_id=1628941008]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-40.760128, 47.538006)
+rotation = -1.9513026
+texture = ExtResource("58_k8r1i")
+centered = false
+metadata/file = "characters/heqing/parts/shoeB.png"
+metadata/part_id = "shoeB"
+
+[node name="underlap_shinB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB" unique_id=427668442]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52, 29)
+rotation = -1.5707964
+texture = ExtResource("59_g0cxc")
+centered = false
+metadata/file = "characters/heqing/underlaps/shinB.png"
+metadata/part_id = "underlap-shinB"
+
+[node name="shinB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB" unique_id=1456591780]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52, 29)
+rotation = -1.5707964
+texture = ExtResource("60_beixi")
+centered = false
+metadata/file = "characters/heqing/parts/shinB.png"
+metadata/part_id = "shinB"
+
+[node name="stone_blue_daily_underlap_shinB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB" unique_id=711906752]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52, 29)
+rotation = -1.5707964
+texture = ExtResource("61_72nj5")
+centered = false
+metadata/file = "outfits/stone-blue-daily/parts/underlap-shinB.png"
+metadata/part_id = "stone-blue-daily-underlap-shinB"
+
+[node name="stone_blue_daily_shinB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB" unique_id=451443654]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52, 29)
+rotation = -1.5707964
+texture = ExtResource("62_1ypir")
+centered = false
+metadata/file = "outfits/stone-blue-daily/parts/shinB.png"
+metadata/part_id = "stone-blue-daily-shinB"
+
+[node name="hanfu_skin_shinB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB" unique_id=1143961247]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52, 29)
+rotation = -1.5707964
+texture = ExtResource("63_pyfl7")
+centered = false
+metadata/file = "outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/skin-shinB.png"
+metadata/part_id = "hanfu-skin-shinB"
+
+[node name="underlap_thighB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB" unique_id=157173312]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-48.5, 29)
+rotation = -1.5707964
+texture = ExtResource("64_p6nax")
+centered = false
+metadata/file = "characters/heqing/underlaps/thighB.png"
+metadata/part_id = "underlap-thighB"
+
+[node name="thighB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB" unique_id=1369074551]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-48.5, 29)
+rotation = -1.5707964
+texture = ExtResource("65_88n3a")
+centered = false
+metadata/file = "characters/heqing/parts/thighB.png"
+metadata/part_id = "thighB"
+
+[node name="stone_blue_daily_underlap_thighB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB" unique_id=2131054384]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-48.5, 29)
+rotation = -1.5707964
+texture = ExtResource("66_kgwht")
+centered = false
+metadata/file = "outfits/stone-blue-daily/parts/underlap-thighB.png"
+metadata/part_id = "stone-blue-daily-underlap-thighB"
+
+[node name="stone_blue_daily_thighB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB" unique_id=1475905553]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-48.5, 29)
+rotation = -1.5707964
+texture = ExtResource("67_aafso")
+centered = false
+metadata/file = "outfits/stone-blue-daily/parts/thighB.png"
+metadata/part_id = "stone-blue-daily-thighB"
+
+[node name="RigidPelvis" type="Bone2D" parent="Skeleton2D/Root/Pelvis" unique_id=1761490712]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 3.0
+bone_angle = 0.0
+
+[node name="hanfu_skirt" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/RigidPelvis" unique_id=563941979]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32, -48.5)
+texture = ExtResource("68_a1bei")
+centered = false
+metadata/file = "outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/skirt.png"
+metadata/part_id = "hanfu-skirt"
+
+[node name="HeadUpright" type="Bone2D" parent="Skeleton2D/Root" unique_id=717299175]
+position = Vector2(0, -32.5)
+rest = Transform2D(1, 0, 0, 1, 0, -32.5)
+auto_calculate_length_and_angle = false
+length = 4.0
+bone_angle = 0.0
+
+[node name="HeadSlot" type="Bone2D" parent="Skeleton2D/Root/HeadUpright" unique_id=1408890363]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 3.0
+bone_angle = 0.0
+
+[node name="hairpin" type="Sprite2D" parent="Skeleton2D/Root/HeadUpright/HeadSlot" unique_id=2011848544]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-8, -3)
+texture = ExtResource("69_jd1fh")
+centered = false
+metadata/file = "equipment/hairpin.png"
+metadata/part_id = "hairpin"
+
+[node name="straw_hat" type="Sprite2D" parent="Skeleton2D/Root/HeadUpright/HeadSlot" unique_id=104537496]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-13, -12)
+texture = ExtResource("70_dk2iu")
+centered = false
+metadata/file = "equipment/straw-hat.png"
+metadata/part_id = "straw-hat"
+
+[node name="head" type="Sprite2D" parent="Skeleton2D/Root/HeadUpright" unique_id=563717580]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32, -25.5)
+texture = ExtResource("71_7wyv2")
+centered = false
+metadata/file = "characters/heqing/parts/head.png"
+metadata/part_id = "head"
+
+[node name="hairFront" type="Sprite2D" parent="Skeleton2D/Root/HeadUpright" unique_id=189672165]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32, -25.5)
+texture = ExtResource("72_u1w0a")
+centered = false
+metadata/file = "characters/heqing/parts/hairFront.png"
+metadata/part_id = "hairFront"

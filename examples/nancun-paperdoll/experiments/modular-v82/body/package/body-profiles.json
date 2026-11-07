@@ -1,0 +1,562 @@
+{
+  "version": 1,
+  "directions": [
+    "down"
+  ],
+  "canvas": [
+    64,
+    64
+  ],
+  "anchor": [
+    32,
+    58
+  ],
+  "visibleHeightReference": 44,
+  "sourceContract": "V81 immutable real cutouts; sourceBone/PNG/masks unchanged; target bind determines body morphology",
+  "profiles": [
+    {
+      "id": "standard",
+      "name": "标准",
+      "bindPoses": {
+        "down": {
+          "joints": {
+            "root": [
+              32,
+              58
+            ],
+            "head": [
+              32,
+              25.5
+            ],
+            "neck": [
+              32,
+              36
+            ],
+            "pelvis": [
+              32,
+              48.5
+            ],
+            "shoulderA": [
+              37.5,
+              38.5
+            ],
+            "elbowA": [
+              39,
+              41.5
+            ],
+            "wristA": [
+              39,
+              45
+            ],
+            "shoulderB": [
+              28,
+              38.5
+            ],
+            "elbowB": [
+              26.5,
+              41.5
+            ],
+            "wristB": [
+              26,
+              45
+            ],
+            "hipA": [
+              35,
+              48.5
+            ],
+            "kneeA": [
+              35.5,
+              52
+            ],
+            "ankleA": [
+              35.5,
+              55.5
+            ],
+            "toeA": [
+              36,
+              58
+            ],
+            "hipB": [
+              29,
+              48.5
+            ],
+            "kneeB": [
+              29,
+              52
+            ],
+            "ankleB": [
+              29,
+              55.5
+            ],
+            "toeB": [
+              28,
+              58
+            ]
+          },
+          "feet": {
+            "A": {
+              "sole": [
+                36,
+                58
+              ]
+            },
+            "B": {
+              "sole": [
+                28,
+                58
+              ]
+            }
+          },
+          "status": "measured-from-new-heqing-native-not-old-B"
+        }
+      },
+      "attachmentOverrides": {},
+      "description": "原样 44px 标准身体；对照应逐 RGBA 一致。"
+    },
+    {
+      "id": "solid",
+      "name": "宽实",
+      "bindPoses": {
+        "down": {
+          "joints": {
+            "root": [
+              32,
+              58
+            ],
+            "head": [
+              32,
+              25.5
+            ],
+            "neck": [
+              32,
+              36
+            ],
+            "pelvis": [
+              32,
+              48.5
+            ],
+            "shoulderA": [
+              38.5,
+              38.5
+            ],
+            "elbowA": [
+              40,
+              41.5
+            ],
+            "wristA": [
+              40,
+              45
+            ],
+            "shoulderB": [
+              27,
+              38.5
+            ],
+            "elbowB": [
+              25.5,
+              41.5
+            ],
+            "wristB": [
+              25,
+              45
+            ],
+            "hipA": [
+              36,
+              48.5
+            ],
+            "kneeA": [
+              36.5,
+              52
+            ],
+            "ankleA": [
+              36.5,
+              55.5
+            ],
+            "toeA": [
+              37,
+              58
+            ],
+            "hipB": [
+              28,
+              48.5
+            ],
+            "kneeB": [
+              28,
+              52
+            ],
+            "ankleB": [
+              28,
+              55.5
+            ],
+            "toeB": [
+              27,
+              58
+            ]
+          },
+          "feet": {
+            "A": {
+              "sole": [
+                37,
+                58
+              ]
+            },
+            "B": {
+              "sole": [
+                27,
+                58
+              ]
+            }
+          },
+          "status": "V82 measured width profile; same sagittal bone lengths and ground y; no full-person scaling"
+        }
+      },
+      "attachmentOverrides": {
+        "underlap-torso": {
+          "widthFactor": 1.2
+        },
+        "underlap-pelvis": {
+          "widthFactor": 1.2
+        },
+        "underlap-upperArmA": {
+          "widthFactor": 1.1
+        },
+        "underlap-lowerArmA": {
+          "widthFactor": 1.1
+        },
+        "underlap-upperArmB": {
+          "widthFactor": 1.1
+        },
+        "underlap-lowerArmB": {
+          "widthFactor": 1.1
+        },
+        "underlap-thighA": {
+          "widthFactor": 1.1
+        },
+        "underlap-shinA": {
+          "widthFactor": 1.1
+        },
+        "underlap-thighB": {
+          "widthFactor": 1.1
+        },
+        "underlap-shinB": {
+          "widthFactor": 1.1
+        },
+        "torso": {
+          "widthFactor": 1.2
+        },
+        "pelvis": {
+          "widthFactor": 1.2
+        },
+        "upperArmA": {
+          "widthFactor": 1.1
+        },
+        "lowerArmA": {
+          "widthFactor": 1.1
+        },
+        "upperArmB": {
+          "widthFactor": 1.1
+        },
+        "lowerArmB": {
+          "widthFactor": 1.1
+        },
+        "thighA": {
+          "widthFactor": 1.1
+        },
+        "shinA": {
+          "widthFactor": 1.1
+        },
+        "thighB": {
+          "widthFactor": 1.1
+        },
+        "shinB": {
+          "widthFactor": 1.1
+        },
+        "v81-cream-indigo-torso": {
+          "widthFactor": 1.2
+        },
+        "v81-cream-indigo-upperArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-cream-indigo-upperArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-cream-indigo-underlap-upperArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-cream-indigo-underlap-upperArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-cream-indigo-body-lowerArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-cream-indigo-body-lowerArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-cream-indigo-body-underlap-lowerArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-cream-indigo-body-underlap-lowerArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-cream-indigo-pelvis": {
+          "widthFactor": 1.2
+        },
+        "v81-cream-indigo-thighB": {
+          "widthFactor": 1.1
+        },
+        "v81-cream-indigo-thighA": {
+          "widthFactor": 1.1
+        },
+        "v81-cream-indigo-shinB": {
+          "widthFactor": 1.1
+        },
+        "v81-cream-indigo-shinA": {
+          "widthFactor": 1.1
+        },
+        "v81-moss-cardigan-torso": {
+          "widthFactor": 1.2
+        },
+        "v81-moss-cardigan-upperArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-moss-cardigan-upperArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-moss-cardigan-lowerArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-moss-cardigan-lowerArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-moss-cardigan-underlap-upperArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-moss-cardigan-underlap-upperArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-moss-cardigan-body-lowerArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-moss-cardigan-body-lowerArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-moss-cardigan-body-underlap-lowerArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-moss-cardigan-body-underlap-lowerArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-moss-cardigan-pelvis": {
+          "widthFactor": 1.2
+        },
+        "v81-moss-cardigan-thighB": {
+          "widthFactor": 1.1
+        },
+        "v81-moss-cardigan-thighA": {
+          "widthFactor": 1.1
+        },
+        "v81-moss-cardigan-shinB": {
+          "widthFactor": 1.1
+        },
+        "v81-moss-cardigan-shinA": {
+          "widthFactor": 1.1
+        },
+        "v81-lotus-skirt-torso": {
+          "widthFactor": 1.2
+        },
+        "v81-lotus-skirt-upperArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-lotus-skirt-upperArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-lotus-skirt-underlap-upperArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-lotus-skirt-underlap-upperArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-lotus-skirt-body-lowerArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-lotus-skirt-body-lowerArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-lotus-skirt-body-underlap-lowerArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-lotus-skirt-body-underlap-lowerArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-lotus-skirt-skirt": {
+          "rigidWidthFactor": 1.18
+        },
+        "v81-lotus-skirt-body-calfB": {
+          "widthFactor": 1.1
+        },
+        "v81-lotus-skirt-body-calfA": {
+          "widthFactor": 1.1
+        },
+        "v81-blue-apron-torso": {
+          "widthFactor": 1.2
+        },
+        "v81-blue-apron-upperArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-blue-apron-upperArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-blue-apron-lowerArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-blue-apron-lowerArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-blue-apron-underlap-upperArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-blue-apron-underlap-upperArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-blue-apron-body-lowerArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-blue-apron-body-lowerArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-blue-apron-body-underlap-lowerArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-blue-apron-body-underlap-lowerArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-blue-apron-thighB": {
+          "widthFactor": 1.1
+        },
+        "v81-blue-apron-thighA": {
+          "widthFactor": 1.1
+        },
+        "v81-blue-apron-shinB": {
+          "widthFactor": 1.1
+        },
+        "v81-blue-apron-shinA": {
+          "widthFactor": 1.1
+        },
+        "v81-blue-apron-apron": {
+          "rigidWidthFactor": 1.18
+        },
+        "v81-smoke-jacket-torso": {
+          "widthFactor": 1.2
+        },
+        "v81-smoke-jacket-upperArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-smoke-jacket-upperArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-smoke-jacket-lowerArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-smoke-jacket-lowerArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-smoke-jacket-underlap-upperArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-smoke-jacket-underlap-upperArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-smoke-jacket-body-lowerArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-smoke-jacket-body-lowerArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-smoke-jacket-body-underlap-lowerArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-smoke-jacket-body-underlap-lowerArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-smoke-jacket-pelvis": {
+          "widthFactor": 1.2
+        },
+        "v81-smoke-jacket-thighB": {
+          "widthFactor": 1.1
+        },
+        "v81-smoke-jacket-thighA": {
+          "widthFactor": 1.1
+        },
+        "v81-smoke-jacket-shinB": {
+          "widthFactor": 1.1
+        },
+        "v81-smoke-jacket-shinA": {
+          "widthFactor": 1.1
+        },
+        "v81-plain-crosscollar-torso": {
+          "widthFactor": 1.2
+        },
+        "v81-plain-crosscollar-upperArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-plain-crosscollar-upperArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-plain-crosscollar-lowerArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-plain-crosscollar-lowerArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-plain-crosscollar-underlap-upperArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-plain-crosscollar-underlap-upperArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-plain-crosscollar-body-lowerArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-plain-crosscollar-body-lowerArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-plain-crosscollar-body-underlap-lowerArmA": {
+          "widthFactor": 1.1
+        },
+        "v81-plain-crosscollar-body-underlap-lowerArmB": {
+          "widthFactor": 1.1
+        },
+        "v81-plain-crosscollar-skirt": {
+          "rigidWidthFactor": 1.18
+        }
+      },
+      "description": "肩臂与胯腿链每侧外移 1px；腰身宽 20%，衣袖裤腿宽 10%，刚性裙宽 18%；头眼手鞋自身不缩放。",
+      "limits": [
+        "仅正面两档，不是连续身高/体重滑杆。",
+        "复用真实源表面，经最近邻衣片注册，不新增体表画稿。",
+        "刚性裙横宽适配不是布料变形或物理。"
+      ]
+    }
+  ],
+  "provenance": {
+    "sourceBundleSha256": "46844f7b79ead8c398c41894166b4661446c079ba76b32b1e5a52a08c4ac37ad",
+    "sourceEngineSha256": "73dca94045db5bbeacf8a71aa0f8bbfd1f0f201ceae1b1b43643ae47ad3f210b",
+    "generationRequests": 0,
+    "sourceArtUnchanged": true,
+    "headEyeScaled": false,
+    "clockChanged": false
+  },
+  "supportedOutfitIds": [
+    "cream-indigo",
+    "moss-cardigan",
+    "lotus-skirt",
+    "blue-apron",
+    "smoke-jacket",
+    "plain-crosscollar"
+  ],
+  "allowedActions": [
+    "idle",
+    "walk"
+  ],
+  "applicableCharacter": "heqing",
+  "materialPolicy": "Transform-only registration: same PNG, alpha and all material masks; no new painted body surface"
+}

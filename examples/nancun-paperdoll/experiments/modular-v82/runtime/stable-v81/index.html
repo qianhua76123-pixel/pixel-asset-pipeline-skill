@@ -1,0 +1,13 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>南乡 · 村民衣橱</title><link rel="stylesheet" href="style.css"></head><body>
+<main id="world"><canvas id="scene" aria-label="村院中的真实像素角色"></canvas><p id="empty" role="status">正在载入村院……</p></main>
+<header><h1>南乡 <span>村民衣橱</span></h1><p>本批先看正面造型</p><a href="stable-four-directions/index.html" target="_blank" rel="noopener">既有四向村院 ↗</a></header>
+<aside aria-label="人物与衣装"><div class="panel-title">试穿</div><label>村民<select id="character" disabled></select></label><label>衣装<select id="outfit" disabled></select></label><div id="outfit-thumbs" class="thumbs"></div>
+<div class="colors"><label>衣色<select id="cloth-color" disabled><option value="original">原色</option><option value="indigo">靛蓝</option><option value="moss">苔绿</option></select></label><label>发色<select id="hair-color" disabled></select></label><label>肤色<select id="skin-color" disabled></select></label></div>
+<div class="controls"><label>动作<select id="action" disabled><option value="idle">站立</option><option value="walk">正面行走</option></select></label><button id="play" disabled>播放</button></div>
+<div class="keys" id="keys" aria-label="八个关键姿势"></div><input id="phase" type="range" min="0" max="7.99" step="0.01" value="0" disabled aria-label="动作相位"><p id="phase-label" class="small">姿势 1 / 8 · 暂停</p>
+<div class="controls"><label>观察<select id="view"><option value="scene">村院比例</option><option value="close">近看</option></select></label><label>倍率<select id="zoom"></select></label></div>
+<label class="check"><input type="checkbox" id="garment" disabled>只看衣装</label><label class="check"><input type="checkbox" id="bones" disabled>显示骨骼</label><button id="pieces" disabled>展开独立衣片</button>
+<p id="ready-note" class="small"></p><p class="small">切换村民或衣服保留当前动作进度。</p></aside>
+<section id="parts-panel" hidden><div class="parts-heading"><h2>独立衣片</h2><button id="close-parts">收起</button></div><p>原色衣片使用原锚点；头、头发、手脚和露肤区已隐藏。</p><div id="parts-grid"></div></section>
+<footer id="status">仅正面款式预览，尚未套用未知方向。</footer>
+<script src="scene-data.js"></script><script src="bundle-data.js"></script><script src="walk-stance.js"></script><script src="rig-engine.js"></script><script src="render-core.js"></script><script src="app.js"></script></body></html>

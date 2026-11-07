@@ -1,0 +1,21 @@
+.DS_Store
+._*
+.godot/
+node_modules/
+__pycache__/
+.venv/
+.env
+.env.*
+*.log
+*.tmp
+
+
+# User-requested project case study; outside the installable skill.
+!**/runs/
+!**/runs/**
+!**/*.png
+!**/*.jpg
+!**/*.jpeg
+!**/*.webp
+
+!archives/*.zip

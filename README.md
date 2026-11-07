@@ -8,6 +8,10 @@
 
 [算法流程、实际效果、未解决问题与经验](skills/pixel-asset-pipeline/references/algorithm-status.md) 记录了成功和失败证据。本次仅更新文档，没有跑图或修改算法。
 
+## 南乡纸娃娃研究案例
+
+按项目要求归档了[南乡纸娃娃研发检查点](examples/nancun-paperdoll/README.md)：可运行的44px独立发眼/体型/衣装小样、四向Godot骨架、饰品剑锄原型、自有工作流来源，以及[外部分层方案调研](examples/nancun-paperdoll/docs/research/README.md)。当前美术仍待优化，三个原型尚未合成生产系统。案例单独存放，不随`skills/pixel-asset-pipeline`安装，也不作为算法默认效果或已通过美术验收的示例。
+
 ## 从生图到导出
 
 ```sh
@@ -35,7 +39,7 @@ Studio 另有可选 `proper-pipeline` 完整实验与 `proper-hybrid` 混合精�
 
 本地 v0.3 默认按格子的前景覆盖率取最重颜色桶的中位色，避免中心一个噪点决定整格，也不把格子两侧平均成第三种颜色。`--sampler center` 仍是 v0.2 的中心取样。`--grid auto` 只在检测到明显像素格时对齐相位。更新 Skill 不会改变旧 Studio 服务的采样器。
 
-本仓库包含生图客户端，不托管模型，也不包含 API key、Pixel Studio UI、模型权重或用户素材。独立流程默认请求纯彩底；遇到不可靠/中性背景会拒绝自动去底。语义抠图可选 `--processor studio`，使用已经配置好的Studio服务。像素技术检查通过不等于手绘质量，残色和造型仍需目视验收。
+可安装的技能包含生图客户端，不托管模型，也不包含 API key、Pixel Studio UI、模型权重或用户素材。仓库的 `examples/nancun-paperdoll` 是用户明确要求保存的独立项目研究案例，不属于技能安装包。独立流程默认请求纯彩底；遇到不可靠/中性背景会拒绝自动去底。语义抠图可选 `--processor studio`，使用已经配置好的Studio服务。像素技术检查通过不等于手绘质量，残色和造型仍需目视验收。
 
 ## 安装为Skill
 

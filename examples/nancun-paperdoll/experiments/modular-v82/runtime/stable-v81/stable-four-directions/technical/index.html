@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>南乡 · 四向日常服、汉服与拆件 V69</title><link rel="stylesheet" href="style.css"></head>
+<body><main>
+<header><div class="eyebrow">南乡 / 心乡 · 实时裁片绑定</div><h1>禾青 · 四向日常服、汉服与拆件 V69</h1><p>原衣、石青上衣与汉服四向使用真实分件，共享同一动作；从村院进入时接续当前搭配与姿势。</p></header>
+<p id="notice" class="notice" role="status">正在载入独立部件与骨架……</p>
+<div id="app" hidden>
+<section class="sheet editor">
+<div class="viewer"><div class="section-head"><h2>实时组合</h2><span class="small">96×96 动作画布 · 4×</span></div>
+<div class="stage-scroll" tabindex="0" aria-label="角色四倍近看"><div class="stage"><canvas id="sprite" width="96" height="96" aria-label="独立部件实时组合的人物"></canvas><canvas id="bones" width="384" height="384" aria-hidden="true"></canvas></div></div>
+<div class="check-row"><label><input id="show-bones" type="checkbox">显示骨骼与挂点</label><label><input id="show-art" type="checkbox" checked>显示部件</label></div>
+<p id="pose-caption" class="caption"></p><p id="render-proof" class="small"></p><p id="clipping" class="notice" hidden></p></div>
+<div class="controls">
+<h3>人物</h3><div id="characters" class="buttons"></div><p id="character-note" class="small"></p>
+<div id="head-style-row"><h3>五官风格</h3><label>方案 <select id="head-style"></select></label><p class="small" id="head-direction-note">按方向显示已有的五官方案。</p></div><div id="body-appearance"><h3>发色与肤色</h3><div class="equipment-controls"><label for="hair-color">发色 <select id="hair-color"><option value="original">保留原色</option></select></label><label for="skin-color">肤色 <select id="skin-color"><option value="original">保留原色</option></select></label></div><p class="small">只调整明确的头发与露肤区域，保留眼睛、眉毛、嘴与深轮廓；颜色随身体部件一起运动。</p></div><h3>表情</h3><label>眼睛 <select id="face-mode"><option value="auto">自然眨眼</option><option value="open">保持睁眼</option><option value="closed">检查闭眼</option></select></label><p class="small" id="face-direction-note"></p>
+<h3>衣装</h3><div id="outfits" class="buttons"></div><p id="outfit-direction-note" class="hint" role="status" aria-live="polite"></p><p class="small"><a href="front-wardrobe/index.html" target="_blank" rel="noopener">完整正面换装（独立预览）↗</a> · 正面日常服、汉服与精修款保持在独立稳定页；不改变本页方向与播放相位。</p>
+<p class="small">只显示已收到完整衣片的款式；头、辫、手与鞋保持共用。</p>
+<div class="buttons"><button id="save-look" type="button">记住这套搭配</button><button id="restore-look" type="button">恢复上次搭配</button></div><p id="look-status" class="small" role="status">可在本浏览器记住人物颜色、服装和装备。</p><h3>方向</h3><div id="directions" class="buttons"></div>
+<h3>衣料色调</h3><div id="palettes" class="buttons"></div><p class="small">衣料染色与发色、肤色分别控制；装备保留原色。</p>
+<details id="separate-dyes"><summary>分别调整上装、下装与衣缘</summary><div class="equipment-controls">
+<label id="dye-row-top">上装 <select id="dye-top"><option value="inherit">沿用整体色调</option></select></label>
+<label id="dye-row-bottom">下装 <select id="dye-bottom"><option value="inherit">沿用整体色调</option></select></label>
+<label id="dye-row-trim">衣缘 <select id="dye-trim"><option value="inherit">沿用整体色调</option></select></label>
+</div><button id="reset-dyes" type="button">全部沿用整体色调</button><p class="small">分区仅在实际衣料遮罩存在时显示；原色会保留该区原有颜色。</p></details>
+<h3>装备</h3><div class="equipment-controls"><label>头饰 <select id="equip-head"><option value="">不戴</option></select></label><label>背部 <select id="equip-back"><option value="">不背</option></select></label><label>右手 <select id="equip-hand"><option value="">空手</option></select></label></div><p class="small">装备仅有正面，其他方向隐藏。头饰、手持装备各选一件。挥剑、挥锄期间换掉所需工具会取消动作。</p>
+<details><summary>微调装备挂点</summary><div id="adjust-controls"><p id="adjust-mode" class="small"></p><select id="adjust-item" aria-label="微调哪件装备"></select><div class="offset-inputs"><label>横移 <input id="adjust-x" type="number" min="-12" max="12" step=".5" value="0"></label><label>纵移 <input id="adjust-y" type="number" min="-12" max="12" step=".5" value="0"></label><label>角度 <input id="adjust-angle" type="number" min="-45" max="45" value="0"></label></div><div class="buttons"><button id="save-offset">保存挂点</button><button id="reset-offset">还原挂点</button></div><p id="offset-status" class="small"></p></div></details>
+<div id="gait-row"><h3>行走对照</h3><label>步态 <select id="gait-choice"><option value="s12">支撑脚约束候选</option><option value="original">原步态</option></select></label><p id="gait-note" class="small"></p></div><h3>动作 · 八个关键姿势</h3><div id="actions" class="buttons"></div><p id="action-note" class="small"></p><div id="motion-modes" class="buttons"></div>
+<p class="small">连续模式实时计算关节；取样模式检查八个关键姿势。</p>
+<div class="buttons"><button id="play" class="primary" aria-pressed="false">播放</button><button id="previous">上一姿势</button><button id="next">下一姿势</button><label class="fps">速度 <select id="fps"><option value="6">0.6 倍</option><option value="8">0.8 倍</option><option value="10" selected>原速</option><option value="12">1.2 倍</option></select></label></div><div id="frames" class="frames"></div>
+<section class="pose-controls"><div class="section-head"><h2>暂停，自己摆姿势</h2><button id="reset-angles">还原全部关节</button></div><div id="sides" class="buttons"></div><div id="joint-sliders" class="joint-sliders"></div><p class="small">角度叠加在当前动作上。转肩带动肘和手；转髋带动膝和脚。</p><p id="ik-note" class="small" hidden>挥锄由双手握柄 IK 驱动肩肘；可调整髋膝。过大挂点偏移可能不可达，系统不会拉长手臂。</p></section>
+</div></section>
+<section class="sheet"><div class="section-head"><h2>拆开看：真实绘制原件</h2><label class="check"><input id="show-parts" type="checkbox">展开部件</label></div><p class="small">整数倍展示独立透明裁片；衔接片来自同源可见像素，点击原件可保存。</p><div id="parts-area" hidden><h3>共享身体部件</h3><div id="shared-parts" class="parts-grid"></div><h3>当前衣装部件</h3><div id="garment-parts" class="parts-grid"></div><h3>独立装备</h3><div id="equipment-parts" class="parts-grid"></div></div></section>
+<section class="note-box"><h2>制作范围</h2><p>每次刷新由独立 PNG 裁片按骨骼变换组合，不读取整身帧动画。人物原生尺寸保持，64格外增加16像素边距容纳装备。头脸保持朝向，整数平移以保护五官像素。</p><p>这是 2D 刚性裁片绑定，不是顶点权重网格。裙片不是布料模拟。较大转角仍可能出现接缝、遮挡和旋转锯齿，需要后续美术修订。</p><p>挥剑和挥锄仅为动作预览，不含命中、伤害、耕地或游戏碰撞。装备目前只有正面素材。原衣装、石青上衣和月白豆青汉服均有四向；石青只替上衣，裤鞋保持原衣；汉服的裙片替换原裤衣片。完整日常套装与其他正面精修款保留在独立子页。侧面远臂为明确记录的同源像素复制，侧面视角仍偏三分之四。衣片由当前可见原图绑定而来，尚非完整裸体底模，不能把任意新图片直接自动套在人物上。</p></section>
+<footer>本地离线演示 · 切到后台或窗口失焦会暂停</footer>
+</div></main><script src="bundle-data.js"></script><script src="walk-stance.js"></script><script src="rig-engine.js"></script><script src="handoff.js"></script><script src="app.js"></script></body></html>

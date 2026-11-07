@@ -1,0 +1,3517 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/actor.gd" id="1_o7357"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/skirt.png" id="2_6o68f"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-right/skirt.png" id="3_21op1"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-up/skirt.png" id="4_tmapg"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-left/skirt.png" id="5_inn33"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/lowerArmA.png" id="6_m14ya"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/handA.png" id="7_ilx11"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/lowerArmA.png" id="8_hyt0j"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/handA.png" id="9_44xex"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/underlap-lowerArmA.png" id="10_xopso"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/lowerArmA.png" id="11_bmk74"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/lowerArmA.png" id="12_mxsy1"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/skin-lowerArmA.png" id="13_b8bnw"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/underlap-lowerArmA.png" id="14_cstho"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/underlaps/lowerArmA.png" id="15_su4fn"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/underlaps/handA.png" id="16_hrewi"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-right/parts/right-underlap-lowerArmA.png" id="17_a3j76"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-right/underlap-lowerArmA.png" id="18_conaf"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/underlaps/lowerArmA.png" id="19_j1u65"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/underlaps/handA.png" id="20_2ip2e"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/parts/lowerArmA.png" id="21_0nrsa"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/parts/handA.png" id="22_8wukg"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-up-left/up/parts/up-underlap-lowerArmA.png" id="23_3jsa7"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-up-left/up/parts/up-lowerArmA.png" id="24_02smh"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-up/lowerArmA.png" id="25_mt7wm"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-up/underlap-lowerArmA.png" id="26_5bw5m"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/underlaps/lowerArmA.png" id="27_03j3b"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/underlaps/handA.png" id="28_shcot"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/parts/lowerArmA.png" id="29_bpoui"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/parts/handA.png" id="30_qjycf"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-up-left/left/parts/left-underlap-lowerArmA.png" id="31_4cqvf"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-up-left/left/parts/left-lowerArmA.png" id="32_2qlnl"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-left/lowerArmA.png" id="33_38tgx"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-left/underlap-lowerArmA.png" id="34_2b8yh"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/variants/heqing-underlap-upperArmA-clean.png" id="35_12vje"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/upperArmA.png" id="36_x4if1"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/underlap-upperArmA.png" id="37_u7bdg"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/upperArmA.png" id="38_1rj3r"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/upperArmA.png" id="39_e82d7"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/underlap-upperArmA.png" id="40_bvgyx"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/underlaps/upperArmA.png" id="41_gdc7r"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-right/parts/right-underlap-upperArmA.png" id="42_tsbje"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-right/underlap-upperArmA.png" id="43_uf4wx"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/underlaps/upperArmA.png" id="44_lrdsg"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/parts/upperArmA.png" id="45_xn3j2"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-up-left/up/parts/up-underlap-upperArmA.png" id="46_hi4v4"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-up-left/up/parts/up-upperArmA.png" id="47_halq1"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-up/upperArmA.png" id="48_wihfk"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-up/underlap-upperArmA.png" id="49_aopmg"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/underlaps/upperArmA.png" id="50_buxdk"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/parts/upperArmA.png" id="51_8k0p7"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-up-left/left/parts/left-underlap-upperArmA.png" id="52_3nykf"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-up-left/left/parts/left-upperArmA.png" id="53_ecaqq"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-left/upperArmA.png" id="54_tv4ws"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-left/underlap-upperArmA.png" id="55_wvcnv"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/lowerArmB.png" id="56_faytg"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/handB.png" id="57_qxvqh"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/lowerArmB.png" id="58_fhwwv"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/handB.png" id="59_b7qyx"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/underlap-lowerArmB.png" id="60_mykwg"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/lowerArmB.png" id="61_i3ywn"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/lowerArmB.png" id="62_rabft"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/skin-lowerArmB.png" id="63_hn518"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/underlap-lowerArmB.png" id="64_ckfvo"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/underlaps/lowerArmB.png" id="65_a2hj2"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/underlaps/handB.png" id="66_u1j3x"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/parts/lowerArmB.png" id="67_m7y5m"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/parts/handB.png" id="68_8rrl6"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-right/parts/right-underlap-lowerArmB.png" id="69_j1vkf"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-right/parts/right-lowerArmB.png" id="70_27h3n"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-right/lowerArmB.png" id="71_dwv0y"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-right/underlap-lowerArmB.png" id="72_0e8vb"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/underlaps/lowerArmB.png" id="73_2q1y6"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/underlaps/handB.png" id="74_8rw15"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/parts/lowerArmB.png" id="75_yrhmk"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/parts/handB.png" id="76_fblx1"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-up-left/up/parts/up-underlap-lowerArmB.png" id="77_rb0yy"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-up-left/up/parts/up-lowerArmB.png" id="78_0efqp"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-up/lowerArmB.png" id="79_tj33c"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-up/underlap-lowerArmB.png" id="80_0ko27"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/underlaps/lowerArmB.png" id="81_ekyng"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/underlaps/handB.png" id="82_6fmwb"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-up-left/left/parts/left-underlap-lowerArmB.png" id="83_jl5rw"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-left/underlap-lowerArmB.png" id="84_gtjsn"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/variants/heqing-underlap-upperArmB-clean.png" id="85_hvhp4"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/upperArmB.png" id="86_o65af"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/underlap-upperArmB.png" id="87_8yyvr"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/upperArmB.png" id="88_art3n"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/upperArmB.png" id="89_7on8x"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/underlap-upperArmB.png" id="90_m58p2"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/underlaps/upperArmB.png" id="91_us1l0"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/parts/upperArmB.png" id="92_kkbcv"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-right/parts/right-underlap-upperArmB.png" id="93_hdw3c"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-right/parts/right-upperArmB.png" id="94_meohl"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-right/upperArmB.png" id="95_fxsqn"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-right/underlap-upperArmB.png" id="96_0n354"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/underlaps/upperArmB.png" id="97_gvpfr"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/parts/upperArmB.png" id="98_00835"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-up-left/up/parts/up-underlap-upperArmB.png" id="99_0fohs"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-up-left/up/parts/up-upperArmB.png" id="100_u2j52"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-up/upperArmB.png" id="101_fwo5d"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-up/underlap-upperArmB.png" id="102_3oe82"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/underlaps/upperArmB.png" id="103_m7wcc"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-up-left/left/parts/left-underlap-upperArmB.png" id="104_e44xj"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-left/underlap-upperArmB.png" id="105_b5l23"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/torso.png" id="106_538hl"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/pelvis.png" id="107_1yudc"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/torso.png" id="108_mhy40"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/pelvis.png" id="109_a4yk0"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/underlap-torso.png" id="110_w28pw"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily/parts/torso.png" id="111_mm16r"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/torso.png" id="112_7526c"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/trim.png" id="113_5q2a5"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/underlap-torso.png" id="114_niujs"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/underlaps/torso.png" id="115_v6di7"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/underlaps/pelvis.png" id="116_rcfmo"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/parts/torso.png" id="117_m73u4"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/parts/pelvis.png" id="118_73wmu"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-right/parts/right-underlap-pelvis.png" id="119_gdl1h"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-right/parts/right-torso.png" id="120_oiqv0"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-right/torso.png" id="121_4cxh5"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-right/waistband.png" id="122_e0oss"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/underlaps/torso.png" id="123_me8ug"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/underlaps/pelvis.png" id="124_np45d"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/parts/torso.png" id="125_5be3i"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/parts/pelvis.png" id="126_g858m"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-up-left/up/parts/up-underlap-pelvis.png" id="127_08vsw"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-up-left/up/parts/up-torso.png" id="128_0lmom"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-up/torso.png" id="129_jng7r"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-up/waistband.png" id="130_cqr85"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/underlaps/torso.png" id="131_1vyfx"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/underlaps/pelvis.png" id="132_74tjj"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/parts/torso.png" id="133_gsaqu"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/parts/pelvis.png" id="134_8cjha"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-up-left/left/parts/left-underlap-torso.png" id="135_6d0vx"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-up-left/left/parts/left-underlap-pelvis.png" id="136_s8bqf"]
+[ext_resource type="Texture2D" path="res://assets/outfits/stone-blue-daily-up-left/left/parts/left-torso.png" id="137_dwink"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-left/torso.png" id="138_3j1nm"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-left/waistband.png" id="139_t2dvh"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu-left/underlap-torso.png" id="140_tgg34"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/shoeA.png" id="141_ggsfc"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/shoeA.png" id="142_yc6yn"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/underlaps/shoeA.png" id="143_lpdxh"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/parts/shoeA.png" id="144_5q7yl"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/underlaps/shoeA.png" id="145_lynpr"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/parts/shoeA.png" id="146_apas6"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/underlaps/shoeA.png" id="147_7kg1o"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/parts/shoeA.png" id="148_y36b8"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/shinA.png" id="149_o5858"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/shinA.png" id="150_i3x03"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/skin-shinA.png" id="151_kp850"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/underlaps/shinA.png" id="152_67fhn"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/parts/shinA.png" id="153_tn1if"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/underlaps/shinA.png" id="154_h6hpj"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/parts/shinA.png" id="155_xjr8t"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/underlaps/shinA.png" id="156_gnp1n"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/parts/shinA.png" id="157_vyer0"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/thighA.png" id="158_lbp2v"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/thighA.png" id="159_vh1pl"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/underlaps/thighA.png" id="160_ohi3u"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/parts/thighA.png" id="161_laq0s"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/underlaps/thighA.png" id="162_14kdw"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/parts/thighA.png" id="163_6tcqv"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/underlaps/thighA.png" id="164_dvydq"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/parts/thighA.png" id="165_kiiyq"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/shoeB.png" id="166_m1foo"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/shoeB.png" id="167_27l1f"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/underlaps/shoeB.png" id="168_gjgmt"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/parts/shoeB.png" id="169_4vqy5"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/underlaps/shoeB.png" id="170_2ad5g"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/parts/shoeB.png" id="171_3vot4"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/underlaps/shoeB.png" id="172_8plac"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/parts/shoeB.png" id="173_ted8b"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/shinB.png" id="174_3148w"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/shinB.png" id="175_78djm"]
+[ext_resource type="Texture2D" path="res://assets/outfits/moon-celadon-hanfu/assets/characters/heqing/outfits/moon-celadon-hanfu/skin-shinB.png" id="176_10r85"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/underlaps/shinB.png" id="177_itwyo"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/parts/shinB.png" id="178_akc1g"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/underlaps/shinB.png" id="179_kk0cd"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/parts/shinB.png" id="180_cbvwp"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/underlaps/shinB.png" id="181_ykila"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/parts/shinB.png" id="182_npp27"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/underlaps/thighB.png" id="183_67srm"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/thighB.png" id="184_8v1h6"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/underlaps/thighB.png" id="185_w5066"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/parts/thighB.png" id="186_hrmv2"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/underlaps/thighB.png" id="187_1emhy"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/parts/thighB.png" id="188_w5cg5"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/underlaps/thighB.png" id="189_8s3tm"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/parts/thighB.png" id="190_wa625"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/head.png" id="191_f0ewa"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/parts/hairFront.png" id="192_6nld1"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/right/head-styles/original/open.png" id="193_fo2qt"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/up/parts/head.png" id="194_mvrjd"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/head-styles/original/open.png" id="195_yxwpc"]
+[ext_resource type="Texture2D" path="res://assets/characters/heqing/left/parts/hairFront.png" id="196_3wecb"]
+
+[node name="FourViewActor" type="Node2D" unique_id=1904802664]
+script = ExtResource("1_o7357")
+
+[node name="Skeleton2D" type="Skeleton2D" parent="." unique_id=855909399]
+
+[node name="Root" type="Bone2D" parent="Skeleton2D" unique_id=1632383138]
+position = Vector2(32, 58)
+rest = Transform2D(1, 0, 0, 1, 32, 58)
+auto_calculate_length_and_angle = false
+length = 4.0
+bone_angle = 0.0
+metadata/rig_id = "Root"
+
+[node name="Pelvis" type="Bone2D" parent="Skeleton2D/Root" unique_id=785935246]
+position = Vector2(0, -9.5)
+rest = Transform2D(1, 0, 0, 1, 0, -9.5)
+auto_calculate_length_and_angle = false
+length = 4.0
+bone_angle = 0.0
+metadata/rig_id = "Pelvis"
+
+[node name="RigidPelvis" type="Bone2D" parent="Skeleton2D/Root/Pelvis" unique_id=834921320]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 4.0
+bone_angle = 0.0
+metadata/rig_id = "RigidPelvis"
+
+[node name="hanfu_skirt" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/RigidPelvis" unique_id=1549259375]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32, -48.5)
+texture = ExtResource("2_6o68f")
+centered = false
+metadata/part_id = "hanfu-skirt"
+metadata/direction = "down"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 6.0
+}
+
+[node name="moon_celadon_hanfu_right_skirt" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/RigidPelvis" unique_id=447457490]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32, -48)
+texture = ExtResource("3_21op1")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-right-skirt"
+metadata/direction = "right"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 8.0
+}
+
+[node name="moon_celadon_hanfu_up_skirt" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/RigidPelvis" unique_id=1359354846]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32, -48)
+texture = ExtResource("4_tmapg")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-up-skirt"
+metadata/direction = "up"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 8.0
+}
+
+[node name="moon_celadon_hanfu_left_skirt" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/RigidPelvis" unique_id=921779071]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32, -48)
+texture = ExtResource("5_inn33")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-left-skirt"
+metadata/direction = "left"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 9.0
+}
+
+[node name="Torso" type="Bone2D" parent="Skeleton2D/Root/Pelvis" unique_id=872190185]
+position = Vector2(0, -12.5)
+rotation = 1.5707964
+rest = Transform2D(0, 1, -1, 0, 0, -12.5)
+auto_calculate_length_and_angle = false
+length = 12.5
+bone_angle = 0.0
+metadata/rig_id = "Torso"
+
+[node name="UpperArmA" type="Bone2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=510566230]
+position = Vector2(2.5, -5.5)
+rotation = -0.4636476
+scale = Vector2(0.99999994, 0.99999994)
+rest = Transform2D(0.8944272, -0.4472136, 0.4472136, 0.8944272, 2.5, -5.5)
+auto_calculate_length_and_angle = false
+length = 3.354102
+bone_angle = 0.0
+metadata/rig_id = "UpperArmA"
+
+[node name="ForearmA" type="Bone2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=1349672468]
+position = Vector2(3.354102, -3.5527137e-15)
+rotation = 0.4636476
+scale = Vector2(0.99999994, 0.99999994)
+rest = Transform2D(0.8944272, 0.4472136, -0.4472136, 0.8944272, 3.354102, -3.5527137e-15)
+auto_calculate_length_and_angle = false
+length = 3.5
+bone_angle = 0.0
+metadata/rig_id = "ForearmA"
+
+[node name="underlap_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=1245340464]
+z_index = 3
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("6_m14ya")
+centered = false
+metadata/part_id = "underlap-lowerArmA"
+metadata/direction = "down"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 3.0
+}
+
+[node name="underlap_handA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=2114584519]
+z_index = 4
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("7_ilx11")
+centered = false
+metadata/part_id = "underlap-handA"
+metadata/direction = "down"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 0.0,
+"original": 4.0,
+"stone-blue-top-four-view": 4.0
+}
+
+[node name="lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=1926494907]
+z_index = 25
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("8_hyt0j")
+centered = false
+metadata/part_id = "lowerArmA"
+metadata/direction = "down"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 25.0
+}
+
+[node name="handA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=1493244125]
+z_index = 27
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("9_44xex")
+centered = false
+metadata/part_id = "handA"
+metadata/direction = "down"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 23.0,
+"original": 27.0,
+"stone-blue-top-four-view": 27.0
+}
+
+[node name="stone_blue_daily_underlap_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=699365925]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("10_xopso")
+centered = false
+metadata/part_id = "stone-blue-daily-underlap-lowerArmA"
+metadata/direction = "down"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 3.0
+}
+
+[node name="stone_blue_daily_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=1389129022]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("11_bmk74")
+centered = false
+metadata/part_id = "stone-blue-daily-lowerArmA"
+metadata/direction = "down"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 25.0
+}
+
+[node name="hanfu_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=1351641973]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("12_mxsy1")
+centered = false
+metadata/part_id = "hanfu-lowerArmA"
+metadata/direction = "down"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 17.0
+}
+
+[node name="hanfu_skin_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=2018496270]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("13_b8bnw")
+centered = false
+metadata/part_id = "hanfu-skin-lowerArmA"
+metadata/direction = "down"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 20.0
+}
+
+[node name="hanfu_underlap_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=103479341]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("14_cstho")
+centered = false
+metadata/part_id = "hanfu-underlap-lowerArmA"
+metadata/direction = "down"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 13.0
+}
+
+[node name="right_underlap_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=2090239275]
+visible = false
+z_index = 1
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-46.174072, 26.233662)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("15_su4fn")
+centered = false
+metadata/part_id = "right-underlap-lowerArmA"
+metadata/direction = "right"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 1.0
+}
+
+[node name="right_underlap_handA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=575718905]
+visible = false
+z_index = 2
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-46.174072, 26.233662)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("16_hrewi")
+centered = false
+metadata/part_id = "right-underlap-handA"
+metadata/direction = "right"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 2.0,
+"original": 2.0,
+"stone-blue-top-four-view": 2.0
+}
+
+[node name="stone_blue_daily_right_underlap_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=1709012089]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-46.174072, 26.233662)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("17_a3j76")
+centered = false
+metadata/part_id = "stone-blue-daily-right-underlap-lowerArmA"
+metadata/direction = "right"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 1.0
+}
+
+[node name="moon_celadon_hanfu_right_underlap_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=553258363]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-46.174072, 26.233662)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("18_conaf")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-right-underlap-lowerArmA"
+metadata/direction = "right"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 1.0
+}
+
+[node name="up_underlap_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=108042576]
+visible = false
+z_index = 10
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.436287, 29.816511)
+rotation = -1.6814536
+texture = ExtResource("19_j1u65")
+centered = false
+metadata/part_id = "up-underlap-lowerArmA"
+metadata/direction = "up"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 10.0
+}
+
+[node name="up_underlap_handA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=1368203389]
+visible = false
+z_index = 12
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.436287, 29.816511)
+rotation = -1.6814536
+texture = ExtResource("20_2ip2e")
+centered = false
+metadata/part_id = "up-underlap-handA"
+metadata/direction = "up"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 6.0,
+"original": 12.0,
+"stone-blue-top-four-view": 12.0
+}
+
+[node name="up_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=320577750]
+visible = false
+z_index = 24
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.436287, 29.816511)
+rotation = -1.6814536
+texture = ExtResource("21_0nrsa")
+centered = false
+metadata/part_id = "up-lowerArmA"
+metadata/direction = "up"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 24.0
+}
+
+[node name="up_handA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=1507998087]
+visible = false
+z_index = 26
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.436287, 29.816511)
+rotation = -1.6814536
+texture = ExtResource("22_8wukg")
+centered = false
+metadata/part_id = "up-handA"
+metadata/direction = "up"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 17.0,
+"original": 26.0,
+"stone-blue-top-four-view": 26.0
+}
+
+[node name="stone_blue_daily_up_left_up_underlap_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=596429146]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.436287, 29.816511)
+rotation = -1.6814536
+texture = ExtResource("23_3jsa7")
+centered = false
+metadata/part_id = "stone-blue-daily-up-left-up-underlap-lowerArmA"
+metadata/direction = "up"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 10.0
+}
+
+[node name="stone_blue_daily_up_left_up_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=1952091468]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.436287, 29.816511)
+rotation = -1.6814536
+texture = ExtResource("24_02smh")
+centered = false
+metadata/part_id = "stone-blue-daily-up-left-up-lowerArmA"
+metadata/direction = "up"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 24.0
+}
+
+[node name="moon_celadon_hanfu_up_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=1473880121]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.436287, 29.816511)
+rotation = -1.6814536
+texture = ExtResource("25_mt7wm")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-up-lowerArmA"
+metadata/direction = "up"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 15.0
+}
+
+[node name="moon_celadon_hanfu_up_underlap_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=1312262078]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.436287, 29.816511)
+rotation = -1.6814536
+texture = ExtResource("26_5bw5m")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-up-underlap-lowerArmA"
+metadata/direction = "up"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 4.0
+}
+
+[node name="left_underlap_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=515512160]
+visible = false
+z_index = 12
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-35.638184, 40.446507)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("27_03j3b")
+centered = false
+metadata/part_id = "left-underlap-lowerArmA"
+metadata/direction = "left"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 12.0
+}
+
+[node name="left_underlap_handA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=1992265689]
+visible = false
+z_index = 13
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-35.638184, 40.446507)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("28_shcot")
+centered = false
+metadata/part_id = "left-underlap-handA"
+metadata/direction = "left"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 8.0,
+"original": 13.0,
+"stone-blue-top-four-view": 13.0
+}
+
+[node name="left_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=1700630518]
+visible = false
+z_index = 23
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-35.638184, 40.446507)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("29_bpoui")
+centered = false
+metadata/part_id = "left-lowerArmA"
+metadata/direction = "left"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 23.0
+}
+
+[node name="left_handA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=1887302247]
+visible = false
+z_index = 24
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-35.638184, 40.446507)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("30_qjycf")
+centered = false
+metadata/part_id = "left-handA"
+metadata/direction = "left"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 16.0,
+"original": 24.0,
+"stone-blue-top-four-view": 24.0
+}
+
+[node name="stone_blue_daily_up_left_left_underlap_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=683861261]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-35.638184, 40.446507)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("31_4cqvf")
+centered = false
+metadata/part_id = "stone-blue-daily-up-left-left-underlap-lowerArmA"
+metadata/direction = "left"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 12.0
+}
+
+[node name="stone_blue_daily_up_left_left_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=556768659]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-35.638184, 40.446507)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("32_2qlnl")
+centered = false
+metadata/part_id = "stone-blue-daily-up-left-left-lowerArmA"
+metadata/direction = "left"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 23.0
+}
+
+[node name="moon_celadon_hanfu_left_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=240910972]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-35.638184, 40.446507)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("33_38tgx")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-left-lowerArmA"
+metadata/direction = "left"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 15.0
+}
+
+[node name="moon_celadon_hanfu_left_underlap_lowerArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA/ForearmA" unique_id=357443629]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-35.638184, 40.446507)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("34_2b8yh")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-left-underlap-lowerArmA"
+metadata/direction = "left"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 7.0
+}
+
+[node name="underlap_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=1005777480]
+z_index = 2
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.205956, 16.323296)
+rotation = -1.1071488
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("35_12vje")
+centered = false
+metadata/part_id = "underlap-upperArmA"
+metadata/direction = "down"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 2.0
+}
+
+[node name="upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=1500198159]
+z_index = 23
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.205956, 16.323296)
+rotation = -1.1071488
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("36_x4if1")
+centered = false
+metadata/part_id = "upperArmA"
+metadata/direction = "down"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 23.0
+}
+
+[node name="stone_blue_daily_underlap_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=1651059954]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.205956, 16.323296)
+rotation = -1.1071488
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("37_u7bdg")
+centered = false
+metadata/part_id = "stone-blue-daily-underlap-upperArmA"
+metadata/direction = "down"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 2.0
+}
+
+[node name="stone_blue_daily_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=1216294179]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.205956, 16.323296)
+rotation = -1.1071488
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("38_1rj3r")
+centered = false
+metadata/part_id = "stone-blue-daily-upperArmA"
+metadata/direction = "down"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 23.0
+}
+
+[node name="hanfu_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=1098987229]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.205956, 16.323296)
+rotation = -1.1071488
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("39_e82d7")
+centered = false
+metadata/part_id = "hanfu-upperArmA"
+metadata/direction = "down"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 16.0
+}
+
+[node name="hanfu_underlap_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=1831458177]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.205956, 16.323296)
+rotation = -1.1071488
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("40_bvgyx")
+centered = false
+metadata/part_id = "hanfu-underlap-upperArmA"
+metadata/direction = "down"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 12.0
+}
+
+[node name="right_underlap_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=904580041]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-33.6264, 36.939346)
+rotation = -1.6814536
+texture = ExtResource("41_gdc7r")
+centered = false
+metadata/part_id = "right-underlap-upperArmA"
+metadata/direction = "right"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 0.0
+}
+
+[node name="stone_blue_daily_right_underlap_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=1700567586]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-33.6264, 36.939346)
+rotation = -1.6814536
+texture = ExtResource("42_tsbje")
+centered = false
+metadata/part_id = "stone-blue-daily-right-underlap-upperArmA"
+metadata/direction = "right"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 0.0
+}
+
+[node name="moon_celadon_hanfu_right_underlap_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=1896290139]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-33.6264, 36.939346)
+rotation = -1.6814536
+texture = ExtResource("43_uf4wx")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-right-underlap-upperArmA"
+metadata/direction = "right"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 0.0
+}
+
+[node name="up_underlap_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=1678915779]
+visible = false
+z_index = 8
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-21.466253, 40.920044)
+rotation = -2.0344439
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("44_lrdsg")
+centered = false
+metadata/part_id = "up-underlap-upperArmA"
+metadata/direction = "up"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 8.0
+}
+
+[node name="up_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=1688539251]
+visible = false
+z_index = 22
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-21.466253, 40.920044)
+rotation = -2.0344439
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("45_xn3j2")
+centered = false
+metadata/part_id = "up-upperArmA"
+metadata/direction = "up"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 22.0
+}
+
+[node name="stone_blue_daily_up_left_up_underlap_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=1189825274]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-21.466253, 40.920044)
+rotation = -2.0344439
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("46_hi4v4")
+centered = false
+metadata/part_id = "stone-blue-daily-up-left-up-underlap-upperArmA"
+metadata/direction = "up"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 8.0
+}
+
+[node name="stone_blue_daily_up_left_up_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=1133120037]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-21.466253, 40.920044)
+rotation = -2.0344439
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("47_halq1")
+centered = false
+metadata/part_id = "stone-blue-daily-up-left-up-upperArmA"
+metadata/direction = "up"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 22.0
+}
+
+[node name="moon_celadon_hanfu_up_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=142089581]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-21.466253, 40.920044)
+rotation = -2.0344439
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("48_wihfk")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-up-upperArmA"
+metadata/direction = "up"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 13.0
+}
+
+[node name="moon_celadon_hanfu_up_underlap_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=504414569]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-21.466253, 40.920044)
+rotation = -2.0344439
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("49_aopmg")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-up-underlap-upperArmA"
+metadata/direction = "up"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 2.0
+}
+
+[node name="left_underlap_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=248111567]
+visible = false
+z_index = 11
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-42.002144, 28.849957)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("50_buxdk")
+centered = false
+metadata/part_id = "left-underlap-upperArmA"
+metadata/direction = "left"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 11.0
+}
+
+[node name="left_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=932149907]
+visible = false
+z_index = 22
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-42.002144, 28.849957)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("51_8k0p7")
+centered = false
+metadata/part_id = "left-upperArmA"
+metadata/direction = "left"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 22.0
+}
+
+[node name="stone_blue_daily_up_left_left_underlap_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=1761037715]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-42.002144, 28.849957)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("52_3nykf")
+centered = false
+metadata/part_id = "stone-blue-daily-up-left-left-underlap-upperArmA"
+metadata/direction = "left"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 11.0
+}
+
+[node name="stone_blue_daily_up_left_left_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=1578182670]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-42.002144, 28.849957)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("53_ecaqq")
+centered = false
+metadata/part_id = "stone-blue-daily-up-left-left-upperArmA"
+metadata/direction = "left"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 22.0
+}
+
+[node name="moon_celadon_hanfu_left_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=180445742]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-42.002144, 28.849957)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("54_tv4ws")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-left-upperArmA"
+metadata/direction = "left"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 14.0
+}
+
+[node name="moon_celadon_hanfu_left_underlap_upperArmA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmA" unique_id=3627794]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-42.002144, 28.849957)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("55_wvcnv")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-left-underlap-upperArmA"
+metadata/direction = "left"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 6.0
+}
+
+[node name="UpperArmB" type="Bone2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=186662672]
+position = Vector2(2.5, 4)
+rotation = 0.4636476
+scale = Vector2(0.99999994, 0.99999994)
+rest = Transform2D(0.8944272, 0.4472136, -0.4472136, 0.8944272, 2.5, 4)
+auto_calculate_length_and_angle = false
+length = 3.354102
+bone_angle = 0.0
+metadata/rig_id = "UpperArmB"
+
+[node name="ForearmB" type="Bone2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=802014499]
+position = Vector2(3.354102, 7.1054274e-15)
+rotation = -0.32175055
+rest = Transform2D(0.9486833, -0.31622776, 0.31622776, 0.9486833, 3.354102, 7.1054274e-15)
+auto_calculate_length_and_angle = false
+length = 3.535534
+bone_angle = 0.0
+metadata/rig_id = "ForearmB"
+
+[node name="underlap_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=1536506944]
+z_index = 6
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.33524, 32.10265)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("56_faytg")
+centered = false
+metadata/part_id = "underlap-lowerArmB"
+metadata/direction = "down"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 6.0
+}
+
+[node name="underlap_handB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=2033760872]
+z_index = 7
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.33524, 32.10265)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("57_qxvqh")
+centered = false
+metadata/part_id = "underlap-handB"
+metadata/direction = "down"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 1.0,
+"original": 7.0,
+"stone-blue-top-four-view": 7.0
+}
+
+[node name="lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=815882043]
+z_index = 24
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.33524, 32.10265)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("58_fhwwv")
+centered = false
+metadata/part_id = "lowerArmB"
+metadata/direction = "down"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 24.0
+}
+
+[node name="handB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=954209112]
+z_index = 26
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.33524, 32.10265)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("59_b7qyx")
+centered = false
+metadata/part_id = "handB"
+metadata/direction = "down"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 22.0,
+"original": 26.0,
+"stone-blue-top-four-view": 26.0
+}
+
+[node name="stone_blue_daily_underlap_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=586374544]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.33524, 32.10265)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("60_mykwg")
+centered = false
+metadata/part_id = "stone-blue-daily-underlap-lowerArmB"
+metadata/direction = "down"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 6.0
+}
+
+[node name="stone_blue_daily_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=1951024912]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.33524, 32.10265)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("61_i3ywn")
+centered = false
+metadata/part_id = "stone-blue-daily-lowerArmB"
+metadata/direction = "down"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 24.0
+}
+
+[node name="hanfu_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=1187500485]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.33524, 32.10265)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("62_rabft")
+centered = false
+metadata/part_id = "hanfu-lowerArmB"
+metadata/direction = "down"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 19.0
+}
+
+[node name="hanfu_skin_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=1826935111]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.33524, 32.10265)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("63_hn518")
+centered = false
+metadata/part_id = "hanfu-skin-lowerArmB"
+metadata/direction = "down"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 21.0
+}
+
+[node name="hanfu_underlap_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=370282880]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-37.33524, 32.10265)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("64_ckfvo")
+centered = false
+metadata/part_id = "hanfu-underlap-lowerArmB"
+metadata/direction = "down"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 15.0
+}
+
+[node name="right_underlap_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=761441536]
+visible = false
+z_index = 12
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-45.466965, 21.283915)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("65_a2hj2")
+centered = false
+metadata/part_id = "right-underlap-lowerArmB"
+metadata/direction = "right"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 12.0
+}
+
+[node name="right_underlap_handB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=826411038]
+visible = false
+z_index = 13
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-45.466965, 21.283915)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("66_u1j3x")
+centered = false
+metadata/part_id = "right-underlap-handB"
+metadata/direction = "right"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 7.0,
+"original": 13.0,
+"stone-blue-top-four-view": 13.0
+}
+
+[node name="right_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=416446516]
+visible = false
+z_index = 23
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-45.466965, 21.283915)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("67_m7y5m")
+centered = false
+metadata/part_id = "right-lowerArmB"
+metadata/direction = "right"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 23.0
+}
+
+[node name="right_handB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=1712336217]
+visible = false
+z_index = 24
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-45.466965, 21.283915)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("68_8rrl6")
+centered = false
+metadata/part_id = "right-handB"
+metadata/direction = "right"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 15.0,
+"original": 24.0,
+"stone-blue-top-four-view": 24.0
+}
+
+[node name="stone_blue_daily_right_underlap_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=467382069]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-45.466965, 21.283915)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("69_j1vkf")
+centered = false
+metadata/part_id = "stone-blue-daily-right-underlap-lowerArmB"
+metadata/direction = "right"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 12.0
+}
+
+[node name="stone_blue_daily_right_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=178700105]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-45.466965, 21.283915)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("70_27h3n")
+centered = false
+metadata/part_id = "stone-blue-daily-right-lowerArmB"
+metadata/direction = "right"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 23.0
+}
+
+[node name="moon_celadon_hanfu_right_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=1864577424]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-45.466965, 21.283915)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("71_dwv0y")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-right-lowerArmB"
+metadata/direction = "right"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 14.0
+}
+
+[node name="moon_celadon_hanfu_right_underlap_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=830643424]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-45.466965, 21.283915)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("72_0e8vb")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-right-underlap-lowerArmB"
+metadata/direction = "right"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 6.0
+}
+
+[node name="up_underlap_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=286556063]
+visible = false
+z_index = 11
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("73_2q1y6")
+centered = false
+metadata/part_id = "up-underlap-lowerArmB"
+metadata/direction = "up"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 11.0
+}
+
+[node name="up_underlap_handB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=868486633]
+visible = false
+z_index = 13
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("74_8rw15")
+centered = false
+metadata/part_id = "up-underlap-handB"
+metadata/direction = "up"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 7.0,
+"original": 13.0,
+"stone-blue-top-four-view": 13.0
+}
+
+[node name="up_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=1387478709]
+visible = false
+z_index = 25
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("75_yrhmk")
+centered = false
+metadata/part_id = "up-lowerArmB"
+metadata/direction = "up"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 25.0
+}
+
+[node name="up_handB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=1307701333]
+visible = false
+z_index = 27
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("76_fblx1")
+centered = false
+metadata/part_id = "up-handB"
+metadata/direction = "up"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 18.0,
+"original": 27.0,
+"stone-blue-top-four-view": 27.0
+}
+
+[node name="stone_blue_daily_up_left_up_underlap_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=1427408830]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("77_rb0yy")
+centered = false
+metadata/part_id = "stone-blue-daily-up-left-up-underlap-lowerArmB"
+metadata/direction = "up"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 11.0
+}
+
+[node name="stone_blue_daily_up_left_up_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=1083272680]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("78_0efqp")
+centered = false
+metadata/part_id = "stone-blue-daily-up-left-up-lowerArmB"
+metadata/direction = "up"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 25.0
+}
+
+[node name="moon_celadon_hanfu_up_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=1116740982]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("79_tj33c")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-up-lowerArmB"
+metadata/direction = "up"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 16.0
+}
+
+[node name="moon_celadon_hanfu_up_underlap_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=1929893496]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.5, 39)
+rotation = -1.5707964
+texture = ExtResource("80_0ko27")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-up-underlap-lowerArmB"
+metadata/direction = "up"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 5.0
+}
+
+[node name="left_underlap_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=937451833]
+visible = false
+z_index = 1
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36.20387, 36.48671)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("81_ekyng")
+centered = false
+metadata/part_id = "left-underlap-lowerArmB"
+metadata/direction = "left"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 1.0
+}
+
+[node name="left_underlap_handB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=1927816975]
+visible = false
+z_index = 2
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36.20387, 36.48671)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("82_6fmwb")
+centered = false
+metadata/part_id = "left-underlap-handB"
+metadata/direction = "left"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 2.0,
+"original": 2.0,
+"stone-blue-top-four-view": 2.0
+}
+
+[node name="stone_blue_daily_up_left_left_underlap_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=492687403]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36.20387, 36.48671)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("83_jl5rw")
+centered = false
+metadata/part_id = "stone-blue-daily-up-left-left-underlap-lowerArmB"
+metadata/direction = "left"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 1.0
+}
+
+[node name="moon_celadon_hanfu_left_underlap_lowerArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB/ForearmB" unique_id=1488716892]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36.20387, 36.48671)
+rotation = -1.7126935
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("84_gtjsn")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-left-underlap-lowerArmB"
+metadata/direction = "left"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 1.0
+}
+
+[node name="underlap_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=651958809]
+z_index = 5
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-21.913465, 42.261684)
+rotation = -2.0344439
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("85_hvhp4")
+centered = false
+metadata/part_id = "underlap-upperArmB"
+metadata/direction = "down"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 5.0
+}
+
+[node name="upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=1636964209]
+z_index = 22
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-21.913465, 42.261684)
+rotation = -2.0344439
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("86_o65af")
+centered = false
+metadata/part_id = "upperArmB"
+metadata/direction = "down"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 22.0
+}
+
+[node name="stone_blue_daily_underlap_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=319431656]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-21.913465, 42.261684)
+rotation = -2.0344439
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("87_8yyvr")
+centered = false
+metadata/part_id = "stone-blue-daily-underlap-upperArmB"
+metadata/direction = "down"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 5.0
+}
+
+[node name="stone_blue_daily_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=643018820]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-21.913465, 42.261684)
+rotation = -2.0344439
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("88_art3n")
+centered = false
+metadata/part_id = "stone-blue-daily-upperArmB"
+metadata/direction = "down"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 22.0
+}
+
+[node name="hanfu_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=432339499]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-21.913465, 42.261684)
+rotation = -2.0344439
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("89_7on8x")
+centered = false
+metadata/part_id = "hanfu-upperArmB"
+metadata/direction = "down"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 18.0
+}
+
+[node name="hanfu_underlap_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=753944278]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-21.913465, 42.261684)
+rotation = -2.0344439
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("90_m58p2")
+centered = false
+metadata/part_id = "hanfu-underlap-upperArmB"
+metadata/direction = "down"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 14.0
+}
+
+[node name="right_underlap_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=738414786]
+visible = false
+z_index = 11
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-34.17856, 31.969927)
+rotation = -1.6814536
+texture = ExtResource("91_us1l0")
+centered = false
+metadata/part_id = "right-underlap-upperArmB"
+metadata/direction = "right"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 11.0
+}
+
+[node name="right_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=1065126199]
+visible = false
+z_index = 22
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-34.17856, 31.969927)
+rotation = -1.6814536
+texture = ExtResource("92_kkbcv")
+centered = false
+metadata/part_id = "right-upperArmB"
+metadata/direction = "right"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 22.0
+}
+
+[node name="stone_blue_daily_right_underlap_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=1756861556]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-34.17856, 31.969927)
+rotation = -1.6814536
+texture = ExtResource("93_hdw3c")
+centered = false
+metadata/part_id = "stone-blue-daily-right-underlap-upperArmB"
+metadata/direction = "right"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 11.0
+}
+
+[node name="stone_blue_daily_right_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=879205707]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-34.17856, 31.969927)
+rotation = -1.6814536
+texture = ExtResource("94_meohl")
+centered = false
+metadata/part_id = "stone-blue-daily-right-upperArmB"
+metadata/direction = "right"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 22.0
+}
+
+[node name="moon_celadon_hanfu_right_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=1489224390]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-34.17856, 31.969927)
+rotation = -1.6814536
+texture = ExtResource("95_fxsqn")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-right-upperArmB"
+metadata/direction = "right"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 13.0
+}
+
+[node name="moon_celadon_hanfu_right_underlap_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=1090351994]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-34.17856, 31.969927)
+rotation = -1.6814536
+texture = ExtResource("96_0n354")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-right-underlap-upperArmB"
+metadata/direction = "right"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 5.0
+}
+
+[node name="up_underlap_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=1717172131]
+visible = false
+z_index = 9
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-48.279472, 21.945215)
+rotation = -1.2120256
+texture = ExtResource("97_gvpfr")
+centered = false
+metadata/part_id = "up-underlap-upperArmB"
+metadata/direction = "up"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 9.0
+}
+
+[node name="up_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=489590807]
+visible = false
+z_index = 23
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-48.279472, 21.945215)
+rotation = -1.2120256
+texture = ExtResource("98_00835")
+centered = false
+metadata/part_id = "up-upperArmB"
+metadata/direction = "up"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 23.0
+}
+
+[node name="stone_blue_daily_up_left_up_underlap_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=1563061355]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-48.279472, 21.945215)
+rotation = -1.2120256
+texture = ExtResource("99_0fohs")
+centered = false
+metadata/part_id = "stone-blue-daily-up-left-up-underlap-upperArmB"
+metadata/direction = "up"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 9.0
+}
+
+[node name="stone_blue_daily_up_left_up_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=1054519258]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-48.279472, 21.945215)
+rotation = -1.2120256
+texture = ExtResource("100_u2j52")
+centered = false
+metadata/part_id = "stone-blue-daily-up-left-up-upperArmB"
+metadata/direction = "up"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 23.0
+}
+
+[node name="moon_celadon_hanfu_up_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=367685972]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-48.279472, 21.945215)
+rotation = -1.2120256
+texture = ExtResource("101_fwo5d")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-up-upperArmB"
+metadata/direction = "up"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 14.0
+}
+
+[node name="moon_celadon_hanfu_up_underlap_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=1346041154]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-48.279472, 21.945215)
+rotation = -1.2120256
+texture = ExtResource("102_3oe82")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-up-underlap-upperArmB"
+metadata/direction = "up"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 3.0
+}
+
+[node name="left_underlap_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=1099655994]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.43646, 24.89016)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("103_m7wcc")
+centered = false
+metadata/part_id = "left-underlap-upperArmB"
+metadata/direction = "left"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 0.0
+}
+
+[node name="stone_blue_daily_up_left_left_underlap_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=1983241105]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.43646, 24.89016)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("104_e44xj")
+centered = false
+metadata/part_id = "stone-blue-daily-up-left-left-underlap-upperArmB"
+metadata/direction = "left"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 0.0
+}
+
+[node name="moon_celadon_hanfu_left_underlap_upperArmB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso/UpperArmB" unique_id=1787245576]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-41.43646, 24.89016)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("105_b5l23")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-left-underlap-upperArmB"
+metadata/direction = "left"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 0.0
+}
+
+[node name="underlap_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=2014176358]
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36, 32)
+rotation = -1.5707964
+texture = ExtResource("106_538hl")
+centered = false
+metadata/part_id = "underlap-torso"
+metadata/direction = "down"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 0.0
+}
+
+[node name="underlap_pelvis" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=696758579]
+z_index = 1
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36, 32)
+rotation = -1.5707964
+texture = ExtResource("107_1yudc")
+centered = false
+metadata/part_id = "underlap-pelvis"
+metadata/direction = "down"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 1.0,
+"stone-blue-top-four-view": 1.0
+}
+
+[node name="torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1828267644]
+z_index = 21
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36, 32)
+rotation = -1.5707964
+texture = ExtResource("108_mhy40")
+centered = false
+metadata/part_id = "torso"
+metadata/direction = "down"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 21.0
+}
+
+[node name="pelvis" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=871721865]
+z_index = 20
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36, 32)
+rotation = -1.5707964
+texture = ExtResource("109_a4yk0")
+centered = false
+metadata/part_id = "pelvis"
+metadata/direction = "down"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 20.0,
+"stone-blue-top-four-view": 20.0
+}
+
+[node name="stone_blue_daily_underlap_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1306534796]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36, 32)
+rotation = -1.5707964
+texture = ExtResource("110_w28pw")
+centered = false
+metadata/part_id = "stone-blue-daily-underlap-torso"
+metadata/direction = "down"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 0.0
+}
+
+[node name="stone_blue_daily_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1049376221]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36, 32)
+rotation = -1.5707964
+texture = ExtResource("111_mm16r")
+centered = false
+metadata/part_id = "stone-blue-daily-torso"
+metadata/direction = "down"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 21.0
+}
+
+[node name="hanfu_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1243670295]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36, 32)
+rotation = -1.5707964
+texture = ExtResource("112_7526c")
+centered = false
+metadata/part_id = "hanfu-torso"
+metadata/direction = "down"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 10.0
+}
+
+[node name="hanfu_trim" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=913509139]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36, 32)
+rotation = -1.5707964
+texture = ExtResource("113_5q2a5")
+centered = false
+metadata/part_id = "hanfu-trim"
+metadata/direction = "down"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 11.0
+}
+
+[node name="hanfu_underlap_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1920680905]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-36, 32)
+rotation = -1.5707964
+texture = ExtResource("114_niujs")
+centered = false
+metadata/part_id = "hanfu-underlap-torso"
+metadata/direction = "down"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 9.0
+}
+
+[node name="right_underlap_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1721065089]
+visible = false
+z_index = 10
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32.75535, 35.72586)
+rotation = -1.6506263
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("115_v6di7")
+centered = false
+metadata/part_id = "right-underlap-torso"
+metadata/direction = "right"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 10.0,
+"stone-blue-top-four-view": 10.0
+}
+
+[node name="right_underlap_pelvis" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=957898561]
+visible = false
+z_index = 9
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32.75535, 35.72586)
+rotation = -1.6506263
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("116_rcfmo")
+centered = false
+metadata/part_id = "right-underlap-pelvis"
+metadata/direction = "right"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 9.0
+}
+
+[node name="right_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=2005973904]
+visible = false
+z_index = 21
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32.75535, 35.72586)
+rotation = -1.6506263
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("117_m73u4")
+centered = false
+metadata/part_id = "right-torso"
+metadata/direction = "right"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 21.0
+}
+
+[node name="right_pelvis" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=2093396711]
+visible = false
+z_index = 20
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32.75535, 35.72586)
+rotation = -1.6506263
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("118_73wmu")
+centered = false
+metadata/part_id = "right-pelvis"
+metadata/direction = "right"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 20.0,
+"stone-blue-top-four-view": 20.0
+}
+
+[node name="stone_blue_daily_right_underlap_pelvis" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=351146485]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32.75535, 35.72586)
+rotation = -1.6506263
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("119_gdl1h")
+centered = false
+metadata/part_id = "stone-blue-daily-right-underlap-pelvis"
+metadata/direction = "right"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 9.0
+}
+
+[node name="stone_blue_daily_right_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=470738188]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32.75535, 35.72586)
+rotation = -1.6506263
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("120_oiqv0")
+centered = false
+metadata/part_id = "stone-blue-daily-right-torso"
+metadata/direction = "right"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 21.0
+}
+
+[node name="moon_celadon_hanfu_right_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1047676076]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32.75535, 35.72586)
+rotation = -1.6506263
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("121_4cxh5")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-right-torso"
+metadata/direction = "right"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 11.0
+}
+
+[node name="moon_celadon_hanfu_right_waistband" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1487634479]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32.75535, 35.72586)
+rotation = -1.6506263
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("122_e0oss")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-right-waistband"
+metadata/direction = "right"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 12.0
+}
+
+[node name="up_underlap_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=301937418]
+visible = false
+z_index = 7
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-34.5, 32)
+rotation = -1.5707964
+texture = ExtResource("123_me8ug")
+centered = false
+metadata/part_id = "up-underlap-torso"
+metadata/direction = "up"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 7.0,
+"stone-blue-top-four-view": 7.0
+}
+
+[node name="up_underlap_pelvis" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1062064161]
+visible = false
+z_index = 6
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-34.5, 32)
+rotation = -1.5707964
+texture = ExtResource("124_np45d")
+centered = false
+metadata/part_id = "up-underlap-pelvis"
+metadata/direction = "up"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 6.0
+}
+
+[node name="up_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=2066416679]
+visible = false
+z_index = 21
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-34.5, 32)
+rotation = -1.5707964
+texture = ExtResource("125_5be3i")
+centered = false
+metadata/part_id = "up-torso"
+metadata/direction = "up"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 21.0
+}
+
+[node name="up_pelvis" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1340811630]
+visible = false
+z_index = 20
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-34.5, 32)
+rotation = -1.5707964
+texture = ExtResource("126_g858m")
+centered = false
+metadata/part_id = "up-pelvis"
+metadata/direction = "up"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 20.0,
+"stone-blue-top-four-view": 20.0
+}
+
+[node name="stone_blue_daily_up_left_up_underlap_pelvis" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1661602194]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-34.5, 32)
+rotation = -1.5707964
+texture = ExtResource("127_08vsw")
+centered = false
+metadata/part_id = "stone-blue-daily-up-left-up-underlap-pelvis"
+metadata/direction = "up"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 6.0
+}
+
+[node name="stone_blue_daily_up_left_up_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=462538230]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-34.5, 32)
+rotation = -1.5707964
+texture = ExtResource("128_0lmom")
+centered = false
+metadata/part_id = "stone-blue-daily-up-left-up-torso"
+metadata/direction = "up"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 21.0
+}
+
+[node name="moon_celadon_hanfu_up_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1517363693]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-34.5, 32)
+rotation = -1.5707964
+texture = ExtResource("129_jng7r")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-up-torso"
+metadata/direction = "up"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 11.0
+}
+
+[node name="moon_celadon_hanfu_up_waistband" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=818823978]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-34.5, 32)
+rotation = -1.5707964
+texture = ExtResource("130_cqr85")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-up-waistband"
+metadata/direction = "up"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 12.0
+}
+
+[node name="left_underlap_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1586880378]
+visible = false
+z_index = 10
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-35.642227, 30.201515)
+rotation = -1.5337762
+texture = ExtResource("131_1vyfx")
+centered = false
+metadata/part_id = "left-underlap-torso"
+metadata/direction = "left"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 10.0
+}
+
+[node name="left_underlap_pelvis" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=365698017]
+visible = false
+z_index = 9
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-35.642227, 30.201515)
+rotation = -1.5337762
+texture = ExtResource("132_74tjj")
+centered = false
+metadata/part_id = "left-underlap-pelvis"
+metadata/direction = "left"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 9.0
+}
+
+[node name="left_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1236595339]
+visible = false
+z_index = 21
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-35.642227, 30.201515)
+rotation = -1.5337762
+texture = ExtResource("133_gsaqu")
+centered = false
+metadata/part_id = "left-torso"
+metadata/direction = "left"
+metadata/outfits = ["original"]
+metadata/ranks = {
+"original": 21.0
+}
+
+[node name="left_pelvis" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=382148348]
+visible = false
+z_index = 20
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-35.642227, 30.201515)
+rotation = -1.5337762
+texture = ExtResource("134_8cjha")
+centered = false
+metadata/part_id = "left-pelvis"
+metadata/direction = "left"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 20.0,
+"stone-blue-top-four-view": 20.0
+}
+
+[node name="stone_blue_daily_up_left_left_underlap_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=976828367]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-35.642227, 30.201515)
+rotation = -1.5337762
+texture = ExtResource("135_6d0vx")
+centered = false
+metadata/part_id = "stone-blue-daily-up-left-left-underlap-torso"
+metadata/direction = "left"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 10.0
+}
+
+[node name="stone_blue_daily_up_left_left_underlap_pelvis" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1660480745]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-35.642227, 30.201515)
+rotation = -1.5337762
+texture = ExtResource("136_s8bqf")
+centered = false
+metadata/part_id = "stone-blue-daily-up-left-left-underlap-pelvis"
+metadata/direction = "left"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 9.0
+}
+
+[node name="stone_blue_daily_up_left_left_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1071699945]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-35.642227, 30.201515)
+rotation = -1.5337762
+texture = ExtResource("137_dwink")
+centered = false
+metadata/part_id = "stone-blue-daily-up-left-left-torso"
+metadata/direction = "left"
+metadata/outfits = ["stone-blue-top-four-view"]
+metadata/ranks = {
+"stone-blue-top-four-view": 21.0
+}
+
+[node name="moon_celadon_hanfu_left_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1315245038]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-35.642227, 30.201515)
+rotation = -1.5337762
+texture = ExtResource("138_3j1nm")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-left-torso"
+metadata/direction = "left"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 12.0
+}
+
+[node name="moon_celadon_hanfu_left_waistband" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=921284248]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-35.642227, 30.201515)
+rotation = -1.5337762
+texture = ExtResource("139_t2dvh")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-left-waistband"
+metadata/direction = "left"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 13.0
+}
+
+[node name="moon_celadon_hanfu_left_underlap_torso" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/Torso" unique_id=1424576609]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-35.642227, 30.201515)
+rotation = -1.5337762
+texture = ExtResource("140_tgg34")
+centered = false
+metadata/part_id = "moon-celadon-hanfu-left-underlap-torso"
+metadata/direction = "left"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 5.0
+}
+
+[node name="ThighA" type="Bone2D" parent="Skeleton2D/Root/Pelvis" unique_id=1520473324]
+position = Vector2(3, 0)
+rotation = 1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+rest = Transform2D(0.14142136, 0.98994946, -0.98994946, 0.14142136, 3, 0)
+auto_calculate_length_and_angle = false
+length = 3.535534
+bone_angle = 0.0
+metadata/rig_id = "ThighA"
+
+[node name="ShinA" type="Bone2D" parent="Skeleton2D/Root/Pelvis/ThighA" unique_id=933411696]
+position = Vector2(3.535534, 0)
+rotation = 0.14189707
+scale = Vector2(0.99999994, 0.99999994)
+rest = Transform2D(0.98994946, 0.14142136, -0.14142136, 0.98994946, 3.535534, 0)
+auto_calculate_length_and_angle = false
+length = 3.5
+bone_angle = 0.0
+metadata/rig_id = "ShinA"
+
+[node name="FootA" type="Bone2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA" unique_id=568084215]
+position = Vector2(3.5, 0)
+rotation = -0.19739556
+rest = Transform2D(0.9805807, -0.19611613, 0.19611613, 0.9805807, 3.5, 0)
+auto_calculate_length_and_angle = false
+length = 2.5495098
+bone_angle = 0.0
+metadata/rig_id = "FootA"
+
+[node name="underlap_shoeA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA/FootA" unique_id=2012990941]
+z_index = 10
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-61.38435, 23.926168)
+rotation = -1.3734008
+texture = ExtResource("141_ggsfc")
+centered = false
+metadata/part_id = "underlap-shoeA"
+metadata/direction = "down"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 2.0,
+"original": 10.0,
+"stone-blue-top-four-view": 10.0
+}
+
+[node name="shoeA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA/FootA" unique_id=1739483205]
+z_index = 15
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-61.38435, 23.926168)
+rotation = -1.3734008
+texture = ExtResource("142_yc6yn")
+centered = false
+metadata/part_id = "shoeA"
+metadata/direction = "down"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 5.0,
+"original": 15.0,
+"stone-blue-top-four-view": 15.0
+}
+
+[node name="right_underlap_shoeA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA/FootA" unique_id=1610468464]
+visible = false
+z_index = 3
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-63.600655, 12.255893)
+rotation = -1.19029
+texture = ExtResource("143_lpdxh")
+centered = false
+metadata/part_id = "right-underlap-shoeA"
+metadata/direction = "right"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 3.0,
+"original": 3.0,
+"stone-blue-top-four-view": 3.0
+}
+
+[node name="right_shoeA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA/FootA" unique_id=488698170]
+visible = false
+z_index = 14
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-63.600655, 12.255893)
+rotation = -1.19029
+texture = ExtResource("144_5q7yl")
+centered = false
+metadata/part_id = "right-shoeA"
+metadata/direction = "right"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 9.0,
+"original": 14.0,
+"stone-blue-top-four-view": 14.0
+}
+
+[node name="up_underlap_shoeA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA/FootA" unique_id=1486239248]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-55, 29)
+rotation = -1.5707964
+texture = ExtResource("145_lynpr")
+centered = false
+metadata/part_id = "up-underlap-shoeA"
+metadata/direction = "up"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 0.0,
+"original": 0.0,
+"stone-blue-top-four-view": 0.0
+}
+
+[node name="up_shoeA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA/FootA" unique_id=1423156127]
+visible = false
+z_index = 14
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-55, 29)
+rotation = -1.5707964
+texture = ExtResource("146_apas6")
+centered = false
+metadata/part_id = "up-shoeA"
+metadata/direction = "up"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 9.0,
+"original": 14.0,
+"stone-blue-top-four-view": 14.0
+}
+
+[node name="left_underlap_shoeA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA/FootA" unique_id=1889872090]
+visible = false
+z_index = 6
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-26.90296, 58.79822)
+rotation = -2.158799
+texture = ExtResource("147_7kg1o")
+centered = false
+metadata/part_id = "left-underlap-shoeA"
+metadata/direction = "left"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 4.0,
+"original": 6.0,
+"stone-blue-top-four-view": 6.0
+}
+
+[node name="left_shoeA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA/FootA" unique_id=311171563]
+visible = false
+z_index = 17
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-26.90296, 58.79822)
+rotation = -2.158799
+texture = ExtResource("148_y36b8")
+centered = false
+metadata/part_id = "left-shoeA"
+metadata/direction = "left"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 11.0,
+"original": 17.0,
+"stone-blue-top-four-view": 17.0
+}
+
+[node name="underlap_shinA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA" unique_id=1949697459]
+z_index = 9
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52, 35.5)
+rotation = -1.5707964
+texture = ExtResource("149_o5858")
+centered = false
+metadata/part_id = "underlap-shinA"
+metadata/direction = "down"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 9.0,
+"stone-blue-top-four-view": 9.0
+}
+
+[node name="shinA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA" unique_id=1762416731]
+z_index = 17
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52, 35.5)
+rotation = -1.5707964
+texture = ExtResource("150_i3x03")
+centered = false
+metadata/part_id = "shinA"
+metadata/direction = "down"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 17.0,
+"stone-blue-top-four-view": 17.0
+}
+
+[node name="hanfu_skin_shinA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA" unique_id=1729539477]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52, 35.5)
+rotation = -1.5707964
+texture = ExtResource("151_kp850")
+centered = false
+metadata/part_id = "hanfu-skin-shinA"
+metadata/direction = "down"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 7.0
+}
+
+[node name="right_underlap_shinA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA" unique_id=1790152467]
+visible = false
+z_index = 4
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.5, 35)
+rotation = -1.5707964
+texture = ExtResource("152_67fhn")
+centered = false
+metadata/part_id = "right-underlap-shinA"
+metadata/direction = "right"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 4.0,
+"stone-blue-top-four-view": 4.0
+}
+
+[node name="right_shinA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA" unique_id=659188454]
+visible = false
+z_index = 15
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.5, 35)
+rotation = -1.5707964
+texture = ExtResource("153_tn1if")
+centered = false
+metadata/part_id = "right-shinA"
+metadata/direction = "right"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 15.0,
+"stone-blue-top-four-view": 15.0
+}
+
+[node name="up_underlap_shinA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA" unique_id=787291610]
+visible = false
+z_index = 2
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.5, 29)
+rotation = -1.5707964
+texture = ExtResource("154_h6hpj")
+centered = false
+metadata/part_id = "up-underlap-shinA"
+metadata/direction = "up"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 2.0,
+"stone-blue-top-four-view": 2.0
+}
+
+[node name="up_shinA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA" unique_id=1327235782]
+visible = false
+z_index = 16
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.5, 29)
+rotation = -1.5707964
+texture = ExtResource("155_xjr8t")
+centered = false
+metadata/part_id = "up-shinA"
+metadata/direction = "up"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 16.0,
+"stone-blue-top-four-view": 16.0
+}
+
+[node name="left_underlap_shinA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA" unique_id=667508916]
+visible = false
+z_index = 7
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.5, 34)
+rotation = -1.5707964
+texture = ExtResource("156_gnp1n")
+centered = false
+metadata/part_id = "left-underlap-shinA"
+metadata/direction = "left"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 7.0,
+"stone-blue-top-four-view": 7.0
+}
+
+[node name="left_shinA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA/ShinA" unique_id=1581405910]
+visible = false
+z_index = 18
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.5, 34)
+rotation = -1.5707964
+texture = ExtResource("157_vyer0")
+centered = false
+metadata/part_id = "left-shinA"
+metadata/direction = "left"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 18.0,
+"stone-blue-top-four-view": 18.0
+}
+
+[node name="underlap_thighA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA" unique_id=175527307]
+z_index = 8
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52.9623, 27.789297)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("158_lbp2v")
+centered = false
+metadata/part_id = "underlap-thighA"
+metadata/direction = "down"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 8.0,
+"stone-blue-top-four-view": 8.0
+}
+
+[node name="thighA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA" unique_id=198838738]
+z_index = 19
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52.9623, 27.789297)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("159_vh1pl")
+centered = false
+metadata/part_id = "thighA"
+metadata/direction = "down"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 19.0,
+"stone-blue-top-four-view": 19.0
+}
+
+[node name="right_underlap_thighA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA" unique_id=1423252146]
+visible = false
+z_index = 5
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52.396614, 27.365032)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("160_ohi3u")
+centered = false
+metadata/part_id = "right-underlap-thighA"
+metadata/direction = "right"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 5.0,
+"stone-blue-top-four-view": 5.0
+}
+
+[node name="right_thighA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA" unique_id=255640087]
+visible = false
+z_index = 16
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52.396614, 27.365032)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("161_laq0s")
+centered = false
+metadata/part_id = "right-thighA"
+metadata/direction = "right"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 16.0,
+"stone-blue-top-four-view": 16.0
+}
+
+[node name="up_underlap_thighA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA" unique_id=1312336351]
+visible = false
+z_index = 4
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-48, 29)
+rotation = -1.5707964
+texture = ExtResource("162_14kdw")
+centered = false
+metadata/part_id = "up-underlap-thighA"
+metadata/direction = "up"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 4.0,
+"stone-blue-top-four-view": 4.0
+}
+
+[node name="up_thighA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA" unique_id=1604385935]
+visible = false
+z_index = 18
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-48, 29)
+rotation = -1.5707964
+texture = ExtResource("163_6tcqv")
+centered = false
+metadata/part_id = "up-thighA"
+metadata/direction = "up"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 18.0,
+"stone-blue-top-four-view": 18.0
+}
+
+[node name="left_underlap_thighA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA" unique_id=1107984020]
+visible = false
+z_index = 8
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52.25519, 26.375082)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("164_dvydq")
+centered = false
+metadata/part_id = "left-underlap-thighA"
+metadata/direction = "left"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 8.0,
+"stone-blue-top-four-view": 8.0
+}
+
+[node name="left_thighA" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighA" unique_id=236643160]
+visible = false
+z_index = 19
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52.25519, 26.375082)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("165_kiiyq")
+centered = false
+metadata/part_id = "left-thighA"
+metadata/direction = "left"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 19.0,
+"stone-blue-top-four-view": 19.0
+}
+
+[node name="ThighB" type="Bone2D" parent="Skeleton2D/Root/Pelvis" unique_id=874355711]
+position = Vector2(-3, 0)
+rotation = 1.5707964
+rest = Transform2D(0, 1, -1, 0, -3, 0)
+auto_calculate_length_and_angle = false
+length = 3.5
+bone_angle = 0.0
+metadata/rig_id = "ThighB"
+
+[node name="ShinB" type="Bone2D" parent="Skeleton2D/Root/Pelvis/ThighB" unique_id=1775780308]
+position = Vector2(3.5, 0)
+rest = Transform2D(1, 0, 0, 1, 3.5, 0)
+auto_calculate_length_and_angle = false
+length = 3.5
+bone_angle = 0.0
+metadata/rig_id = "ShinB"
+
+[node name="FootB" type="Bone2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB" unique_id=1981430080]
+position = Vector2(3.5, 0)
+rotation = 0.38050637
+rest = Transform2D(0.9284767, 0.37139067, -0.37139067, 0.9284767, 3.5, 0)
+auto_calculate_length_and_angle = false
+length = 2.6925824
+bone_angle = 0.0
+metadata/rig_id = "FootB"
+
+[node name="underlap_shoeB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB/FootB" unique_id=2013581159]
+z_index = 13
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-40.760128, 47.538006)
+rotation = -1.9513026
+texture = ExtResource("166_m1foo")
+centered = false
+metadata/part_id = "underlap-shoeB"
+metadata/direction = "down"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 3.0,
+"original": 13.0,
+"stone-blue-top-four-view": 13.0
+}
+
+[node name="shoeB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB/FootB" unique_id=470212298]
+z_index = 14
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-40.760128, 47.538006)
+rotation = -1.9513026
+texture = ExtResource("167_27l1f")
+centered = false
+metadata/part_id = "shoeB"
+metadata/direction = "down"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 4.0,
+"original": 14.0,
+"stone-blue-top-four-view": 14.0
+}
+
+[node name="right_underlap_shoeB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB/FootB" unique_id=526063124]
+visible = false
+z_index = 6
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-62.768482, -3.2584732)
+rotation = -1.0303769
+texture = ExtResource("168_gjgmt")
+centered = false
+metadata/part_id = "right-underlap-shoeB"
+metadata/direction = "right"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 4.0,
+"original": 6.0,
+"stone-blue-top-four-view": 6.0
+}
+
+[node name="right_shoeB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB/FootB" unique_id=1789103714]
+visible = false
+z_index = 17
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-62.768482, -3.2584732)
+rotation = -1.0303769
+texture = ExtResource("169_4vqy5")
+centered = false
+metadata/part_id = "right-shoeB"
+metadata/direction = "right"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 10.0,
+"original": 17.0,
+"stone-blue-top-four-view": 17.0
+}
+
+[node name="up_underlap_shoeB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB/FootB" unique_id=1075109949]
+visible = false
+z_index = 1
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-55, 35)
+rotation = -1.5707964
+texture = ExtResource("170_2ad5g")
+centered = false
+metadata/part_id = "up-underlap-shoeB"
+metadata/direction = "up"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 1.0,
+"original": 1.0,
+"stone-blue-top-four-view": 1.0
+}
+
+[node name="up_shoeB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB/FootB" unique_id=1000418659]
+visible = false
+z_index = 15
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-55, 35)
+rotation = -1.5707964
+texture = ExtResource("171_3vot4")
+centered = false
+metadata/part_id = "up-shoeB"
+metadata/direction = "up"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 10.0,
+"original": 15.0,
+"stone-blue-top-four-view": 15.0
+}
+
+[node name="left_underlap_shoeB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB/FootB" unique_id=1926538281]
+visible = false
+z_index = 3
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32.155983, 54.2793)
+rotation = -2.1112158
+texture = ExtResource("172_8plac")
+centered = false
+metadata/part_id = "left-underlap-shoeB"
+metadata/direction = "left"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 3.0,
+"original": 3.0,
+"stone-blue-top-four-view": 3.0
+}
+
+[node name="left_shoeB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB/FootB" unique_id=223391128]
+visible = false
+z_index = 14
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32.155983, 54.2793)
+rotation = -2.1112158
+texture = ExtResource("173_ted8b")
+centered = false
+metadata/part_id = "left-shoeB"
+metadata/direction = "left"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 10.0,
+"original": 14.0,
+"stone-blue-top-four-view": 14.0
+}
+
+[node name="underlap_shinB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB" unique_id=1395888776]
+z_index = 12
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52, 29)
+rotation = -1.5707964
+texture = ExtResource("174_3148w")
+centered = false
+metadata/part_id = "underlap-shinB"
+metadata/direction = "down"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 12.0,
+"stone-blue-top-four-view": 12.0
+}
+
+[node name="shinB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB" unique_id=741715502]
+z_index = 16
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52, 29)
+rotation = -1.5707964
+texture = ExtResource("175_78djm")
+centered = false
+metadata/part_id = "shinB"
+metadata/direction = "down"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 16.0,
+"stone-blue-top-four-view": 16.0
+}
+
+[node name="hanfu_skin_shinB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB" unique_id=2048980784]
+visible = false
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-52, 29)
+rotation = -1.5707964
+texture = ExtResource("176_10r85")
+centered = false
+metadata/part_id = "hanfu-skin-shinB"
+metadata/direction = "down"
+metadata/outfits = ["moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 8.0
+}
+
+[node name="right_underlap_shinB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB" unique_id=322693034]
+visible = false
+z_index = 7
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.5, 29.5)
+rotation = -1.5707964
+texture = ExtResource("177_itwyo")
+centered = false
+metadata/part_id = "right-underlap-shinB"
+metadata/direction = "right"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 7.0,
+"stone-blue-top-four-view": 7.0
+}
+
+[node name="right_shinB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB" unique_id=1736879756]
+visible = false
+z_index = 18
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.5, 29.5)
+rotation = -1.5707964
+texture = ExtResource("178_akc1g")
+centered = false
+metadata/part_id = "right-shinB"
+metadata/direction = "right"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 18.0,
+"stone-blue-top-four-view": 18.0
+}
+
+[node name="up_underlap_shinB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB" unique_id=1020652123]
+visible = false
+z_index = 3
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.5, 35)
+rotation = -1.5707964
+texture = ExtResource("179_kk0cd")
+centered = false
+metadata/part_id = "up-underlap-shinB"
+metadata/direction = "up"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 3.0,
+"stone-blue-top-four-view": 3.0
+}
+
+[node name="up_shinB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB" unique_id=1072547176]
+visible = false
+z_index = 17
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.5, 35)
+rotation = -1.5707964
+texture = ExtResource("180_cbvwp")
+centered = false
+metadata/part_id = "up-shinB"
+metadata/direction = "up"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 17.0,
+"stone-blue-top-four-view": 17.0
+}
+
+[node name="left_underlap_shinB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB" unique_id=1721782166]
+visible = false
+z_index = 4
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.5, 30)
+rotation = -1.5707964
+texture = ExtResource("181_ykila")
+centered = false
+metadata/part_id = "left-underlap-shinB"
+metadata/direction = "left"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 4.0,
+"stone-blue-top-four-view": 4.0
+}
+
+[node name="left_shinB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB/ShinB" unique_id=1315038565]
+visible = false
+z_index = 15
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.5, 30)
+rotation = -1.5707964
+texture = ExtResource("182_npp27")
+centered = false
+metadata/part_id = "left-shinB"
+metadata/direction = "left"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 15.0,
+"stone-blue-top-four-view": 15.0
+}
+
+[node name="underlap_thighB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB" unique_id=1508117613]
+z_index = 11
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-48.5, 29)
+rotation = -1.5707964
+texture = ExtResource("183_67srm")
+centered = false
+metadata/part_id = "underlap-thighB"
+metadata/direction = "down"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 11.0,
+"stone-blue-top-four-view": 11.0
+}
+
+[node name="thighB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB" unique_id=475527374]
+z_index = 18
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-48.5, 29)
+rotation = -1.5707964
+texture = ExtResource("184_8v1h6")
+centered = false
+metadata/part_id = "thighB"
+metadata/direction = "down"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 18.0,
+"stone-blue-top-four-view": 18.0
+}
+
+[node name="right_underlap_thighB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB" unique_id=639512577]
+visible = false
+z_index = 8
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-48, 29.5)
+rotation = -1.5707964
+texture = ExtResource("185_w5066")
+centered = false
+metadata/part_id = "right-underlap-thighB"
+metadata/direction = "right"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 8.0,
+"stone-blue-top-four-view": 8.0
+}
+
+[node name="right_thighB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB" unique_id=1835481006]
+visible = false
+z_index = 19
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-48, 29.5)
+rotation = -1.5707964
+texture = ExtResource("186_hrmv2")
+centered = false
+metadata/part_id = "right-thighB"
+metadata/direction = "right"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 19.0,
+"stone-blue-top-four-view": 19.0
+}
+
+[node name="up_underlap_thighB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB" unique_id=1861073875]
+visible = false
+z_index = 5
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-48, 35)
+rotation = -1.5707964
+texture = ExtResource("187_1emhy")
+centered = false
+metadata/part_id = "up-underlap-thighB"
+metadata/direction = "up"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 5.0,
+"stone-blue-top-four-view": 5.0
+}
+
+[node name="up_thighB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB" unique_id=1488988779]
+visible = false
+z_index = 19
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-48, 35)
+rotation = -1.5707964
+texture = ExtResource("188_w5cg5")
+centered = false
+metadata/part_id = "up-thighB"
+metadata/direction = "up"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 19.0,
+"stone-blue-top-four-view": 19.0
+}
+
+[node name="left_underlap_thighB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB" unique_id=1290134268]
+visible = false
+z_index = 5
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.689507, 22.415285)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("189_8s3tm")
+centered = false
+metadata/part_id = "left-underlap-thighB"
+metadata/direction = "left"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 5.0,
+"stone-blue-top-four-view": 5.0
+}
+
+[node name="left_thighB" type="Sprite2D" parent="Skeleton2D/Root/Pelvis/ThighB" unique_id=796634990]
+visible = false
+z_index = 16
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-51.689507, 22.415285)
+rotation = -1.4288993
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("190_wa625")
+centered = false
+metadata/part_id = "left-thighB"
+metadata/direction = "left"
+metadata/outfits = ["original", "stone-blue-top-four-view"]
+metadata/ranks = {
+"original": 16.0,
+"stone-blue-top-four-view": 16.0
+}
+
+[node name="HeadUpright" type="Bone2D" parent="Skeleton2D/Root" unique_id=458167553]
+position = Vector2(0, -32.5)
+rest = Transform2D(1, 0, 0, 1, 0, -32.5)
+auto_calculate_length_and_angle = false
+length = 4.0
+bone_angle = 0.0
+metadata/rig_id = "HeadUpright"
+
+[node name="head" type="Sprite2D" parent="Skeleton2D/Root/HeadUpright" unique_id=999418867]
+z_index = 28
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32, -25.5)
+texture = ExtResource("191_f0ewa")
+centered = false
+metadata/part_id = "head"
+metadata/direction = "down"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 24.0,
+"original": 28.0,
+"stone-blue-top-four-view": 28.0
+}
+
+[node name="hairFront" type="Sprite2D" parent="Skeleton2D/Root/HeadUpright" unique_id=1270581200]
+z_index = 29
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32, -25.5)
+texture = ExtResource("192_6nld1")
+centered = false
+metadata/part_id = "hairFront"
+metadata/direction = "down"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 25.0,
+"original": 29.0,
+"stone-blue-top-four-view": 29.0
+}
+
+[node name="right_head" type="Sprite2D" parent="Skeleton2D/Root/HeadUpright" unique_id=1950701926]
+visible = false
+z_index = 25
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-31, -25)
+texture = ExtResource("193_fo2qt")
+centered = false
+metadata/part_id = "right-head"
+metadata/direction = "right"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 16.0,
+"original": 25.0,
+"stone-blue-top-four-view": 25.0
+}
+
+[node name="up_head" type="Sprite2D" parent="Skeleton2D/Root/HeadUpright" unique_id=1287159629]
+visible = false
+z_index = 28
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32, -24.5)
+texture = ExtResource("194_mvrjd")
+centered = false
+metadata/part_id = "up-head"
+metadata/direction = "up"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 19.0,
+"original": 28.0,
+"stone-blue-top-four-view": 28.0
+}
+
+[node name="left_head" type="Sprite2D" parent="Skeleton2D/Root/HeadUpright" unique_id=324166174]
+visible = false
+z_index = 25
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32, -24.5)
+texture = ExtResource("195_yxwpc")
+centered = false
+metadata/part_id = "left-head"
+metadata/direction = "left"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 17.0,
+"original": 25.0,
+"stone-blue-top-four-view": 25.0
+}
+
+[node name="left_hairFront" type="Sprite2D" parent="Skeleton2D/Root/HeadUpright" unique_id=795704]
+visible = false
+z_index = 26
+z_as_relative = false
+texture_filter = 1
+position = Vector2(-32, -24.5)
+texture = ExtResource("196_3wecb")
+centered = false
+metadata/part_id = "left-hairFront"
+metadata/direction = "left"
+metadata/outfits = ["original", "stone-blue-top-four-view", "moon-celadon-four-view"]
+metadata/ranks = {
+"moon-celadon-four-view": 18.0,
+"original": 26.0,
+"stone-blue-top-four-view": 26.0
+}

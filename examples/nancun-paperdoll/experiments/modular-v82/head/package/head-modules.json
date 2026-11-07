@@ -1,0 +1,673 @@
+{
+  "version": 1,
+  "directions": [
+    "down"
+  ],
+  "filesRelativeTo": "../assets",
+  "headAnchor": [
+    32,
+    25.5
+  ],
+  "neckAnchor": [
+    32,
+    36
+  ],
+  "canvas": [
+    64,
+    64
+  ],
+  "faceBase": {
+    "id": "common",
+    "name": "完整共用脸底",
+    "attachments": [
+      {
+        "id": "common-face-base",
+        "part": "faceBase",
+        "category": "shared",
+        "direction": "down",
+        "file": "v82/head/face/base.png",
+        "sha256": "ac6af9f62302f997a09ca4325fb628e5c62c1917ec67644033bca621270a5e87",
+        "headAnchored": true,
+        "sourceBone": [
+          [
+            32,
+            36
+          ],
+          [
+            32,
+            25.5
+          ]
+        ],
+        "targetBone": [
+          "neck",
+          "head"
+        ],
+        "pivot": [
+          32,
+          36
+        ],
+        "layerOrder": 80,
+        "drawOrder": 80
+      },
+      {
+        "id": "common-neck-skin",
+        "part": "neckSkin",
+        "category": "shared",
+        "direction": "down",
+        "file": "v82/head/face/neck.png",
+        "sha256": "86e0a3c4ab6ece27dcf5a4498fce660a686504a451ec78503b26bf92e628a7cc",
+        "headAnchored": true,
+        "sourceBone": [
+          [
+            32,
+            36
+          ],
+          [
+            32,
+            25.5
+          ]
+        ],
+        "targetBone": [
+          "neck",
+          "head"
+        ],
+        "pivot": [
+          32,
+          36
+        ],
+        "layerOrder": 25,
+        "drawOrder": 25,
+        "contentRole": "skin",
+        "occlusionRule": "True lower neck y36..38 behind clothing torso/collar; same integer head transform."
+      }
+    ]
+  },
+  "eyes": [
+    {
+      "id": "clear",
+      "name": "明晰圆眼",
+      "attachments": [
+        {
+          "id": "eyes-clear",
+          "part": "pairedEyes",
+          "category": "shared",
+          "direction": "down",
+          "file": "v82/head/eyes/clear.png",
+          "sha256": "f1d03408065ac4476e0db94f8a68f6660a9483f8921672f8750013293ed35d2b",
+          "headAnchored": true,
+          "sourceBone": [
+            [
+              32,
+              36
+            ],
+            [
+              32,
+              25.5
+            ]
+          ],
+          "targetBone": [
+            "neck",
+            "head"
+          ],
+          "pivot": [
+            32,
+            36
+          ],
+          "layerOrder": 82,
+          "drawOrder": 82,
+          "studioAssetId": "1c50cbb7-2bed-4874-8030-5c7271546cd4",
+          "studioParentAssetId": "62793d5f-8352-4069-ac8a-e1dd9e8ecfb5"
+        }
+      ],
+      "eyeAnchors": [
+        [
+          28,
+          30
+        ],
+        [
+          34,
+          30
+        ]
+      ],
+      "pairedEqual": true
+    },
+    {
+      "id": "quiet",
+      "name": "沉静细眼",
+      "attachments": [
+        {
+          "id": "eyes-quiet",
+          "part": "pairedEyes",
+          "category": "shared",
+          "direction": "down",
+          "file": "v82/head/eyes/quiet.png",
+          "sha256": "2b96c5a20c897cbf81b7f7b395c62677a80dfaf1ecad366325ed7e99390cc427",
+          "headAnchored": true,
+          "sourceBone": [
+            [
+              32,
+              36
+            ],
+            [
+              32,
+              25.5
+            ]
+          ],
+          "targetBone": [
+            "neck",
+            "head"
+          ],
+          "pivot": [
+            32,
+            36
+          ],
+          "layerOrder": 82,
+          "drawOrder": 82,
+          "studioAssetId": "bc18306b-f728-4629-b57e-0e7c81fda980",
+          "studioParentAssetId": "4f62a662-7a66-4282-b5f6-211784b186d7"
+        }
+      ],
+      "eyeAnchors": [
+        [
+          28,
+          30
+        ],
+        [
+          34,
+          30
+        ]
+      ],
+      "pairedEqual": true
+    },
+    {
+      "id": "soft",
+      "name": "柔亮圆眼",
+      "attachments": [
+        {
+          "id": "eyes-soft",
+          "part": "pairedEyes",
+          "category": "shared",
+          "direction": "down",
+          "file": "v82/head/eyes/soft.png",
+          "sha256": "fe8bda74447656be09213606167ec52ad185227474703948b93dad200b4ddfbf",
+          "headAnchored": true,
+          "sourceBone": [
+            [
+              32,
+              36
+            ],
+            [
+              32,
+              25.5
+            ]
+          ],
+          "targetBone": [
+            "neck",
+            "head"
+          ],
+          "pivot": [
+            32,
+            36
+          ],
+          "layerOrder": 82,
+          "drawOrder": 82,
+          "studioAssetId": "97ce9598-de9c-47ca-9517-1d2a71b64cdb",
+          "studioParentAssetId": "922f150b-fdc5-4793-ae7b-9c0584b361e3"
+        }
+      ],
+      "eyeAnchors": [
+        [
+          28,
+          30
+        ],
+        [
+          34,
+          30
+        ]
+      ],
+      "pairedEqual": true
+    }
+  ],
+  "hairstyles": [
+    {
+      "id": "short",
+      "name": "清爽短发",
+      "attachments": [
+        {
+          "id": "short-rear",
+          "part": "rearHair",
+          "category": "shared",
+          "direction": "down",
+          "file": "v82/head/hair/short-rear.png",
+          "sha256": "1ecb8a7fb8f5d6fe415aca8830a562a071cc71cdec63912ac753932d9e6e6811",
+          "headAnchored": true,
+          "sourceBone": [
+            [
+              32,
+              36
+            ],
+            [
+              32,
+              25.5
+            ]
+          ],
+          "targetBone": [
+            "neck",
+            "head"
+          ],
+          "pivot": [
+            32,
+            36
+          ],
+          "layerOrder": 75,
+          "drawOrder": 75
+        },
+        {
+          "id": "short-front",
+          "part": "frontHair",
+          "category": "shared",
+          "direction": "down",
+          "file": "v82/head/hair/short-front.png",
+          "sha256": "e892311e52df6e0ea30b52996512aa15313efa49650b5d7b16f3f422d657336a",
+          "headAnchored": true,
+          "sourceBone": [
+            [
+              32,
+              36
+            ],
+            [
+              32,
+              25.5
+            ]
+          ],
+          "targetBone": [
+            "neck",
+            "head"
+          ],
+          "pivot": [
+            32,
+            36
+          ],
+          "layerOrder": 85,
+          "drawOrder": 85
+        }
+      ],
+      "occlusion": "Lower side/back hair and bun behind full face, fringe/front hair above eyes; all use one integer head transform."
+    },
+    {
+      "id": "bun",
+      "name": "侧分低髻",
+      "attachments": [
+        {
+          "id": "bun-rear",
+          "part": "rearHair",
+          "category": "shared",
+          "direction": "down",
+          "file": "v82/head/hair/bun-rear.png",
+          "sha256": "7147d961e897835f00ac297192b809981ff81dc544a1fa24358f400854e7201c",
+          "headAnchored": true,
+          "sourceBone": [
+            [
+              32,
+              36
+            ],
+            [
+              32,
+              25.5
+            ]
+          ],
+          "targetBone": [
+            "neck",
+            "head"
+          ],
+          "pivot": [
+            32,
+            36
+          ],
+          "layerOrder": 75,
+          "drawOrder": 75
+        },
+        {
+          "id": "bun-front",
+          "part": "frontHair",
+          "category": "shared",
+          "direction": "down",
+          "file": "v82/head/hair/bun-front.png",
+          "sha256": "604bc9f0cf968dc5888af16073e6d4d443e736c8540029443c4d633496c49538",
+          "headAnchored": true,
+          "sourceBone": [
+            [
+              32,
+              36
+            ],
+            [
+              32,
+              25.5
+            ]
+          ],
+          "targetBone": [
+            "neck",
+            "head"
+          ],
+          "pivot": [
+            32,
+            36
+          ],
+          "layerOrder": 85,
+          "drawOrder": 85
+        }
+      ],
+      "occlusion": "Lower side/back hair and bun behind full face, fringe/front hair above eyes; all use one integer head transform."
+    },
+    {
+      "id": "bob",
+      "name": "齐耳短发",
+      "attachments": [
+        {
+          "id": "bob-rear",
+          "part": "rearHair",
+          "category": "shared",
+          "direction": "down",
+          "file": "v82/head/hair/bob-rear.png",
+          "sha256": "dbfed6656e1d07e7f931cb564484900ba7b431cd240d84c0e5b28c869bf67ba0",
+          "headAnchored": true,
+          "sourceBone": [
+            [
+              32,
+              36
+            ],
+            [
+              32,
+              25.5
+            ]
+          ],
+          "targetBone": [
+            "neck",
+            "head"
+          ],
+          "pivot": [
+            32,
+            36
+          ],
+          "layerOrder": 75,
+          "drawOrder": 75
+        },
+        {
+          "id": "bob-front",
+          "part": "frontHair",
+          "category": "shared",
+          "direction": "down",
+          "file": "v82/head/hair/bob-front.png",
+          "sha256": "454339ac294bc46ed14f4d94cb21fa667fa9136a922df26b1c135ad8c1f28744",
+          "headAnchored": true,
+          "sourceBone": [
+            [
+              32,
+              36
+            ],
+            [
+              32,
+              25.5
+            ]
+          ],
+          "targetBone": [
+            "neck",
+            "head"
+          ],
+          "pivot": [
+            32,
+            36
+          ],
+          "layerOrder": 85,
+          "drawOrder": 85
+        }
+      ],
+      "occlusion": "Lower side/back hair and bun behind full face, fringe/front hair above eyes; all use one integer head transform."
+    }
+  ],
+  "brows": [
+    {
+      "id": "none",
+      "name": "不加眉",
+      "attachments": []
+    },
+    {
+      "id": "calm",
+      "name": "平眉",
+      "attachments": [
+        {
+          "id": "brows-calm",
+          "part": "brows",
+          "category": "shared",
+          "direction": "down",
+          "file": "v82/head/brows/calm.png",
+          "sha256": "e996cb49d9dde11dbe9f851f7c3dcb03ad61f0de7081c7e9cb3cd123046e08be",
+          "headAnchored": true,
+          "sourceBone": [
+            [
+              32,
+              36
+            ],
+            [
+              32,
+              25.5
+            ]
+          ],
+          "targetBone": [
+            "neck",
+            "head"
+          ],
+          "pivot": [
+            32,
+            36
+          ],
+          "layerOrder": 83,
+          "drawOrder": 83,
+          "studioAssetId": "1a31704a-bbf3-4a38-a422-d4edc8899aa1",
+          "studioParentAssetId": "6f8aaa8f-4327-4b07-b7d4-4716cbe84910"
+        }
+      ]
+    }
+  ],
+  "defaults": {
+    "hair": "short",
+    "eyes": "clear",
+    "brows": "calm"
+  },
+  "appearance": {
+    "files": {
+      "v82/head/face/base.png": {
+        "sourceSha256": "ac6af9f62302f997a09ca4325fb628e5c62c1917ec67644033bca621270a5e87",
+        "materialMasks": {
+          "skin": "v82/head/face/base-skin-index.png"
+        },
+        "maskSha256": {
+          "v82/head/face/base-skin-index.png": "c0bf3ae86a34a2a0fb89754f1c02846139b96b4f8e5cf9ced4b1eb03a6ac86eb"
+        },
+        "protectedMask": "v82/head/face/base-protected.png",
+        "protectedMaskSha256": "d1632e6f53debf08fd2f9d4f852046f2563d3c15f63921ebb05685ced03c8ddd",
+        "featureMask": "v82/head/face/base-features.png",
+        "featureMaskSha256": "c20931aafec9a35c0989b69e0e91945e6052c6d679dd2daf1dc9c62d12ffa751"
+      },
+      "v82/head/face/neck.png": {
+        "sourceSha256": "86e0a3c4ab6ece27dcf5a4498fce660a686504a451ec78503b26bf92e628a7cc",
+        "materialMasks": {
+          "skin": "v82/head/face/neck-skin-index.png"
+        },
+        "maskSha256": {
+          "v82/head/face/neck-skin-index.png": "6dca0f131128027becb810b80963581ecf37c31387045c9329652d4b6fef5cf4"
+        },
+        "protectedMask": "v82/head/face/neck-protected.png",
+        "protectedMaskSha256": "ffc1c67e6ec5c490f68b218639f3f432553612b76b1f9ce92c5dcd1b3634376b",
+        "featureMask": "v82/head/face/neck-features.png",
+        "featureMaskSha256": "052c48aa8b5e4f2c40bcd0d1bb7a4b93276276285dfa3e8a971b435dc88fdfee"
+      },
+      "v82/head/hair/short-rear.png": {
+        "sourceSha256": "1ecb8a7fb8f5d6fe415aca8830a562a071cc71cdec63912ac753932d9e6e6811",
+        "materialMasks": {
+          "hair": "v82/head/hair/short-rear-hair-index.png"
+        },
+        "maskSha256": {
+          "v82/head/hair/short-rear-hair-index.png": "f4535a5817de8fa70700f6b1d18bf82ef199b8d26418b91325984ba8c375bd74"
+        },
+        "protectedMask": "v82/head/hair/short-rear-protected.png",
+        "protectedMaskSha256": "aabea9705708570a62957130142b2861b0445e59446bfa31a918a3f82b56ee74",
+        "featureMask": "v82/head/hair/short-rear-features.png",
+        "featureMaskSha256": "052c48aa8b5e4f2c40bcd0d1bb7a4b93276276285dfa3e8a971b435dc88fdfee"
+      },
+      "v82/head/hair/short-front.png": {
+        "sourceSha256": "e892311e52df6e0ea30b52996512aa15313efa49650b5d7b16f3f422d657336a",
+        "materialMasks": {
+          "hair": "v82/head/hair/short-front-hair-index.png"
+        },
+        "maskSha256": {
+          "v82/head/hair/short-front-hair-index.png": "3e48b866d254c11d950f0978c7878b6cdd6b9beed6ebdc8af1317170de2929f4"
+        },
+        "protectedMask": "v82/head/hair/short-front-protected.png",
+        "protectedMaskSha256": "41d360afc1d836d83681a2f1065a629be7a9ef93d7bc7434ed6ed66f184cfa06",
+        "featureMask": "v82/head/hair/short-front-features.png",
+        "featureMaskSha256": "052c48aa8b5e4f2c40bcd0d1bb7a4b93276276285dfa3e8a971b435dc88fdfee"
+      },
+      "v82/head/eyes/clear.png": {
+        "sourceSha256": "f1d03408065ac4476e0db94f8a68f6660a9483f8921672f8750013293ed35d2b",
+        "materialMasks": {},
+        "maskSha256": {},
+        "protectedMask": "v82/head/eyes/clear-protected.png",
+        "protectedMaskSha256": "39dbe78cb141cce9b5bd78e7a60cbc6e244f4437f5308215f8e8bf0a69206638",
+        "featureMask": "v82/head/eyes/clear-features.png",
+        "featureMaskSha256": "a61f172f4dbc4ae9b2bc2d85b6de2e4ce2209ab889d3012a2955ce6804953d1e"
+      },
+      "v82/head/hair/bun-rear.png": {
+        "sourceSha256": "7147d961e897835f00ac297192b809981ff81dc544a1fa24358f400854e7201c",
+        "materialMasks": {
+          "hair": "v82/head/hair/bun-rear-hair-index.png"
+        },
+        "maskSha256": {
+          "v82/head/hair/bun-rear-hair-index.png": "e67d41548643895cb2904ca592075fef7cacaa906ea643ea9d69b76d82aeead9"
+        },
+        "protectedMask": "v82/head/hair/bun-rear-protected.png",
+        "protectedMaskSha256": "e18263cdb4453f0b90589e2b731ceaa27d5d65a3d9325ca7e92cef56f55bf9a1",
+        "featureMask": "v82/head/hair/bun-rear-features.png",
+        "featureMaskSha256": "052c48aa8b5e4f2c40bcd0d1bb7a4b93276276285dfa3e8a971b435dc88fdfee"
+      },
+      "v82/head/hair/bun-front.png": {
+        "sourceSha256": "604bc9f0cf968dc5888af16073e6d4d443e736c8540029443c4d633496c49538",
+        "materialMasks": {
+          "hair": "v82/head/hair/bun-front-hair-index.png"
+        },
+        "maskSha256": {
+          "v82/head/hair/bun-front-hair-index.png": "0215f3143dd18f1f27ad809ba92befaa4cfc8d32a746b07dec6359803b9ad634"
+        },
+        "protectedMask": "v82/head/hair/bun-front-protected.png",
+        "protectedMaskSha256": "46d07d74583139e7bd04b457f27141b33d9ecf43104cc23b48ed3df6a5fbd213",
+        "featureMask": "v82/head/hair/bun-front-features.png",
+        "featureMaskSha256": "052c48aa8b5e4f2c40bcd0d1bb7a4b93276276285dfa3e8a971b435dc88fdfee"
+      },
+      "v82/head/eyes/quiet.png": {
+        "sourceSha256": "2b96c5a20c897cbf81b7f7b395c62677a80dfaf1ecad366325ed7e99390cc427",
+        "materialMasks": {},
+        "maskSha256": {},
+        "protectedMask": "v82/head/eyes/quiet-protected.png",
+        "protectedMaskSha256": "8bb5a41982f4f78f30a907fa1ea95b9a8a9fa6566263425b49e33e8ace9dcdd0",
+        "featureMask": "v82/head/eyes/quiet-features.png",
+        "featureMaskSha256": "c6257b20d945ab7dbad3404a6ceded13f2e203229c3329701aaf464f3098004b"
+      },
+      "v82/head/hair/bob-rear.png": {
+        "sourceSha256": "dbfed6656e1d07e7f931cb564484900ba7b431cd240d84c0e5b28c869bf67ba0",
+        "materialMasks": {
+          "hair": "v82/head/hair/bob-rear-hair-index.png"
+        },
+        "maskSha256": {
+          "v82/head/hair/bob-rear-hair-index.png": "33ed909f33253ffdac59f69bc6801279d95462883a5f86f27d0f5e087aee2c8a"
+        },
+        "protectedMask": "v82/head/hair/bob-rear-protected.png",
+        "protectedMaskSha256": "21180f149f313aa5b7146e1acdf79c6171e1f60f482704db28cd162908daf73f",
+        "featureMask": "v82/head/hair/bob-rear-features.png",
+        "featureMaskSha256": "052c48aa8b5e4f2c40bcd0d1bb7a4b93276276285dfa3e8a971b435dc88fdfee"
+      },
+      "v82/head/hair/bob-front.png": {
+        "sourceSha256": "454339ac294bc46ed14f4d94cb21fa667fa9136a922df26b1c135ad8c1f28744",
+        "materialMasks": {
+          "hair": "v82/head/hair/bob-front-hair-index.png"
+        },
+        "maskSha256": {
+          "v82/head/hair/bob-front-hair-index.png": "29172c7a8651ccccea4fdafc2b4f28dbe4133c0b74ef73808ff5a1c8d51de13b"
+        },
+        "protectedMask": "v82/head/hair/bob-front-protected.png",
+        "protectedMaskSha256": "e3d4697c44d827462889c341a77869e6acffaed019e8c418e32185f67d4e1d9e",
+        "featureMask": "v82/head/hair/bob-front-features.png",
+        "featureMaskSha256": "052c48aa8b5e4f2c40bcd0d1bb7a4b93276276285dfa3e8a971b435dc88fdfee"
+      },
+      "v82/head/eyes/soft.png": {
+        "sourceSha256": "fe8bda74447656be09213606167ec52ad185227474703948b93dad200b4ddfbf",
+        "materialMasks": {},
+        "maskSha256": {},
+        "protectedMask": "v82/head/eyes/soft-protected.png",
+        "protectedMaskSha256": "2a5a75aa086b3d16411d2952912a4b36ba88523be14d436ec77e2d5ab420c3a8",
+        "featureMask": "v82/head/eyes/soft-features.png",
+        "featureMaskSha256": "5e9df9067c353b7be32155a5e88dbbf113de16dac7c509975083db5cb11869b0"
+      },
+      "v82/head/brows/calm.png": {
+        "sourceSha256": "e996cb49d9dde11dbe9f851f7c3dcb03ad61f0de7081c7e9cb3cd123046e08be",
+        "materialMasks": {},
+        "maskSha256": {},
+        "protectedMask": "v82/head/brows/calm-protected.png",
+        "protectedMaskSha256": "8250d450ac529d40e748996954e85bf1cf08a31de5e4b9083a7853a0c89bb043",
+        "featureMask": "v82/head/brows/calm-features.png",
+        "featureMaskSha256": "d73837f5717952cd2913926ee24c2aeee2bf25d48014ca40e69d6fc75e156677"
+      }
+    }
+  },
+  "status": "source-backed-native-modules-ready-for-composition-review",
+  "limitations": [
+    "Only front direction, not generated side/back faces.",
+    "Each pair is source-supported symmetric construction using one source eye motif, intentionally not an untouched original face.",
+    "Face base is a new complete generated surface; original V81 source heads remain unchanged.",
+    "Original source neck is broad and short; collar compatibility requires real clothing composition."
+  ],
+  "studioEdits": [
+    {
+      "id": "eyes-clear",
+      "parentAssetId": "62793d5f-8352-4069-ac8a-e1dd9e8ecfb5",
+      "childAssetId": "1c50cbb7-2bed-4874-8030-5c7271546cd4",
+      "sourceRGBAExact": true,
+      "changes": 326,
+      "note": "Most changes isolate the source eye/brow by removing all unrelated head pixels; pair pixels are exact source copies."
+    },
+    {
+      "id": "eyes-quiet",
+      "parentAssetId": "4f62a662-7a66-4282-b5f6-211784b186d7",
+      "childAssetId": "bc18306b-f728-4629-b57e-0e7c81fda980",
+      "sourceRGBAExact": true,
+      "changes": 357,
+      "note": "Most changes isolate the source eye/brow by removing all unrelated head pixels; pair pixels are exact source copies."
+    },
+    {
+      "id": "eyes-soft",
+      "parentAssetId": "922f150b-fdc5-4793-ae7b-9c0584b361e3",
+      "childAssetId": "97ce9598-de9c-47ca-9517-1d2a71b64cdb",
+      "sourceRGBAExact": true,
+      "changes": 418,
+      "note": "Most changes isolate the source eye/brow by removing all unrelated head pixels; pair pixels are exact source copies."
+    },
+    {
+      "id": "brows-calm",
+      "parentAssetId": "6f8aaa8f-4327-4b07-b7d4-4716cbe84910",
+      "childAssetId": "1a31704a-bbf3-4a38-a422-d4edc8899aa1",
+      "sourceRGBAExact": true,
+      "changes": 335,
+      "note": "Most changes isolate the source eye/brow by removing all unrelated head pixels; pair pixels are exact source copies."
+    }
+  ],
+  "validation": {
+    "pairedEyePixelsEqual": true,
+    "faceSurfacePresentBehindEveryEye": true,
+    "headTransform": "one common integer translation; no independent feature rotation",
+    "generationCalls": 1,
+    "generationMaximum": 2,
+    "faceNeckPartitionRGBAExact": true,
+    "neckLayerOrder": 25,
+    "bodyRigModified": false,
+    "preserveDefaultSourceColors": true
+  }
+}

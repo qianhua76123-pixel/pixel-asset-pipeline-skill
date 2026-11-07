@@ -1,0 +1,3233 @@
+{
+  "sourceRuntime": "V81 frozen",
+  "texturesCopiedOrModified": false,
+  "entries": [
+    {
+      "id": "underlap-torso",
+      "part": "torso",
+      "underlap": true,
+      "file": "characters/heqing/underlaps/torso.png",
+      "sha256": "ee22679344ac99d568b0057318a5ae1f6055cf67e6babf0409946799910082e6",
+      "sourceBone": [
+        [
+          32,
+          36
+        ],
+        [
+          32,
+          48.5
+        ]
+      ],
+      "targetBone": [
+        "neck",
+        "pelvis"
+      ],
+      "pivot": [
+        32,
+        36
+      ],
+      "dyeMask": "characters/heqing/dye-masks/underlap-torso.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.2
+      }
+    },
+    {
+      "id": "underlap-pelvis",
+      "part": "pelvis",
+      "underlap": true,
+      "file": "characters/heqing/underlaps/pelvis.png",
+      "sha256": "35b277ca1fa6c23f53af1aef20715a09f72fe70ba71dc1b04dbebe3c2ecde354",
+      "sourceBone": [
+        [
+          32,
+          36
+        ],
+        [
+          32,
+          48.5
+        ]
+      ],
+      "targetBone": [
+        "neck",
+        "pelvis"
+      ],
+      "pivot": [
+        32,
+        36
+      ],
+      "dyeMask": "characters/heqing/dye-masks/underlap-pelvis.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.2
+      }
+    },
+    {
+      "id": "underlap-upperArmA",
+      "part": "upperArmA",
+      "underlap": true,
+      "file": "characters/heqing/variants/heqing-underlap-upperArmA-clean.png",
+      "sha256": "085f78a5aa267892039a6cb02e29a3763ae423236348589d9986aa362ebedb49",
+      "sourceBone": [
+        [
+          37.5,
+          38.5
+        ],
+        [
+          39,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderA",
+        "elbowA"
+      ],
+      "pivot": [
+        37.5,
+        38.5
+      ],
+      "dyeMask": "characters/heqing/variants/heqing-mask-upperArmA-clean.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "underlap-lowerArmA",
+      "part": "lowerArmA",
+      "underlap": true,
+      "file": "characters/heqing/underlaps/lowerArmA.png",
+      "sha256": "c7d47f720008aa791fb3b5925860cff48fc8975adbf8384e07fb9314f6ff0547",
+      "sourceBone": [
+        [
+          39,
+          41.5
+        ],
+        [
+          39,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowA",
+        "wristA"
+      ],
+      "pivot": [
+        39,
+        41.5
+      ],
+      "dyeMask": "characters/heqing/dye-masks/underlap-lowerArmA.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "underlap-upperArmB",
+      "part": "upperArmB",
+      "underlap": true,
+      "file": "characters/heqing/variants/heqing-underlap-upperArmB-clean.png",
+      "sha256": "4f41d0619557642a9e93ad9c91924c8213abb90a9e72c237593cb3dba4bcd57c",
+      "sourceBone": [
+        [
+          28,
+          38.5
+        ],
+        [
+          26.5,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderB",
+        "elbowB"
+      ],
+      "pivot": [
+        28,
+        38.5
+      ],
+      "dyeMask": "characters/heqing/variants/heqing-mask-upperArmB-clean.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "underlap-lowerArmB",
+      "part": "lowerArmB",
+      "underlap": true,
+      "file": "characters/heqing/underlaps/lowerArmB.png",
+      "sha256": "0bf8a3f9cf359822a67a0ff1777f29426e6861e56028fb609fc62415ec45dd85",
+      "sourceBone": [
+        [
+          26.5,
+          41.5
+        ],
+        [
+          26,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowB",
+        "wristB"
+      ],
+      "pivot": [
+        26.5,
+        41.5
+      ],
+      "dyeMask": "characters/heqing/dye-masks/underlap-lowerArmB.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "underlap-thighA",
+      "part": "thighA",
+      "underlap": true,
+      "file": "characters/heqing/underlaps/thighA.png",
+      "sha256": "de3b6e325f229910fcb688c8794c56254236f193477e95dcc4770484b36c3b8e",
+      "sourceBone": [
+        [
+          35,
+          48.5
+        ],
+        [
+          35.5,
+          52
+        ]
+      ],
+      "targetBone": [
+        "hipA",
+        "kneeA"
+      ],
+      "pivot": [
+        35,
+        48.5
+      ],
+      "dyeMask": "characters/heqing/dye-masks/underlap-thighA.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "underlap-shinA",
+      "part": "shinA",
+      "underlap": true,
+      "file": "characters/heqing/underlaps/shinA.png",
+      "sha256": "fc40898a203c16fe34e13ccd42a1408189d6118e7d26403c721697dc61860a90",
+      "sourceBone": [
+        [
+          35.5,
+          52
+        ],
+        [
+          35.5,
+          55.5
+        ]
+      ],
+      "targetBone": [
+        "kneeA",
+        "ankleA"
+      ],
+      "pivot": [
+        35.5,
+        52
+      ],
+      "dyeMask": "characters/heqing/dye-masks/underlap-shinA.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "underlap-thighB",
+      "part": "thighB",
+      "underlap": true,
+      "file": "characters/heqing/underlaps/thighB.png",
+      "sha256": "41ca72f184877dc34d853a8babdcadb74fe30412d80ce1d66e8bb253fbf0e3df",
+      "sourceBone": [
+        [
+          29,
+          48.5
+        ],
+        [
+          29,
+          52
+        ]
+      ],
+      "targetBone": [
+        "hipB",
+        "kneeB"
+      ],
+      "pivot": [
+        29,
+        48.5
+      ],
+      "dyeMask": "characters/heqing/dye-masks/underlap-thighB.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "underlap-shinB",
+      "part": "shinB",
+      "underlap": true,
+      "file": "characters/heqing/underlaps/shinB.png",
+      "sha256": "77249261bf45aea4a73202aaf1cb4a3c151cf5fad45c5c8177f3fdaa5811dfc1",
+      "sourceBone": [
+        [
+          29,
+          52
+        ],
+        [
+          29,
+          55.5
+        ]
+      ],
+      "targetBone": [
+        "kneeB",
+        "ankleB"
+      ],
+      "pivot": [
+        29,
+        52
+      ],
+      "dyeMask": "characters/heqing/dye-masks/underlap-shinB.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "torso",
+      "part": "torso",
+      "underlap": false,
+      "file": "characters/heqing/parts/torso.png",
+      "sha256": "191eff2b1999716761a93ec7f1f16f30da6e6e991ce3a693b3bb5afa915609e2",
+      "sourceBone": [
+        [
+          32,
+          36
+        ],
+        [
+          32,
+          48.5
+        ]
+      ],
+      "targetBone": [
+        "neck",
+        "pelvis"
+      ],
+      "pivot": [
+        32,
+        36
+      ],
+      "dyeMask": "characters/heqing/dye-masks/torso.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.2
+      }
+    },
+    {
+      "id": "pelvis",
+      "part": "pelvis",
+      "underlap": false,
+      "file": "characters/heqing/parts/pelvis.png",
+      "sha256": "83f06e6632116a47bb38a9eb539afe831ba33fdd98a9f4ce1e08a212ae0ecfb7",
+      "sourceBone": [
+        [
+          32,
+          36
+        ],
+        [
+          32,
+          48.5
+        ]
+      ],
+      "targetBone": [
+        "neck",
+        "pelvis"
+      ],
+      "pivot": [
+        32,
+        36
+      ],
+      "dyeMask": "characters/heqing/dye-masks/pelvis.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.2
+      }
+    },
+    {
+      "id": "upperArmA",
+      "part": "upperArmA",
+      "underlap": false,
+      "file": "characters/heqing/parts/upperArmA.png",
+      "sha256": "2120232b77b07c3ab8fa449e1af0fe42f82bc9492ab9e4d8d58fca3effb995f6",
+      "sourceBone": [
+        [
+          37.5,
+          38.5
+        ],
+        [
+          39,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderA",
+        "elbowA"
+      ],
+      "pivot": [
+        37.5,
+        38.5
+      ],
+      "dyeMask": "characters/heqing/dye-masks/upperArmA.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "lowerArmA",
+      "part": "lowerArmA",
+      "underlap": false,
+      "file": "characters/heqing/parts/lowerArmA.png",
+      "sha256": "5cf04e368ed884693792b5089b5f61fc24b11d7203b54674a867735ca920e477",
+      "sourceBone": [
+        [
+          39,
+          41.5
+        ],
+        [
+          39,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowA",
+        "wristA"
+      ],
+      "pivot": [
+        39,
+        41.5
+      ],
+      "dyeMask": "characters/heqing/dye-masks/lowerArmA.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "upperArmB",
+      "part": "upperArmB",
+      "underlap": false,
+      "file": "characters/heqing/parts/upperArmB.png",
+      "sha256": "ecefe2bf081556cab06f0cb0bd0627d84b025351db1ef58673a541244dbd74b4",
+      "sourceBone": [
+        [
+          28,
+          38.5
+        ],
+        [
+          26.5,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderB",
+        "elbowB"
+      ],
+      "pivot": [
+        28,
+        38.5
+      ],
+      "dyeMask": "characters/heqing/dye-masks/upperArmB.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "lowerArmB",
+      "part": "lowerArmB",
+      "underlap": false,
+      "file": "characters/heqing/parts/lowerArmB.png",
+      "sha256": "a7b13ed349a5a7e7cf0eef1fcae86e1c6931a92215895dcdc048a2f87e01c970",
+      "sourceBone": [
+        [
+          26.5,
+          41.5
+        ],
+        [
+          26,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowB",
+        "wristB"
+      ],
+      "pivot": [
+        26.5,
+        41.5
+      ],
+      "dyeMask": "characters/heqing/dye-masks/lowerArmB.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "thighA",
+      "part": "thighA",
+      "underlap": false,
+      "file": "characters/heqing/parts/thighA.png",
+      "sha256": "78893137b5cf9d5c35ce9c3ada9788406a3b511eee21758585644e6d754bfa1e",
+      "sourceBone": [
+        [
+          35,
+          48.5
+        ],
+        [
+          35.5,
+          52
+        ]
+      ],
+      "targetBone": [
+        "hipA",
+        "kneeA"
+      ],
+      "pivot": [
+        35,
+        48.5
+      ],
+      "dyeMask": "characters/heqing/dye-masks/thighA.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "shinA",
+      "part": "shinA",
+      "underlap": false,
+      "file": "characters/heqing/parts/shinA.png",
+      "sha256": "dd1eb8a7b17c53805ed134267ad986a3390251922f407ecb5972e683f36f67e7",
+      "sourceBone": [
+        [
+          35.5,
+          52
+        ],
+        [
+          35.5,
+          55.5
+        ]
+      ],
+      "targetBone": [
+        "kneeA",
+        "ankleA"
+      ],
+      "pivot": [
+        35.5,
+        52
+      ],
+      "dyeMask": "characters/heqing/dye-masks/shinA.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "thighB",
+      "part": "thighB",
+      "underlap": false,
+      "file": "characters/heqing/parts/thighB.png",
+      "sha256": "63a8a20e52bcab11edba68d0f4e58c949c56b994b666b0af7859da35aee4e6a9",
+      "sourceBone": [
+        [
+          29,
+          48.5
+        ],
+        [
+          29,
+          52
+        ]
+      ],
+      "targetBone": [
+        "hipB",
+        "kneeB"
+      ],
+      "pivot": [
+        29,
+        48.5
+      ],
+      "dyeMask": "characters/heqing/dye-masks/thighB.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "shinB",
+      "part": "shinB",
+      "underlap": false,
+      "file": "characters/heqing/parts/shinB.png",
+      "sha256": "12c8cce7574dc77d969f0b34b03397842d48d47759439100351689ad41d739d1",
+      "sourceBone": [
+        [
+          29,
+          52
+        ],
+        [
+          29,
+          55.5
+        ]
+      ],
+      "targetBone": [
+        "kneeB",
+        "ankleB"
+      ],
+      "pivot": [
+        29,
+        52
+      ],
+      "dyeMask": "characters/heqing/dye-masks/shinB.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-cream-indigo-torso",
+      "part": "torso",
+      "underlap": false,
+      "file": "v81/outfits/cream-indigo/torso.png",
+      "sha256": "cc68791ed29f62adb47a5d0468df05a70a3b8c5dc4d5e2ec209a5ec5de26d1b0",
+      "sourceBone": [
+        [
+          32,
+          36
+        ],
+        [
+          32,
+          48.5
+        ]
+      ],
+      "targetBone": [
+        "neck",
+        "pelvis"
+      ],
+      "pivot": [
+        32,
+        36
+      ],
+      "garmentMask": "v81/outfits/cream-indigo/torso-garment-mask.png",
+      "dyeMask": "v81/outfits/cream-indigo/torso-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.2
+      }
+    },
+    {
+      "id": "v81-cream-indigo-upperArmB",
+      "part": "upperArmB",
+      "underlap": false,
+      "file": "v81/outfits/cream-indigo/upperArmB.png",
+      "sha256": "a353c45d290612e657e7ce9d1331eb06ceda38cb9060753b581769f185849c37",
+      "sourceBone": [
+        [
+          28,
+          38.5
+        ],
+        [
+          26.5,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderB",
+        "elbowB"
+      ],
+      "pivot": [
+        28,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/cream-indigo/upperArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/cream-indigo/upperArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-cream-indigo-upperArmA",
+      "part": "upperArmA",
+      "underlap": false,
+      "file": "v81/outfits/cream-indigo/upperArmA.png",
+      "sha256": "fa419c300cf8ea6fa9264ad08915f6d31d1dea34698c528eb17ded60052af012",
+      "sourceBone": [
+        [
+          37.5,
+          38.5
+        ],
+        [
+          39,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderA",
+        "elbowA"
+      ],
+      "pivot": [
+        37.5,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/cream-indigo/upperArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/cream-indigo/upperArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-cream-indigo-underlap-upperArmB",
+      "part": "upperArmB",
+      "underlap": true,
+      "file": "v81/outfits/cream-indigo/underlap-upperArmB.png",
+      "sha256": "ed42036f2f46d9168e9d254eb0027d59134e9ebb70e5c807f37ef2049dee4f03",
+      "sourceBone": [
+        [
+          28,
+          38.5
+        ],
+        [
+          26.5,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderB",
+        "elbowB"
+      ],
+      "pivot": [
+        28,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/cream-indigo/underlap-upperArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/cream-indigo/underlap-upperArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-cream-indigo-underlap-upperArmA",
+      "part": "upperArmA",
+      "underlap": true,
+      "file": "v81/outfits/cream-indigo/underlap-upperArmA.png",
+      "sha256": "8bd4a297d8fe5e36c09c0314b790fc2bfb1b71ad74d820772b27b775f476f218",
+      "sourceBone": [
+        [
+          37.5,
+          38.5
+        ],
+        [
+          39,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderA",
+        "elbowA"
+      ],
+      "pivot": [
+        37.5,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/cream-indigo/underlap-upperArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/cream-indigo/underlap-upperArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-cream-indigo-body-lowerArmA",
+      "part": "lowerArmA",
+      "underlap": false,
+      "file": "v81/outfits/cream-indigo/body-lowerArmA.png",
+      "sha256": "5cf04e368ed884693792b5089b5f61fc24b11d7203b54674a867735ca920e477",
+      "sourceBone": [
+        [
+          39,
+          41.5
+        ],
+        [
+          39,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowA",
+        "wristA"
+      ],
+      "pivot": [
+        39,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/cream-indigo/body-lowerArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/cream-indigo/body-lowerArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-cream-indigo-body-lowerArmB",
+      "part": "lowerArmB",
+      "underlap": false,
+      "file": "v81/outfits/cream-indigo/body-lowerArmB.png",
+      "sha256": "a7b13ed349a5a7e7cf0eef1fcae86e1c6931a92215895dcdc048a2f87e01c970",
+      "sourceBone": [
+        [
+          26.5,
+          41.5
+        ],
+        [
+          26,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowB",
+        "wristB"
+      ],
+      "pivot": [
+        26.5,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/cream-indigo/body-lowerArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/cream-indigo/body-lowerArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-cream-indigo-body-underlap-lowerArmA",
+      "part": "lowerArmA",
+      "underlap": true,
+      "file": "v81/outfits/cream-indigo/body-underlap-lowerArmA.png",
+      "sha256": "c7d47f720008aa791fb3b5925860cff48fc8975adbf8384e07fb9314f6ff0547",
+      "sourceBone": [
+        [
+          39,
+          41.5
+        ],
+        [
+          39,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowA",
+        "wristA"
+      ],
+      "pivot": [
+        39,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/cream-indigo/body-underlap-lowerArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/cream-indigo/body-underlap-lowerArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-cream-indigo-body-underlap-lowerArmB",
+      "part": "lowerArmB",
+      "underlap": true,
+      "file": "v81/outfits/cream-indigo/body-underlap-lowerArmB.png",
+      "sha256": "0bf8a3f9cf359822a67a0ff1777f29426e6861e56028fb609fc62415ec45dd85",
+      "sourceBone": [
+        [
+          26.5,
+          41.5
+        ],
+        [
+          26,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowB",
+        "wristB"
+      ],
+      "pivot": [
+        26.5,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/cream-indigo/body-underlap-lowerArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/cream-indigo/body-underlap-lowerArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-cream-indigo-pelvis",
+      "part": "pelvis",
+      "underlap": false,
+      "file": "v81/outfits/cream-indigo/pelvis.png",
+      "sha256": "58244b0978226118e3cfc999d8d70f7216eeb765d66361fc269c71da32467c4c",
+      "sourceBone": [
+        [
+          32,
+          36
+        ],
+        [
+          32,
+          48.5
+        ]
+      ],
+      "targetBone": [
+        "neck",
+        "pelvis"
+      ],
+      "pivot": [
+        32,
+        36
+      ],
+      "garmentMask": "v81/outfits/cream-indigo/pelvis-garment-mask.png",
+      "dyeMask": "v81/outfits/cream-indigo/pelvis-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.2
+      }
+    },
+    {
+      "id": "v81-cream-indigo-thighB",
+      "part": "thighB",
+      "underlap": false,
+      "file": "v81/outfits/cream-indigo/thighB.png",
+      "sha256": "2d61cd345f1876d6fbdf2f4acb040bd39c8aa5c06688262f1a16deed9d811d95",
+      "sourceBone": [
+        [
+          29,
+          48.5
+        ],
+        [
+          29,
+          52
+        ]
+      ],
+      "targetBone": [
+        "hipB",
+        "kneeB"
+      ],
+      "pivot": [
+        29,
+        48.5
+      ],
+      "garmentMask": "v81/outfits/cream-indigo/thighB-garment-mask.png",
+      "dyeMask": "v81/outfits/cream-indigo/thighB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-cream-indigo-thighA",
+      "part": "thighA",
+      "underlap": false,
+      "file": "v81/outfits/cream-indigo/thighA.png",
+      "sha256": "7ae25e38c3a05a135b7a85c3b0e1727c4bc7cde4b1298a3b74608a3fa9009e6f",
+      "sourceBone": [
+        [
+          35,
+          48.5
+        ],
+        [
+          35.5,
+          52
+        ]
+      ],
+      "targetBone": [
+        "hipA",
+        "kneeA"
+      ],
+      "pivot": [
+        35,
+        48.5
+      ],
+      "garmentMask": "v81/outfits/cream-indigo/thighA-garment-mask.png",
+      "dyeMask": "v81/outfits/cream-indigo/thighA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-cream-indigo-shinB",
+      "part": "shinB",
+      "underlap": false,
+      "file": "v81/outfits/cream-indigo/shinB.png",
+      "sha256": "fd399415c3724663316a54054e413ee73cda6a62f246e745461a2cb71987ec35",
+      "sourceBone": [
+        [
+          29,
+          52
+        ],
+        [
+          29,
+          55.5
+        ]
+      ],
+      "targetBone": [
+        "kneeB",
+        "ankleB"
+      ],
+      "pivot": [
+        29,
+        52
+      ],
+      "garmentMask": "v81/outfits/cream-indigo/shinB-garment-mask.png",
+      "dyeMask": "v81/outfits/cream-indigo/shinB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-cream-indigo-shinA",
+      "part": "shinA",
+      "underlap": false,
+      "file": "v81/outfits/cream-indigo/shinA.png",
+      "sha256": "3cac4b911245a9ffaabc0d1052fec3844c4863dfc23c4b55c1d23294cd936d55",
+      "sourceBone": [
+        [
+          35.5,
+          52
+        ],
+        [
+          35.5,
+          55.5
+        ]
+      ],
+      "targetBone": [
+        "kneeA",
+        "ankleA"
+      ],
+      "pivot": [
+        35.5,
+        52
+      ],
+      "garmentMask": "v81/outfits/cream-indigo/shinA-garment-mask.png",
+      "dyeMask": "v81/outfits/cream-indigo/shinA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-moss-cardigan-torso",
+      "part": "torso",
+      "underlap": false,
+      "file": "v81/outfits/moss-cardigan/torso.png",
+      "sha256": "c659dfde74f2b53f9f143cb6073b5655c1dcbca29b5c8e471fad609f99447576",
+      "sourceBone": [
+        [
+          32,
+          36
+        ],
+        [
+          32,
+          48.5
+        ]
+      ],
+      "targetBone": [
+        "neck",
+        "pelvis"
+      ],
+      "pivot": [
+        32,
+        36
+      ],
+      "garmentMask": "v81/outfits/moss-cardigan/torso-garment-mask.png",
+      "dyeMask": "v81/outfits/moss-cardigan/torso-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.2
+      }
+    },
+    {
+      "id": "v81-moss-cardigan-upperArmB",
+      "part": "upperArmB",
+      "underlap": false,
+      "file": "v81/outfits/moss-cardigan/upperArmB.png",
+      "sha256": "ecf834d2a048cc0a0cbdd46bb868daa282aabd7973ffd5c8d19ac9b932e23b85",
+      "sourceBone": [
+        [
+          28,
+          38.5
+        ],
+        [
+          26.5,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderB",
+        "elbowB"
+      ],
+      "pivot": [
+        28,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/moss-cardigan/upperArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/moss-cardigan/upperArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-moss-cardigan-upperArmA",
+      "part": "upperArmA",
+      "underlap": false,
+      "file": "v81/outfits/moss-cardigan/upperArmA.png",
+      "sha256": "0fe723e8a87e1bab7a6be525b9175e83f08d498a66e7e1a8a3fe1df69cc40a4a",
+      "sourceBone": [
+        [
+          37.5,
+          38.5
+        ],
+        [
+          39,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderA",
+        "elbowA"
+      ],
+      "pivot": [
+        37.5,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/moss-cardigan/upperArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/moss-cardigan/upperArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-moss-cardigan-lowerArmB",
+      "part": "lowerArmB",
+      "underlap": false,
+      "file": "v81/outfits/moss-cardigan/lowerArmB.png",
+      "sha256": "3f5c98d9ffb9bd41ed5581ca089fd8ad4cb70e4109b249d7f1efd504f0e640e4",
+      "sourceBone": [
+        [
+          26.5,
+          41.5
+        ],
+        [
+          26,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowB",
+        "wristB"
+      ],
+      "pivot": [
+        26.5,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/moss-cardigan/lowerArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/moss-cardigan/lowerArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-moss-cardigan-lowerArmA",
+      "part": "lowerArmA",
+      "underlap": false,
+      "file": "v81/outfits/moss-cardigan/lowerArmA.png",
+      "sha256": "c3d4d561d9a5e48bb061dbdc8d9099bb83365fe9e6e98e718c444df82e441269",
+      "sourceBone": [
+        [
+          39,
+          41.5
+        ],
+        [
+          39,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowA",
+        "wristA"
+      ],
+      "pivot": [
+        39,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/moss-cardigan/lowerArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/moss-cardigan/lowerArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-moss-cardigan-underlap-upperArmB",
+      "part": "upperArmB",
+      "underlap": true,
+      "file": "v81/outfits/moss-cardigan/underlap-upperArmB.png",
+      "sha256": "c323a86f21154bba58b9218ed8fac451c6801599c120dcd9474029ee90570505",
+      "sourceBone": [
+        [
+          28,
+          38.5
+        ],
+        [
+          26.5,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderB",
+        "elbowB"
+      ],
+      "pivot": [
+        28,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/moss-cardigan/underlap-upperArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/moss-cardigan/underlap-upperArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-moss-cardigan-underlap-upperArmA",
+      "part": "upperArmA",
+      "underlap": true,
+      "file": "v81/outfits/moss-cardigan/underlap-upperArmA.png",
+      "sha256": "b11bee31c48f407af0c5843c81d2548991a6049b578254ce32eaac4dc9413425",
+      "sourceBone": [
+        [
+          37.5,
+          38.5
+        ],
+        [
+          39,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderA",
+        "elbowA"
+      ],
+      "pivot": [
+        37.5,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/moss-cardigan/underlap-upperArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/moss-cardigan/underlap-upperArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-moss-cardigan-body-lowerArmA",
+      "part": "lowerArmA",
+      "underlap": false,
+      "file": "v81/outfits/moss-cardigan/body-lowerArmA.png",
+      "sha256": "5cf04e368ed884693792b5089b5f61fc24b11d7203b54674a867735ca920e477",
+      "sourceBone": [
+        [
+          39,
+          41.5
+        ],
+        [
+          39,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowA",
+        "wristA"
+      ],
+      "pivot": [
+        39,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/moss-cardigan/body-lowerArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/moss-cardigan/body-lowerArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-moss-cardigan-body-lowerArmB",
+      "part": "lowerArmB",
+      "underlap": false,
+      "file": "v81/outfits/moss-cardigan/body-lowerArmB.png",
+      "sha256": "a7b13ed349a5a7e7cf0eef1fcae86e1c6931a92215895dcdc048a2f87e01c970",
+      "sourceBone": [
+        [
+          26.5,
+          41.5
+        ],
+        [
+          26,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowB",
+        "wristB"
+      ],
+      "pivot": [
+        26.5,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/moss-cardigan/body-lowerArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/moss-cardigan/body-lowerArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-moss-cardigan-body-underlap-lowerArmA",
+      "part": "lowerArmA",
+      "underlap": true,
+      "file": "v81/outfits/moss-cardigan/body-underlap-lowerArmA.png",
+      "sha256": "c7d47f720008aa791fb3b5925860cff48fc8975adbf8384e07fb9314f6ff0547",
+      "sourceBone": [
+        [
+          39,
+          41.5
+        ],
+        [
+          39,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowA",
+        "wristA"
+      ],
+      "pivot": [
+        39,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/moss-cardigan/body-underlap-lowerArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/moss-cardigan/body-underlap-lowerArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-moss-cardigan-body-underlap-lowerArmB",
+      "part": "lowerArmB",
+      "underlap": true,
+      "file": "v81/outfits/moss-cardigan/body-underlap-lowerArmB.png",
+      "sha256": "0bf8a3f9cf359822a67a0ff1777f29426e6861e56028fb609fc62415ec45dd85",
+      "sourceBone": [
+        [
+          26.5,
+          41.5
+        ],
+        [
+          26,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowB",
+        "wristB"
+      ],
+      "pivot": [
+        26.5,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/moss-cardigan/body-underlap-lowerArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/moss-cardigan/body-underlap-lowerArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-moss-cardigan-pelvis",
+      "part": "pelvis",
+      "underlap": false,
+      "file": "v81/outfits/moss-cardigan/pelvis.png",
+      "sha256": "484b3cf7d383b9d159d3e561e8ae70f95684b16d51426cccf0c5892396b71477",
+      "sourceBone": [
+        [
+          32,
+          36
+        ],
+        [
+          32,
+          48.5
+        ]
+      ],
+      "targetBone": [
+        "neck",
+        "pelvis"
+      ],
+      "pivot": [
+        32,
+        36
+      ],
+      "garmentMask": "v81/outfits/moss-cardigan/pelvis-garment-mask.png",
+      "dyeMask": "v81/outfits/moss-cardigan/pelvis-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.2
+      }
+    },
+    {
+      "id": "v81-moss-cardigan-thighB",
+      "part": "thighB",
+      "underlap": false,
+      "file": "v81/outfits/moss-cardigan/thighB.png",
+      "sha256": "91a2be5f3bee893e219a886710e7af6399a96751b908f500b371bc27ca5f43e1",
+      "sourceBone": [
+        [
+          29,
+          48.5
+        ],
+        [
+          29,
+          52
+        ]
+      ],
+      "targetBone": [
+        "hipB",
+        "kneeB"
+      ],
+      "pivot": [
+        29,
+        48.5
+      ],
+      "garmentMask": "v81/outfits/moss-cardigan/thighB-garment-mask.png",
+      "dyeMask": "v81/outfits/moss-cardigan/thighB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-moss-cardigan-thighA",
+      "part": "thighA",
+      "underlap": false,
+      "file": "v81/outfits/moss-cardigan/thighA.png",
+      "sha256": "9b600050d00a73a77421a87ca765e16c70c2af6f9bcafc2f2041e38c744d131a",
+      "sourceBone": [
+        [
+          35,
+          48.5
+        ],
+        [
+          35.5,
+          52
+        ]
+      ],
+      "targetBone": [
+        "hipA",
+        "kneeA"
+      ],
+      "pivot": [
+        35,
+        48.5
+      ],
+      "garmentMask": "v81/outfits/moss-cardigan/thighA-garment-mask.png",
+      "dyeMask": "v81/outfits/moss-cardigan/thighA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-moss-cardigan-shinB",
+      "part": "shinB",
+      "underlap": false,
+      "file": "v81/outfits/moss-cardigan/shinB.png",
+      "sha256": "9b1ce3c834aacc3ecc8f12bd722b67402ca3051764247ee433df67ad9b83d564",
+      "sourceBone": [
+        [
+          29,
+          52
+        ],
+        [
+          29,
+          55.5
+        ]
+      ],
+      "targetBone": [
+        "kneeB",
+        "ankleB"
+      ],
+      "pivot": [
+        29,
+        52
+      ],
+      "garmentMask": "v81/outfits/moss-cardigan/shinB-garment-mask.png",
+      "dyeMask": "v81/outfits/moss-cardigan/shinB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-moss-cardigan-shinA",
+      "part": "shinA",
+      "underlap": false,
+      "file": "v81/outfits/moss-cardigan/shinA.png",
+      "sha256": "69ea87385032f86f245b747f41b7e9be7d052b3cabef853e3ad2e40df87fa01a",
+      "sourceBone": [
+        [
+          35.5,
+          52
+        ],
+        [
+          35.5,
+          55.5
+        ]
+      ],
+      "targetBone": [
+        "kneeA",
+        "ankleA"
+      ],
+      "pivot": [
+        35.5,
+        52
+      ],
+      "garmentMask": "v81/outfits/moss-cardigan/shinA-garment-mask.png",
+      "dyeMask": "v81/outfits/moss-cardigan/shinA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-lotus-skirt-torso",
+      "part": "torso",
+      "underlap": false,
+      "file": "v81/outfits/lotus-skirt/torso.png",
+      "sha256": "a9244981a23407c5a11a6ceb58b4bab3dd1770b9e8d3e68a26e648f804a3725b",
+      "sourceBone": [
+        [
+          32,
+          36
+        ],
+        [
+          32,
+          48.5
+        ]
+      ],
+      "targetBone": [
+        "neck",
+        "pelvis"
+      ],
+      "pivot": [
+        32,
+        36
+      ],
+      "garmentMask": "v81/outfits/lotus-skirt/torso-garment-mask.png",
+      "dyeMask": "v81/outfits/lotus-skirt/torso-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.2
+      }
+    },
+    {
+      "id": "v81-lotus-skirt-upperArmB",
+      "part": "upperArmB",
+      "underlap": false,
+      "file": "v81/outfits/lotus-skirt/upperArmB.png",
+      "sha256": "4e65bebed9d46e46b584be5e58c04a3babcdb7e802a671f777626d02b917481c",
+      "sourceBone": [
+        [
+          28,
+          38.5
+        ],
+        [
+          26.5,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderB",
+        "elbowB"
+      ],
+      "pivot": [
+        28,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/lotus-skirt/upperArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/lotus-skirt/upperArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-lotus-skirt-upperArmA",
+      "part": "upperArmA",
+      "underlap": false,
+      "file": "v81/outfits/lotus-skirt/upperArmA.png",
+      "sha256": "bc1a9820c6bfdbdf7fcc646fe1a113d9b388bcae8ef32f92aedf03004a2acd0d",
+      "sourceBone": [
+        [
+          37.5,
+          38.5
+        ],
+        [
+          39,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderA",
+        "elbowA"
+      ],
+      "pivot": [
+        37.5,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/lotus-skirt/upperArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/lotus-skirt/upperArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-lotus-skirt-underlap-upperArmB",
+      "part": "upperArmB",
+      "underlap": true,
+      "file": "v81/outfits/lotus-skirt/underlap-upperArmB.png",
+      "sha256": "8e63d5040aebb99763bd4dd2ff12ccd947bf3a5b648acf9e77ca2fe3f312bdd4",
+      "sourceBone": [
+        [
+          28,
+          38.5
+        ],
+        [
+          26.5,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderB",
+        "elbowB"
+      ],
+      "pivot": [
+        28,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/lotus-skirt/underlap-upperArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/lotus-skirt/underlap-upperArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-lotus-skirt-underlap-upperArmA",
+      "part": "upperArmA",
+      "underlap": true,
+      "file": "v81/outfits/lotus-skirt/underlap-upperArmA.png",
+      "sha256": "05b4f4aa110a807c36029e091519559c753033a9c30af49eebd41afedc333577",
+      "sourceBone": [
+        [
+          37.5,
+          38.5
+        ],
+        [
+          39,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderA",
+        "elbowA"
+      ],
+      "pivot": [
+        37.5,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/lotus-skirt/underlap-upperArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/lotus-skirt/underlap-upperArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-lotus-skirt-body-lowerArmA",
+      "part": "lowerArmA",
+      "underlap": false,
+      "file": "v81/outfits/lotus-skirt/body-lowerArmA.png",
+      "sha256": "5cf04e368ed884693792b5089b5f61fc24b11d7203b54674a867735ca920e477",
+      "sourceBone": [
+        [
+          39,
+          41.5
+        ],
+        [
+          39,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowA",
+        "wristA"
+      ],
+      "pivot": [
+        39,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/lotus-skirt/body-lowerArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/lotus-skirt/body-lowerArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-lotus-skirt-body-lowerArmB",
+      "part": "lowerArmB",
+      "underlap": false,
+      "file": "v81/outfits/lotus-skirt/body-lowerArmB.png",
+      "sha256": "a7b13ed349a5a7e7cf0eef1fcae86e1c6931a92215895dcdc048a2f87e01c970",
+      "sourceBone": [
+        [
+          26.5,
+          41.5
+        ],
+        [
+          26,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowB",
+        "wristB"
+      ],
+      "pivot": [
+        26.5,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/lotus-skirt/body-lowerArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/lotus-skirt/body-lowerArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-lotus-skirt-body-underlap-lowerArmA",
+      "part": "lowerArmA",
+      "underlap": true,
+      "file": "v81/outfits/lotus-skirt/body-underlap-lowerArmA.png",
+      "sha256": "c7d47f720008aa791fb3b5925860cff48fc8975adbf8384e07fb9314f6ff0547",
+      "sourceBone": [
+        [
+          39,
+          41.5
+        ],
+        [
+          39,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowA",
+        "wristA"
+      ],
+      "pivot": [
+        39,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/lotus-skirt/body-underlap-lowerArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/lotus-skirt/body-underlap-lowerArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-lotus-skirt-body-underlap-lowerArmB",
+      "part": "lowerArmB",
+      "underlap": true,
+      "file": "v81/outfits/lotus-skirt/body-underlap-lowerArmB.png",
+      "sha256": "0bf8a3f9cf359822a67a0ff1777f29426e6861e56028fb609fc62415ec45dd85",
+      "sourceBone": [
+        [
+          26.5,
+          41.5
+        ],
+        [
+          26,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowB",
+        "wristB"
+      ],
+      "pivot": [
+        26.5,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/lotus-skirt/body-underlap-lowerArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/lotus-skirt/body-underlap-lowerArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-lotus-skirt-skirt",
+      "part": "skirt",
+      "underlap": false,
+      "file": "v81/outfits/lotus-skirt/skirt.png",
+      "sha256": "68aa23d2922ce14fb612eef289ae95b31db006fa009546a96819814377274beb",
+      "bindJoint": "pelvis",
+      "pivot": [
+        32,
+        48.5
+      ],
+      "garmentMask": "v81/outfits/lotus-skirt/skirt-garment-mask.png",
+      "dyeMask": "v81/outfits/lotus-skirt/skirt-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "rigidWidthFactor": 1.18
+      }
+    },
+    {
+      "id": "v81-lotus-skirt-body-calfB",
+      "part": "shinB",
+      "underlap": false,
+      "file": "v81/outfits/lotus-skirt/body-calfB.png",
+      "sha256": "e4b5dd5b6d9547c5fc8965b36bbe1c677c0f7197c5550da8016f601d5bbd84a4",
+      "sourceBone": [
+        [
+          29,
+          52
+        ],
+        [
+          29,
+          55.5
+        ]
+      ],
+      "targetBone": [
+        "kneeB",
+        "ankleB"
+      ],
+      "pivot": [
+        29,
+        52
+      ],
+      "garmentMask": "v81/outfits/lotus-skirt/body-calfB-garment-mask.png",
+      "dyeMask": "v81/outfits/lotus-skirt/body-calfB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-lotus-skirt-body-calfA",
+      "part": "shinA",
+      "underlap": false,
+      "file": "v81/outfits/lotus-skirt/body-calfA.png",
+      "sha256": "9cdd89619207c847d35c7355eee6177f6a862fa4fc490e0e748f6b3f52e7613f",
+      "sourceBone": [
+        [
+          35.5,
+          52
+        ],
+        [
+          35.5,
+          55.5
+        ]
+      ],
+      "targetBone": [
+        "kneeA",
+        "ankleA"
+      ],
+      "pivot": [
+        35.5,
+        52
+      ],
+      "garmentMask": "v81/outfits/lotus-skirt/body-calfA-garment-mask.png",
+      "dyeMask": "v81/outfits/lotus-skirt/body-calfA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-blue-apron-torso",
+      "part": "torso",
+      "underlap": false,
+      "file": "v81/outfits/blue-apron/torso.png",
+      "sha256": "580a9fdffa38c09186e7c49f86db6128620b61a618fa394bacf503e806dbac05",
+      "sourceBone": [
+        [
+          32,
+          36
+        ],
+        [
+          32,
+          48.5
+        ]
+      ],
+      "targetBone": [
+        "neck",
+        "pelvis"
+      ],
+      "pivot": [
+        32,
+        36
+      ],
+      "garmentMask": "v81/outfits/blue-apron/torso-garment-mask.png",
+      "dyeMask": "v81/outfits/blue-apron/torso-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.2
+      }
+    },
+    {
+      "id": "v81-blue-apron-upperArmB",
+      "part": "upperArmB",
+      "underlap": false,
+      "file": "v81/outfits/blue-apron/upperArmB.png",
+      "sha256": "9b8aa83a74d8c467d8eac8d298fb2d5645d5e443be1adddc3c65e46761dccdc5",
+      "sourceBone": [
+        [
+          28,
+          38.5
+        ],
+        [
+          26.5,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderB",
+        "elbowB"
+      ],
+      "pivot": [
+        28,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/blue-apron/upperArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/blue-apron/upperArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-blue-apron-upperArmA",
+      "part": "upperArmA",
+      "underlap": false,
+      "file": "v81/outfits/blue-apron/upperArmA.png",
+      "sha256": "1e35326644f8d4dedea0ed94091d9fd4ef308d7e0bb9dc43e8149f6455db733b",
+      "sourceBone": [
+        [
+          37.5,
+          38.5
+        ],
+        [
+          39,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderA",
+        "elbowA"
+      ],
+      "pivot": [
+        37.5,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/blue-apron/upperArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/blue-apron/upperArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-blue-apron-lowerArmB",
+      "part": "lowerArmB",
+      "underlap": false,
+      "file": "v81/outfits/blue-apron/lowerArmB.png",
+      "sha256": "c2ec0c7a2cdbd3fe69c9b85d2b22897d054c75478204b4a4bea4a50209269985",
+      "sourceBone": [
+        [
+          26.5,
+          41.5
+        ],
+        [
+          26,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowB",
+        "wristB"
+      ],
+      "pivot": [
+        26.5,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/blue-apron/lowerArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/blue-apron/lowerArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-blue-apron-lowerArmA",
+      "part": "lowerArmA",
+      "underlap": false,
+      "file": "v81/outfits/blue-apron/lowerArmA.png",
+      "sha256": "0484fa0caf3891a05fff18566745163977b9bc4258204051cf349fb70ba9b3cd",
+      "sourceBone": [
+        [
+          39,
+          41.5
+        ],
+        [
+          39,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowA",
+        "wristA"
+      ],
+      "pivot": [
+        39,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/blue-apron/lowerArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/blue-apron/lowerArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-blue-apron-underlap-upperArmB",
+      "part": "upperArmB",
+      "underlap": true,
+      "file": "v81/outfits/blue-apron/underlap-upperArmB.png",
+      "sha256": "def3c6a7b5657f12ebefb5089b05a98f7f7e74bdd608517113c5bd43acc545ee",
+      "sourceBone": [
+        [
+          28,
+          38.5
+        ],
+        [
+          26.5,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderB",
+        "elbowB"
+      ],
+      "pivot": [
+        28,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/blue-apron/underlap-upperArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/blue-apron/underlap-upperArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-blue-apron-underlap-upperArmA",
+      "part": "upperArmA",
+      "underlap": true,
+      "file": "v81/outfits/blue-apron/underlap-upperArmA.png",
+      "sha256": "e122857aa4dc6519aa53bc10bf42617ce0003c06a345f5ee7e63cef4a5fb3bf3",
+      "sourceBone": [
+        [
+          37.5,
+          38.5
+        ],
+        [
+          39,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderA",
+        "elbowA"
+      ],
+      "pivot": [
+        37.5,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/blue-apron/underlap-upperArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/blue-apron/underlap-upperArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-blue-apron-body-lowerArmA",
+      "part": "lowerArmA",
+      "underlap": false,
+      "file": "v81/outfits/blue-apron/body-lowerArmA.png",
+      "sha256": "5cf04e368ed884693792b5089b5f61fc24b11d7203b54674a867735ca920e477",
+      "sourceBone": [
+        [
+          39,
+          41.5
+        ],
+        [
+          39,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowA",
+        "wristA"
+      ],
+      "pivot": [
+        39,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/blue-apron/body-lowerArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/blue-apron/body-lowerArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-blue-apron-body-lowerArmB",
+      "part": "lowerArmB",
+      "underlap": false,
+      "file": "v81/outfits/blue-apron/body-lowerArmB.png",
+      "sha256": "a7b13ed349a5a7e7cf0eef1fcae86e1c6931a92215895dcdc048a2f87e01c970",
+      "sourceBone": [
+        [
+          26.5,
+          41.5
+        ],
+        [
+          26,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowB",
+        "wristB"
+      ],
+      "pivot": [
+        26.5,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/blue-apron/body-lowerArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/blue-apron/body-lowerArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-blue-apron-body-underlap-lowerArmA",
+      "part": "lowerArmA",
+      "underlap": true,
+      "file": "v81/outfits/blue-apron/body-underlap-lowerArmA.png",
+      "sha256": "c7d47f720008aa791fb3b5925860cff48fc8975adbf8384e07fb9314f6ff0547",
+      "sourceBone": [
+        [
+          39,
+          41.5
+        ],
+        [
+          39,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowA",
+        "wristA"
+      ],
+      "pivot": [
+        39,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/blue-apron/body-underlap-lowerArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/blue-apron/body-underlap-lowerArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-blue-apron-body-underlap-lowerArmB",
+      "part": "lowerArmB",
+      "underlap": true,
+      "file": "v81/outfits/blue-apron/body-underlap-lowerArmB.png",
+      "sha256": "0bf8a3f9cf359822a67a0ff1777f29426e6861e56028fb609fc62415ec45dd85",
+      "sourceBone": [
+        [
+          26.5,
+          41.5
+        ],
+        [
+          26,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowB",
+        "wristB"
+      ],
+      "pivot": [
+        26.5,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/blue-apron/body-underlap-lowerArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/blue-apron/body-underlap-lowerArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-blue-apron-thighB",
+      "part": "thighB",
+      "underlap": false,
+      "file": "v81/outfits/blue-apron/thighB.png",
+      "sha256": "444b5be60ed65561170177fbb028431b70fa3819ea28d43e78ec59e8f2060ee2",
+      "sourceBone": [
+        [
+          29,
+          48.5
+        ],
+        [
+          29,
+          52
+        ]
+      ],
+      "targetBone": [
+        "hipB",
+        "kneeB"
+      ],
+      "pivot": [
+        29,
+        48.5
+      ],
+      "garmentMask": "v81/outfits/blue-apron/thighB-garment-mask.png",
+      "dyeMask": "v81/outfits/blue-apron/thighB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-blue-apron-thighA",
+      "part": "thighA",
+      "underlap": false,
+      "file": "v81/outfits/blue-apron/thighA.png",
+      "sha256": "d33714a32e3bab204190619b5b3304bbdc19c21a67d1a49dc5e1cfcf2d2f6985",
+      "sourceBone": [
+        [
+          35,
+          48.5
+        ],
+        [
+          35.5,
+          52
+        ]
+      ],
+      "targetBone": [
+        "hipA",
+        "kneeA"
+      ],
+      "pivot": [
+        35,
+        48.5
+      ],
+      "garmentMask": "v81/outfits/blue-apron/thighA-garment-mask.png",
+      "dyeMask": "v81/outfits/blue-apron/thighA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-blue-apron-shinB",
+      "part": "shinB",
+      "underlap": false,
+      "file": "v81/outfits/blue-apron/shinB.png",
+      "sha256": "8c4c2bc074b3b97265fa0d74ba73772a2f0d6871bcd315acca6bd5aad37f1ac8",
+      "sourceBone": [
+        [
+          29,
+          52
+        ],
+        [
+          29,
+          55.5
+        ]
+      ],
+      "targetBone": [
+        "kneeB",
+        "ankleB"
+      ],
+      "pivot": [
+        29,
+        52
+      ],
+      "garmentMask": "v81/outfits/blue-apron/shinB-garment-mask.png",
+      "dyeMask": "v81/outfits/blue-apron/shinB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-blue-apron-shinA",
+      "part": "shinA",
+      "underlap": false,
+      "file": "v81/outfits/blue-apron/shinA.png",
+      "sha256": "2dcddb22302765effdeb94452c3325007d91e236af9f8462cd32889b74d0bd8c",
+      "sourceBone": [
+        [
+          35.5,
+          52
+        ],
+        [
+          35.5,
+          55.5
+        ]
+      ],
+      "targetBone": [
+        "kneeA",
+        "ankleA"
+      ],
+      "pivot": [
+        35.5,
+        52
+      ],
+      "garmentMask": "v81/outfits/blue-apron/shinA-garment-mask.png",
+      "dyeMask": "v81/outfits/blue-apron/shinA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-blue-apron-apron",
+      "part": "skirt",
+      "underlap": false,
+      "file": "v81/outfits/blue-apron/apron.png",
+      "sha256": "2bce98991943d2b1b808dce9760183d4dc3e64e5e3f8b5286a3023abb8616877",
+      "bindJoint": "pelvis",
+      "pivot": [
+        32,
+        48.5
+      ],
+      "garmentMask": "v81/outfits/blue-apron/apron-garment-mask.png",
+      "dyeMask": "v81/outfits/blue-apron/apron-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "rigidWidthFactor": 1.18
+      }
+    },
+    {
+      "id": "v81-smoke-jacket-torso",
+      "part": "torso",
+      "underlap": false,
+      "file": "v81/outfits/smoke-jacket/torso.png",
+      "sha256": "f20bb3cfac0d8c86fc6af1a0c45493f24f632b311528a9b0da08c577d38963ad",
+      "sourceBone": [
+        [
+          32,
+          36
+        ],
+        [
+          32,
+          48.5
+        ]
+      ],
+      "targetBone": [
+        "neck",
+        "pelvis"
+      ],
+      "pivot": [
+        32,
+        36
+      ],
+      "garmentMask": "v81/outfits/smoke-jacket/torso-garment-mask.png",
+      "dyeMask": "v81/outfits/smoke-jacket/torso-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.2
+      }
+    },
+    {
+      "id": "v81-smoke-jacket-upperArmB",
+      "part": "upperArmB",
+      "underlap": false,
+      "file": "v81/outfits/smoke-jacket/upperArmB.png",
+      "sha256": "5a55ae2e2a09f614dd4d8d451c92140f4eff4c97d3c2e79383494df1817886cb",
+      "sourceBone": [
+        [
+          28,
+          38.5
+        ],
+        [
+          26.5,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderB",
+        "elbowB"
+      ],
+      "pivot": [
+        28,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/smoke-jacket/upperArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/smoke-jacket/upperArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-smoke-jacket-upperArmA",
+      "part": "upperArmA",
+      "underlap": false,
+      "file": "v81/outfits/smoke-jacket/upperArmA.png",
+      "sha256": "43dc993bbfe4a89b747a3a5c0843c953b4374c50feebd4f6261203a578d5d424",
+      "sourceBone": [
+        [
+          37.5,
+          38.5
+        ],
+        [
+          39,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderA",
+        "elbowA"
+      ],
+      "pivot": [
+        37.5,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/smoke-jacket/upperArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/smoke-jacket/upperArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-smoke-jacket-lowerArmB",
+      "part": "lowerArmB",
+      "underlap": false,
+      "file": "v81/outfits/smoke-jacket/lowerArmB.png",
+      "sha256": "3c0ac1d7456d674963451447c055658020f2e2d9074c9beba4437fa67f7b4444",
+      "sourceBone": [
+        [
+          26.5,
+          41.5
+        ],
+        [
+          26,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowB",
+        "wristB"
+      ],
+      "pivot": [
+        26.5,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/smoke-jacket/lowerArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/smoke-jacket/lowerArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-smoke-jacket-lowerArmA",
+      "part": "lowerArmA",
+      "underlap": false,
+      "file": "v81/outfits/smoke-jacket/lowerArmA.png",
+      "sha256": "77ab21e23cba40d96bd83c93d2d42323dd1117c8d5754280afb977a5129892aa",
+      "sourceBone": [
+        [
+          39,
+          41.5
+        ],
+        [
+          39,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowA",
+        "wristA"
+      ],
+      "pivot": [
+        39,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/smoke-jacket/lowerArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/smoke-jacket/lowerArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-smoke-jacket-underlap-upperArmB",
+      "part": "upperArmB",
+      "underlap": true,
+      "file": "v81/outfits/smoke-jacket/underlap-upperArmB.png",
+      "sha256": "0267195c7347ce0590837997f1fb977f1fb3ec8cf06fce6bec42070772065674",
+      "sourceBone": [
+        [
+          28,
+          38.5
+        ],
+        [
+          26.5,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderB",
+        "elbowB"
+      ],
+      "pivot": [
+        28,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/smoke-jacket/underlap-upperArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/smoke-jacket/underlap-upperArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-smoke-jacket-underlap-upperArmA",
+      "part": "upperArmA",
+      "underlap": true,
+      "file": "v81/outfits/smoke-jacket/underlap-upperArmA.png",
+      "sha256": "5d3d7999f834e912462ba97e9f2b8492383833634e5658673c69033e97ccf5e0",
+      "sourceBone": [
+        [
+          37.5,
+          38.5
+        ],
+        [
+          39,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderA",
+        "elbowA"
+      ],
+      "pivot": [
+        37.5,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/smoke-jacket/underlap-upperArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/smoke-jacket/underlap-upperArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-smoke-jacket-body-lowerArmA",
+      "part": "lowerArmA",
+      "underlap": false,
+      "file": "v81/outfits/smoke-jacket/body-lowerArmA.png",
+      "sha256": "5cf04e368ed884693792b5089b5f61fc24b11d7203b54674a867735ca920e477",
+      "sourceBone": [
+        [
+          39,
+          41.5
+        ],
+        [
+          39,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowA",
+        "wristA"
+      ],
+      "pivot": [
+        39,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/smoke-jacket/body-lowerArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/smoke-jacket/body-lowerArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-smoke-jacket-body-lowerArmB",
+      "part": "lowerArmB",
+      "underlap": false,
+      "file": "v81/outfits/smoke-jacket/body-lowerArmB.png",
+      "sha256": "a7b13ed349a5a7e7cf0eef1fcae86e1c6931a92215895dcdc048a2f87e01c970",
+      "sourceBone": [
+        [
+          26.5,
+          41.5
+        ],
+        [
+          26,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowB",
+        "wristB"
+      ],
+      "pivot": [
+        26.5,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/smoke-jacket/body-lowerArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/smoke-jacket/body-lowerArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-smoke-jacket-body-underlap-lowerArmA",
+      "part": "lowerArmA",
+      "underlap": true,
+      "file": "v81/outfits/smoke-jacket/body-underlap-lowerArmA.png",
+      "sha256": "c7d47f720008aa791fb3b5925860cff48fc8975adbf8384e07fb9314f6ff0547",
+      "sourceBone": [
+        [
+          39,
+          41.5
+        ],
+        [
+          39,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowA",
+        "wristA"
+      ],
+      "pivot": [
+        39,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/smoke-jacket/body-underlap-lowerArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/smoke-jacket/body-underlap-lowerArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-smoke-jacket-body-underlap-lowerArmB",
+      "part": "lowerArmB",
+      "underlap": true,
+      "file": "v81/outfits/smoke-jacket/body-underlap-lowerArmB.png",
+      "sha256": "0bf8a3f9cf359822a67a0ff1777f29426e6861e56028fb609fc62415ec45dd85",
+      "sourceBone": [
+        [
+          26.5,
+          41.5
+        ],
+        [
+          26,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowB",
+        "wristB"
+      ],
+      "pivot": [
+        26.5,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/smoke-jacket/body-underlap-lowerArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/smoke-jacket/body-underlap-lowerArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-smoke-jacket-pelvis",
+      "part": "pelvis",
+      "underlap": false,
+      "file": "v81/outfits/smoke-jacket/pelvis.png",
+      "sha256": "d206bb7dfb8cb24e16de83aba16b313197866b5be563e909031164cc197fb6da",
+      "sourceBone": [
+        [
+          32,
+          36
+        ],
+        [
+          32,
+          48.5
+        ]
+      ],
+      "targetBone": [
+        "neck",
+        "pelvis"
+      ],
+      "pivot": [
+        32,
+        36
+      ],
+      "garmentMask": "v81/outfits/smoke-jacket/pelvis-garment-mask.png",
+      "dyeMask": "v81/outfits/smoke-jacket/pelvis-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.2
+      }
+    },
+    {
+      "id": "v81-smoke-jacket-thighB",
+      "part": "thighB",
+      "underlap": false,
+      "file": "v81/outfits/smoke-jacket/thighB.png",
+      "sha256": "6e1689b96673212148a958f8b77732bec7361316ebcee4cd448c4646018a01f1",
+      "sourceBone": [
+        [
+          29,
+          48.5
+        ],
+        [
+          29,
+          52
+        ]
+      ],
+      "targetBone": [
+        "hipB",
+        "kneeB"
+      ],
+      "pivot": [
+        29,
+        48.5
+      ],
+      "garmentMask": "v81/outfits/smoke-jacket/thighB-garment-mask.png",
+      "dyeMask": "v81/outfits/smoke-jacket/thighB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-smoke-jacket-thighA",
+      "part": "thighA",
+      "underlap": false,
+      "file": "v81/outfits/smoke-jacket/thighA.png",
+      "sha256": "e22fd50637d12eecceadd5a8f91dac554635b0b856820a6a16e35d698525c1b2",
+      "sourceBone": [
+        [
+          35,
+          48.5
+        ],
+        [
+          35.5,
+          52
+        ]
+      ],
+      "targetBone": [
+        "hipA",
+        "kneeA"
+      ],
+      "pivot": [
+        35,
+        48.5
+      ],
+      "garmentMask": "v81/outfits/smoke-jacket/thighA-garment-mask.png",
+      "dyeMask": "v81/outfits/smoke-jacket/thighA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-smoke-jacket-shinB",
+      "part": "shinB",
+      "underlap": false,
+      "file": "v81/outfits/smoke-jacket/shinB.png",
+      "sha256": "d0217086d1c051069a05cc7ca08c5f6846146cafab9c1247579b986061b8ee52",
+      "sourceBone": [
+        [
+          29,
+          52
+        ],
+        [
+          29,
+          55.5
+        ]
+      ],
+      "targetBone": [
+        "kneeB",
+        "ankleB"
+      ],
+      "pivot": [
+        29,
+        52
+      ],
+      "garmentMask": "v81/outfits/smoke-jacket/shinB-garment-mask.png",
+      "dyeMask": "v81/outfits/smoke-jacket/shinB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-smoke-jacket-shinA",
+      "part": "shinA",
+      "underlap": false,
+      "file": "v81/outfits/smoke-jacket/shinA.png",
+      "sha256": "92b04441fc97e3ed8181c3b3dd4c19be6626b83f4299b003baf4775327873630",
+      "sourceBone": [
+        [
+          35.5,
+          52
+        ],
+        [
+          35.5,
+          55.5
+        ]
+      ],
+      "targetBone": [
+        "kneeA",
+        "ankleA"
+      ],
+      "pivot": [
+        35.5,
+        52
+      ],
+      "garmentMask": "v81/outfits/smoke-jacket/shinA-garment-mask.png",
+      "dyeMask": "v81/outfits/smoke-jacket/shinA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-plain-crosscollar-torso",
+      "part": "torso",
+      "underlap": false,
+      "file": "v81/outfits/plain-crosscollar/torso.png",
+      "sha256": "bb7c4695b100b484acc4188f90069db4d4fc87acebfb5216d4480bbfee01271b",
+      "sourceBone": [
+        [
+          32,
+          36
+        ],
+        [
+          32,
+          48.5
+        ]
+      ],
+      "targetBone": [
+        "neck",
+        "pelvis"
+      ],
+      "pivot": [
+        32,
+        36
+      ],
+      "garmentMask": "v81/outfits/plain-crosscollar/torso-garment-mask.png",
+      "dyeMask": "v81/outfits/plain-crosscollar/torso-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.2
+      }
+    },
+    {
+      "id": "v81-plain-crosscollar-upperArmB",
+      "part": "upperArmB",
+      "underlap": false,
+      "file": "v81/outfits/plain-crosscollar/upperArmB.png",
+      "sha256": "e8fda0d3cce7923769ba71b19dbd726307cc5356bbb0dce829305efbbac57a1f",
+      "sourceBone": [
+        [
+          28,
+          38.5
+        ],
+        [
+          26.5,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderB",
+        "elbowB"
+      ],
+      "pivot": [
+        28,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/plain-crosscollar/upperArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/plain-crosscollar/upperArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-plain-crosscollar-upperArmA",
+      "part": "upperArmA",
+      "underlap": false,
+      "file": "v81/outfits/plain-crosscollar/upperArmA.png",
+      "sha256": "fa9be1396ca13f8920626b2acb5d8d0fca75194aa1b00ffd22ab779750c0f272",
+      "sourceBone": [
+        [
+          37.5,
+          38.5
+        ],
+        [
+          39,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderA",
+        "elbowA"
+      ],
+      "pivot": [
+        37.5,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/plain-crosscollar/upperArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/plain-crosscollar/upperArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-plain-crosscollar-lowerArmB",
+      "part": "lowerArmB",
+      "underlap": false,
+      "file": "v81/outfits/plain-crosscollar/lowerArmB.png",
+      "sha256": "3827bc54e6c5fca4656540954cdea4181b7d43adedc7f06e5ca31b8378b00662",
+      "sourceBone": [
+        [
+          26.5,
+          41.5
+        ],
+        [
+          26,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowB",
+        "wristB"
+      ],
+      "pivot": [
+        26.5,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/plain-crosscollar/lowerArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/plain-crosscollar/lowerArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-plain-crosscollar-lowerArmA",
+      "part": "lowerArmA",
+      "underlap": false,
+      "file": "v81/outfits/plain-crosscollar/lowerArmA.png",
+      "sha256": "a4e3f253fcf4e82d552576f062163c0c9ce2be7a48e68fa0f78e6b964117cca7",
+      "sourceBone": [
+        [
+          39,
+          41.5
+        ],
+        [
+          39,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowA",
+        "wristA"
+      ],
+      "pivot": [
+        39,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/plain-crosscollar/lowerArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/plain-crosscollar/lowerArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-plain-crosscollar-underlap-upperArmB",
+      "part": "upperArmB",
+      "underlap": true,
+      "file": "v81/outfits/plain-crosscollar/underlap-upperArmB.png",
+      "sha256": "ecfdc7d72b3f2e74dd839b586db5c63644d4757661696a4d736268f8d6be4153",
+      "sourceBone": [
+        [
+          28,
+          38.5
+        ],
+        [
+          26.5,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderB",
+        "elbowB"
+      ],
+      "pivot": [
+        28,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/plain-crosscollar/underlap-upperArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/plain-crosscollar/underlap-upperArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-plain-crosscollar-underlap-upperArmA",
+      "part": "upperArmA",
+      "underlap": true,
+      "file": "v81/outfits/plain-crosscollar/underlap-upperArmA.png",
+      "sha256": "38e6482a779a036c9bb8835e208eea6af61289a87eb73597af026150fbfffff1",
+      "sourceBone": [
+        [
+          37.5,
+          38.5
+        ],
+        [
+          39,
+          41.5
+        ]
+      ],
+      "targetBone": [
+        "shoulderA",
+        "elbowA"
+      ],
+      "pivot": [
+        37.5,
+        38.5
+      ],
+      "garmentMask": "v81/outfits/plain-crosscollar/underlap-upperArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/plain-crosscollar/underlap-upperArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-plain-crosscollar-body-lowerArmA",
+      "part": "lowerArmA",
+      "underlap": false,
+      "file": "v81/outfits/plain-crosscollar/body-lowerArmA.png",
+      "sha256": "5cf04e368ed884693792b5089b5f61fc24b11d7203b54674a867735ca920e477",
+      "sourceBone": [
+        [
+          39,
+          41.5
+        ],
+        [
+          39,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowA",
+        "wristA"
+      ],
+      "pivot": [
+        39,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/plain-crosscollar/body-lowerArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/plain-crosscollar/body-lowerArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-plain-crosscollar-body-lowerArmB",
+      "part": "lowerArmB",
+      "underlap": false,
+      "file": "v81/outfits/plain-crosscollar/body-lowerArmB.png",
+      "sha256": "a7b13ed349a5a7e7cf0eef1fcae86e1c6931a92215895dcdc048a2f87e01c970",
+      "sourceBone": [
+        [
+          26.5,
+          41.5
+        ],
+        [
+          26,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowB",
+        "wristB"
+      ],
+      "pivot": [
+        26.5,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/plain-crosscollar/body-lowerArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/plain-crosscollar/body-lowerArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-plain-crosscollar-body-underlap-lowerArmA",
+      "part": "lowerArmA",
+      "underlap": true,
+      "file": "v81/outfits/plain-crosscollar/body-underlap-lowerArmA.png",
+      "sha256": "c7d47f720008aa791fb3b5925860cff48fc8975adbf8384e07fb9314f6ff0547",
+      "sourceBone": [
+        [
+          39,
+          41.5
+        ],
+        [
+          39,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowA",
+        "wristA"
+      ],
+      "pivot": [
+        39,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/plain-crosscollar/body-underlap-lowerArmA-garment-mask.png",
+      "dyeMask": "v81/outfits/plain-crosscollar/body-underlap-lowerArmA-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-plain-crosscollar-body-underlap-lowerArmB",
+      "part": "lowerArmB",
+      "underlap": true,
+      "file": "v81/outfits/plain-crosscollar/body-underlap-lowerArmB.png",
+      "sha256": "0bf8a3f9cf359822a67a0ff1777f29426e6861e56028fb609fc62415ec45dd85",
+      "sourceBone": [
+        [
+          26.5,
+          41.5
+        ],
+        [
+          26,
+          45
+        ]
+      ],
+      "targetBone": [
+        "elbowB",
+        "wristB"
+      ],
+      "pivot": [
+        26.5,
+        41.5
+      ],
+      "garmentMask": "v81/outfits/plain-crosscollar/body-underlap-lowerArmB-garment-mask.png",
+      "dyeMask": "v81/outfits/plain-crosscollar/body-underlap-lowerArmB-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "widthFactor": 1.1
+      }
+    },
+    {
+      "id": "v81-plain-crosscollar-skirt",
+      "part": "skirt",
+      "underlap": false,
+      "file": "v81/outfits/plain-crosscollar/skirt.png",
+      "sha256": "77b0ecef4031b7c361153411371d462159be8c6e79f831b5e51346c49c403a01",
+      "bindJoint": "pelvis",
+      "pivot": [
+        32,
+        48.5
+      ],
+      "garmentMask": "v81/outfits/plain-crosscollar/skirt-garment-mask.png",
+      "dyeMask": "v81/outfits/plain-crosscollar/skirt-dye-mask.png",
+      "standardWidth": 1,
+      "solidOverride": {
+        "rigidWidthFactor": 1.18
+      }
+    }
+  ]
+}

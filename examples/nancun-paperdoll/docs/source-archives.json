@@ -1,0 +1,29 @@
+[
+  {
+    "sourceArchive": "南乡_头发眼型体型自由组合_v82.zip",
+    "sha256": "c3dcd0bee1ee59164e49482bbb6725ebe5548c72cad2076715058de5aa81fc41",
+    "destination": "experiments/modular-v82",
+    "files": 3888,
+    "stripFirstComponent": true
+  },
+  {
+    "sourceArchive": "南乡_禾青四向三衣与真实骨架_v70.zip",
+    "sha256": "87e9603989f8ac138c4699afd17adc6668c34ac3e765b50befbd6029d4d560e8",
+    "destination": "experiments/native-four-direction-v70",
+    "files": 1093,
+    "stripFirstComponent": true
+  },
+  {
+    "sourceArchive": "南乡_禾青真实骨架饰品与剑锄动作_v66.zip",
+    "sha256": "fda2aa1d1a425dc46a6786b36df8c5d9ff5c2d61b67e5d5dc03f20b054ae2f1e",
+    "destination": "experiments/native-equipment-v66",
+    "files": 495,
+    "stripFirstComponent": true
+  },
+  {
+    "sourceArchive": "nancun-v81-source-provenance.zip",
+    "sha256": "086c87a857edf89f58583f5a426188cd58a835b808d38a12e0fb25552bf6f0c3",
+    "destination": ".",
+    "stripFirstComponent": false
+  }
+]

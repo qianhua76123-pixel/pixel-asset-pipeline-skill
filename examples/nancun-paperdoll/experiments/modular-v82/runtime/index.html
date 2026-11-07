@@ -1,0 +1,14 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>南乡 · 自由组合</title><link rel="stylesheet" href="style.css"></head><body>
+<main id="world"><canvas id="scene" aria-label="村院中的真实像素角色"></canvas><p id="empty" role="status">正在载入村院……</p></main>
+<header><h1>南乡 <span>自由组合</span></h1><p>发型、眼型、体型分别选择</p><a href="stable-v81/index.html" target="_blank" rel="noopener">上一版三村民衣橱 ↗</a></header>
+<aside aria-label="发型、眼型、体型与衣装"><div class="panel-title">捏人与试穿</div>
+<label>发型<select id="hairstyle" disabled></select></label><label>眼型<select id="eyes" disabled></select></label><label>体型<select id="body" disabled></select></label><label>衣装<select id="outfit" disabled></select></label><div id="outfit-thumbs" class="thumbs"></div>
+<div class="colors"><label>衣色<select id="cloth-color" disabled><option value="original">原色</option><option value="indigo">靛蓝</option><option value="moss">苔绿</option></select></label><label>发色<select id="hair-color" disabled></select></label><label>肤色<select id="skin-color" disabled></select></label></div>
+<div class="controls"><label>动作<select id="action" disabled><option value="idle">站立</option><option value="walk">正面行走</option></select></label><button id="play" disabled>播放</button></div>
+<div class="keys" id="keys" aria-label="八个关键姿势"></div><input id="phase" type="range" min="0" max="7.99" step="0.01" value="0" disabled aria-label="动作相位"><p id="phase-label" class="small">姿势 1 / 8 · 暂停</p>
+<div class="controls"><label>观察<select id="view"><option value="scene">村院比例</option><option value="close">近看</option></select></label><label>倍率<select id="zoom"></select></label></div>
+<label class="check"><input type="checkbox" id="garment" disabled>只看衣装</label><label class="check"><input type="checkbox" id="bones" disabled>显示骨骼</label><button id="pieces" disabled>查看分层</button>
+<p id="ready-note" class="small"></p><p class="small">换发型、眼型、体型和衣服保留动作进度。</p></aside>
+<section id="parts-panel" hidden><div class="parts-heading"><h2>真实独立图层</h2><button id="close-parts">收起</button></div><p>脸底、成对眼睛、前后发与身体衣片分别显示；独立衣装模式只保留布料。</p><div id="parts-grid"></div></section>
+<footer id="status">本批正面组合预览；裙摆为刚性裁片。</footer>
+<script src="scene-data.js"></script><script src="bundle-data.js"></script><script src="walk-stance.js"></script><script src="rig-engine.js"></script><script src="render-core.js"></script><script src="app.js"></script></body></html>
