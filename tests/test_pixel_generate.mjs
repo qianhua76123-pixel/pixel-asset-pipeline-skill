@@ -6,7 +6,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import sharp from 'sharp';
-import { generateImage, resumeGeneration, generationStatus, generationDoctor, listProviders, cliMain } from '../skills/pixel-asset-pipeline/scripts/pixel_generate.mjs';
+import { generateImage, resumeGeneration, generationStatus, generationDoctor, listProviders, cliMain, generationStandardFor } from '../skills/pixel-asset-pipeline/scripts/pixel_generate.mjs';
 
 const SECRET = 'sk-unit-test-credential-never-log';
 process.env.PIXEL_GENERATE_TEST_KEY = SECRET;
@@ -253,4 +253,56 @@ test('2:1 custom API preset remains a true 2:1 size', async t => {
   const f = await fixture(t, (_req, res) => json(res, { data: [{ b64_json: png.toString('base64') }] }));
   await generateImage({ ...api(f), aspectRatio: '2:1' });
   assert.equal(f.requests[0].body.size, '1536x768');
+});
+
+const animationStandard = () => ({ version: 1, enabled: true, purpose: 'character', view: 'rpg-top-down', logicalWidth: 192, logicalHeight: 96, outline: 'material', background: 'neutral', animation: { action: 'walk', direction: 'down', frameCount: 8, columns: 4, rows: 2, frameWidth: 48, frameHeight: 48, anchor: { x: 24, y: 46 } } });
+
+test('Studio CLI submits a character animation standard file and resumes its snapshot after file changes', async t => {
+  let finished = false;
+  const standard = animationStandard();
+  const f = await fixture(t, (_req, res, info) => {
+    if (info.url === '/api/studio/settings') json(res, { providers: [{ id: 'saved', name: 'Saved', model: 'nano-banana-2', protocol: 'openai', enabled: true }] });
+    else if (info.url === '/api/studio/generate') {
+      assert.deepEqual(info.body.generationStandard, standard);
+      assert.deepEqual(info.body.references, ['mother']);
+      json(res, { jobId: 'animation-job' });
+    } else if (info.url === '/api/studio/jobs/animation-job') json(res, { id: 'animation-job', status: finished ? 'succeeded' : 'running', assets: [{ id: 'animation-output' }] });
+    else { res.writeHead(200, { 'Content-Type': 'image/png' }); res.end(png); }
+  });
+  const filename = path.join(f.root, 'walk-standard.json');
+  await fs.writeFile(filename, JSON.stringify(standard));
+  await assert.rejects(cliMain(['generate', '--base-url', f.baseUrl, '--prompt', 'Retain this mother body.', '--reference-asset-id', 'mother', '--generation-standard-file', filename, '--aspect-ratio', '2:1', '--output-dir', f.outputDir, '--timeout', '0.08', '--poll-interval-ms', '30']), /Polling timed out/);
+  await fs.writeFile(filename, '{ invalid changed file');
+  const before = f.requests.length;
+  finished = true;
+  await cliMain(['resume', '--output-dir', f.outputDir]);
+  assert.deepEqual(JSON.parse(await fs.readFile(path.join(f.outputDir, 'generation.json'), 'utf8')).generationStandard, standard);
+  assert.ok(f.requests.slice(before).every(r => r.method === 'GET'));
+  assert.equal(f.requests.filter(r => r.method === 'POST').length, 1);
+});
+
+test('Animation standard validates complete geometry, frame contract and independent JSON snapshot', () => {
+  const standard = animationStandard(), validated = generationStandardFor({ generationStandard: standard });
+  standard.animation.anchor.x = 0;
+  assert.equal(validated.animation.anchor.x, 24);
+  for (const update of [{ frameCount: 4 }, { columns: 8 }, { rows: 1 }, { frameWidth: 0 }, { direction: 'diagonal' }, { action: 'run' }, { anchor: { x: 48, y: 46 } }, { anchor: { x: 24, y: 46, unknown: 1 } }, { unknown: true }]) {
+    const bad = animationStandard(); Object.assign(bad.animation, update);
+    assert.throws(() => generationStandardFor({ generationStandard: bad }), /Animation/);
+  }
+  for (const update of [{ logicalWidth: 48 }, { purpose: 'world-prop' }, { view: 'side' }, { unrecognized: true }]) {
+    assert.throws(() => generationStandardFor({ generationStandard: { ...animationStandard(), ...update } }), /Animation|Invalid/);
+  }
+  assert.deepEqual(generationStandardFor({ generationStandard: { enabled: false } }), { enabled: false });
+});
+
+test('Standard file rejects direct API, malformed JSON and conflicting sources before network or run creation', async t => {
+  const f = await fixture(t, (_req, res) => json(res, {}));
+  const filename = path.join(f.root, 'standard.json'); await fs.writeFile(filename, '{oops');
+  await assert.rejects(generateImage({ ...api(f), generationStandardFile: filename }), /require --mode studio/);
+  const input = { mode: 'studio', baseUrl: f.baseUrl, prompt: 'A mother', outputDir: f.outputDir, generationStandardFile: filename };
+  await assert.rejects(generateImage(input), /valid JSON/);
+  await assert.rejects(generateImage({ ...input, logicalSize: '192x96' }), /not more than one/);
+  await assert.rejects(cliMain(['resume', '--output-dir', f.outputDir, '--generation-standard-file', filename]), /standard snapshot/);
+  assert.equal(f.requests.length, 0);
+  await assert.rejects(fs.stat(f.outputDir), { code: 'ENOENT' });
 });

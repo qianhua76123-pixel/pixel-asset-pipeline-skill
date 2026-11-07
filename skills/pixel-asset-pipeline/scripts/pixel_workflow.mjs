@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { spawn, execFile } from 'node:child_process';
 import { promisify } from 'node:util';
-import { generateImage, resumeGeneration, referenceAssetIdsFor } from './pixel_generate.mjs';
+import { generateImage, resumeGeneration, referenceAssetIdsFor, generationStandardFor, loadGenerationStandard } from './pixel_generate.mjs';
 import { runPipeline, inspectFile } from './pixel_local.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
@@ -28,6 +28,7 @@ export function workflowConfig(options = {}) {
   const mode = options.mode ?? 'studio', processor = options.processor ?? 'local';
   if (!['studio', 'api'].includes(mode)) throw Error('--mode must be studio or api.');
   const referenceAssetIds = referenceAssetIdsFor(options, mode);
+  const generationStandard = generationStandardFor({ ...options, mode });
   if (!['local', 'studio'].includes(processor)) throw Error('--processor must be local or studio.');
   const material = options.material ?? 'generic', background = options.background ?? 'auto';
   if (!materialNames.includes(material)) throw Error('Unknown material.');
@@ -71,13 +72,14 @@ export function workflowConfig(options = {}) {
     baseUrl: safeUrl(baseUrl, mode === 'studio', options.allowRemote),
     studioUrl: safeUrl(options.studioUrl ?? 'http://127.0.0.1:3410', true, options.allowRemote),
     providerId: options.providerId, protocol, model, apiKeyEnv, referenceAssetIds,
+    ...(generationStandard ? { generationStandard } : {}),
     aspectRatio, resolution, apiSize, timeout,
     allowRemote: options.allowRemote === true,
   };
 }
 
 export function spritePrompt(prompt, config) {
-  if (config.style === 'none') return prompt;
+  if (config.style === 'none' || config.generationStandard?.enabled) return prompt;
   const backing = config.processor === 'local' && config.background !== 'keep'
     ? `Use a perfectly uniform ${config.key ?? '#ff00ff'} chroma-key background, including all holes and open spaces. Do not use that background color on the object. No ground shadow, gradient, halo, text, border or painted checkerboard.`
     : 'Use a single plain background, no ground shadow, text, labels or painted checkerboard.';
@@ -147,8 +149,8 @@ async function advance(directory, state, options, dependencies, recovering) {
     if (!state.generation) {
       state.status = 'generating'; await saveState(directory, state);
       const logical = config.size.split('x').map(Number);
-      const generationStandard = config.mode === 'studio' && config.processor === 'studio' && config.style === 'sprite'
-        ? { version: 1, enabled: true, view: 'rpg-top-down', logicalWidth: logical[0], logicalHeight: logical[1] ?? logical[0], outline: 'material', background: 'neutral' } : undefined;
+      const generationStandard = config.generationStandard ?? (config.mode === 'studio' && config.processor === 'studio' && config.style === 'sprite'
+        ? { version: 1, enabled: true, view: 'rpg-top-down', logicalWidth: logical[0], logicalHeight: logical[1] ?? logical[0], outline: 'material', background: 'neutral' } : undefined);
       const generationOptions = { ...config, size: config.apiSize, outputDir: path.join(directory, 'generation'), prompt: state.effectivePrompt, ...(generationStandard ? { generationStandard } : {}) };
       state.generation = recovering ? await resume(generationOptions) : await generate(generationOptions);
       state.generation.outputPath = path.resolve(state.generation.outputPath);
@@ -199,7 +201,16 @@ async function advance(directory, state, options, dependencies, recovering) {
 }
 
 export async function runWorkflow(options, dependencies = {}) {
-  const config = workflowConfig(options);
+  const generationStandard = await loadGenerationStandard(options);
+  const config = workflowConfig({ ...options, ...(generationStandard ? { generationStandard } : {}), size: options.size ?? (generationStandard?.enabled ? `${generationStandard.logicalWidth}x${generationStandard.logicalHeight}` : undefined) });
+  if (generationStandard?.enabled) {
+    const [width, height = width] = config.size.split('x').map(Number);
+    if (width !== generationStandard.logicalWidth || height !== generationStandard.logicalHeight) throw Error('--size must match the generation standard whole-canvas dimensions.');
+    if (generationStandard.animation) {
+      const [ratioWidth, ratioHeight] = config.aspectRatio.split(':').map(Number);
+      if (width * ratioHeight !== height * ratioWidth) throw Error('--aspect-ratio must match the animation sheet dimensions (2:1 for 48px frames in 4 by 2).');
+    }
+  }
   if (!options.outputDir) throw Error('run requires --output-dir NEW_DIRECTORY.');
   if (Boolean(options.prompt) === Boolean(options.promptFile)) throw Error('Provide exactly one --prompt or --prompt-file.');
   const prompt = options.promptFile ? await fs.readFile(options.promptFile, 'utf8') : options.prompt;
@@ -225,7 +236,7 @@ export async function resumeWorkflow(options, dependencies = {}) {
   return advance(directory, state, options, dependencies, true);
 }
 
-const FLAGS = new Map(Object.entries({ 'output-dir': 'outputDir', 'prompt-file': 'promptFile', 'base-url': 'baseUrl', 'studio-url': 'studioUrl', 'provider-id': 'providerId', 'reference-asset-id': 'referenceAssetIds', 'api-key-env': 'apiKeyEnv', 'aspect-ratio': 'aspectRatio', 'api-size': 'apiSize', 'allow-remote': 'allowRemote' }));
+const FLAGS = new Map(Object.entries({ 'output-dir': 'outputDir', 'prompt-file': 'promptFile', 'base-url': 'baseUrl', 'studio-url': 'studioUrl', 'provider-id': 'providerId', 'reference-asset-id': 'referenceAssetIds', 'generation-standard-file': 'generationStandardFile', 'api-key-env': 'apiKeyEnv', 'aspect-ratio': 'aspectRatio', 'api-size': 'apiSize', 'allow-remote': 'allowRemote' }));
 function parse(argv) {
   const command = argv.shift() ?? 'help', options = {}, allowed = new Set(['mode', 'processor', 'model', 'protocol', 'prompt', 'size', 'material', 'palette', 'palette-file', 'background', 'key', 'resolution', 'timeout', 'style', 'sampler', 'keyer', 'grid', 'cleanup', 'padding', 'crop', ...FLAGS.keys()]);
   for (let i = 0; i < argv.length; i++) {
@@ -245,7 +256,7 @@ function parse(argv) {
 }
 export async function cliMain(argv) {
   const { command, options } = parse([...argv]);
-  if (['help', '--help', '-h'].includes(command)) return { ok: true, version: VERSION, commands: { run: '--mode studio --provider-id ID --prompt-file brief.txt --output-dir NEW_DIRECTORY [--model nano-banana-2] [--reference-asset-id ID (repeat up to 8)] [--processor local|studio] [--size 256] [--material bamboo]', customAPI: 'run --mode api --protocol openai|gemini --base-url URL --api-key-env PIXEL_IMAGE_API_KEY --prompt-file brief.txt --output-dir NEW_DIRECTORY', resume: '--output-dir EXISTING_DIRECTORY (poll/download/prepare only; never generates again)' }, note: 'Local sprite style requests a uniform chroma backing. Semantic cutout and reference image edits require an existing Studio service. Direct custom API mode is text-only. Inspect every final PNG.' };
+  if (['help', '--help', '-h'].includes(command)) return { ok: true, version: VERSION, commands: { run: '--mode studio --provider-id ID --prompt-file brief.txt --output-dir NEW_DIRECTORY [--model nano-banana-2] [--reference-asset-id ID (repeat up to 8)] [--generation-standard-file standard.json] [--processor local|studio] [--size 256] [--material bamboo]', customAPI: 'run --mode api --protocol openai|gemini --base-url URL --api-key-env PIXEL_IMAGE_API_KEY --prompt-file brief.txt --output-dir NEW_DIRECTORY', resume: '--output-dir EXISTING_DIRECTORY (poll/download/prepare only; never generates again)' }, note: 'Local sprite style requests a uniform chroma backing. Semantic cutout and reference image edits require an existing Studio service. Direct custom API mode is text-only. Inspect every final PNG.' };
   if (command === 'run') return runWorkflow(options);
   if (command === 'resume') { if (Object.keys(options).some(k => k !== 'outputDir')) throw Error('resume uses saved configuration; pass only --output-dir.'); return resumeWorkflow(options); }
   throw Error('Unknown command: ' + command);

@@ -43,7 +43,49 @@ The selected saved connection must serve the exact requested model; substitute i
 
 Before submitting, the CLI reads each saved reference PNG and records its asset ID, SHA-256, width and height in `generation.json.references`. No credentials or image data are placed in that lineage. Reference IDs are also retained in `workflow.json.config.referenceAssetIds`. Recovery uses the saved job/result and retains that lineage: it does not import images, reload references, change reference IDs, or submit another generation request. Use `resume --output-dir EXISTING_DIRECTORY` only.
 
-For a four-column, two-row sheet of 48×48 frames, `--size 192x96` describes the **entire sheet**, not one frame; `--aspect-ratio 2:1` requests its true ratio. Images API generic source presets are 1536×768 / 2048×1024 / 4096×2048 for 1K / 2K / 4K; Studio owns any model-specific mapping. `--style none` avoids the single-object boilerplate, so the supplied brief must state frame order, count, anchors, padding, background and palette explicitly. This workflow does not infer or repair frame boundaries, foot anchors or eight distinct poses. Preserve the whole source canvas and inspect every frame; do not crop individual frames or substitute 16:9 for 2:1. Reference conditioning alone does not establish a reusable rig.
+For a four-column, two-row sheet of 48×48 frames, `--size 192x96` describes the **entire sheet**, not one frame; `--aspect-ratio 2:1` requests its true ratio. Images API generic source presets are 1536×768 / 2048×1024 / 4096×2048 for 1K / 2K / 4K; Studio owns any model-specific mapping. Without a structured standard, `--style none` avoids the single-object boilerplate, so the supplied brief must state frame order, count, anchors, padding, background and palette explicitly. Prefer the explicit character animation standard below for this workflow. This workflow does not infer or repair frame boundaries, foot anchors or eight distinct poses. Preserve the whole source canvas and inspect every frame; do not crop individual frames or substitute 16:9 for 2:1. Reference conditioning alone does not establish a reusable rig.
+
+## Explicit character animation standards
+
+Pass `--generation-standard-file` to send a complete Studio v1 standard as JSON. For a 48px, four-column/two-row down-facing walk sheet, save:
+
+```json
+{
+  "version": 1, "enabled": true,
+  "purpose": "character", "view": "rpg-top-down",
+  "logicalWidth": 192, "logicalHeight": 96,
+  "outline": "material", "background": "neutral",
+  "animation": {
+    "action": "walk", "direction": "down", "frameCount": 8,
+    "columns": 4, "rows": 2, "frameWidth": 48, "frameHeight": 48,
+    "anchor": { "x": 24, "y": 46 }
+  }
+}
+```
+
+```sh
+# Generate and freeze the source; no local preparation is implied.
+node "<skill-dir>/scripts/pixel_generate.mjs" generate \
+  --mode studio --provider-id <saved-connection-id> --model nano-banana-2 \
+  --reference-asset-id <mother-template-id> \
+  --generation-standard-file character-walk-down.json \
+  --aspect-ratio 2:1 --resolution 1K --prompt-file walk-brief.txt \
+  --output-dir runs/new-character-source
+
+# Or prepare through a ready Studio semantic processor.
+node "<skill-dir>/scripts/pixel_workflow.mjs" run \
+  --mode studio --provider-id <saved-connection-id> --model nano-banana-2 \
+  --reference-asset-id <mother-template-id> \
+  --generation-standard-file character-walk-down.json \
+  --aspect-ratio 2:1 --resolution 1K --prompt-file walk-brief.txt \
+  --processor studio --output-dir runs/new-character-workflow
+```
+
+The workflow infers the whole logical size from the enabled standard unless `--size` is given; an explicit size must match. It retains the normal `sprite` style setting but does not append the old single-object boilerplate: Studio compiles the selected character/animation standard. No `--style none` workaround is needed. `neutral` background requires deliberate removal: the local automatic chroma processor cannot semantically remove gray; choose Studio, preserve it explicitly with local `--background keep`, or generate the source alone for review.
+
+Supported animation values match Studio: action `walk|idle`, direction `down|left|right|up`, exactly 8 frames in 4×2, integer frame dimensions 16–1024, an integer anchor inside one frame, and whole-canvas dimensions equal to frame dimensions times the grid. Animation requires `purpose: character` and `view: rpg-top-down`. The client also validates existing world, character and UI standards (`front`, `ui-icon`, `ui-panel`, `nine-slice`, `button-states`); Studio validates again. The JSON file must be at most 64 KiB. Unknown fields, incompatible ratio/size, malformed JSON and direct custom API standards are rejected before submission.
+
+The normalized standard object is frozen into `generation.json.generationStandard` and `workflow.json.config.generationStandard`. Resume uses these snapshots, even if the original JSON file changes or disappears; it neither reloads the file nor resubmits. Do not combine the file with `--logical-size` or an in-process `generationStandard` object. An explicit `{ "enabled": false }` stays off. A valid standard expresses constraints; it does not certify the generated sheet's pose count, anchors or interchangeable clothing.
 
 ## Use a custom API without Studio
 

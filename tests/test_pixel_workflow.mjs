@@ -122,3 +122,33 @@ test('workflow CLI accepts repeated references but refuses custom API edits and 
   await assert.rejects(cliMain(['resume', '--output-dir', '/unused', '--reference-asset-id', 'replacement']), /saved configuration/);
   await assert.rejects(cliMain(['run', '--reference-asset-id']), /Missing value/);
 });
+
+test('workflow freezes standard file, infers whole canvas size and does not append single-object sprite rules', async t => {
+  const f = await fixture(t), outputDir = path.join(f.root, 'animation'), filename = path.join(f.root, 'standard.json');
+  const standard = { version: 1, enabled: true, purpose: 'character', view: 'rpg-top-down', logicalWidth: 192, logicalHeight: 96, outline: 'material', background: 'neutral', animation: { action: 'idle', direction: 'up', frameCount: 8, columns: 4, rows: 2, frameWidth: 48, frameHeight: 48, anchor: { x: 24, y: 46 } } };
+  await fs.writeFile(filename, JSON.stringify(standard));
+  await assert.rejects(runWorkflow({ providerId: 'saved', prompt: 'Keep the mother template.', generationStandardFile: filename, aspectRatio: '2:1', background: 'keep', outputDir }, {
+    generateImage: async options => {
+      assert.deepEqual(options.generationStandard, standard);
+      assert.equal(options.prompt, 'Keep the mother template.');
+      assert.equal(options.generationStandardFile, undefined);
+      throw Error('pending known job');
+    },
+  }), /pending known job/);
+  const state = JSON.parse(await fs.readFile(path.join(outputDir, 'workflow.json'), 'utf8'));
+  assert.deepEqual(state.config.generationStandard, standard); assert.equal(state.config.size, '192x96');
+  assert.equal(state.config.style, 'sprite'); assert.equal(state.config.generationStandardFile, undefined);
+  await fs.rm(filename);
+  await resumeWorkflow({ outputDir }, { generateImage: () => { throw Error('must not generate'); }, resumeGeneration: async options => { assert.deepEqual(options.generationStandard, standard); return f.generateImage(options); } });
+  assert.equal(f.count(), 1);
+});
+
+test('workflow rejects animation canvas and aspect conflicts before creating a run', async t => {
+  const f = await fixture(t), outputDir = path.join(f.root, 'invalid-animation');
+  const generationStandard = { version: 1, enabled: true, purpose: 'character', view: 'rpg-top-down', logicalWidth: 192, logicalHeight: 96, outline: 'dark', background: 'transparent', animation: { action: 'walk', direction: 'left', frameCount: 8, columns: 4, rows: 2, frameWidth: 48, frameHeight: 48, anchor: { x: 24, y: 46 } } };
+  const input = { providerId: 'saved', prompt: 'Walk', generationStandard, outputDir };
+  await assert.rejects(runWorkflow({ ...input, size: '48x48', aspectRatio: '2:1' }, { generateImage: f.generateImage }), /whole-canvas/);
+  await assert.rejects(runWorkflow({ ...input, aspectRatio: '16:9' }, { generateImage: f.generateImage }), /aspect-ratio/);
+  await assert.rejects(cliMain(['run', '--mode', 'api', '--generation-standard-file', '/must-not-read.json']), /require --mode studio/);
+  assert.equal(f.count(), 0); await assert.rejects(fs.stat(outputDir), { code: 'ENOENT' });
+});

@@ -241,25 +241,62 @@ export async function generationDoctor(input = {}) {
   const options = optionsFor(input, false);
   return { ok: true, mode: options.mode, protocol: options.protocol, model: options.model, baseUrl: options.baseUrl, keyPresent: options.mode === 'api' ? Boolean(options.apiKey) : undefined, node: process.versions.node, ...(options.mode === 'studio' ? { providers: await listProviders(input) } : { connectivityChecked: false }) };
 }
-function generationStandard(input) {
+export function generationStandardFor(input = {}) {
   let standard = input.generationStandard;
+  if (input.mode === 'api' && (standard !== undefined || input.logicalSize || input.generationStandardFile)) throw new GenerationError('Pixel Studio generation standards require --mode studio; direct custom API mode does not support them');
   if (input.logicalSize) {
-    if (standard) throw new GenerationError('Choose generationStandard or logicalSize, not both');
+    if (standard !== undefined) throw new GenerationError('Choose generationStandard or logicalSize, not both');
     if (!/^\d+x\d+$/.test(input.logicalSize)) throw new GenerationError('Logical size must be WIDTHxHEIGHT');
     const [logicalWidth, logicalHeight] = input.logicalSize.split('x').map(Number);
     standard = { version: 1, enabled: true, logicalWidth, logicalHeight, view: input.view ?? 'rpg-top-down', outline: input.outline ?? 'material', background: input.background ?? 'neutral' };
   }
-  if (standard === undefined || standard?.enabled === false) return undefined;
-  if (!standard || typeof standard !== 'object' || Array.isArray(standard) || standard.version !== 1 || standard.enabled !== true || !['rpg-top-down', 'isometric', 'side'].includes(standard.view) || !['material', 'dark', 'none'].includes(standard.outline) || !['neutral', 'transparent'].includes(standard.background) || ['logicalWidth', 'logicalHeight'].some(k => !Number.isInteger(standard[k]) || standard[k] < 32 || standard[k] > 1024) || Object.keys(standard).some(k => !['version', 'enabled', 'logicalWidth', 'logicalHeight', 'view', 'outline', 'background'].includes(k))) throw new GenerationError('Invalid Pixel Studio generation standard');
-  if (input.mode === 'api') throw new GenerationError('Direct API mode takes a complete prompt; append pixel constraints to that prompt instead of using Studio generationStandard');
-  return { ...standard };
+  if (standard === undefined) return undefined;
+  const record = value => value && typeof value === 'object' && !Array.isArray(value);
+  const dimension = value => Number.isInteger(value) && value >= 16 && value <= 1024;
+  const keys = ['version', 'enabled', 'logicalWidth', 'logicalHeight', 'view', 'outline', 'background', 'purpose', 'layout', 'animation'];
+  if (!record(standard) || Object.keys(standard).some(k => !keys.includes(k))) throw new GenerationError('Invalid or unknown Pixel Studio generation standard fields');
+  if (standard.enabled === false) return { enabled: false };
+  if (standard.version !== 1 || standard.enabled !== true || !['rpg-top-down', 'isometric', 'side', 'front'].includes(standard.view) || !['material', 'dark', 'none'].includes(standard.outline) || !['neutral', 'transparent'].includes(standard.background) || !dimension(standard.logicalWidth) || !dimension(standard.logicalHeight)) throw new GenerationError('Invalid Pixel Studio generation standard');
+  if (standard.purpose !== undefined && !['world-prop', 'character', 'ui-icon', 'ui-panel'].includes(standard.purpose)) throw new GenerationError('Invalid generation purpose');
+  if (['ui-icon', 'ui-panel'].includes(standard.purpose) && standard.view !== 'front') throw new GenerationError('UI generation standards require front view');
+  if (standard.layout !== undefined && (standard.purpose !== 'ui-panel' || !['nine-slice', 'button-states'].includes(standard.layout))) throw new GenerationError('Invalid UI panel layout');
+  if (standard.layout === 'nine-slice' && (standard.logicalWidth <= 16 || standard.logicalHeight <= 16)) throw new GenerationError('Nine-slice dimensions must exceed 16 pixels');
+  if (standard.layout === 'button-states' && (standard.logicalHeight < 48 || standard.logicalHeight % 3)) throw new GenerationError('Button-state height must be at least 48 pixels and divisible by 3');
+  const animation = standard.animation;
+  if (animation !== undefined) {
+    const animationKeys = ['action', 'direction', 'frameCount', 'columns', 'rows', 'frameWidth', 'frameHeight', 'anchor'];
+    if (standard.purpose !== 'character' || standard.view !== 'rpg-top-down') throw new GenerationError('Animation standard requires purpose character and rpg-top-down view');
+    if (!record(animation) || Object.keys(animation).some(k => !animationKeys.includes(k)) || !['walk', 'idle'].includes(animation.action) || !['down', 'left', 'right', 'up'].includes(animation.direction) || animation.frameCount !== 8 || animation.columns !== 4 || animation.rows !== 2 || !dimension(animation.frameWidth) || !dimension(animation.frameHeight)) throw new GenerationError('Animation requires 8 frames in 4 columns and 2 rows, a valid action/direction and frame dimensions');
+    if (standard.logicalWidth !== animation.frameWidth * 4 || standard.logicalHeight !== animation.frameHeight * 2) throw new GenerationError('Animation logical dimensions must equal its whole 4 by 2 frame sheet');
+    const anchor = animation.anchor;
+    if (!record(anchor) || Object.keys(anchor).some(k => !['x', 'y'].includes(k)) || !Number.isInteger(anchor.x) || !Number.isInteger(anchor.y) || anchor.x < 0 || anchor.y < 0 || anchor.x >= animation.frameWidth || anchor.y >= animation.frameHeight) throw new GenerationError('Animation anchor must be an integer position inside one frame');
+  }
+  // JSON-safe independent snapshot; no dependency on the Studio application package.
+  return structuredClone(standard);
+}
+export async function loadGenerationStandard(input = {}) {
+  if (input.generationStandardFile === undefined) return generationStandardFor(input);
+  if (input.generationStandard !== undefined || input.logicalSize) throw new GenerationError('Choose generation-standard-file, generationStandard or logicalSize, not more than one');
+  generationStandardFor(input); // Reject unsupported direct API mode before reading a file.
+  const info = await fs.stat(input.generationStandardFile);
+  if (!info.isFile() || info.size > 65536) throw new GenerationError('Generation standard JSON must be a file no larger than 64 KiB');
+  const bytes = await fs.readFile(input.generationStandardFile);
+  if (bytes.length > 65536) throw new GenerationError('Generation standard JSON must not exceed 64 KiB');
+  let standard;
+  try { standard = JSON.parse(bytes.toString('utf8')); }
+  catch { throw new GenerationError('Generation standard file must contain valid JSON'); }
+  return generationStandardFor({ ...input, generationStandard: standard });
 }
 export async function generateImage(input = {}) {
   const options = optionsFor(input);
   if (input.prompt && input.promptFile) throw new GenerationError('Supply prompt or promptFile, not both');
   const prompt = text(input.promptFile ? await fs.readFile(input.promptFile, 'utf8') : input.prompt, 'prompt', 32000);
   if (options.apiKey && prompt.includes(options.apiKey)) throw new GenerationError('Prompt contains the configured API credential');
-  const standard = generationStandard(input);
+  const standard = await loadGenerationStandard(input);
+  if (standard?.animation) {
+    const [ratioWidth, ratioHeight] = options.aspectRatio.split(':').map(Number);
+    if (standard.logicalWidth * ratioHeight !== standard.logicalHeight * ratioWidth) throw new GenerationError('Requested aspect ratio must match the whole animation sheet dimensions');
+  }
   if (!input.outputDir) throw new GenerationError('outputDir is required');
   const directory = path.resolve(input.outputDir);
   // Refuse an existing run before any source lookup. Recovery never calls generateImage.
@@ -346,7 +383,7 @@ export async function resumeGeneration(input = {}) {
 
 function parseArgs(argv) {
   const command = argv.shift() ?? 'help'; const input = {};
-  const names = { mode: 'mode', 'base-url': 'baseUrl', 'provider-id': 'providerId', protocol: 'protocol', model: 'model', prompt: 'prompt', 'prompt-file': 'promptFile', 'output-dir': 'outputDir', size: 'size', 'aspect-ratio': 'aspectRatio', resolution: 'resolution', 'api-key-env': 'apiKeyEnv', timeout: 'timeout', 'poll-interval-ms': 'pollIntervalMs', 'logical-size': 'logicalSize', view: 'view', outline: 'outline', background: 'background' };
+  const names = { mode: 'mode', 'base-url': 'baseUrl', 'provider-id': 'providerId', protocol: 'protocol', model: 'model', prompt: 'prompt', 'prompt-file': 'promptFile', 'output-dir': 'outputDir', size: 'size', 'aspect-ratio': 'aspectRatio', resolution: 'resolution', 'api-key-env': 'apiKeyEnv', timeout: 'timeout', 'poll-interval-ms': 'pollIntervalMs', 'logical-size': 'logicalSize', 'generation-standard-file': 'generationStandardFile', view: 'view', outline: 'outline', background: 'background' };
   while (argv.length) {
     const arg = argv.shift();
     if (arg === '--allow-remote') { input.allowRemote = true; continue; }
@@ -364,8 +401,8 @@ function parseArgs(argv) {
 }
 export async function cliMain(argv = process.argv.slice(2)) {
   const { command, input } = parseArgs([...argv]);
-  if (['help', '--help', '-h'].includes(command)) return { commands: ['doctor', 'providers', 'generate', 'status', 'resume'], usage: 'pixel_generate.mjs generate --mode studio --provider-id ID --model nano-banana-2 [--reference-asset-id ID (repeat up to 8)] --prompt-file prompt.txt --output-dir runs/new/generation', api: 'generate --mode api --protocol openai|gemini --base-url URL --api-key-env PIXEL_IMAGE_API_KEY --model nano-banana-2 --prompt-file prompt.txt --output-dir NEW_DIR (text-only; reference image edits require Studio)' };
-  if (command !== 'generate' && input.referenceAssetIds) throw new GenerationError('Reference options belong to generate only; status/resume use the saved reference lineage');
+  if (['help', '--help', '-h'].includes(command)) return { commands: ['doctor', 'providers', 'generate', 'status', 'resume'], usage: 'pixel_generate.mjs generate --mode studio --provider-id ID --model nano-banana-2 [--reference-asset-id ID (repeat up to 8)] [--generation-standard-file standard.json] --prompt-file prompt.txt --output-dir runs/new/generation', api: 'generate --mode api --protocol openai|gemini --base-url URL --api-key-env PIXEL_IMAGE_API_KEY --model nano-banana-2 --prompt-file prompt.txt --output-dir NEW_DIR (text-only; reference image edits require Studio)' };
+  if (command !== 'generate' && (input.referenceAssetIds || input.generationStandardFile)) throw new GenerationError('Reference and standard options belong to generate only; status/resume use the saved reference lineage and standard snapshot');
   const operation = { doctor: generationDoctor, providers: listProviders, generate: generateImage, status: generationStatus, resume: resumeGeneration }[command];
   if (!operation) throw new GenerationError(`Unknown command: ${command}`);
   return operation(input);
