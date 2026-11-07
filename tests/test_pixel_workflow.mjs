@@ -89,7 +89,7 @@ test('all public Node entry points execute through a symlink directory with JSON
   const f = await fixture(t), alias = path.join(f.root, '技能 链接');
   const scripts = fileURLToPath(new URL('../skills/pixel-asset-pipeline/scripts/', import.meta.url));
   await fs.symlink(scripts, alias, 'dir');
-  for (const name of ['pixel_local.mjs', 'pixel_generate.mjs', 'pixel_workflow.mjs']) {
+  for (const name of ['pixel_local.mjs', 'pixel_generate.mjs', 'pixel_workflow.mjs', 'pixel_garment.mjs']) {
     const stdout = execFileSync(process.execPath, [path.join(alias, name), '--help'], { encoding: 'utf8' });
     assert.ok(JSON.parse(stdout).commands, name + ' must actually run, not exit silently');
   }

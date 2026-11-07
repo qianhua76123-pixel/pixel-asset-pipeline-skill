@@ -17,6 +17,10 @@ Choose `--processor local` for portable processing. Default sprite prompting req
 
 Use `resume --output-dir EXISTING_RUN` after a timeout. It collects the saved generation or processing job and never resubmits generation. An unknown submission outcome requires checking provider/server history. Do not rerun `run` merely to recover files.
 
+## Apply a protected garment region
+
+For an already native mother, garment proposal and edit mask, read [garment.md](references/garment.md). `pixel_garment.mjs apply` creates a separate garment layer and composite while preserving every RGBA byte outside the explicit mask. It rejects silhouette expansion, missing coverage, partial alpha, resizing and recursive use of its outputs as a mother. The mask grants edit permission only; it is not a body-visibility mask, dye mask or skeletal rig. This step never calls an image provider or modifies the mother source.
+
 ## Choose an execution mode
 
 | Mode | Use when | Requirements |
