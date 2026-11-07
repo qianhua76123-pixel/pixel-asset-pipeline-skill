@@ -7,7 +7,7 @@ import { createHash } from 'node:crypto';
 import sharp from 'sharp';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { runWorkflow, resumeWorkflow, workflowConfig } from '../skills/pixel-asset-pipeline/scripts/pixel_workflow.mjs';
+import { runWorkflow, resumeWorkflow, workflowConfig, cliMain } from '../skills/pixel-asset-pipeline/scripts/pixel_workflow.mjs';
 
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 async function fixture(t) {
@@ -93,4 +93,32 @@ test('all public Node entry points execute through a symlink directory with JSON
     const stdout = execFileSync(process.execPath, [path.join(alias, name), '--help'], { encoding: 'utf8' });
     assert.ok(JSON.parse(stdout).commands, name + ' must actually run, not exit silently');
   }
+});
+
+test('workflow saves ordered references and passes the frozen configuration to recovery', async t => {
+  const f = await fixture(t), outputDir = path.join(f.root, 'references');
+  const referenceAssetIds = ['mother', 'clothing'];
+  await assert.rejects(runWorkflow({ providerId: 'saved-id', prompt: 'A four by two walk sheet', outputDir, style: 'none', size: '192x96', aspectRatio: '2:1', referenceAssetIds }, {
+    generateImage: async options => {
+      assert.deepEqual(options.referenceAssetIds, referenceAssetIds);
+      assert.equal(options.aspectRatio, '2:1');
+      throw Error('known reference job is pending');
+    },
+  }), /known reference job/);
+  assert.deepEqual(JSON.parse(await fs.readFile(path.join(outputDir, 'workflow.json'), 'utf8')).config.referenceAssetIds, referenceAssetIds);
+  await resumeWorkflow({ outputDir }, {
+    generateImage: () => { throw Error('must not submit again'); },
+    resumeGeneration: async options => {
+      assert.deepEqual(options.referenceAssetIds, referenceAssetIds);
+      assert.equal(options.aspectRatio, '2:1');
+      return f.generateImage(options);
+    },
+  });
+  assert.equal(f.count(), 1);
+});
+
+test('workflow CLI accepts repeated references but refuses custom API edits and resume overrides', async () => {
+  await assert.rejects(cliMain(['run', '--mode', 'api', '--reference-asset-id', 'mother', '--reference-asset-id', 'clothing']), /text-only/);
+  await assert.rejects(cliMain(['resume', '--output-dir', '/unused', '--reference-asset-id', 'replacement']), /saved configuration/);
+  await assert.rejects(cliMain(['run', '--reference-asset-id']), /Missing value/);
 });

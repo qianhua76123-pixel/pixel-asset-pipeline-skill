@@ -11,12 +11,12 @@ const MAX_IMAGE = 64 * 1024 * 1024;
 const MAX_JSON = 96 * 1024 * 1024;
 const DEFAULT_STUDIO = 'http://127.0.0.1:3410';
 const ACTIVE = new Set(['queued', 'pending', 'running']);
-const RATIOS = ['1:1', '4:3', '3:4', '16:9', '9:16', '3:2', '2:3'];
+const RATIOS = ['1:1', '4:3', '3:4', '16:9', '9:16', '3:2', '2:3', '2:1'];
 // Pixel Studio's Images-compatible presets, not a universal provider promise.
 const SIZES = {
-  '1K': ['1024x1024', '1152x864', '864x1152', '1536x864', '864x1536', '1536x1024', '1024x1536'],
-  '2K': ['2048x2048', '2048x1536', '1536x2048', '2048x1152', '1152x2048', '2016x1344', '1344x2016'],
-  '4K': ['4096x4096', '4096x3072', '3072x4096', '3840x2160', '2160x3840', '4080x2720', '2720x4080'],
+  '1K': ['1024x1024', '1152x864', '864x1152', '1536x864', '864x1536', '1536x1024', '1024x1536', '1536x768'],
+  '2K': ['2048x2048', '2048x1536', '1536x2048', '2048x1152', '1152x2048', '2016x1344', '1344x2016', '2048x1024'],
+  '4K': ['4096x4096', '4096x3072', '3072x4096', '3840x2160', '2160x3840', '4080x2720', '2720x4080', '4096x2048'],
 };
 
 export class GenerationError extends Error {
@@ -27,6 +27,14 @@ const loopback = host => host === 'localhost' || host === '::1' || host === '[::
 function safeId(value) {
   if (typeof value !== 'string' || !/^[A-Za-z0-9_-]{1,180}$/.test(value)) throw new GenerationError('Invalid provider, job or asset identifier');
   return value;
+}
+export function referenceAssetIdsFor(input = {}, mode = input.mode ?? 'studio') {
+  const ids = input.referenceAssetIds ?? [];
+  if (!Array.isArray(ids) || ids.length > 8) throw new GenerationError('referenceAssetIds must be an array of at most 8 Studio asset IDs');
+  const validated = ids.map(safeId);
+  if (new Set(validated).size !== validated.length) throw new GenerationError('Reference asset IDs must be unique; keep their intended order');
+  if (mode !== 'studio' && validated.length) throw new GenerationError('Reference assets require --mode studio; direct custom API mode currently supports text-only generation, not image edits');
+  return validated;
 }
 function text(value, label, max = 200) {
   if (typeof value !== 'string' || !value.trim() || value.trim().length > max || /[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]/.test(value)) throw new GenerationError(`Invalid ${label}`);
@@ -49,6 +57,7 @@ function baseURL(value, mode, allowRemote = false) {
 function optionsFor(input = {}, requirePrompt = true) {
   const mode = input.mode ?? 'studio';
   if (!['studio', 'api'].includes(mode)) throw new GenerationError('Mode must be studio or api');
+  const referenceAssetIds = referenceAssetIdsFor(input, mode);
   const model = text(input.model ?? 'nano-banana-2', 'model');
   const protocol = input.protocol ?? 'openai';
   if (!['openai', 'gemini'].includes(protocol)) throw new GenerationError('API protocol must be openai or gemini');
@@ -69,7 +78,7 @@ function optionsFor(input = {}, requirePrompt = true) {
   const baseUrl = baseURL(input.baseUrl ?? (mode === 'studio' ? DEFAULT_STUDIO : ''), mode, input.allowRemote);
   if (apiKey && (baseUrl.includes(apiKey) || model.includes(apiKey))) throw new GenerationError('Configured API credential cannot appear in the base URL or model');
   if (requirePrompt && typeof input.prompt !== 'string' && !input.promptFile) throw new GenerationError('Supply prompt or promptFile');
-  return { ...input, mode, model, protocol, aspectRatio, resolution, size, timeout, pollIntervalMs, apiKeyEnv, apiKey, baseUrl };
+  return { ...input, mode, model, protocol, aspectRatio, resolution, size, timeout, pollIntervalMs, apiKeyEnv, apiKey, baseUrl, referenceAssetIds };
 }
 async function bounded(response, maximum) {
   if (Number(response.headers.get('content-length') ?? 0) > maximum) throw new GenerationError('Response exceeds the size limit');
@@ -253,7 +262,11 @@ export async function generateImage(input = {}) {
   const standard = generationStandard(input);
   if (!input.outputDir) throw new GenerationError('outputDir is required');
   const directory = path.resolve(input.outputDir);
+  // Refuse an existing run before any source lookup. Recovery never calls generateImage.
+  try { await fs.stat(directory); throw new GenerationError('Output directory already exists; use status/resume or choose a fresh directory'); }
+  catch (error) { if (error.code !== 'ENOENT') throw error; }
   let provider;
+  const references = [];
   if (options.mode === 'studio') {
     const providers = await listProviders(options);
     if (input.providerId) provider = providers.find(p => p.id === safeId(input.providerId));
@@ -263,15 +276,21 @@ export async function generateImage(input = {}) {
       else throw new GenerationError('Choose --provider-id from providers; there must be exactly one enabled match to select automatically');
     }
     if (!provider?.enabled || !['openai', 'gemini'].includes(provider.protocol)) throw new GenerationError('Choose an enabled OpenAI Images or Gemini Studio connection');
+    for (const assetId of options.referenceAssetIds) {
+      const bytes = await studioRequest(options, `/api/studio/assets/${encodeURIComponent(assetId)}/file`, undefined, true);
+      const metadata = await sharp(bytes, { limitInputPixels: 32_000_000, animated: false }).metadata();
+      if (metadata.format !== 'png' || (metadata.pages ?? 1) !== 1) throw new GenerationError('Studio reference assets must be static PNG images');
+      references.push({ assetId, sha256: sha(bytes), width: metadata.width, height: metadata.height });
+    }
   }
   await fs.mkdir(path.dirname(directory), { recursive: true });
   try { await fs.mkdir(directory); } catch (error) { if (error.code === 'EEXIST') throw new GenerationError('Output directory already exists; use status/resume or choose a fresh directory'); throw error; }
-  const manifest = { version: 1, status: 'prepared', mode: options.mode, protocol: provider?.protocol ?? options.protocol, model: options.model, baseUrl: options.baseUrl, ...(provider ? { providerId: provider.id } : { apiKeyEnv: options.apiKeyEnv }), prompt, size: options.size, aspectRatio: options.aspectRatio, resolution: options.resolution, ...(standard ? { generationStandard: standard } : {}), requestedAt: new Date().toISOString(), requestCount: 0 };
+  const manifest = { version: 1, status: 'prepared', mode: options.mode, protocol: provider?.protocol ?? options.protocol, model: options.model, baseUrl: options.baseUrl, ...(provider ? { providerId: provider.id } : { apiKeyEnv: options.apiKeyEnv }), prompt, size: options.size, aspectRatio: options.aspectRatio, resolution: options.resolution, references, ...(standard ? { generationStandard: standard } : {}), requestedAt: new Date().toISOString(), requestCount: 0 };
   await saveManifest(directory, manifest);
   try {
     manifest.status = 'submitting'; manifest.requestCount = 1; await saveManifest(directory, manifest);
     if (options.mode === 'studio') {
-      const result = await studioRequest(options, '/api/studio/generate', { providerId: provider.id, model: options.model, prompt, references: [], aspectRatio: options.aspectRatio, resolution: options.resolution, transparent: standard?.background === 'transparent', generationStandard: standard ?? { enabled: false } });
+      const result = await studioRequest(options, '/api/studio/generate', { providerId: provider.id, model: options.model, prompt, references: options.referenceAssetIds, aspectRatio: options.aspectRatio, resolution: options.resolution, transparent: standard?.background === 'transparent', generationStandard: standard ?? { enabled: false } });
       manifest.jobId = safeId(result.jobId); manifest.status = 'submitted'; await saveManifest(directory, manifest);
       return await pollStudio(options, directory, manifest);
     }
@@ -331,6 +350,11 @@ function parseArgs(argv) {
   while (argv.length) {
     const arg = argv.shift();
     if (arg === '--allow-remote') { input.allowRemote = true; continue; }
+    if (arg === '--reference-asset-id') {
+      const value = argv.shift();
+      if (!value || value.startsWith('--')) throw new GenerationError('Missing value for --reference-asset-id');
+      (input.referenceAssetIds ??= []).push(value); continue;
+    }
     if (!arg?.startsWith('--') || !names[arg.slice(2)] || !argv.length) throw new GenerationError(`Unknown or incomplete argument: ${arg}`);
     const value = argv.shift();
     if (value.startsWith('--')) throw new GenerationError(`Missing value for ${arg}`);
@@ -340,7 +364,8 @@ function parseArgs(argv) {
 }
 export async function cliMain(argv = process.argv.slice(2)) {
   const { command, input } = parseArgs([...argv]);
-  if (['help', '--help', '-h'].includes(command)) return { commands: ['doctor', 'providers', 'generate', 'status', 'resume'], usage: 'pixel_generate.mjs generate --mode studio --provider-id ID --model nano-banana-2 --prompt-file prompt.txt --output-dir runs/new/generation', api: 'generate --mode api --protocol openai|gemini --base-url URL --api-key-env PIXEL_IMAGE_API_KEY --model nano-banana-2 --prompt-file prompt.txt --output-dir NEW_DIR' };
+  if (['help', '--help', '-h'].includes(command)) return { commands: ['doctor', 'providers', 'generate', 'status', 'resume'], usage: 'pixel_generate.mjs generate --mode studio --provider-id ID --model nano-banana-2 [--reference-asset-id ID (repeat up to 8)] --prompt-file prompt.txt --output-dir runs/new/generation', api: 'generate --mode api --protocol openai|gemini --base-url URL --api-key-env PIXEL_IMAGE_API_KEY --model nano-banana-2 --prompt-file prompt.txt --output-dir NEW_DIR (text-only; reference image edits require Studio)' };
+  if (command !== 'generate' && input.referenceAssetIds) throw new GenerationError('Reference options belong to generate only; status/resume use the saved reference lineage');
   const operation = { doctor: generationDoctor, providers: listProviders, generate: generateImage, status: generationStatus, resume: resumeGeneration }[command];
   if (!operation) throw new GenerationError(`Unknown command: ${command}`);
   return operation(input);

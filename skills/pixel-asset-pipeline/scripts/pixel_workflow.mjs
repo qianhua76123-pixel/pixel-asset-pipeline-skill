@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { spawn, execFile } from 'node:child_process';
 import { promisify } from 'node:util';
-import { generateImage, resumeGeneration } from './pixel_generate.mjs';
+import { generateImage, resumeGeneration, referenceAssetIdsFor } from './pixel_generate.mjs';
 import { runPipeline, inspectFile } from './pixel_local.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
@@ -27,6 +27,7 @@ function safeUrl(value, studio, allowRemote) {
 export function workflowConfig(options = {}) {
   const mode = options.mode ?? 'studio', processor = options.processor ?? 'local';
   if (!['studio', 'api'].includes(mode)) throw Error('--mode must be studio or api.');
+  const referenceAssetIds = referenceAssetIdsFor(options, mode);
   if (!['local', 'studio'].includes(processor)) throw Error('--processor must be local or studio.');
   const material = options.material ?? 'generic', background = options.background ?? 'auto';
   if (!materialNames.includes(material)) throw Error('Unknown material.');
@@ -48,7 +49,7 @@ export function workflowConfig(options = {}) {
   const model = options.model ?? 'nano-banana-2';
   if (typeof model !== 'string' || !model.trim() || model.length > 200 || /[\x00-\x1f\x7f]/.test(model)) throw Error('Invalid model identifier.');
   const aspectRatio = options.aspectRatio ?? '1:1', resolution = options.resolution ?? '1K';
-  if (!['1:1', '4:3', '3:4', '16:9', '9:16', '3:2', '2:3'].includes(aspectRatio) || !['1K', '2K', '4K'].includes(resolution)) throw Error('Invalid aspect ratio or generation resolution.');
+  if (!['1:1', '4:3', '3:4', '16:9', '9:16', '3:2', '2:3', '2:1'].includes(aspectRatio) || !['1K', '2K', '4K'].includes(resolution)) throw Error('Invalid aspect ratio or generation resolution.');
   const apiSize = options.apiSize;
   if (apiSize !== undefined && (!/^\d{2,5}x\d{2,5}$/.test(apiSize) || apiSize.split('x').some(n => Number(n) < 32 || Number(n) > 8192))) throw Error('Invalid API image size.');
   if (processor === 'studio' && String(size).split('x').some(n => Number(n) < 32)) throw Error('Studio logical size must be at least 32 pixels per dimension.');
@@ -69,7 +70,7 @@ export function workflowConfig(options = {}) {
     style,
     baseUrl: safeUrl(baseUrl, mode === 'studio', options.allowRemote),
     studioUrl: safeUrl(options.studioUrl ?? 'http://127.0.0.1:3410', true, options.allowRemote),
-    providerId: options.providerId, protocol, model, apiKeyEnv,
+    providerId: options.providerId, protocol, model, apiKeyEnv, referenceAssetIds,
     aspectRatio, resolution, apiSize, timeout,
     allowRemote: options.allowRemote === true,
   };
@@ -224,13 +225,18 @@ export async function resumeWorkflow(options, dependencies = {}) {
   return advance(directory, state, options, dependencies, true);
 }
 
-const FLAGS = new Map(Object.entries({ 'output-dir': 'outputDir', 'prompt-file': 'promptFile', 'base-url': 'baseUrl', 'studio-url': 'studioUrl', 'provider-id': 'providerId', 'api-key-env': 'apiKeyEnv', 'aspect-ratio': 'aspectRatio', 'api-size': 'apiSize', 'allow-remote': 'allowRemote' }));
+const FLAGS = new Map(Object.entries({ 'output-dir': 'outputDir', 'prompt-file': 'promptFile', 'base-url': 'baseUrl', 'studio-url': 'studioUrl', 'provider-id': 'providerId', 'reference-asset-id': 'referenceAssetIds', 'api-key-env': 'apiKeyEnv', 'aspect-ratio': 'aspectRatio', 'api-size': 'apiSize', 'allow-remote': 'allowRemote' }));
 function parse(argv) {
   const command = argv.shift() ?? 'help', options = {}, allowed = new Set(['mode', 'processor', 'model', 'protocol', 'prompt', 'size', 'material', 'palette', 'palette-file', 'background', 'key', 'resolution', 'timeout', 'style', 'sampler', 'keyer', 'grid', 'cleanup', 'padding', 'crop', ...FLAGS.keys()]);
   for (let i = 0; i < argv.length; i++) {
     const name = argv[i].replace(/^--/, '');
     if (!argv[i].startsWith('--') || !allowed.has(name)) throw Error('Unknown option: ' + argv[i]);
     const key = FLAGS.get(name) ?? name;
+    if (name === 'reference-asset-id') {
+      const value = argv[++i];
+      if (!value || value.startsWith('--')) throw Error('Missing value for --reference-asset-id');
+      (options.referenceAssetIds ??= []).push(value); continue;
+    }
     if (Object.hasOwn(options, key)) throw Error('Duplicate option: ' + name);
     if (name === 'allow-remote' || name === 'crop') options[key] = true;
     else { const value = argv[++i]; if (!value || value.startsWith('--')) throw Error('Missing value for --' + name); options[key] = value; }
@@ -239,7 +245,7 @@ function parse(argv) {
 }
 export async function cliMain(argv) {
   const { command, options } = parse([...argv]);
-  if (['help', '--help', '-h'].includes(command)) return { ok: true, version: VERSION, commands: { run: '--mode studio --provider-id ID --prompt-file brief.txt --output-dir NEW_DIRECTORY [--model nano-banana-2] [--processor local|studio] [--size 256] [--material bamboo]', customAPI: 'run --mode api --protocol openai|gemini --base-url URL --api-key-env PIXEL_IMAGE_API_KEY --prompt-file brief.txt --output-dir NEW_DIRECTORY', resume: '--output-dir EXISTING_DIRECTORY (poll/download/prepare only; never generates again)' }, note: 'Local sprite style requests a uniform chroma backing. Semantic cutout requires an existing Studio service. Inspect every final PNG.' };
+  if (['help', '--help', '-h'].includes(command)) return { ok: true, version: VERSION, commands: { run: '--mode studio --provider-id ID --prompt-file brief.txt --output-dir NEW_DIRECTORY [--model nano-banana-2] [--reference-asset-id ID (repeat up to 8)] [--processor local|studio] [--size 256] [--material bamboo]', customAPI: 'run --mode api --protocol openai|gemini --base-url URL --api-key-env PIXEL_IMAGE_API_KEY --prompt-file brief.txt --output-dir NEW_DIRECTORY', resume: '--output-dir EXISTING_DIRECTORY (poll/download/prepare only; never generates again)' }, note: 'Local sprite style requests a uniform chroma backing. Semantic cutout and reference image edits require an existing Studio service. Direct custom API mode is text-only. Inspect every final PNG.' };
   if (command === 'run') return runWorkflow(options);
   if (command === 'resume') { if (Object.keys(options).some(k => k !== 'outputDir')) throw Error('resume uses saved configuration; pass only --output-dir.'); return resumeWorkflow(options); }
   throw Error('Unknown command: ' + command);

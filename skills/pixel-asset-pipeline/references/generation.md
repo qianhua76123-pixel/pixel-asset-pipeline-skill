@@ -18,6 +18,33 @@ node "<skill-dir>/scripts/pixel_workflow.mjs" run \
 
 This uses the saved connection's URL and key but overrides this request's model. It does not change the saved connection. The selected connection must actually serve that model. Default Studio URL is `http://127.0.0.1:3410`; use `--base-url` to select another origin. Non-loopback Studio access also requires `--allow-remote` and authorization to transmit the selected prompt/artwork there.
 
+## Ordered reference images through Studio
+
+Use an existing Studio asset ID for each image. Repeat `--reference-asset-id` in the intended order (up to 8 unique IDs); the first image can be the character mother template and subsequent images clothing or style references. This CLI does not import local image paths. Import them once through Studio, retain the returned IDs, then use those IDs here.
+
+```sh
+node "<skill-dir>/scripts/pixel_generate.mjs" generate \
+  --mode studio --provider-id <saved-connection-id> --model nano-banana-2 \
+  --reference-asset-id <mother-template-id> \
+  --reference-asset-id <clothing-reference-id> \
+  --aspect-ratio 2:1 --resolution 1K \
+  --prompt-file walk-brief.txt --output-dir runs/new-reference-source
+
+node "<skill-dir>/scripts/pixel_workflow.mjs" run \
+  --mode studio --provider-id <saved-connection-id> --model nano-banana-2 \
+  --reference-asset-id <mother-template-id> \
+  --reference-asset-id <clothing-reference-id> \
+  --aspect-ratio 2:1 --resolution 1K --style none \
+  --prompt-file walk-brief.txt --processor local --size 192x96 \
+  --output-dir runs/new-reference-walk
+```
+
+The selected saved connection must serve the exact requested model; substitute its actual model explicitly when appropriate. The default remains `nano-banana-2`; no saved connection or model is changed. Studio sends OpenAI-compatible references to `/images/edits` as ordered `image[]` parts, or Gemini references as ordered inline image parts. Provider support for that edit endpoint is still required. Direct `--mode api` currently supports **text-only generation** and rejects reference asset IDs before any request; it does not silently discard them or implement direct API image edits.
+
+Before submitting, the CLI reads each saved reference PNG and records its asset ID, SHA-256, width and height in `generation.json.references`. No credentials or image data are placed in that lineage. Reference IDs are also retained in `workflow.json.config.referenceAssetIds`. Recovery uses the saved job/result and retains that lineage: it does not import images, reload references, change reference IDs, or submit another generation request. Use `resume --output-dir EXISTING_DIRECTORY` only.
+
+For a four-column, two-row sheet of 48×48 frames, `--size 192x96` describes the **entire sheet**, not one frame; `--aspect-ratio 2:1` requests its true ratio. Images API generic source presets are 1536×768 / 2048×1024 / 4096×2048 for 1K / 2K / 4K; Studio owns any model-specific mapping. `--style none` avoids the single-object boilerplate, so the supplied brief must state frame order, count, anchors, padding, background and palette explicitly. This workflow does not infer or repair frame boundaries, foot anchors or eight distinct poses. Preserve the whole source canvas and inspect every frame; do not crop individual frames or substitute 16:9 for 2:1. Reference conditioning alone does not establish a reusable rig.
+
 ## Use a custom API without Studio
 
 Provide the credential in the process environment, using your host's secret mechanism. The default variable is `PIXEL_IMAGE_API_KEY`; `--api-key-env` selects another variable by **name**, never its value. Do not paste a real key into a command, prompt, config committed to Git, or a screenshot.

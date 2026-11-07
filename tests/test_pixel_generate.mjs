@@ -4,6 +4,7 @@ import http from 'node:http';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import sharp from 'sharp';
 import { generateImage, resumeGeneration, generationStatus, generationDoctor, listProviders, cliMain } from '../skills/pixel-asset-pipeline/scripts/pixel_generate.mjs';
 
@@ -194,4 +195,62 @@ test('Resume rejects modified encrypted media state or changed API key without t
   try { await assert.rejects(resumeGeneration({ outputDir: f.outputDir }), /same API key/); }
   finally { process.env.PIXEL_GENERATE_TEST_KEY = previous; }
   assert.equal(f.requests.length, count);
+});
+
+test('Studio CLI preserves ordered references and hashes; resume never reloads references or POSTs', async t => {
+  let finished = false;
+  const referencePng = await sharp(png).resize(48, 48).png().toBuffer();
+  const f = await fixture(t, (_req, res, info) => {
+    if (info.url === '/api/studio/settings') json(res, { providers: [{ id: 'conn-1', name: 'Saved', model: 'gpt-image-2', protocol: 'openai', enabled: true, hasKey: true }] });
+    else if (info.url === '/api/studio/generate') {
+      assert.deepEqual(info.body.references, ['mother', 'clothing']);
+      assert.equal(info.body.model, 'gpt-image-2');
+      assert.equal(info.body.aspectRatio, '2:1');
+      json(res, { jobId: 'job-refs' });
+    } else if (info.url === '/api/studio/jobs/job-refs') json(res, { id: 'job-refs', status: finished ? 'succeeded' : 'running', assets: [{ id: 'output' }] });
+    else {
+      assert.ok(['/api/studio/assets/mother/file', '/api/studio/assets/clothing/file', '/api/studio/assets/output/file'].includes(info.url));
+      res.writeHead(200, { 'Content-Type': 'image/png' }); res.end(info.url.includes('/output/') ? png : referencePng);
+    }
+  });
+  await assert.rejects(cliMain(['generate', '--mode', 'studio', '--base-url', f.baseUrl, '--provider-id', 'conn-1', '--model', 'gpt-image-2', '--reference-asset-id', 'mother', '--reference-asset-id', 'clothing', '--aspect-ratio', '2:1', '--prompt', 'Animate the first reference; retain its frame grid.', '--output-dir', f.outputDir, '--timeout', '0.08', '--poll-interval-ms', '30']), /Polling timed out/);
+  const recorded = JSON.parse(await fs.readFile(path.join(f.outputDir, 'generation.json'), 'utf8'));
+  const digest = createHash('sha256').update(referencePng).digest('hex');
+  assert.deepEqual(recorded.references, ['mother', 'clothing'].map(assetId => ({ assetId, sha256: digest, width: 48, height: 48 })));
+  assert.equal(recorded.requestCount, 1);
+  const before = f.requests.length;
+  finished = true;
+  await resumeGeneration({ outputDir: f.outputDir });
+  assert.deepEqual(f.requests.slice(before).map(r => [r.method, r.url]), [['GET', '/api/studio/jobs/job-refs'], ['GET', '/api/studio/assets/output/file']]);
+  assert.equal(f.requests.filter(r => r.method === 'POST').length, 1);
+  assert.deepEqual(JSON.parse(await fs.readFile(path.join(f.outputDir, 'generation.json'), 'utf8')).references, recorded.references);
+});
+
+test('References reject unsupported API mode, duplicates, malformed IDs and ninth reference before requests', async t => {
+  const f = await fixture(t, (_req, res) => json(res, {}));
+  for (const protocol of ['openai', 'gemini']) await assert.rejects(generateImage({ ...api(f), protocol, referenceAssetIds: ['mother'] }), /text-only/);
+  const input = { mode: 'studio', baseUrl: f.baseUrl, prompt: 'A sprite', outputDir: f.outputDir };
+  await assert.rejects(generateImage({ ...input, referenceAssetIds: ['mother', 'mother'] }), /unique/);
+  await assert.rejects(generateImage({ ...input, referenceAssetIds: ['../private'] }), /Invalid/);
+  await assert.rejects(generateImage({ ...input, referenceAssetIds: Array.from({ length: 9 }, (_, i) => 'asset-' + i) }), /at most 8/);
+  await assert.rejects(cliMain(['resume', '--output-dir', f.outputDir, '--reference-asset-id', 'replacement']), /saved reference lineage/);
+  await assert.rejects(cliMain(['generate', '--reference-asset-id']), /Missing value/);
+  assert.equal(f.requests.length, 0);
+  await assert.rejects(fs.stat(f.outputDir), { code: 'ENOENT' });
+});
+
+test('Missing reference fails before creating a run or submitting generation', async t => {
+  const f = await fixture(t, (_req, res, info) => {
+    if (info.url === '/api/studio/settings') json(res, { providers: [{ id: 'conn', name: 'Saved', model: 'nano-banana-2', protocol: 'openai', enabled: true }] });
+    else json(res, { error: 'asset missing' }, 404);
+  });
+  await assert.rejects(generateImage({ mode: 'studio', baseUrl: f.baseUrl, prompt: 'A sprite', referenceAssetIds: ['missing'], outputDir: f.outputDir }), /HTTP 404/);
+  assert.ok(f.requests.every(r => r.method === 'GET'));
+  await assert.rejects(fs.stat(f.outputDir), { code: 'ENOENT' });
+});
+
+test('2:1 custom API preset remains a true 2:1 size', async t => {
+  const f = await fixture(t, (_req, res) => json(res, { data: [{ b64_json: png.toString('base64') }] }));
+  await generateImage({ ...api(f), aspectRatio: '2:1' });
+  assert.equal(f.requests[0].body.size, '1536x768');
 });
