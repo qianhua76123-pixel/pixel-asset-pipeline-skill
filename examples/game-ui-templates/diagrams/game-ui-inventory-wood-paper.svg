@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 280" role="img" aria-labelledby="title" shape-rendering="crispEdges">
+<title id="title">背包 · 竹木纸面布局示意，非生成成品</title>
+<rect width="384" height="280" fill="#f4f4f5"/>
+<rect x="19" y="26" width="200" height="159" fill="#e1eaf6" stroke="#a1a1aa"/>
+<text x="119" y="105.5" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="8" fill="#3f3f46">物品格</text>
+<rect x="238" y="26" width="123" height="51" fill="#ffffff" stroke="#a1a1aa"/>
+<text x="299.5" y="51.5" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="8" fill="#3f3f46">物品预览</text>
+<rect x="238" y="90" width="123" height="95" fill="#ffffff" stroke="#a1a1aa"/>
+<text x="299.5" y="137.5" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="8" fill="#3f3f46">物品说明</text>
+<rect x="19" y="202" width="200" height="31" fill="#ffffff" stroke="#a1a1aa"/>
+<text x="119" y="217.5" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="8" fill="#3f3f46">常用工具</text>
+<rect x="238" y="202" width="123" height="31" fill="#ffffff" stroke="#a1a1aa"/>
+<text x="299.5" y="217.5" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="8" fill="#3f3f46">物品操作</text>
+<text x="8" y="272" font-family="sans-serif" font-size="9" fill="#52525b">布局示意 · 非生成成品 · 384×256</text>
+</svg>

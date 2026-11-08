@@ -1,0 +1,2 @@
+# Patch context uses a leading space on blank lines; preserve the source bytes.
+*.patch -whitespace

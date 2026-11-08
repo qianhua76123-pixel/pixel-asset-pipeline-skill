@@ -1,0 +1,2037 @@
+From a4bc94db0061f1121ae9acdfe8a58da0498be401 Mon Sep 17 00:00:00 2001
+From: qian <qian@qians-Mac-mini.local>
+Date: Sun, 8 Nov 2026 01:23:55 -0800
+Subject: [PATCH] Add researched game UI prompt templates and reference browser
+
+---
+ docs/game-ui-template-research-20261108.md    |  57 ++
+ docs/generation-prompt-templates.md           |   5 +
+ .../pixel-studio/GameUiLayoutDiagram.tsx      |  16 +
+ .../GameUiReferenceBrowser.module.css         |  58 ++
+ .../pixel-studio/GameUiReferenceBrowser.tsx   |  84 +++
+ .../GenerationPromptOptimizerDialog.tsx       |   2 +-
+ .../pixel-studio/PipelineInspector.tsx        |   6 +-
+ .../PixelGenerationStandardEditor.tsx         |  23 +-
+ .../pixel-studio/StudioTemplateGallery.tsx    |  30 +-
+ .../__tests__/GameUiReferenceBrowser.test.tsx | 157 +++++
+ .../PixelGenerationStandardEditor.test.tsx    |  19 +
+ .../__tests__/StudioTemplateGallery.test.tsx  |  43 +-
+ .../__tests__/game-ui-prompt-presets.test.ts  |  78 +++
+ .../game-ui-template-integration.test.ts      |  69 ++
+ .../generation-template-families.test.ts      |   8 +-
+ .../generation-template-previews.test.ts      |   7 +-
+ src/lib/pixel-studio/creative-workflows.ts    |   4 +-
+ .../pixel-studio/game-ui-prompt-presets.ts    | 275 ++++++++
+ .../game-ui-reference-catalog.json            | 595 ++++++++++++++++++
+ src/lib/pixel-studio/game-ui-references.ts    |  13 +
+ .../generation-prompt-templates.ts            |   6 +
+ .../pixel-studio/pixel-generation-standard.ts |  19 +-
+ src/lib/pixel-studio/providers.ts             |   6 +-
+ src/lib/pixel-studio/ui-icon-sheet-aspect.ts  |   2 +-
+ 24 files changed, 1540 insertions(+), 42 deletions(-)
+ create mode 100644 docs/game-ui-template-research-20261108.md
+ create mode 100644 src/components/pixel-studio/GameUiLayoutDiagram.tsx
+ create mode 100644 src/components/pixel-studio/GameUiReferenceBrowser.module.css
+ create mode 100644 src/components/pixel-studio/GameUiReferenceBrowser.tsx
+ create mode 100644 src/components/pixel-studio/__tests__/GameUiReferenceBrowser.test.tsx
+ create mode 100644 src/lib/pixel-studio/__tests__/game-ui-prompt-presets.test.ts
+ create mode 100644 src/lib/pixel-studio/__tests__/game-ui-template-integration.test.ts
+ create mode 100644 src/lib/pixel-studio/game-ui-prompt-presets.ts
+ create mode 100644 src/lib/pixel-studio/game-ui-reference-catalog.json
+ create mode 100644 src/lib/pixel-studio/game-ui-references.ts
+
+diff --git a/docs/game-ui-template-research-20261108.md b/docs/game-ui-template-research-20261108.md
+new file mode 100644
+index 0000000..6b1cea8
+--- /dev/null
++++ b/docs/game-ui-template-research-20261108.md
+@@ -0,0 +1,57 @@
++# 常用游戏UI研究与提示词模板
++
++本轮核对10款游戏、14张独立实际截图，按用途整理为15项界面参考；Moonlighter加工服务同时纳入商店与制作比较。画风、布局和交互依据分别记录；静图推演与官方文字支持分开，未声称已实机验证完整流程。
++
++## 背包
++
++| 游戏与图源 | 画风 | 信息布局 | 交互依据 |
++|---|---|---|---|
++| [Moonlighter](https://store.steampowered.com/app/606150/) · [原图](https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/606150/ss_c7c33eb041627f7a5fdbdefb0e41269178faf372.1920x1080.jpg?t=1793636738) | 精致像素 · 书页与青绿强调色 | 背包格＋人物装备＋属性 | 有文档或图中文字支持，完整流程未实测 |
++| [Backpack Hero](https://store.steampowered.com/app/1970580/) · [原图](https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1970580/ss_e39025fae7fd8cc1f0f9c15cc7c66748e92d4773.1920x1080.jpg?t=1771527569) | 高对比像素 · 大物品剪影 | 空间拼装袋＋邻近物品说明 | 有文档或图中文字支持，完整流程未实测 |
++| [STORY OF SEASONS: Grand Bazaar](https://www.storyofseasons.com/grandbazaar/manuals/xbox/01/) · [原图](https://www.storyofseasons.com/grandbazaar/manuals/xbox/img/ph/0109.png) | 3D游戏配2D菜单 · 简洁暖色 | 左物品格＋右详情＋二级动作 | 有文档或图中文字支持，完整流程未实测 |
++
++## 商店
++
++| 游戏与图源 | 画风 | 信息布局 | 交互依据 |
++|---|---|---|---|
++| [Stardew Valley](https://store.steampowered.com/app/413150/Stardew_Valley/?l=german) · [原图](https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/413150/ss_5e4780b155a2e56f32ebeca67e102fea6ddd9bf7.1920x1080.jpg) | 明亮像素 · 暖木与浅纸 | 商人身份＋货目列表＋背包 | 根据静图推演 |
++| [Moonlighter](https://store.steampowered.com/app/606150/Moonlighter/) · [原图](https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/606150/ss_99f46056bb1d647adf3ea8f044bf016a8a3da428.1920x1080.jpg) | 精致像素 · 绿布与纸页 | 商人＋商品格＋效果与条件 | 根据静图推演 |
++| [Potion Craft](https://store.steampowered.com/app/1210320/) · [原图](https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1210320/ss_8f4f9d55123855952e4c83710b6801f6ffab1965.1920x1080.jpg?t=1793194728) | 手绘插画 · 纸面与线描 | 双方货物＋议价＋交换物 | 有文档或图中文字支持，完整流程未实测 |
++
++## 对白
++
++| 游戏与图源 | 画风 | 信息布局 | 交互依据 |
++|---|---|---|---|
++| [Stardew Valley](https://store.steampowered.com/app/413150/) · [原图](https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/413150/ss_10628b4a811c0a925a1433d4323f78c7017dbbe4.1920x1080.jpg?t=1786554168) | 温暖像素 · 木纸头像框 | 底部固定框：文字＋右头像 | 根据静图推演 |
++| [Eastward](https://store.steampowered.com/app/977880/) · [原图](https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/977880/ss_ddd76431b1df70e234494c92370e2391680c98ef.1920x1080.jpg?t=1782290198) | 生活质感像素 · 轻边框 | 近说话者的气泡＋姓名层级 | 根据静图推演 |
++| [Sea of Stars](https://store.steampowered.com/app/1244090/) · [原图](https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1244090/ss_6c1428488a9c2aeecea2afe5f5e906be488b4dc0.1920x1080.jpg?t=1780931183) | 精致JRPG像素 · 深色浅字 | 左头像＋右正文＋姓名签 | 根据静图推演 |
++| [Pentiment](https://store.steampowered.com/app/1205520/) · [原图](https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1205520/ss_da0031df40364b45964a37c16813c81a95034ee2.1920x1080.jpg?t=1759874806) | 手绘印刷书页 · 纸卷气泡 | 双人对答＋姓名与气泡归属 | 根据静图推演 |
++| [Chained Echoes](https://store.steampowered.com/app/1229240/) · [原图](https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1229240/ss_b25ed2e671e7b616ec14e7ed3a2f483909e368c4.1920x1080.jpg?t=1788522273) | JRPG像素 · 深色浅底线 | 底部浅高对白条＋外接肖像 | 根据静图推演 |
++
++## 制作
++
++| 游戏与图源 | 画风 | 信息布局 | 交互依据 |
++|---|---|---|---|
++| [Travellers Rest](https://store.steampowered.com/app/1139980/) · [原图](https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1139980/ss_d2730da225b405884172a1539dc12a988a4d8ab7.1920x1080.jpg?t=1793007805) | 精致生活像素 · 米色与深棕 | 分类＋配方格＋材料摘要 | 根据静图推演 |
++| [STORY OF SEASONS: Grand Bazaar](https://www.storyofseasons.com/grandbazaar/manuals/xbox/01/) · [原图](https://www.storyofseasons.com/grandbazaar/manuals/xbox/img/ph/0149.png) | 3D游戏配2D菜单 · 色块状态 | 左配方格＋右成品与用料 | 有文档或图中文字支持，完整流程未实测 |
++| [Moonlighter](https://store.steampowered.com/app/606150/) · [原图](https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/606150/ss_99f46056bb1d647adf3ea8f044bf016a8a3da428.1920x1080.jpg?t=1793636738) | 精致像素 · 青绿布面与纸页 | NPC加工＋产品格＋用料费用 | 有文档或图中文字支持，完整流程未实测 |
++| [Potion Craft: Alchemist Simulator](https://store.steampowered.com/app/1210320/) · [原图](https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1210320/ss_a5197ad5bb35e9899c9e751820cdb9dbc0ceb308.1920x1080.jpg?t=1793194728) | 手绘炼金插画 · 纸本工具台 | 空间工作台＋地图＋材料栏 | 有文档或图中文字支持，完整流程未实测 |
++
++## 软件使用
++
++创作模板 → UI → 背包UI／商店UI／对白UI／制作UI。每类3款，共12套。新方案使用竹木纸本、布面分区或墨色账本，并分别保留自己的区域结构、静态选中标识和动态文本空间。
++
++图库显示明确标注的布局示意，可打开“游戏参考”浏览实际截图、同类对比、交互依据和迁移建议。商业参考图片不自动变成素材或生图输入；真正兼容的已保存结果存在时，可作为本项目的示例显示。
++
++主体描述可替换。独立的 generationStandard.uiPreset 保留布局和像素规则，并随请求快照与流程模板保存；运行时交互与状态检查清单只作后续实现建议，不注入生图命令。中文、价格和数量预留可变文本区，避免把乱码烘焙进图片。
++
++新方案为正面UI面板，宽度至少256px；对白至少96px高，其他界面至少192px高。默认320×240、384×256，或对白320×160／384×192，请求比例精确对应逻辑画布。保留原有64项模板内容和处理默认值，总计76项、28个图库家族。
++
++## 迁移边界
++
++- 背包：比较物品与详情、装备或工具的关系。空间拼装属于玩法机制，不因图片好看就加入普通背包。
++- 商店：货目、持有物和代价能同屏判断；材料加金币的加工服务与普通买卖分开。
++- 对白：姓名、肖像、气泡归属与长中文阅读面积；固定底框、近人气泡和双人对答分别研究。
++- 制作：配方、材料、数量、费用、产物互相对应；列表制作、NPC加工与空间工作台依据实际玩法选择。
++
++截图不证明原生像素尺寸、色数、中文排版或实际焦点操作。生成静态美术稿不等于做成可运行UI。详细逐图观察和局限保存在 src/lib/pixel-studio/game-ui-reference-catalog.json。
+diff --git a/docs/generation-prompt-templates.md b/docs/generation-prompt-templates.md
+index 1d55501..451b5b8 100644
+--- a/docs/generation-prompt-templates.md
++++ b/docs/generation-prompt-templates.md
+@@ -98,3 +98,8 @@
+ 本次16格中2格未动、13格只平移、1格浇水壶从28px宽缩到26px（比例26/28）。全部达到至少3px留白；没有半透明、隐藏透明RGB或留白步骤新增色值；16张拆图RGBA等于整板对应32×32区域，整板导出文件逐字节一致。浇水壶的连通分量和孔洞计数未变，但不能据此宣称所有细节完全保留。实际去背景节点使用已有透明通道，没有调用主体分割模型。完整留白前后可在同一精修节点中比较。
+ 
+ 视觉沿用暖竹木、米白、灰橄榄绿，金属和水域保留低饱和蓝灰。保留源图色阶而未强压24色，因此这次不是“共享有限色板”验收。32px下卷轴纹理、书页和壶身高光仍较柔，技术通过不等于已经完成手工像素艺术精修。前九项仅风格/功能相同，不是原九枚逐像素复用。
++
++
++## 常用游戏UI模板（2026-11-08）
++
++基于15张实际游戏界面新增背包、商店、对白、制作各3套，共12套可选方案，现有76项模板和28个图库家族。原有64项保留。uiPreset使布局与像素规则独立保存，自定义主体时仍编译生效；与九宫格、按钮三态和图标集互斥。布局示意与实际研究截图分别标注，参考图不自动作为生成输入。详见[研究与接入记录](game-ui-template-research-20261108.md)。
+diff --git a/src/components/pixel-studio/GameUiLayoutDiagram.tsx b/src/components/pixel-studio/GameUiLayoutDiagram.tsx
+new file mode 100644
+index 0000000..791b79b
+--- /dev/null
++++ b/src/components/pixel-studio/GameUiLayoutDiagram.tsx
+@@ -0,0 +1,16 @@
++"use client";
++import type { GameUiPromptPreset } from "@/lib/pixel-studio/game-ui-prompt-presets";
++/** Labeled specification diagram only. It is never exported as game artwork. */
++export function GameUiLayoutDiagram({ preset, thumbnail = false }: { preset: GameUiPromptPreset; thumbnail?: boolean }) {
++  const { width, height } = preset;
++  return <svg viewBox={`0 0 ${width} ${height}`} width="100%" height="100%" role={thumbnail ? undefined : "img"} aria-hidden={thumbnail || undefined} aria-label={thumbnail ? undefined : `${preset.label}布局示意，非生成成品`} shapeRendering="crispEdges">
++    <rect x={1} y={1} width={width - 2} height={height - 2} rx={2} fill="var(--background)" stroke="var(--separator)" strokeWidth={2} />
++    {preset.diagramRegions.map((region, index) => {
++      const x = Math.round(region.x * width), y = Math.round(region.y * height), w = Math.round(region.width * width), h = Math.round(region.height * height);
++      return <g key={region.label}>
++        <rect x={x} y={y} width={w} height={h} rx={1} fill={index === 0 ? "var(--selection)" : "var(--surface)"} stroke="var(--separator)" />
++        {!thumbnail && <text x={x + w / 2} y={y + h / 2} dominantBaseline="central" textAnchor="middle" fontSize={Math.min(10, Math.max(7, height / 22))} fill="var(--secondary)" style={{ fontFamily: "inherit" }}>{region.label}</text>}
++      </g>;
++    })}
++  </svg>;
++}
+diff --git a/src/components/pixel-studio/GameUiReferenceBrowser.module.css b/src/components/pixel-studio/GameUiReferenceBrowser.module.css
+new file mode 100644
+index 0000000..4bf48f9
+--- /dev/null
++++ b/src/components/pixel-studio/GameUiReferenceBrowser.module.css
+@@ -0,0 +1,58 @@
++.trigger { align-self:flex-start; }
++.dialog { width:min(1180px,calc(100vw - 48px)); height:min(850px,calc(100dvh - 48px)); max-height:calc(100dvh - 48px); margin:auto; padding:0; overflow:hidden; border:1px solid var(--separator); border-radius:16px; color:var(--text); background:var(--surface); box-shadow:0 20px 75px rgb(0 0 0 / 22%); }
++.dialog[open] { display:flex; flex-direction:column; }
++.dialog::backdrop { background:rgb(0 0 0 / 40%); }
++.header { flex:0 0 auto; display:flex; justify-content:space-between; align-items:center; gap:16px; padding:18px 22px; border-bottom:1px solid var(--separator); }
++.header h2 { margin:0; font-size:17px; font-weight:600; }
++.header p { margin:4px 0 0; color:var(--secondary); font-size:12px; }
++.body { display:grid; grid-template-columns:205px minmax(0,1fr); min-height:0; flex:1; }
++.referenceList { display:flex; flex-direction:column; gap:5px; min-width:0; overflow:auto; padding:13px 10px; border-right:1px solid var(--separator); background:var(--sidebar); }
++.referenceChoice { min-width:0; min-height:56px; padding:10px 11px; border:1px solid transparent; border-radius:8px; text-align:left; color:var(--text); background:transparent; }
++.referenceChoice:hover { background:var(--hover); }
++.referenceChoice[aria-checked=true] { border-color:var(--accent); background:var(--selection); }
++.referenceChoice strong { display:block; font-size:12px; font-weight:600; line-height:1.5; overflow-wrap:anywhere; }
++.referenceChoice span { display:block; margin-top:3px; color:var(--secondary); font-size:11px; line-height:1.5; overflow-wrap:anywhere; }
++.article { min-width:0; min-height:0; overflow:auto; overscroll-behavior:contain; padding:20px 24px 25px; }
++.referenceTitle { margin:0 0 14px; font-size:17px; font-weight:600; line-height:1.45; }
++.referenceTitle span { display:block; margin-top:3px; color:var(--secondary); font-size:12px; font-weight:400; }
++.figure { margin:0 0 19px; overflow:hidden; border:1px solid var(--separator); border-radius:9px; background:var(--background); }
++.imageStage { position:relative; display:flex; justify-content:center; align-items:center; height:clamp(220px,43dvh,425px); min-width:0; background:var(--background); }
++.imageStage > img { display:block; width:100%; height:100%; object-fit:contain; image-rendering:auto; }
++.imageStage > img[data-loaded=false] { opacity:0; }
++.imageMessage { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; margin:0; padding:22px; color:var(--secondary); text-align:center; font-size:12px; line-height:1.6; }
++.imageMessage p { margin:0; }
++.imageMessage a, .sourceLinks a { display:inline-flex; align-items:center; gap:5px; max-width:100%; color:var(--accent); text-decoration:underline; text-underline-offset:3px; overflow-wrap:anywhere; }
++.figure figcaption { display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px 15px; padding:8px 11px; color:var(--secondary); background:var(--surface); border-top:1px solid var(--separator); font-size:11px; line-height:1.5; }
++.notes { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:22px; }
++.noteSection { min-width:0; }
++.noteSection h3, .evidence h3 { margin:0 0 8px; color:var(--text); font-size:13px; line-height:1.5; font-weight:600; }
++.noteSection ul { margin:0; padding-left:18px; color:var(--secondary); font-size:12px; line-height:1.75; }
++.noteSection li + li { margin-top:6px; }
++.muted { color:var(--secondary); font-size:12px; }
++.evidence { margin-top:20px; padding-top:17px; border-top:1px solid var(--separator); }
++.evidence h3 { display:flex; align-items:center; flex-wrap:wrap; gap:7px 11px; }
++.evidence h3 > span { font-size:11px; font-weight:400; color:var(--secondary); }
++.evidence p { margin:0; color:var(--secondary); font-size:12px; line-height:1.75; overflow-wrap:anywhere; }
++.disclosure { margin-top:19px; padding-top:16px; border-top:1px solid var(--separator); }
++.disclosure summary { width:fit-content; max-width:100%; cursor:pointer; color:var(--secondary); font-size:12px; line-height:1.6; }
++.disclosure > .noteSection { margin-top:17px; }
++.sourceLinks { display:flex; flex-direction:column; align-items:flex-start; gap:9px; margin-top:14px; font-size:12px; line-height:1.6; }
++.empty { min-height:0; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:15px; padding:30px 24px; color:var(--secondary); text-align:center; }
++.empty h3 { margin:0; color:var(--text); font-size:17px; font-weight:500; }
++.empty p { margin:0; font-size:12px; line-height:1.6; }
++.compareDisclosure { margin:0 0 18px; padding-bottom:15px; border-bottom:1px solid var(--separator); }
++.compareDisclosure summary { width:fit-content; max-width:100%; cursor:pointer; color:var(--secondary); font-size:12px; line-height:1.6; }
++.compareScroll { margin-top:12px; max-width:100%; overflow-x:auto; }
++.compareScroll table { width:100%; min-width:540px; border-collapse:collapse; text-align:left; color:var(--secondary); font-size:11px; line-height:1.6; }
++.compareScroll th, .compareScroll td { padding:8px 9px; vertical-align:top; border-bottom:1px solid var(--separator); }
++.compareScroll th { color:var(--text); font-weight:500; }
++.compareScroll tbody tr[data-selected=true] { background:var(--selection); }
++.compareScroll button { padding:2px 0; border:0; border-radius:3px; color:var(--accent); background:transparent; text-align:left; font-size:inherit; }
++.compareScroll button[aria-pressed=true] { font-weight:600; }
++@media(max-width:760px) { .dialog{width:calc(100vw - 28px);height:calc(100dvh - 28px);max-height:calc(100dvh - 28px)}.header{padding:15px 17px}.body{display:flex;flex-direction:column}.referenceList{flex:0 0 auto;flex-direction:row;overflow-x:auto;overflow-y:hidden;border-right:0;border-bottom:1px solid var(--separator);padding:9px 12px}.referenceChoice{flex:0 0 185px;min-height:55px}.article{flex:1;padding:17px}.imageStage{height:clamp(180px,36dvh,340px)}.notes{grid-template-columns:minmax(0,1fr);gap:17px}.referenceTitle{font-size:16px} }
++@media(max-width:440px) { .dialog{width:calc(100vw - 18px);height:calc(100dvh - 18px);max-height:calc(100dvh - 18px);border-radius:12px}.header{padding:13px}.article{padding:14px 13px 20px}.referenceChoice{flex-basis:165px}.imageStage{height:220px}.figure figcaption{font-size:10px}.header h2{font-size:16px} }
++@media(max-height:580px) { .header{padding-top:11px;padding-bottom:11px}.imageStage{height:200px} }
++@media(prefers-reduced-motion:reduce) { .dialog *{scroll-behavior:auto!important;transition:none!important;animation:none!important} }
++@media(prefers-reduced-transparency:reduce) { .dialog::backdrop{background:rgb(0 0 0 / 55%)} }
++@media(prefers-contrast:more) { .referenceChoice[aria-checked=true]{border-width:2px}.figure{border-color:var(--secondary)} }
++@media(forced-colors:active) { .referenceChoice[aria-checked=true]{outline:2px solid Highlight;outline-offset:-2px}.figure{border-color:ButtonText} }
+diff --git a/src/components/pixel-studio/GameUiReferenceBrowser.tsx b/src/components/pixel-studio/GameUiReferenceBrowser.tsx
+new file mode 100644
+index 0000000..493aa35
+--- /dev/null
++++ b/src/components/pixel-studio/GameUiReferenceBrowser.tsx
+@@ -0,0 +1,84 @@
++"use client";
++/* eslint-disable @next/next/no-img-element -- Preserve the complete remote research screenshot without creating a local asset. */
++
++import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent, type RefObject } from "react";
++import { ExternalLink, Images, X } from "lucide-react";
++import { getGameUiReferences, type GameUiReference } from "@/lib/pixel-studio/game-ui-references";
++import type { GameUiPresetKind } from "@/lib/pixel-studio/game-ui-prompt-presets";
++import shared from "./studio.module.css";
++import styles from "./GameUiReferenceBrowser.module.css";
++
++export interface GameUiReferenceBrowserProps { kind: GameUiPresetKind }
++const KIND_LABELS: Record<GameUiPresetKind, string> = { inventory: "背包", shop: "商店", dialogue: "对白", crafting: "制作" };
++
++function ResearchImage({ reference }: { reference: GameUiReference }) {
++  const [state, setState] = useState<"loading" | "ready" | "failed">("loading");
++  return <figure className={styles.figure}>
++    <div className={styles.imageStage} aria-busy={state === "loading"}>
++      {state === "loading" && <p className={styles.imageMessage} role="status">正在载入研究截图…</p>}
++      {state === "failed" ? <div className={styles.imageMessage} role="status"><p>研究截图暂时无法载入</p><a href={reference.sourceUrl} target="_blank" rel="noopener noreferrer">打开参考来源<ExternalLink size={13} aria-hidden="true" /></a></div>
++        : <img src={reference.imageUrl} alt={`研究参考：${reference.game} · ${reference.title}`} draggable={false} onLoad={() => setState("ready")} onError={() => setState("failed")} data-loaded={state === "ready"} />}
++    </div>
++    <figcaption><span>研究参考</span><span>非本项目成品</span></figcaption>
++  </figure>;
++}
++
++function Notes({ title, items }: { title: string; items: readonly string[] }) {
++  return <section className={styles.noteSection}><h3>{title}</h3>{items.length ? <ul>{items.map((item, index) => <li key={`${index}:${item}`}>{item}</li>)}</ul> : <p className={styles.muted}>暂无记录</p>}</section>;
++}
++
++function ResearchDialog({ kind, references, opener, onClose }: { kind: GameUiPresetKind; references: readonly GameUiReference[]; opener: RefObject<HTMLButtonElement | null>; onClose: () => void }) {
++  const id = useId(), dialogRef = useRef<HTMLDialogElement>(null), closeRef = useRef<HTMLButtonElement>(null);
++  const choices = useRef(new Map<string, HTMLButtonElement>());
++  const [selectedId, setSelectedId] = useState(references[0]?.id ?? "");
++  const selectedIndex = Math.max(0, references.findIndex(item => item.id === selectedId)), selected = references[selectedIndex];
++  useEffect(() => {
++    const dialog = dialogRef.current, focusTarget = opener.current;
++    dialog?.showModal(); closeRef.current?.focus();
++    return () => {
++      if (dialog?.open) dialog.close();
++      if (focusTarget?.isConnected && !focusTarget.disabled) focusTarget.focus();
++    };
++  }, [opener]);
++
++  function moveSelection(event: KeyboardEvent<HTMLButtonElement>, index: number) {
++    let next: number;
++    if (event.key === "ArrowDown" || event.key === "ArrowRight") next = (index + 1) % references.length;
++    else if (event.key === "ArrowUp" || event.key === "ArrowLeft") next = (index - 1 + references.length) % references.length;
++    else if (event.key === "Home") next = 0;
++    else if (event.key === "End") next = references.length - 1;
++    else return;
++    event.preventDefault(); event.stopPropagation();
++    const target = references[next];
++    if (target) { setSelectedId(target.id); choices.current.get(target.id)?.focus(); }
++  }
++
++  return <dialog ref={dialogRef} className={styles.dialog} aria-labelledby={`${id}-heading`} aria-describedby={`${id}-purpose`}
++    onCancel={event => { event.preventDefault(); event.stopPropagation(); onClose(); }}
++    onClose={event => {
++      event.stopPropagation();
++      // Strict Mode reopens after effect cleanup; its queued close event is stale.
++      if (!event.currentTarget.open) onClose();
++    }}
++    onKeyDown={event => { if (event.key === "Escape") { event.preventDefault(); event.stopPropagation(); onClose(); } }}>
++    <header className={styles.header}><div><h2 id={`${id}-heading`}>游戏 UI 参考</h2><p id={`${id}-purpose`}>{KIND_LABELS[kind]} · 研究参考</p></div><button ref={closeRef} type="button" className={shared.iconButton} aria-label="关闭游戏参考" onClick={onClose}><X size={18} aria-hidden="true" /></button></header>
++    {selected ? <div className={styles.body}>
++      <div className={styles.referenceList} role="radiogroup" aria-label={`${KIND_LABELS[kind]}研究截图`}>{references.map((item, index) => <button key={item.id} ref={element => { if (element) choices.current.set(item.id, element); else choices.current.delete(item.id); }} type="button" role="radio" aria-label={`${item.game} · ${item.title}`} aria-checked={item.id === selected.id} tabIndex={item.id === selected.id ? 0 : -1} className={styles.referenceChoice} onClick={() => setSelectedId(item.id)} onKeyDown={event => moveSelection(event, index)}><strong>{item.game}</strong><span>{item.title}</span></button>)}</div>
++      <article className={styles.article} aria-label={`${selected.game}参考分析`}>
++        <details className={styles.compareDisclosure}><summary>同类对比</summary><div className={styles.compareScroll}><table aria-label={`${KIND_LABELS[kind]}游戏UI同类对比`}><thead><tr><th scope="col">游戏</th><th scope="col">画风</th><th scope="col">布局</th><th scope="col">交互依据</th></tr></thead><tbody>{references.map(item => <tr key={item.id} data-selected={item.id === selected.id}><th scope="row"><button type="button" aria-label={`查看${item.game}参考`} aria-pressed={item.id === selected.id} onClick={() => setSelectedId(item.id)}>{item.game}</button></th><td>{item.artStyle ?? "未单独归类"}</td><td>{item.layoutModel ?? "查看下方布局分析"}</td><td>{item.interactionEvidence.status === "documented" ? "文档/截图" : "推演"}</td></tr>)}</tbody></table></div></details>
++        <h3 className={styles.referenceTitle}>{selected.game}<span>{selected.title}</span></h3>
++        <ResearchImage key={`${selected.id}:${selected.imageUrl}`} reference={selected} />
++        <div className={styles.notes}><Notes title="画风与可见元素" items={selected.observed} /><Notes title="布局" items={selected.layout} /></div>
++        <section className={styles.evidence} aria-label="交互证据"><h3>交互依据<span data-evidence={selected.interactionEvidence.status}>{selected.interactionEvidence.status === "documented" ? "文档或截图明示" : "推断，未验证"}</span></h3><p>{selected.interactionEvidence.description}</p></section>
++        <details className={styles.disclosure}><summary>来源、迁移建议与局限</summary><div className={styles.sourceLinks}><a href={selected.sourceUrl} target="_blank" rel="noopener noreferrer">原始参考来源<ExternalLink size={13} aria-hidden="true" /></a>{selected.interactionEvidence.sources.map((source, index) => <a key={`${index}:${source.url}`} href={source.url} target="_blank" rel="noopener noreferrer">{source.title}<ExternalLink size={13} aria-hidden="true" /></a>)}</div><Notes title="可借鉴的部分" items={selected.transfer} /><Notes title="证据与使用边界" items={selected.limits} /></details>
++      </article>
++    </div> : <div className={styles.empty} role="status"><Images size={28} aria-hidden="true" /><h3>暂无这类游戏参考</h3><p>可以返回模板，继续查看其他类型。</p><button type="button" className={shared.secondaryButton} onClick={onClose}>返回模板</button></div>}
++  </dialog>;
++}
++
++/** Browsing research never imports an asset, changes a template or submits a generation. */
++export function GameUiReferenceBrowser({ kind }: GameUiReferenceBrowserProps) {
++  const references = useMemo(() => getGameUiReferences(kind), [kind]), opener = useRef<HTMLButtonElement>(null);
++  const [open, setOpen] = useState(false);
++  return <><button ref={opener} type="button" className={shared.secondaryButton + " " + styles.trigger} aria-haspopup="dialog" aria-expanded={open} onClick={() => setOpen(true)}><Images size={14} aria-hidden="true" />游戏参考 · {references.length}款</button>{open && <ResearchDialog key={kind} kind={kind} references={references} opener={opener} onClose={() => setOpen(false)} />}</>;
++}
+diff --git a/src/components/pixel-studio/GenerationPromptOptimizerDialog.tsx b/src/components/pixel-studio/GenerationPromptOptimizerDialog.tsx
+index 9da1477..b52cf2a 100644
+--- a/src/components/pixel-studio/GenerationPromptOptimizerDialog.tsx
++++ b/src/components/pixel-studio/GenerationPromptOptimizerDialog.tsx
+@@ -48,7 +48,7 @@ export function GenerationPromptOptimizerDialog({ prompt, standard: initial, ref
+   const [revision, setRevision] = useState(0), [previewRevision, setPreviewRevision] = useState(0);
+   const compose = (spec: PixelGenerationStandardOptions, art: PromptArtDirection, selectedUses: PromptReferenceUse[], instructions: string) => {
+     const result = optimizeGenerationPrompt(prompt, { direction: art, standard: spec, ...(referenceAsset ? { reference: { name: referenceAsset.name, uses: selectedUses, notes: instructions } } : {}) });
+-    if (result.standard.iconSheet && !uiIconSheetAspectRatio(result.standard)) throw new Error("图标集排列比例暂不支持，请调整列数或单格尺寸");
++    if ((result.standard.iconSheet || result.standard.uiPreset) && !uiIconSheetAspectRatio(result.standard)) throw new Error(result.standard.uiPreset ? "游戏界面比例暂不支持，请调整逻辑尺寸" : "图标集排列比例暂不支持，请调整列数或单格尺寸");
+     return result;
+   };
+   const [preview, setPreview] = useState(() => {
+diff --git a/src/components/pixel-studio/PipelineInspector.tsx b/src/components/pixel-studio/PipelineInspector.tsx
+index 1d4e7b9..e3dd44d 100644
+--- a/src/components/pixel-studio/PipelineInspector.tsx
++++ b/src/components/pixel-studio/PipelineInspector.tsx
+@@ -149,10 +149,10 @@ export function PipelineInspector({ node, assets, inputAssets, inputSources = []
+     try {
+       const compiled = compilePixelGenerationPrompt((data.prompt || "").trim(), data.generationStandard);
+       if (compiled.prompt.length > 32000) generationStandardError = "合并像素规范后的提示词超过32000字，请缩短创作描述";
+-      if (compiled.standardSnapshot?.options.iconSheet) {
++      if (compiled.standardSnapshot && (compiled.standardSnapshot.options.iconSheet || compiled.standardSnapshot.options.uiPreset)) {
+         const ratio = uiIconSheetAspectRatio(compiled.standardSnapshot.options);
+-        if (!ratio) throw new Error("图标集排列比例暂不支持，请调整列数或单格尺寸");
+-        if (data.aspectRatio !== undefined && data.aspectRatio !== ratio) throw new Error(`图标集需要${ratio}出图比例，请在画面与输出中选择相同比例`);
++        if (!ratio) throw new Error(compiled.standardSnapshot.options.uiPreset ? "游戏界面比例暂不支持，请调整逻辑尺寸" : "图标集排列比例暂不支持，请调整列数或单格尺寸");
++        if (data.aspectRatio !== undefined && data.aspectRatio !== ratio) throw new Error(`${compiled.standardSnapshot.options.uiPreset ? "游戏界面" : "图标集"}需要${ratio}出图比例，请在画面与输出中选择相同比例`);
+         generationOutputData = { ...data, aspectRatio: ratio };
+       }
+       if (compiled.standardSnapshot) generationOutputData = { ...generationOutputData, transparent: compiled.standardSnapshot.options.background === "transparent" };
+diff --git a/src/components/pixel-studio/PixelGenerationStandardEditor.tsx b/src/components/pixel-studio/PixelGenerationStandardEditor.tsx
+index ec433d6..69cf71f 100644
+--- a/src/components/pixel-studio/PixelGenerationStandardEditor.tsx
++++ b/src/components/pixel-studio/PixelGenerationStandardEditor.tsx
+@@ -2,6 +2,7 @@
+ 
+ import { useId } from "react";
+ import { compilePixelGenerationPrompt, DEFAULT_PIXEL_GENERATION_STANDARD, PIXEL_GENERATION_STANDARD_NOTICE, type PixelGenerationStandardInput, type PixelGenerationStandardOptions } from "@/lib/pixel-studio/pixel-generation-standard";
++import { GAME_UI_PROMPT_PRESETS, getGameUiPromptPreset } from "@/lib/pixel-studio/game-ui-prompt-presets";
+ import { CHARACTER_STYLES, type CharacterStyleId } from "@/lib/pixel-studio/character-styles";
+ import { RURAL_ADULT_48_SCALE, RURAL_ADULT_48_SCALE_ID } from "@/lib/pixel-studio/character-scale-standard";
+ import shared from "./studio.module.css";
+@@ -77,7 +78,7 @@ export function PixelGenerationStandardEditor({ value, onChange, userPrompt, dis
+   function changePurpose(purpose: NonNullable<PixelGenerationStandardOptions["purpose"]>) {
+     if (disabled || !source) return;
+     const next = { ...source, purpose };
+-    if (purpose !== "ui-panel") delete next.layout;
++    if (purpose !== "ui-panel") { delete next.layout; delete next.uiPreset; }
+     if (purpose !== "ui-icon") delete next.iconSheet;
+     if (purpose !== "character") { delete next.animation; delete next.characterStyle; delete next.framing; delete next.characterScale; }
+     if (purpose === "ui-icon" || purpose === "ui-panel") next.view = "front";
+@@ -88,7 +89,18 @@ export function PixelGenerationStandardEditor({ value, onChange, userPrompt, dis
+     if (disabled || !source) return;
+     const next = { ...source };
+     if (!layout) delete next.layout;
+-    else next.layout = layout as PixelGenerationStandardOptions["layout"];
++    else { next.layout = layout as PixelGenerationStandardOptions["layout"]; delete next.uiPreset; }
++    onChange(next);
++  }
++  function changeUiPreset(id: string) {
++    if (disabled || !source) return;
++    const next = { ...source };
++    if (!id) delete next.uiPreset;
++    else {
++      const preset = getGameUiPromptPreset(id); if (!preset) return;
++      Object.assign(next, { uiPreset: id, logicalWidth: preset.width, logicalHeight: preset.height, view: "front", purpose: "ui-panel" });
++      delete next.layout; delete next.iconSheet; delete next.animation;
++    }
+     onChange(next);
+   }
+   function changeFraming(framing: PixelGenerationStandardOptions["framing"]) {
+@@ -129,7 +141,12 @@ export function PixelGenerationStandardEditor({ value, onChange, userPrompt, dis
+               {availableFramings.map(item => <option key={item.value} value={item.value} disabled={item.value === "portrait" && (source.logicalWidth < 32 || source.logicalHeight < 32)}>{item.label}</option>)}
+             </select></label>
+           </>}
+-          {source.purpose === "ui-panel" && <label className={shared.field}>布局<select aria-label="像素规范UI布局" value={layoutValue} aria-invalid={!layouts.some(item => item.value === layoutValue) || undefined} onChange={event => changeLayout(event.target.value)}>
++          {source.purpose === "ui-panel" && <label className={shared.field}>界面方案<select aria-label="像素规范游戏界面方案" value={source.uiPreset ?? ""} onChange={event => changeUiPreset(event.target.value)}>
++            {source.uiPreset && !getGameUiPromptPreset(source.uiPreset) && <option value={source.uiPreset}>方案无效</option>}
++            <option value="">通用面板</option>
++            {([ ["inventory", "背包"], ["shop", "商店"], ["dialogue", "对白"], ["crafting", "制作"] ] as const).map(([kind, label]) => <optgroup key={kind} label={label}>{GAME_UI_PROMPT_PRESETS.filter(p => p.kind === kind).map(p => <option key={p.id} value={p.id}>{p.label}</option>)}</optgroup>)}
++          </select></label>}
++          {source.purpose === "ui-panel" && !source.uiPreset && <label className={shared.field}>布局<select aria-label="像素规范UI布局" value={layoutValue} aria-invalid={!layouts.some(item => item.value === layoutValue) || undefined} onChange={event => changeLayout(event.target.value)}>
+             {!layouts.some(item => item.value === layoutValue) && <option value={layoutValue}>无效布局（{invalidLabel(source.layout)}）</option>}
+             {layouts.map(item => <option key={item.value} value={item.value}>{item.label}</option>)}
+           </select></label>}
+diff --git a/src/components/pixel-studio/StudioTemplateGallery.tsx b/src/components/pixel-studio/StudioTemplateGallery.tsx
+index 72eac21..2cfd6df 100644
+--- a/src/components/pixel-studio/StudioTemplateGallery.tsx
++++ b/src/components/pixel-studio/StudioTemplateGallery.tsx
+@@ -3,6 +3,9 @@
+ 
+ import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
+ import { Check, Layers3, Search, X } from "lucide-react";
++import { getGameUiPromptPreset, type GameUiPromptPreset } from "@/lib/pixel-studio/game-ui-prompt-presets";
++import { GameUiLayoutDiagram } from "./GameUiLayoutDiagram";
++import { GameUiReferenceBrowser } from "./GameUiReferenceBrowser";
+ import { GENERATION_PROMPT_TEMPLATES, type GenerationPromptTemplate } from "@/lib/pixel-studio/generation-prompt-templates";
+ import { getGenerationTemplatePreview, isRejectedTemplatePreviewAsset, type GenerationTemplatePreview, type TemplatePreviewCrop } from "@/lib/pixel-studio/generation-template-previews";
+ import { getGenerationTemplateFamilies } from "@/lib/pixel-studio/generation-template-families";
+@@ -49,7 +52,8 @@ function compatible(example: PixelGenerationStandardOptions, template: Generatio
+   const expected = template.standard;
+   // Equal ruler/style settings cannot prove a named character's identity, or
+   // that a generated1024 source is its audited native64 result.
+-  if (template.galleryFamily) return false;
++  if (template.galleryFamily && !expected.uiPreset) return false;
++  if (example.uiPreset !== expected.uiPreset) return false;
+   if (expected.characterScale && expected.characterStyle === undefined) return false;
+   if (JSON.stringify(example.iconSheet ?? null) !== JSON.stringify(expected.iconSheet ?? null)) return false;
+   const a = example.animation, b = expected.animation;
+@@ -104,7 +108,7 @@ function NativeSpriteArt({ preview, thumbnail, onUnavailable }: { preview: Templ
+   }, [crop.width, crop.height]);
+   return <span ref={host} className={styles.nativeSprite} data-integer-scale={zoom}><span style={{ width: crop.width * zoom, height: crop.height * zoom }}><img src={preview.url} alt={thumbnail ? "" : preview.alt} width={preview.width} height={preview.height} draggable={false} onError={() => onUnavailable(preview.unavailableKey)} style={{ width: preview.width * zoom, height: preview.height * zoom, left: -crop.x * zoom, top: -crop.y * zoom }} /></span></span>;
+ }
+-function TemplateArt({ preview, thumbnail = false, native = false, onUnavailable }: { preview?: TemplatePreview; thumbnail?: boolean; native?: boolean; onUnavailable: (id: string) => void }) {
++function TemplateArt({ preview, uiPreset, thumbnail = false, native = false, onUnavailable }: { preview?: TemplatePreview; uiPreset?: GameUiPromptPreset; thumbnail?: boolean; native?: boolean; onUnavailable: (id: string) => void }) {
+   if (preview) {
+     if (preview.nativeSprite) return <NativeSpriteArt preview={preview} thumbnail={thumbnail} onUnavailable={onUnavailable} />;
+     if (!native && preview.motion) return thumbnail ? <CroppedArt preview={preview} crop={motionCrop(preview, preview.motion.thumbnailFrame)} thumbnail onUnavailable={onUnavailable} /> : <div className={styles.keyFrames} aria-label="真实行走关键帧">{preview.motion.keyFrames.map(frame => <CroppedArt key={frame} preview={{ ...preview, alt: `${preview.alt} · 第${frame + 1}帧` }} crop={motionCrop(preview, frame)} onUnavailable={onUnavailable} />)}</div>;
+@@ -114,22 +118,23 @@ function TemplateArt({ preview, thumbnail = false, native = false, onUnavailable
+     }
+     return <CroppedArt preview={preview} crop={native ? undefined : preview.crop} thumbnail={thumbnail} onUnavailable={onUnavailable} />;
+   }
++  if (uiPreset) return <GameUiLayoutDiagram preset={uiPreset} thumbnail={thumbnail} />;
+   return <div className={styles.unavailablePreview} aria-hidden={thumbnail || undefined}>{thumbnail ? null : "预览暂不可用"}</div>;
+ }
+ 
+-function PreviewStage({ preview, category, onUnavailable }: { preview?: TemplatePreview; category: GenerationPromptTemplate["category"]; onUnavailable: (id: string) => void }) {
++function PreviewStage({ preview, uiPreset, category, onUnavailable }: { preview?: TemplatePreview; uiPreset?: GameUiPromptPreset; category: GenerationPromptTemplate["category"]; onUnavailable: (id: string) => void }) {
+   const [native, setNative] = useState(false);
+-  return <figure className={styles.hero} data-preview-kind={preview?.kind ?? "unavailable"} data-preview-source={preview?.source}>
++  return <figure className={styles.hero} data-preview-kind={preview?.kind ?? (uiPreset ? "diagram" : "unavailable")} data-preview-source={preview?.source}>
+     {preview && (preview.cover || preview.motion) && <div className={styles.previewModes} role="group" aria-label="图片显示方式">
+       <button type="button" aria-pressed={!native} onClick={() => setNative(false)}>{preview.motion ? "关键帧" : "生成参考"}</button>
+       <button type="button" aria-pressed={native} onClick={() => setNative(true)}>{preview.motion ? "完整八帧" : "原生效果"}</button>
+     </div>}
+-    <div className={styles.heroArt} data-category={category} data-native={native || preview?.nativeSprite}><TemplateArt preview={preview} native={native} onUnavailable={onUnavailable} /></div>
+-    <figcaption>{preview ? <><span>{!native && preview.cover ? "生成参考" : preview.caption}</span><span>{!native && preview.cover ? `${preview.cover.width} × ${preview.cover.height}` : `${preview.width} × ${preview.height}`} px</span></> : <span>预览暂不可用</span>}</figcaption>
++    <div className={styles.heroArt} data-category={category} data-native={native || preview?.nativeSprite}><TemplateArt preview={preview} uiPreset={uiPreset} native={native} onUnavailable={onUnavailable} /></div>
++    <figcaption>{preview ? <><span>{!native && preview.cover ? "生成参考" : preview.caption}</span><span>{!native && preview.cover ? `${preview.cover.width} × ${preview.cover.height}` : `${preview.width} × ${preview.height}`} px</span></> : uiPreset ? <><span>布局示意 · 非生成成品</span><span>{uiPreset.width} × {uiPreset.height} px</span></> : <span>预览暂不可用</span>}</figcaption>
+   </figure>;
+ }
+ 
+-const familyOrder = ["靛蓝青年", "青绿女村民", "暖棕阿姨", "乡村人物", "柔和圆润人物", "粗线清晰人物", "暖色绘本人物", "乡村行走", "成套 UI 图标", "UI 图标", "九宫格面板", "世界道具", "乡村建筑"];
++const familyOrder = ["靛蓝青年", "青绿女村民", "暖棕阿姨", "乡村人物", "柔和圆润人物", "粗线清晰人物", "暖色绘本人物", "乡村行走", "背包 UI", "商店 UI", "对白 UI", "制作 UI", "成套 UI 图标", "UI 图标", "九宫格面板", "世界道具", "乡村建筑"];
+ 
+ export function StudioTemplateGallery({ assets, initialTemplateId, disabled = false, onChoose, onClose, onClosedFocus }: StudioTemplateGalleryProps) {
+   const dialogRef = useRef<HTMLDialogElement>(null), searchRef = useRef<HTMLInputElement>(null), radioRefs = useRef(new Map<string, HTMLInputElement>());
+@@ -151,6 +156,7 @@ export function StudioTemplateGallery({ assets, initialTemplateId, disabled = fa
+   }, [assets, unavailable]);
+   const previews = useMemo(() => new Map(GENERATION_PROMPT_TEMPLATES.map(template => [template.id, resolvePreview(template, examples.get(template.id), unavailable)])), [examples, unavailable]);
+   const preview = selected ? previews.get(selected.id) : undefined;
++  const gameUiPreset = selected?.standard.uiPreset ? getGameUiPromptPreset(selected.standard.uiPreset) : undefined;
+ 
+   useEffect(() => { focusCallback.current = onClosedFocus; }, [onClosedFocus]);
+   useEffect(() => {
+@@ -194,20 +200,24 @@ export function StudioTemplateGallery({ assets, initialTemplateId, disabled = fa
+     <div className={styles.scroll}>
+       {selected ? <>
+         <section className={styles.showcase} aria-label="所选模板预览">
+-          <PreviewStage key={selected.id} preview={preview} category={selected.category} onUnavailable={unavailableExample} />
++          <PreviewStage key={selected.id} preview={preview} uiPreset={gameUiPreset} category={selected.category} onUnavailable={unavailableExample} />
+           <div className={styles.details}>
+             <h3>{family?.label ?? selected.label}</h3>
+             {!selected.standard.characterScale && <p className={styles.description}>{selected.description}</p>}
+             <p className={styles.specification}>{specificationLabel(selected)}<span>·</span>{viewLabels[selected.standard.view]}</p>
+             {family && family.templates.length > 1 && <label className={styles.variant}>规格<select aria-label="具体模板规格" value={selected.id} onChange={event => setSelectedId(event.target.value)}>{family.templates.map(template => <option key={template.id} value={template.id}>{template.label}</option>)}</select></label>}
+             <p className={styles.material}>{outlineLabels[selected.standard.outline]}<span>·</span>{selected.standard.background === "transparent" ? "透明背景" : "中性纯色背景"}</p>
+-            <details className={styles.promptDisclosure}><summary>查看提示词</summary><label className={styles.subject}><textarea aria-label="模板示例描述" readOnly spellCheck={false} value={selected.subject} /></label></details>
++            {gameUiPreset && <>
++              <GameUiReferenceBrowser key={gameUiPreset.kind} kind={gameUiPreset.kind} />
++              <details className={styles.promptDisclosure}><summary>交互与状态清单</summary><ul>{gameUiPreset.interactionNotes.map(note => <li key={note}>{note}</li>)}</ul><ul>{gameUiPreset.stateNotes.map(note => <li key={note}>{note}</li>)}</ul><p>这是后续游戏实现的检查项。</p></details>
++            </>}
++            <details className={styles.promptDisclosure}><summary>查看提示词</summary><label className={styles.subject}><textarea aria-label="模板示例描述" readOnly spellCheck={false} value={gameUiPreset ? [selected.subject, ...gameUiPreset.promptRules].join("\n\n") : selected.subject} /></label></details>
+           </div>
+         </section>
+         <div className={styles.stripHeader}><span>选择模板</span><span>{families.length} 类 · {visible.length} 个规格</span></div>
+         <div className={styles.strip} role="radiogroup" aria-label="创作模板列表">{families.map((item, index) => <label key={item.id} className={styles.card} data-selected={item.id === family?.id}>
+           <input ref={element => { if (element) radioRefs.current.set(item.id, element); else radioRefs.current.delete(item.id); }} type="radio" name={`${id}-template`} value={item.id} aria-label={item.label} checked={item.id === family?.id} tabIndex={item.id === family?.id ? 0 : -1} onChange={() => setSelectedId(item.representative.id)} onKeyDown={event => moveSelection(event, index)} />
+-          <span className={styles.thumbnail} data-category={item.representative.category}><TemplateArt preview={previews.get(item.representative.id)} thumbnail onUnavailable={unavailableExample} />{item.id === family?.id && <span className={styles.selectedMark}><Check size={12} /></span>}</span>
++          <span className={styles.thumbnail} data-category={item.representative.category}><TemplateArt preview={previews.get(item.representative.id)} uiPreset={item.representative.standard.uiPreset ? getGameUiPromptPreset(item.representative.standard.uiPreset) : undefined} thumbnail onUnavailable={unavailableExample} />{item.id === family?.id && <span className={styles.selectedMark}><Check size={12} /></span>}</span>
+           <strong>{item.label}</strong>
+         </label>)}</div>
+       </> : <div className={styles.empty}><Search size={30} aria-hidden="true" /><h3>没有匹配的模板</h3><button type="button" className={shared.secondaryButton} onClick={clearFilters}>清除筛选</button></div>}
+diff --git a/src/components/pixel-studio/__tests__/GameUiReferenceBrowser.test.tsx b/src/components/pixel-studio/__tests__/GameUiReferenceBrowser.test.tsx
+new file mode 100644
+index 0000000..fb9d63a
+--- /dev/null
++++ b/src/components/pixel-studio/__tests__/GameUiReferenceBrowser.test.tsx
+@@ -0,0 +1,157 @@
++import { fireEvent, render, screen, within } from "@testing-library/react";
++import { StrictMode } from "react";
++import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
++import type { GameUiReference } from "@/lib/pixel-studio/game-ui-references";
++import { GameUiReferenceBrowser } from "../GameUiReferenceBrowser";
++
++const { readReferences } = vi.hoisted(() => ({ readReferences: vi.fn() }));
++vi.mock("@/lib/pixel-studio/game-ui-references", () => ({ getGameUiReferences: readReferences }));
++const fixture = (id: string, game: string, status: "documented" | "inferred" = "documented", kind: GameUiReference["kind"] = "inventory"): GameUiReference => ({
++  id, kind, game, artStyle: `${game}画风归类`, layoutModel: `${game}布局归类`, title: `${game}物品布局`, sourceUrl: `https://games.example/${id}`, imageUrl: `https://images.example/${id}.jpg`,
++  observed: [`${game}画风观察`], layout: [`${game}布局观察`],
++  interactionEvidence: { status, description: `${game}交互证据的具体范围`, sources: [{ title: `${game}公开文档`, url: `https://docs.example/${id}` }] },
++  transfer: [`${game}可迁移思路`], limits: [`${game}截图不证明实机行为`],
++});
++const references = [fixture("book", "纸本背包"), fixture("space", "空间背包", "inferred")];
++const showModalDescriptor = Object.getOwnPropertyDescriptor(HTMLDialogElement.prototype, "showModal"), closeDescriptor = Object.getOwnPropertyDescriptor(HTMLDialogElement.prototype, "close");
++const showModal = vi.fn(function (this: HTMLDialogElement) { this.setAttribute("open", ""); });
++const close = vi.fn(function (this: HTMLDialogElement) { this.removeAttribute("open"); });
++beforeAll(() => {
++  Object.defineProperty(HTMLDialogElement.prototype, "showModal", { configurable: true, value: showModal });
++  Object.defineProperty(HTMLDialogElement.prototype, "close", { configurable: true, value: close });
++});
++afterAll(() => {
++  if (showModalDescriptor) Object.defineProperty(HTMLDialogElement.prototype, "showModal", showModalDescriptor); else delete (HTMLDialogElement.prototype as Partial<HTMLDialogElement>).showModal;
++  if (closeDescriptor) Object.defineProperty(HTMLDialogElement.prototype, "close", closeDescriptor); else delete (HTMLDialogElement.prototype as Partial<HTMLDialogElement>).close;
++});
++beforeEach(() => { showModal.mockClear(); close.mockClear(); readReferences.mockReset().mockReturnValue(references); });
++afterEach(() => { vi.restoreAllMocks(); vi.unstubAllGlobals(); });
++function open() {
++  const trigger = screen.getByRole("button", { name: "游戏参考 · 2款" }); trigger.focus(); fireEvent.click(trigger);
++  return { trigger, dialog: screen.getByRole("dialog", { name: "游戏 UI 参考" }) };
++}
++
++describe("read-only game UI reference browser", () => {
++  it("ignores queued cleanup close events after Strict Mode reopens the modal", () => {
++    render(<StrictMode><GameUiReferenceBrowser kind="inventory" /></StrictMode>);
++    const { trigger, dialog } = open();
++    fireEvent(dialog, new Event("close"));
++    expect(dialog).toHaveAttribute("open"); expect(trigger).toHaveAttribute("aria-expanded", "true");
++    dialog.removeAttribute("open"); fireEvent(dialog, new Event("close"));
++    expect(screen.queryByRole("dialog", { name: "游戏 UI 参考" })).not.toBeInTheDocument();
++    expect(trigger).toHaveFocus();
++  });
++
++  it("opens a native modal, separates observed layout from interaction evidence, and restores focus", () => {
++    render(<GameUiReferenceBrowser kind="inventory" />);
++    const { trigger, dialog } = open();
++    expect(showModal).toHaveBeenCalledTimes(1); expect(dialog).toHaveAttribute("open"); expect(trigger).toHaveAttribute("aria-expanded", "true");
++    expect(screen.getByRole("button", { name: "关闭游戏参考" })).toHaveFocus();
++    expect(within(dialog).getByText("研究参考", { exact: true })).toBeInTheDocument();
++    expect(within(dialog).getByText("非本项目成品")).toBeInTheDocument();
++    expect(within(dialog).getByRole("heading", { name: "画风与可见元素" })).toBeInTheDocument();
++    expect(within(dialog).getByRole("heading", { name: "布局", exact: true })).toBeInTheDocument();
++    expect(within(dialog).getByText("文档或截图明示")).toBeInTheDocument();
++    expect(within(dialog).getByText("纸本背包交互证据的具体范围")).toBeInTheDocument();
++    const details = within(dialog).getByText("来源、迁移建议与局限").closest("details")!;
++    expect(details).not.toHaveAttribute("open");
++    fireEvent.click(screen.getByRole("button", { name: "关闭游戏参考" }));
++    expect(screen.queryByRole("dialog", { name: "游戏 UI 参考" })).not.toBeInTheDocument();
++    expect(trigger).toHaveFocus(); expect(trigger).toHaveAttribute("aria-expanded", "false"); expect(close).toHaveBeenCalledTimes(1);
++  });
++
++  it("changes real screenshots with radio keyboard navigation and preserves evidence uncertainty", () => {
++    render(<GameUiReferenceBrowser kind="inventory" />); open();
++    const first = screen.getByRole("radio", { name: "纸本背包 · 纸本背包物品布局" });
++    first.focus(); fireEvent.keyDown(first, { key: "ArrowRight" });
++    const second = screen.getByRole("radio", { name: "空间背包 · 空间背包物品布局" });
++    expect(second).toHaveAttribute("aria-checked", "true"); expect(second).toHaveFocus(); expect(first).toHaveAttribute("tabindex", "-1");
++    expect(screen.getByRole("img", { name: "研究参考：空间背包 · 空间背包物品布局" })).toHaveAttribute("src", references[1].imageUrl);
++    expect(screen.getByText("推断，未验证")).toBeInTheDocument();
++    expect(screen.queryByText("纸本背包交互证据的具体范围")).not.toBeInTheDocument();
++    fireEvent.keyDown(second, { key: "Home" }); expect(first).toHaveFocus();
++    fireEvent.keyDown(first, { key: "End" }); expect(second).toHaveFocus();
++    fireEvent.keyDown(second, { key: "ArrowDown" }); expect(first).toHaveFocus();
++  });
++
++  it("compares style, layout and evidence in a disclosure while selecting the actual screenshot", () => {
++    render(<GameUiReferenceBrowser kind="inventory" />); open();
++    const summary = screen.getByText("同类对比"), details = summary.closest("details")!;
++    expect(details).not.toHaveAttribute("open"); fireEvent.click(summary);
++    const table = screen.getByRole("table", { name: "背包游戏UI同类对比" });
++    expect(within(table).getByRole("columnheader", { name: "画风" })).toBeInTheDocument();
++    expect(within(table).getByRole("columnheader", { name: "布局" })).toBeInTheDocument();
++    expect(within(table).getByText("纸本背包画风归类")).toBeInTheDocument();
++    expect(within(table).getByText("空间背包布局归类")).toBeInTheDocument();
++    expect(within(table).getByText("推演")).toBeInTheDocument();
++    const select = within(table).getByRole("button", { name: "查看空间背包参考" }); fireEvent.click(select);
++    expect(select).toHaveAttribute("aria-pressed", "true"); expect(details).toHaveAttribute("open");
++    expect(screen.getByRole("img", { name: /研究参考：空间背包/ })).toHaveAttribute("src", references[1].imageUrl);
++  });
++
++  it("does not let Escape or native cancel close the containing template dialog", () => {
++    const parentCancel = vi.fn(), parentKey = vi.fn();
++    render(<dialog open aria-label="创作模板" onCancel={parentCancel} onKeyDown={parentKey}><GameUiReferenceBrowser kind="inventory" /></dialog>);
++    const { trigger } = open();
++    fireEvent.keyDown(screen.getByRole("button", { name: "关闭游戏参考" }), { key: "Escape" });
++    expect(screen.getByRole("dialog", { name: "创作模板" })).toHaveAttribute("open");
++    expect(screen.queryByRole("dialog", { name: "游戏 UI 参考" })).not.toBeInTheDocument();
++    expect(parentKey).not.toHaveBeenCalled(); expect(trigger).toHaveFocus();
++    fireEvent.click(trigger);
++    const event = new Event("cancel", { bubbles: true, cancelable: true });
++    fireEvent(screen.getByRole("dialog", { name: "游戏 UI 参考" }), event);
++    expect(event.defaultPrevented).toBe(true); expect(parentCancel).not.toHaveBeenCalled();
++    expect(screen.getByRole("dialog", { name: "创作模板" })).toHaveAttribute("open"); expect(trigger).toHaveFocus();
++  });
++
++  it("handles loading and failure per selected image without discarding its research notes", () => {
++    render(<GameUiReferenceBrowser kind="inventory" />); open();
++    expect(screen.getByText("正在载入研究截图…")).toBeInTheDocument();
++    const image = screen.getByRole("img", { name: /研究参考：纸本背包/ }); fireEvent.load(image);
++    expect(screen.queryByText("正在载入研究截图…")).not.toBeInTheDocument(); expect(image).toHaveAttribute("data-loaded", "true");
++    fireEvent.click(screen.getByRole("radio", { name: /空间背包/ }));
++    const second = screen.getByRole("img", { name: /研究参考：空间背包/ }); expect(screen.getByText("正在载入研究截图…")).toBeInTheDocument();
++    fireEvent.error(second);
++    expect(screen.getByText("研究截图暂时无法载入")).toBeInTheDocument();
++    expect(screen.getByRole("link", { name: "打开参考来源" })).toHaveAttribute("href", references[1].sourceUrl);
++    expect(screen.getByText("空间背包布局观察")).toBeInTheDocument();
++    fireEvent.click(screen.getByRole("radio", { name: /纸本背包/ }));
++    expect(screen.queryByText("研究截图暂时无法载入")).not.toBeInTheDocument();
++    expect(screen.getByRole("img", { name: /研究参考：纸本背包/ })).toHaveAttribute("src", references[0].imageUrl);
++  });
++
++  it("provides a truthful empty view and a working return path", () => {
++    readReferences.mockReturnValue([]); render(<GameUiReferenceBrowser kind="crafting" />);
++    const trigger = screen.getByRole("button", { name: "游戏参考 · 0款" }); trigger.focus(); fireEvent.click(trigger);
++    expect(screen.getByText("暂无这类游戏参考")).toBeInTheDocument(); expect(screen.queryByRole("img")).not.toBeInTheDocument();
++    fireEvent.click(screen.getByRole("button", { name: "返回模板" }));
++    expect(trigger).toHaveFocus(); expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
++  });
++
++  it("keeps research and links available at narrow width without imports, template application or API mutations", () => {
++    const network = vi.spyOn(globalThis, "fetch").mockRejectedValue(new Error("This browser must not submit APIs"));
++    vi.stubGlobal("innerWidth", 420);
++    render(<GameUiReferenceBrowser kind="inventory" />); open();
++    fireEvent(window, new Event("resize")); fireEvent.click(screen.getByRole("radio", { name: /空间背包/ }));
++    const details = screen.getByText("来源、迁移建议与局限").closest("details")!;
++    fireEvent.click(within(details).getByText("来源、迁移建议与局限"));
++    expect(screen.getByText("空间背包可迁移思路")).toBeInTheDocument();
++    expect(screen.getByText("空间背包截图不证明实机行为")).toBeInTheDocument();
++    const source = screen.getByRole("link", { name: "原始参考来源" });
++    expect(source).toHaveAttribute("href", references[1].sourceUrl); expect(source).toHaveAttribute("target", "_blank");
++    expect(source).toHaveAttribute("rel", "noopener noreferrer");
++    expect(screen.queryByRole("button", { name: /导入|应用|生成/ })).not.toBeInTheDocument();
++    expect(network).not.toHaveBeenCalled();
++  });
++
++  it("refreshes the reference identity when the selected game task changes", () => {
++    const shop = fixture("shop", "乡集商店", "inferred", "shop");
++    readReferences.mockImplementation(kind => kind === "shop" ? [shop] : references);
++    const view = render(<GameUiReferenceBrowser kind="inventory" />); open();
++    view.rerender(<GameUiReferenceBrowser kind="shop" />);
++    expect(screen.getByRole("radiogroup", { name: "商店研究截图" })).toBeInTheDocument();
++    expect(screen.getByRole("img", { name: "研究参考：乡集商店 · 乡集商店物品布局" })).toHaveAttribute("src", shop.imageUrl);
++    expect(screen.queryByText("纸本背包画风观察")).not.toBeInTheDocument();
++    expect(screen.getByRole("button", { name: "关闭游戏参考" })).toHaveFocus();
++  });
++});
+diff --git a/src/components/pixel-studio/__tests__/PixelGenerationStandardEditor.test.tsx b/src/components/pixel-studio/__tests__/PixelGenerationStandardEditor.test.tsx
+index 8c8d0bc..ab35362 100644
+--- a/src/components/pixel-studio/__tests__/PixelGenerationStandardEditor.test.tsx
++++ b/src/components/pixel-studio/__tests__/PixelGenerationStandardEditor.test.tsx
+@@ -325,3 +325,22 @@ describe("pixel generation standard editor", () => {
+     expect(callbacks.onChange).not.toHaveBeenCalled();
+   });
+ });
++
++describe("full game UI presets", () => {
++  it("changes interface kind with logical dimensions and clears the preset when changing purpose", () => {
++    const change = vi.fn(), initial = applyGenerationPromptTemplate("game-ui-inventory-wood-paper", "背包").generationStandard;
++    render(<Controlled initial={initial} onChange={change} />); open();
++    expect(screen.getByRole("combobox", { name: "像素规范游戏界面方案" })).toHaveValue("game-ui-inventory-wood-paper");
++    expect(screen.queryByRole("combobox", { name: "像素规范UI布局" })).not.toBeInTheDocument();
++    fireEvent.change(screen.getByRole("combobox", { name: "像素规范游戏界面方案" }), { target: { value: "game-ui-dialogue-wood-paper" } });
++    expect(change).toHaveBeenLastCalledWith(expect.objectContaining({ uiPreset: "game-ui-dialogue-wood-paper", logicalWidth: 320, logicalHeight: 160, purpose: "ui-panel" }));
++    fireEvent.change(screen.getByRole("combobox", { name: "像素规范用途" }), { target: { value: "world-prop" } });
++    expect(change.mock.calls.at(-1)![0]).not.toHaveProperty("uiPreset");
++  });
++  it("can return from a game UI to the original component layouts", () => {
++    const initial = applyGenerationPromptTemplate("game-ui-shop-wood-paper", "商店").generationStandard;
++    render(<Controlled initial={initial} />); open();
++    fireEvent.change(screen.getByRole("combobox", { name: "像素规范游戏界面方案" }), { target: { value: "" } });
++    expect(screen.getByRole("combobox", { name: "像素规范UI布局" })).toHaveValue("");
++  });
++});
+diff --git a/src/components/pixel-studio/__tests__/StudioTemplateGallery.test.tsx b/src/components/pixel-studio/__tests__/StudioTemplateGallery.test.tsx
+index ee25107..94bc9f6 100644
+--- a/src/components/pixel-studio/__tests__/StudioTemplateGallery.test.tsx
++++ b/src/components/pixel-studio/__tests__/StudioTemplateGallery.test.tsx
+@@ -3,6 +3,7 @@ import { useState } from "react";
+ import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
+ import { GENERATION_PROMPT_TEMPLATES } from "@/lib/pixel-studio/generation-prompt-templates";
+ import { getGenerationTemplateFamilies } from "@/lib/pixel-studio/generation-template-families";
++import { getGameUiPromptPreset } from "@/lib/pixel-studio/game-ui-prompt-presets";
+ import { CHARACTER_STYLES } from "@/lib/pixel-studio/character-styles";
+ import type { StudioAsset } from "@/lib/pixel-studio/types";
+ import { StudioTemplateGallery, type StudioTemplateGalleryProps } from "../StudioTemplateGallery";
+@@ -43,7 +44,7 @@ const motion = { columns: 4, rows: 2, frameWidth: 48, frameHeight: 48, keyFrames
+ beforeEach(() => {
+   catalog.rejectAsset.mockReset().mockReturnValue(false);
+   catalog.getPreview.mockReset().mockImplementation((id: string) => {
+-    const item = template(id); if (!item) return;
++    const item = template(id); if (!item || item.standard.uiPreset) return;
+     if (freshCharacterIds.includes(id)) return { url: newNativeUrl(id), width: 64, height: 64, caption: `${item.label} · 48px成品`, kind: "example", nativeSprite: true, crop: newNativeCrop, thumbnailCrop: newNativeThumbnailCrop };
+     if (id === "character-rural-adult-48") return { url: nativeURL, width: 64, height: 64, caption: nativeCaption, kind: "reference", crop: { x: 23, y: 15, width: 18, height: 48 }, cover: { url: sourceURL, width: 1024, height: 1024, caption: "生成原图", crop: sourceCrop, thumbnailCrop: { x: 361, y: 78, width: 302, height: 350 } } };
+     if (item.standard.animation?.action === "walk" && item.standard.animation.direction === "right") return { url: motionURL, width: 192, height: 96, caption: "右向行走参考 · 48×48/帧", kind: "reference", motion };
+@@ -99,7 +100,7 @@ describe("Studio visual template gallery", () => {
+       expect(hero.querySelector("[data-integer-scale]")).not.toBeNull();
+       expect(radios().getByRole("radio", { name: item.label, exact: true })).toBeChecked();
+       expect(screen.queryByRole("combobox", { name: "具体模板规格" })).not.toBeInTheDocument();
+-      expect(screen.getByRole("textbox", { name: "模板示例描述", hidden: true })).toHaveValue(item.subject);
++      expect(screen.getByRole("textbox", { name: "模板示例描述", hidden: true })).toHaveValue(item.standard.uiPreset ? [item.subject, ...getGameUiPromptPreset(item.standard.uiPreset)!.promptRules].join("\n\n") : item.subject);
+       expect(callbacks.onChoose).toHaveBeenCalledTimes(n);
+       fireEvent.click(screen.getByRole("button", { name: "使用这个模板", exact: true }));
+       expect(callbacks.onChoose).toHaveBeenNthCalledWith(n + 1, item);
+@@ -145,19 +146,28 @@ describe("Studio visual template gallery", () => {
+     unmount(); expect(observed.every(item => item.disconnected)).toBe(true);
+   });
+ 
+-  it("uses23 family covers and keeps all62 exact specifications reachable without applying or making an API request", () => {
++  it("keeps all family covers and exact specifications reachable without applying or making an API request", () => {
+     const callbacks = props(), fetch = vi.fn(), before = JSON.stringify(GENERATION_PROMPT_TEMPLATES); vi.stubGlobal("fetch", fetch);
+     const { container } = render(<StudioTemplateGallery {...callbacks} />);
+     expect(radios().getAllByRole("radio")).toHaveLength(familyCount);
+     for (const item of GENERATION_PROMPT_TEMPLATES) {
+       chooseId(item.id);
+-      expect(screen.getByRole("textbox", { name: "模板示例描述", hidden: true })).toHaveValue(item.subject);
++      expect(screen.getByRole("textbox", { name: "模板示例描述", hidden: true })).toHaveValue(item.standard.uiPreset ? [item.subject, ...getGameUiPromptPreset(item.standard.uiPreset)!.promptRules].join("\n\n") : item.subject);
+       const variants = screen.queryByRole("combobox", { name: "具体模板规格" });
+       if (variants) expect(variants).toHaveValue(item.id);
+-      expect(container.querySelector("figure img")).not.toBeNull();
+-      expect(container.querySelector("figure")).toHaveAttribute("data-preview-source", "catalog");
++      if (item.standard.uiPreset) {
++        expect(container.querySelector("figure svg")).not.toBeNull();
++        expect(container.querySelector("figure")).toHaveAttribute("data-preview-kind", "diagram");
++      } else {
++        expect(container.querySelector("figure img")).not.toBeNull();
++        expect(container.querySelector("figure")).toHaveAttribute("data-preview-source", "catalog");
++      }
++    }
++    for (const radio of radios().getAllByRole("radio")) {
++      const label = radio.closest("label")!, image = label.querySelector("img");
++      if (image) expect(image).toHaveAttribute("draggable", "false");
++      else expect(label.querySelector("svg")).not.toBeNull();
+     }
+-    for (const radio of radios().getAllByRole("radio")) expect(radio.closest("label")!.querySelector("img")).toHaveAttribute("draggable", "false");
+     expect(JSON.stringify(GENERATION_PROMPT_TEMPLATES)).toBe(before);
+     expect(callbacks.onChoose).not.toHaveBeenCalled(); expect(fetch).not.toHaveBeenCalled();
+   });
+@@ -289,7 +299,7 @@ describe("Studio visual template gallery", () => {
+     fireEvent.click(screen.getByRole("button", { name: "使用这个模板", exact: true }));
+     expect(callbacks.onChoose).toHaveBeenCalledExactlyOnceWith(template("character-bold-64"));
+     fireEvent.click(within(screen.getByRole("group", { name: "模板用途" })).getByRole("button", { name: "UI", exact: true }));
+-    expect(radios().getAllByRole("radio")).toHaveLength(4); expect(screen.queryByRole("group", { name: "人物画风" })).not.toBeInTheDocument();
++    expect(radios().getAllByRole("radio")).toHaveLength(8); expect(screen.queryByRole("group", { name: "人物画风" })).not.toBeInTheDocument();
+   });
+ 
+   it("falls back from the curated catalog through compatible saved output and archive without changing the selected family", () => {
+@@ -350,7 +360,7 @@ describe("Studio visual template gallery", () => {
+   it("combines category, size and search filtering, including empty results, without applying", () => {
+     const callbacks = props({ initialTemplateId: "character-32" }); render(<StudioTemplateGallery {...callbacks} />);
+     fireEvent.click(within(screen.getByRole("group", { name: "模板用途" })).getByRole("button", { name: "UI", exact: true }));
+-    expect(radios().getAllByRole("radio")).toHaveLength(4);
++    expect(radios().getAllByRole("radio")).toHaveLength(8);
+     fireEvent.change(screen.getByRole("combobox", { name: "模板逻辑尺寸" }), { target: { value: "16x16" } });
+     expect(radios().getAllByRole("radio")).toHaveLength(1); expect(radios().getByRole("radio", { name: "UI 图标", exact: true })).toBeChecked();
+     expect(screen.queryByRole("combobox", { name: "具体模板规格" })).not.toBeInTheDocument();
+@@ -425,3 +435,18 @@ describe("Studio visual template gallery", () => {
+     expect(screen.getByRole("img", { name: "已保存示例：new-source.png" })).toBeInTheDocument();
+   });
+ });
++
++describe("researched game UI families", () => {
++  it("shows an explicit layout diagram and actual-game reference entry, then chooses a UI preset without a provider call", () => {
++    const choose = vi.fn(), request = vi.spyOn(globalThis, "fetch").mockRejectedValue(new Error("Template browsing must not run a provider"));
++    render(<StudioTemplateGallery {...props({ initialTemplateId: "game-ui-inventory-wood-paper", onChoose: choose })} />);
++    expect(screen.getByRole("img", { name: /背包.*布局示意，非生成成品/ })).toBeInTheDocument();
++    expect(screen.getByText("布局示意 · 非生成成品")).toBeInTheDocument();
++    expect(screen.getByRole("button", { name: /游戏参考/ })).toBeInTheDocument();
++    fireEvent.change(screen.getByRole("combobox", { name: "具体模板规格" }), { target: { value: "game-ui-inventory-ink-ledger" } });
++    expect(screen.getByRole("combobox", { name: "具体模板规格" })).toHaveValue("game-ui-inventory-ink-ledger");
++    fireEvent.click(screen.getByRole("button", { name: "使用这个模板" }));
++    expect(choose).toHaveBeenCalledExactlyOnceWith(template("game-ui-inventory-ink-ledger"));
++    expect(request).not.toHaveBeenCalled();
++  });
++});
+diff --git a/src/lib/pixel-studio/__tests__/game-ui-prompt-presets.test.ts b/src/lib/pixel-studio/__tests__/game-ui-prompt-presets.test.ts
+new file mode 100644
+index 0000000..9240172
+--- /dev/null
++++ b/src/lib/pixel-studio/__tests__/game-ui-prompt-presets.test.ts
+@@ -0,0 +1,78 @@
++// @vitest-environment node
++import { describe, expect, it, vi } from "vitest";
++import { GAME_UI_COMMON_PROMPT_RULES, GAME_UI_PROMPT_PRESETS, getGameUiPromptPreset } from "../game-ui-prompt-presets";
++import { GENERATION_ASPECT_RATIOS } from "../generation-specs";
++
++describe("authored game UI artwork presets", () => {
++  it("covers each game task with three coherent material directions and unique identities", () => {
++    expect(GAME_UI_PROMPT_PRESETS).toHaveLength(12);
++    expect(new Set(GAME_UI_PROMPT_PRESETS.map(p => p.id)).size).toBe(12);
++    for (const kind of ["inventory", "shop", "dialogue", "crafting"]) {
++      const group = GAME_UI_PROMPT_PRESETS.filter(p => p.kind === kind);
++      expect(group).toHaveLength(3);
++      expect(group.map(p => p.style).sort()).toEqual(["cloth-grid", "ink-ledger", "wood-paper"]);
++      expect(new Set(group.map(p => p.promptRules.at(-1))).size).toBe(3);
++    }
++  });
++
++  it("uses exact supported API ratios rather than stretching a wide dialogue strip", () => {
++    for (const p of GAME_UI_PROMPT_PRESETS) {
++      expect(GENERATION_ASPECT_RATIOS).toContain(p.aspectRatio);
++      const [w, h] = p.aspectRatio.split(":").map(Number);
++      expect(p.width * h).toBe(p.height * w);
++      expect(p.width).toBeGreaterThanOrEqual(320); expect(p.height).toBeGreaterThanOrEqual(160);
++      expect(Number.isInteger(p.width)).toBe(true); expect(Number.isInteger(p.height)).toBe(true);
++    }
++    expect(GAME_UI_PROMPT_PRESETS.filter(p => p.kind === "dialogue").map(p => [p.width, p.height])).toEqual([[320, 160], [384, 256], [384, 192]]);
++  });
++
++  it("keeps image rules independent of a replaceable subject and runtime UX guidance", () => {
++    for (const p of GAME_UI_PROMPT_PRESETS) {
++      expect(p.promptRules.slice(0, GAME_UI_COMMON_PROMPT_RULES.length)).toEqual(GAME_UI_COMMON_PROMPT_RULES);
++      const brief = p.promptRules.join("\n");
++      expect(brief).toContain("正面平面投影"); expect(brief).toContain("精致像素色簇");
++      expect(brief).toContain("动态中文"); expect(brief).toContain("空白信息区"); expect(brief).toContain("不照抄商业游戏");
++      expect(brief).toContain("不是网页"); expect(brief).toContain("静态美术示意");
++      expect(p.interactionNotes.length).toBeGreaterThanOrEqual(3); expect(p.stateNotes.length).toBeGreaterThanOrEqual(3);
++      expect(p.referenceIds.length).toBeGreaterThanOrEqual(3);
++      // Interaction recommendations are not embedded as instructions to render
++      // text, focus navigation or a fabricated runnable interface in one bitmap.
++      for (const note of [...p.interactionNotes, ...p.stateNotes]) expect(brief).not.toContain(note);
++    }
++  });
++
++  it("provides different bounded layout diagrams for all variants without pretending they are artwork", () => {
++    for (const p of GAME_UI_PROMPT_PRESETS) {
++      expect(p.diagramRegions.length).toBeGreaterThanOrEqual(4); expect(p.diagramRegions.length).toBeLessThanOrEqual(6);
++      for (const region of p.diagramRegions) {
++        expect(region.label.trim()).not.toBe("");
++        expect(region.x).toBeGreaterThanOrEqual(0); expect(region.y).toBeGreaterThanOrEqual(0);
++        expect(region.width).toBeGreaterThan(0); expect(region.height).toBeGreaterThan(0);
++        expect(region.x + region.width).toBeLessThanOrEqual(1); expect(region.y + region.height).toBeLessThanOrEqual(1);
++        expect(Object.isFrozen(region)).toBe(true);
++      }
++      expect(Object.isFrozen(p.diagramRegions)).toBe(true);
++    }
++    for (const kind of ["inventory", "shop", "dialogue", "crafting"]) {
++      const diagrams = GAME_UI_PROMPT_PRESETS.filter(p => p.kind === kind).map(p => JSON.stringify(p.diagramRegions));
++      expect(new Set(diagrams).size).toBe(3);
++    }
++    expect(getGameUiPromptPreset("game-ui-dialogue-cloth-grid")!.diagramRegions.filter(r => r.label.startsWith("选择"))).toHaveLength(3);
++    expect(getGameUiPromptPreset("game-ui-shop-ink-ledger")!.diagramRegions[0].label).toBe("左页货目");
++  });
++
++  it("offers immutable, side-effect-free lookup without applying a template or calling an API", () => {
++    const network = vi.spyOn(globalThis, "fetch").mockRejectedValue(new Error("No network in a preset lookup"));
++    try {
++      const before = JSON.stringify(GAME_UI_PROMPT_PRESETS);
++      for (const p of GAME_UI_PROMPT_PRESETS) {
++        expect(getGameUiPromptPreset(p.id)).toBe(p);
++        expect(Object.isFrozen(p)).toBe(true);
++        for (const value of [p.promptRules, p.interactionNotes, p.stateNotes, p.referenceIds]) expect(Object.isFrozen(value)).toBe(true);
++      }
++      expect(Object.isFrozen(GAME_UI_PROMPT_PRESETS)).toBe(true);
++      expect(getGameUiPromptPreset("unknown")).toBeUndefined();
++      expect(JSON.stringify(GAME_UI_PROMPT_PRESETS)).toBe(before); expect(network).not.toHaveBeenCalled();
++    } finally { network.mockRestore(); }
++  });
++});
+diff --git a/src/lib/pixel-studio/__tests__/game-ui-template-integration.test.ts b/src/lib/pixel-studio/__tests__/game-ui-template-integration.test.ts
+new file mode 100644
+index 0000000..7ce563a
+--- /dev/null
++++ b/src/lib/pixel-studio/__tests__/game-ui-template-integration.test.ts
+@@ -0,0 +1,69 @@
++// @vitest-environment node
++import { describe, expect, it, vi } from "vitest";
++import { GAME_UI_PROMPT_PRESETS } from "../game-ui-prompt-presets";
++import { GAME_UI_REFERENCES, getGameUiReferences } from "../game-ui-references";
++import { GENERATION_PROMPT_TEMPLATES, applyGenerationPromptTemplate } from "../generation-prompt-templates";
++import { compilePixelGenerationPrompt, normalizePixelGenerationStandardOptions, DEFAULT_PIXEL_GENERATION_STANDARD } from "../pixel-generation-standard";
++import { createCreativeGeneration } from "../creative-workflows";
++import { validateGenerationInput } from "../providers";
++import { normalizeWorkflowRecipeDraft } from "../workflow-recipes";
++import { uiIconSheetAspectRatio } from "../ui-icon-sheet-aspect";
++
++const provider = { id: "image", name: "fixture", protocol: "openai" as const, model: "fixture", baseUrl: "http://localhost:1234/v1", enabled: true, hasKey: true };
++describe("researched game UI templates", () => {
++  it.each(GAME_UI_PROMPT_PRESETS.map(p => [p.id] as const))("lets the selected neutral background override the default transparent setting for %s", id => {
++    const spec = applyGenerationPromptTemplate(id, "界面").generationStandard;
++    const compiled = compilePixelGenerationPrompt("界面", { ...spec, background: "neutral" });
++    expect(compiled.standardSnapshot!.options.background).toBe("neutral");
++    expect(compiled.prompt).toContain("背景服从所选");
++    expect(compiled.prompt).not.toMatch(/界面外使用透明|上部留透明|长笺外侧透明/);
++  });
++
++  it.each(GAME_UI_PROMPT_PRESETS.map(p => [p.id] as const))("keeps custom content, UI rules and layout identity through request and recipe for %s", id => {
++    const network = vi.spyOn(globalThis, "fetch").mockRejectedValue(new Error("No generation during template use"));
++    try {
++      const preset = GAME_UI_PROMPT_PRESETS.find(p => p.id === id)!, prompt = "我自己的乡村UI，保留青绿色与米白；道具使用竹篮与茉莉。";
++      const patch = applyGenerationPromptTemplate(id, prompt);
++      expect(patch.prompt).toBe(prompt); expect(patch.generationStandard.uiPreset).toBe(id);
++      const compiled = compilePixelGenerationPrompt(patch.prompt, patch.generationStandard);
++      for (const rule of preset.promptRules) expect(compiled.prompt).toContain(rule);
++      expect(compiled.standardSnapshot!.options.uiPreset).toBe(id);
++      for (const note of [...preset.interactionNotes, ...preset.stateNotes]) expect(compiled.prompt).not.toContain(note);
++      const input = validateGenerationInput({ providerId: provider.id, prompt, generationStandard: patch.generationStandard });
++      expect(input.aspectRatio).toBe(preset.aspectRatio); expect(input.references).toEqual([]);
++      let nextId = 0;
++      const graph = createCreativeGeneration({ providerId: provider.id, templateId: id, prompt, automatic: true }, { providers: [provider], origin: { x: 0, y: 0 }, idFactory: () => `node-${++nextId}` });
++      expect(graph.nodes.map(n => n.data.role)).toEqual(["generation", "pixel", "cutout", "export"]);
++      const captured = normalizeWorkflowRecipeDraft({ version: 1, nodes: graph.nodes, edges: graph.edges });
++      expect(captured.nodes.find(n => n.data.role === "generation")!.data.generationStandard).toMatchObject({ uiPreset: id, logicalWidth: preset.width, logicalHeight: preset.height });
++      expect(network).not.toHaveBeenCalled();
++    } finally { network.mockRestore(); }
++  });
++  it("rejects unknown, mismatched and undersized full UI contracts before a provider request", () => {
++    const spec = applyGenerationPromptTemplate("game-ui-inventory-wood-paper", "背包").generationStandard;
++    for (const uiPreset of ["unknown", null, 1, {}, "__proto__"]) expect(() => normalizePixelGenerationStandardOptions({ ...spec, uiPreset })).toThrow("方案无效");
++    expect(() => normalizePixelGenerationStandardOptions({ ...spec, purpose: "ui-icon" })).toThrow("仅用于独立UI面板");
++    expect(() => normalizePixelGenerationStandardOptions({ ...spec, layout: "nine-slice" })).toThrow("不能混入");
++    expect(() => normalizePixelGenerationStandardOptions({ ...spec, logicalWidth: 128 })).toThrow("至少256px");
++    expect(() => validateGenerationInput({ providerId: provider.id, prompt: "背包", generationStandard: spec, aspectRatio: "1:1" })).toThrow("游戏界面请求比例");
++    expect(compilePixelGenerationPrompt("原始文本", { ...spec, enabled: false }).prompt).toBe("原始文本");
++    expect(normalizePixelGenerationStandardOptions(DEFAULT_PIXEL_GENERATION_STANDARD)).not.toHaveProperty("uiPreset");
++  });
++  it("provides twelve opt-in presets in four kinds without altering established defaults", () => {
++    expect(GENERATION_PROMPT_TEMPLATES.filter(t => t.standard.uiPreset)).toHaveLength(12);
++    expect(GENERATION_PROMPT_TEMPLATES).toHaveLength(76);
++    for (const kind of ["inventory", "shop", "dialogue", "crafting"] as const) {
++      expect(GAME_UI_PROMPT_PRESETS.filter(p => p.kind === kind)).toHaveLength(3);
++      const references = getGameUiReferences(kind);
++      expect(new Set(references.map(r => r.game)).size).toBeGreaterThanOrEqual(3);
++      for (const ref of references) {
++        expect(ref.sourceUrl).toMatch(/^https:\/\//); expect(ref.imageUrl).toMatch(/^https:\/\//);
++        expect(["documented", "inferred"]).toContain(ref.interactionEvidence.status);
++        expect(ref.observed.length).toBeGreaterThan(0); expect(ref.limits.length).toBeGreaterThan(0);
++      }
++    }
++    expect(GAME_UI_REFERENCES).toHaveLength(15);
++    const legacy = { ...DEFAULT_PIXEL_GENERATION_STANDARD };
++    expect(uiIconSheetAspectRatio(legacy)).toBeUndefined();
++  });
++});
+diff --git a/src/lib/pixel-studio/__tests__/generation-template-families.test.ts b/src/lib/pixel-studio/__tests__/generation-template-families.test.ts
+index 781950a..52a6c59 100644
+--- a/src/lib/pixel-studio/__tests__/generation-template-families.test.ts
++++ b/src/lib/pixel-studio/__tests__/generation-template-families.test.ts
+@@ -7,9 +7,9 @@ const find = (id: string) => GENERATION_PROMPT_TEMPLATES.find(template => templa
+ const familyOf = (id: string) => getGenerationTemplateFamilies(GENERATION_PROMPT_TEMPLATES).find(family => family.templates.some(template => template.id === id))!;
+ 
+ describe("visual generation template families", () => {
+-  it("partitions all64 templates exactly once without changing any specification or template identity", () => {
++  it("partitions all76 templates exactly once without changing any specification or template identity", () => {
+     const before = JSON.stringify(GENERATION_PROMPT_TEMPLATES), families = getGenerationTemplateFamilies(GENERATION_PROMPT_TEMPLATES);
+-    expect(families).toHaveLength(24);
++    expect(families).toHaveLength(28);
+     const members = families.flatMap(family => [...family.templates]);
+     expect(members).toHaveLength(GENERATION_PROMPT_TEMPLATES.length);
+     expect(new Set(members).size).toBe(members.length);
+@@ -29,7 +29,7 @@ describe("visual generation template families", () => {
+   });
+ 
+   it("keeps the old23 families in order and gives same-sheet icon sets a separate family from individual icons", () => {
+-    const before = getGenerationTemplateFamilies(GENERATION_PROMPT_TEMPLATES.filter(template => !template.standard.iconSheet));
++    const before = getGenerationTemplateFamilies(GENERATION_PROMPT_TEMPLATES.filter(template => !template.standard.iconSheet && !template.standard.uiPreset));
+     const all = getGenerationTemplateFamilies(GENERATION_PROMPT_TEMPLATES);
+     expect(before).toHaveLength(23); expect(all.slice(0, 23)).toEqual(before);
+     const sets = familyOf("ui-icons-rural-9-32");
+@@ -40,7 +40,7 @@ describe("visual generation template families", () => {
+   });
+ 
+   it("gives each newly authored48px subject its own selectable card even with identical generation options", () => {
+-    const named = GENERATION_PROMPT_TEMPLATES.filter(template => template.galleryFamily);
++    const named = GENERATION_PROMPT_TEMPLATES.filter(template => template.galleryFamily && template.category === "character");
+     expect(named.map(t => t.galleryFamily)).toEqual([
+       { id: "rural48-indigo-youth", label: "靛蓝青年" },
+       { id: "rural48-celadon-woman", label: "青绿女村民" },
+diff --git a/src/lib/pixel-studio/__tests__/generation-template-previews.test.ts b/src/lib/pixel-studio/__tests__/generation-template-previews.test.ts
+index 0245317..29eac37 100644
+--- a/src/lib/pixel-studio/__tests__/generation-template-previews.test.ts
++++ b/src/lib/pixel-studio/__tests__/generation-template-previews.test.ts
+@@ -37,10 +37,11 @@ describe("bundled real template previews", () => {
+       expect(visible).toBeGreaterThan(20);
+     }
+   });
+-  it("covers every template with an immutable real raster while leaving the template contract unchanged", () => {
++  it("covers raster templates with immutable PNGs; game UI presets use explicitly labeled diagrams", () => {
+     const before = JSON.stringify(GENERATION_PROMPT_TEMPLATES);
+-    expect(new Set(catalog.previews.map(p => p.templateId)).size).toBe(GENERATION_PROMPT_TEMPLATES.length);
++    expect(new Set(catalog.previews.map(p => p.templateId)).size).toBe(GENERATION_PROMPT_TEMPLATES.filter(t => !t.standard.uiPreset).length);
+     for (const template of GENERATION_PROMPT_TEMPLATES) {
++      if (template.standard.uiPreset) { expect(getGenerationTemplatePreview(template.id)).toBeUndefined(); continue; }
+       const preview = getGenerationTemplatePreview(template.id);
+       expect(preview).toBeDefined(); expect(preview!.url).toMatch(/^\/pixel-studio\/template-previews\/[a-z0-9-]+\.png$/);
+       expect(preview!.width).toBeGreaterThan(0); expect(preview!.height).toBeGreaterThan(0);
+@@ -86,7 +87,7 @@ describe("bundled real template previews", () => {
+   it("keeps detailed original covers separate from native exports and bounds their display-only crops", () => {
+     for (const t of GENERATION_PROMPT_TEMPLATES) {
+       const p = getGenerationTemplatePreview(t.id)!;
+-      if (!p.cover) continue;
++      if (!p?.cover) continue;
+       expect(p.cover.url).not.toBe(p.url);
+       expect(p.cover.caption).toBe("生成参考");
+       for (const crop of [p.cover.crop, p.cover.thumbnailCrop]) {
+diff --git a/src/lib/pixel-studio/creative-workflows.ts b/src/lib/pixel-studio/creative-workflows.ts
+index 10e5013..c17ca73 100644
+--- a/src/lib/pixel-studio/creative-workflows.ts
++++ b/src/lib/pixel-studio/creative-workflows.ts
+@@ -39,9 +39,9 @@ export function createCreativeGeneration(request: CreativeGenerationRequest, opt
+   const compiled = compilePixelGenerationPrompt(data.prompt!, data.generationStandard);
+   if (compiled.prompt.length > 32000) throw new Error("合并像素规范后的提示词超过32000字，请缩短创作描述");
+   const sheet = data.generationStandard?.enabled ? data.generationStandard.iconSheet : undefined;
+-  if (sheet && data.generationStandard?.enabled) {
++  if (data.generationStandard?.enabled && (sheet || data.generationStandard.uiPreset)) {
+     const aspectRatio = uiIconSheetAspectRatio(data.generationStandard);
+-    if (!aspectRatio) throw new Error("图标集排列比例暂不支持，请调整列数或单格尺寸");
++    if (!aspectRatio) throw new Error(sheet ? "图标集排列比例暂不支持，请调整列数或单格尺寸" : "游戏界面比例暂不支持，请调整逻辑尺寸");
+     data.aspectRatio = aspectRatio;
+   }
+   // A fixed-grid split keeps blank cells too. The downstream input limit is
+diff --git a/src/lib/pixel-studio/game-ui-prompt-presets.ts b/src/lib/pixel-studio/game-ui-prompt-presets.ts
+new file mode 100644
+index 0000000..0f688a6
+--- /dev/null
++++ b/src/lib/pixel-studio/game-ui-prompt-presets.ts
+@@ -0,0 +1,275 @@
++/** Authored game-UI artwork briefs, not executable interfaces or accessibility certification.
++ * Image rules travel with a structured preset selection. Runtime interaction and
++ * state notes are separate review guidance and must not be sent as image commands.
++ * Research references are documentation IDs, never implicit provider image inputs. */
++export type GameUiPresetKind = "inventory" | "shop" | "dialogue" | "crafting";
++export type GameUiPresetStyle = "wood-paper" | "cloth-grid" | "ink-ledger";
++export type GameUiPresetAspectRatio = "4:3" | "3:2" | "2:1";
++
++export interface GameUiDiagramRegion {
++  readonly label: string;
++  /** Normalized to the complete logical canvas, for labeled layout diagrams only. */
++  readonly x: number;
++  readonly y: number;
++  readonly width: number;
++  readonly height: number;
++}
++
++export interface GameUiPromptPreset {
++  readonly id: string;
++  readonly kind: GameUiPresetKind;
++  readonly style: GameUiPresetStyle;
++  readonly label: string;
++  readonly description: string;
++  readonly width: number;
++  readonly height: number;
++  readonly aspectRatio: GameUiPresetAspectRatio;
++  /** Default subject only; user wording may replace this while promptRules remain. */
++  readonly subject: string;
++  /** Persistent image-generation constraints, independent of the default subject. */
++  readonly promptRules: readonly string[];
++  /** UX guidance for a future implementation, not evidence that it works. */
++  readonly interactionNotes: readonly string[];
++  readonly stateNotes: readonly string[];
++  readonly referenceIds: readonly string[];
++  /** Abstract, labeled regions; never a generated or production-ready UI preview. */
++  readonly diagramRegions: readonly GameUiDiagramRegion[];
++}
++
++export const GAME_UI_COMMON_PROMPT_RULES: readonly string[] = Object.freeze([
++  "只生成一张游戏UI静态美术示意，采用正面平面投影与精致像素色簇；不是网页、工具后台或可运行界面，也不生成透视手机模型。",
++  "按指定逻辑画布组织像素颗粒、边框和内边距，像素边缘清楚，避免照片材质、软糊描边和随意密集碎点；实际输出仍需本地像素校验。",
++  "沿用项目参考的主题色、材质、轮廓与光源，不擅自改动已指定颜色；材质只装饰边缘和重点，主要信息区保持安静。",
++  "动态中文、名字、数量、价格、货币数值和长说明由游戏运行时绘制；为它们留出明确空白信息区，不生成假字、乱码、占位横线、字母数字或烘焙文字。",
++  "图形图标可表达功能，但布局必须给动态内容、选择和操作反馈留空间；仅画一个清楚的基础状态，不拼贴多页面、伪造交互过程或把状态说明写进画面。",
++  "如需展示当前选中，只给一个对象清楚的静态边框或色块；不画焦点动画，不虚构锁定条件，也不把选中与不可用混成一种视觉状态。",
++  "完整保留界面边框与安全内边距，空白区域不堆装饰；界面外背景服从所选背景规范，所需纸面、布面等控件内部保留设计的不透明材质。",
++  "创造原创的器物符号、框体和分区，不照抄商业游戏的角色、商标、专属图标或可识别的布局细节，不添加品牌标志和水印。",
++]);
++
++const RESEARCH_IDS: Readonly<Record<GameUiPresetKind, readonly string[]>> = Object.freeze({
++  "inventory": Object.freeze(["inventory-moonlighter", "inventory-backpack-hero", "inventory-grand-bazaar"]),
++  "shop": Object.freeze(["stardew-shop", "moonlighter-shop", "ui-1210320-4"]),
++  "dialogue": Object.freeze(["ui-413150-4", "977880-3", "1244090-11", "1205520-13", "1229240-0"]),
++  "crafting": Object.freeze(["crafting-travellers-rest", "crafting-grand-bazaar", "crafting-moonlighter", "crafting-potion-craft"]),
++});
++
++const MATERIAL_RULES: Readonly<Record<GameUiPresetStyle, readonly string[]>> = Object.freeze({
++  "wood-paper": Object.freeze([
++    "采用薄竹木边缘与米白纸面，结构克制，装饰不压过物品；无既有参考时以暖竹木、米白、灰橄榄绿和少量低饱和蓝灰作为候选配色。",
++    "框角、分隔线、图标描边共享清楚的像素尺度；纸面不铺满噪点，木纹只用少量稳定色块表达。",
++  ]),
++  "cloth-grid": Object.freeze([
++    "采用靛蓝或项目指定色的棉布、浅米色信息衬片与竹编器物，强调布边和少量缝线；不以真实密织纹理覆盖内容。",
++    "布料只用明确的暗中亮色块表现折边，格子和选中区域轮廓保持规则清楚，避免写实阴影与碎色。",
++  ]),
++  "ink-ledger": Object.freeze([
++    "采用米白纸面、灰墨色块、克制的植物绿与单一朱红强调色；已有项目主题色优先，不把人物或物品强制改成黑白。",
++    "水墨感由虚实留白、边缘节奏和有限墨色块表达，仍保持清晰像素边界；不使用模糊晕染或半透明毛边。",
++  ]),
++});
++
++// These rectangles describe the authored composition, not click targets,
++// engine anchors, layout constraints or captured commercial-game screenshots.
++const DIAGRAM_REGIONS: Readonly<Record<string, readonly GameUiDiagramRegion[]>> = {
++  "game-ui-inventory-wood-paper": [
++    { label: "物品格", x: .05, y: .10, width: .52, height: .62 },
++    { label: "物品预览", x: .62, y: .10, width: .32, height: .20 },
++    { label: "物品说明", x: .62, y: .35, width: .32, height: .37 },
++    { label: "常用工具", x: .05, y: .79, width: .52, height: .12 },
++    { label: "物品操作", x: .62, y: .79, width: .32, height: .12 },
++  ],
++  "game-ui-inventory-cloth-grid": [
++    { label: "工具收纳带", x: .06, y: .08, width: .88, height: .14 },
++    { label: "食物分区", x: .06, y: .27, width: .42, height: .40 },
++    { label: "材料分区", x: .52, y: .27, width: .42, height: .40 },
++    { label: "物品说明", x: .06, y: .73, width: .58, height: .19 },
++    { label: "就地操作", x: .69, y: .73, width: .25, height: .19 },
++  ],
++  "game-ui-inventory-ink-ledger": [
++    { label: "货目列表", x: .06, y: .10, width: .40, height: .80 },
++    { label: "物品展示", x: .52, y: .10, width: .42, height: .22 },
++    { label: "留白说明", x: .52, y: .37, width: .42, height: .37 },
++    { label: "物品操作", x: .52, y: .80, width: .42, height: .10 },
++  ],
++  "game-ui-shop-wood-paper": [
++    { label: "店主肖像", x: .06, y: .06, width: .16, height: .15 },
++    { label: "柜台气氛", x: .27, y: .06, width: .67, height: .15 },
++    { label: "商品清单", x: .06, y: .26, width: .51, height: .66 },
++    { label: "选中商品", x: .62, y: .26, width: .32, height: .21 },
++    { label: "数量与费用", x: .62, y: .53, width: .32, height: .17 },
++    { label: "交易确认", x: .62, y: .78, width: .32, height: .14 },
++  ],
++  "game-ui-shop-cloth-grid": [
++    { label: "商品陈列", x: .07, y: .08, width: .86, height: .58 },
++    { label: "当前选货", x: .07, y: .73, width: .30, height: .18 },
++    { label: "数量费用", x: .41, y: .73, width: .21, height: .18 },
++    { label: "订单确认", x: .68, y: .73, width: .25, height: .18 },
++  ],
++  "game-ui-shop-ink-ledger": [
++    { label: "左页货目", x: .07, y: .12, width: .40, height: .74 },
++    { label: "右页购入明细", x: .55, y: .12, width: .38, height: .24 },
++    { label: "数量与小计", x: .55, y: .43, width: .38, height: .16 },
++    { label: "总价", x: .55, y: .66, width: .38, height: .08 },
++    { label: "交易确认", x: .55, y: .80, width: .38, height: .09 },
++  ],
++  "game-ui-dialogue-wood-paper": [
++    { label: "村民肖像", x: .06, y: .43, width: .20, height: .40 },
++    { label: "姓名留白", x: .31, y: .37, width: .22, height: .09 },
++    { label: "对白正文", x: .31, y: .51, width: .56, height: .29 },
++    { label: "继续图形", x: .91, y: .83, width: .03, height: .05 },
++  ],
++  "game-ui-dialogue-cloth-grid": [
++    { label: "村民肖像", x: .06, y: .08, width: .12, height: .22 },
++    { label: "姓名留白", x: .22, y: .08, width: .30, height: .08 },
++    { label: "对白正文", x: .22, y: .21, width: .72, height: .25 },
++    { label: "选择一", x: .08, y: .54, width: .84, height: .10 },
++    { label: "选择二", x: .08, y: .67, width: .84, height: .10 },
++    { label: "选择三", x: .08, y: .80, width: .84, height: .10 },
++  ],
++  "game-ui-dialogue-ink-ledger": [
++    { label: "姓名留白", x: .06, y: .38, width: .24, height: .08 },
++    { label: "可选剪影窗", x: .06, y: .52, width: .14, height: .29 },
++    { label: "长笺正文", x: .25, y: .51, width: .63, height: .29 },
++    { label: "继续图形", x: .91, y: .84, width: .03, height: .05 },
++  ],
++  "game-ui-crafting-wood-paper": [
++    { label: "配方清单", x: .05, y: .08, width: .32, height: .84 },
++    { label: "产物展示", x: .42, y: .08, width: .25, height: .23 },
++    { label: "用途说明", x: .72, y: .08, width: .23, height: .23 },
++    { label: "材料与拥有量", x: .42, y: .37, width: .53, height: .24 },
++    { label: "数量与成本", x: .42, y: .68, width: .26, height: .23 },
++    { label: "制作确认", x: .73, y: .68, width: .22, height: .23 },
++  ],
++  "game-ui-crafting-cloth-grid": [
++    { label: "配方选择带", x: .06, y: .07, width: .88, height: .16 },
++    { label: "三个原料槽", x: .07, y: .30, width: .43, height: .25 },
++    { label: "方向图形", x: .55, y: .38, width: .07, height: .07 },
++    { label: "产物槽", x: .69, y: .30, width: .22, height: .25 },
++    { label: "材料说明", x: .06, y: .63, width: .56, height: .28 },
++    { label: "数量与制作", x: .68, y: .63, width: .26, height: .28 },
++  ],
++  "game-ui-crafting-ink-ledger": [
++    { label: "配方目录", x: .06, y: .09, width: .34, height: .82 },
++    { label: "产物图标", x: .46, y: .10, width: .20, height: .24 },
++    { label: "用途说明", x: .71, y: .10, width: .23, height: .24 },
++    { label: "材料账目", x: .46, y: .40, width: .48, height: .29 },
++    { label: "数量与确认", x: .46, y: .77, width: .48, height: .13 },
++  ],
++};
++
++type PresetDraft = Omit<GameUiPromptPreset, "promptRules" | "referenceIds" | "diagramRegions"> & { readonly promptRules: readonly string[] };
++function preset(draft: PresetDraft): GameUiPromptPreset {
++  return Object.freeze({
++    ...draft,
++    promptRules: Object.freeze([...GAME_UI_COMMON_PROMPT_RULES, ...MATERIAL_RULES[draft.style], ...draft.promptRules]),
++    interactionNotes: Object.freeze([...draft.interactionNotes]),
++    stateNotes: Object.freeze([...draft.stateNotes]),
++    referenceIds: RESEARCH_IDS[draft.kind],
++    diagramRegions: Object.freeze(DIAGRAM_REGIONS[draft.id].map(region => Object.freeze({ ...region }))),
++  });
++}
++
++export const GAME_UI_PROMPT_PRESETS: readonly GameUiPromptPreset[] = Object.freeze([
++  preset({
++    id: "game-ui-inventory-wood-paper", kind: "inventory", style: "wood-paper", label: "背包 · 竹木纸面",
++    description: "物品格与独立详情并排，常用工具在下方。", width: 384, height: 256, aspectRatio: "3:2",
++    subject: "中国南方乡村生活游戏的背包界面美术，竹木与纸面，展示少量竹篮、种子、农具和乡村日用品图标，图标身份清楚。",
++    promptRules: ["左侧安排4列4行等尺寸物品格，右侧为一个较宽的所选物品展示与空白详情区，下方独立保留常用工具条与操作提示空白区；物品缩略图不占满格子。"],
++    interactionNotes: ["先选择物品，再执行装备、使用或转移；操作与当前对象保持相邻。", "键鼠拖放与手柄选择都应有完整路径，不以悬停作为查看详情的唯一方式。", "关闭后重新进入保留所选物品和浏览位置。"],
++    stateNotes: ["空格、占用、当前选择与不可用须可区分。", "背包已满或转移失败时保留对象与输入。", "数量、耐久及说明使用真实数据并验证最长中文。"],
++  }),
++  preset({
++    id: "game-ui-inventory-cloth-grid", kind: "inventory", style: "cloth-grid", label: "背包 · 布包分区",
++    description: "工具与物品分区，底部留出就地操作区。", width: 320, height: 240, aspectRatio: "4:3",
++    subject: "中国南方乡村生活游戏的布包背包美术，朴素靛蓝棉布、米白衬片与竹编收纳，精致像素器物图标。",
++    promptRules: ["上方为窄的工具收纳带，中部以2个有清楚间隔的物品格分区组织食物与材料，下方为全宽的空白说明与操作区；布包是界面材质隐喻，不画成透视桌面上的整只包。"],
++    interactionNotes: ["分区应对应真实分类，切换分类不重置数量或当前任务。", "从格子选中物品后，就近展示可用动作。", "整理与批量转移若实现，应有明确范围和可恢复反馈。"],
++    stateNotes: ["工具已装备与物品被选中使用不同状态。", "空分类仍保留返回和移动焦点的路径。", "锁定格子仅在确有解锁规则时出现。"],
++  }),
++  preset({
++    id: "game-ui-inventory-ink-ledger", kind: "inventory", style: "ink-ledger", label: "背包 · 墨色货目",
++    description: "缩略图列表与大留白详情，突出物品身份。", width: 384, height: 256, aspectRatio: "3:2",
++    subject: "中国南方乡村生活游戏的水墨色块背包界面美术，纸本货目气质，少量植物、陶器与农具精致像素图标。",
++    promptRules: ["左侧采用有间隔的物品缩略图条目列表，不重复堆满小格；右侧给所选物品独立展示及宽松空白说明区，底部一条克制的操作区域。"],
++    interactionNotes: ["按物品身份组织浏览，列表滚动与详情选择保持同步。", "检视、使用与丢弃明确分开。", "大字或长名称时允许条目重排而非整体缩小。"],
++    stateNotes: ["选择态不能只靠朱红颜色区分。", "空清单和筛选无结果分别给可恢复路径。", "删除或丢弃的真实后果在交互实现中明确。"],
++  }),
++  preset({
++    id: "game-ui-shop-wood-paper", kind: "shop", style: "wood-paper", label: "商店 · 柜台货架",
++    description: "店主、商品与交易详情同屏，确认区靠近总价。", width: 384, height: 256, aspectRatio: "3:2",
++    subject: "中国南方乡村生活游戏的种子与日用品商店UI美术，温暖竹木柜台、米白货目纸面，原创店主肖像与少量种子袋、竹篮、工具图标。",
++    promptRules: ["上侧只保留小幅原创店主肖像与简洁柜台气氛，主体左侧是规则商品条目，右侧为所选商品、数量、费用与确认操作的空白分区；人物不可压过商品与交易信息。"],
++    interactionNotes: ["先选商品，再调数量，购买前同时可见单价、总价与余额。", "买入和卖出有明确模式，确认动作作用于当前商品。", "购买后显示真实变化并保留继续购物的上下文。"],
++    stateNotes: ["缺货、钱不足、背包满与已选中需要不同原因。", "零余额、极大总价、长商品名都须可读。", "取消调数量不改变库存或扣款。"],
++  }),
++  preset({
++    id: "game-ui-shop-cloth-grid", kind: "shop", style: "cloth-grid", label: "商店 · 摊布陈列",
++    description: "按陈列区域选货，下方独立核对订单。", width: 320, height: 240, aspectRatio: "4:3",
++    subject: "中国南方乡村生活游戏的乡集摊位商店界面美术，克制靛蓝摊布与浅米色信息条，蔬菜、种子和竹木日用品像素图标。",
++    promptRules: ["上部采用3列2行的商品陈列分区，每区为独立图标与空白价格区域，底部独立保留当前选货、数量与确认订单的空白长条；陈列是平面UI，不画透视集市场景。"],
++    interactionNotes: ["选择陈列货品后才展开数量与结算。", "陈列分组按真实类别建立，并保证手柄焦点路线可预测。", "退出订单应返回刚才选择的货品。"],
++    stateNotes: ["没有商品时保留摊位身份与返回入口。", "批量购买和单件购买的总价规则一致。", "售罄图形仍可辨认，不仅整体降透明度。"],
++  }),
++  preset({
++    id: "game-ui-shop-ink-ledger", kind: "shop", style: "ink-ledger", label: "商店 · 对开账本",
++    description: "货目与购入记录并排，纸本隐喻参与信息组织。", width: 384, height: 256, aspectRatio: "3:2",
++    subject: "中国南方乡村生活游戏的纸本账目商店UI美术，墨色块与米白纸页，货目图标保留自然竹木、蔬果与陶器色彩。",
++    promptRules: ["画一个正面展开的对开纸本：左页为带小型物品图标的货目条目和空白单价区，右页为当前购入明细、数量、总价与确认的空白分区；书脊不可切断关键信息区域。"],
++    interactionNotes: ["货目与当前交易明细具有清楚关系。", "若不支持购物车，右页只表达当前单项交易，不伪造批量订单能力。", "所有货币与库存变化都以实际交易结果更新。"],
++    stateNotes: ["待确认、交易成功和交易失败分别呈现。", "长商品名与多位数价钱不能穿过中缝。", "拒绝交易时保留数量选择，并说明恢复方式。"],
++  }),
++  preset({
++    id: "game-ui-dialogue-wood-paper", kind: "dialogue", style: "wood-paper", label: "对白 · 横向纸框",
++    description: "小幅肖像与宽正文区，减少对乡村场景的遮挡。", width: 320, height: 160, aspectRatio: "2:1",
++    subject: "中国南方乡村生活游戏的对白界面美术，薄竹木边与米白纸面，原创朴素村民小幅肖像，气质自然克制。",
++    promptRules: ["下方为横向对白框，左侧保留独立肖像窗，右侧大面积空白正文区，上沿小型空白姓名签；继续提示只用简洁图形。上部为不画场景的空白区域，背景服从所选规范，不画背景村庄，不生成对话文字。"],
++    interactionNotes: ["逐字显示、显示全文与进入下一句需要明确区分。", "允许玩家自定阅读节奏，并保留说话者身份。", "关闭、继续与跳过剧情的后果应不同，避免误触跳过。"],
++    stateNotes: ["长中文、不同肖像和无肖像角色都应适配。", "等待输入与正在播放文字需可区分。", "跳过确认只在确有必要时使用。"],
++  }),
++  preset({
++    id: "game-ui-dialogue-cloth-grid", kind: "dialogue", style: "cloth-grid", label: "对白 · 便签选项",
++    description: "正文与选择区上下分离，选项不挤占阅读空间。", width: 384, height: 256, aspectRatio: "3:2",
++    subject: "中国南方乡村生活游戏的分支对白UI美术，朴素布边与米白便签材质，单个原创乡村人物小肖像，精致像素边缘。",
++    promptRules: ["左上安排小肖像与空白姓名区，中上为宽正文留白，下部为3个等宽且有明显间隔的空白选择条；肖像与布边仅作辅助，不画文字、不画多张页面或选项状态合集。"],
++    interactionNotes: ["完整读完当前句后才能清楚选择回答。", "选项焦点与确认反馈可辨，鼠标和手柄都能选。", "选项发生变化时，不应把旧焦点无提示地移到危险答案。"],
++    stateNotes: ["单选项、三选项和长选项应有明确重排方式。", "不可选回答只在实际规则要求时显示条件。", "选择后进入下一句保留说话者与剧情上下文。"],
++  }),
++  preset({
++    id: "game-ui-dialogue-ink-ledger", kind: "dialogue", style: "ink-ledger", label: "对白 · 墨色长笺",
++    description: "轻边界与大正文留白，让景物和叙事保持主次。", width: 384, height: 192, aspectRatio: "2:1",
++    subject: "中国南方乡村生活游戏的水墨色块对白UI美术，米白长笺与克制灰墨边，少量植物色点缀，安静自然。",
++    promptRules: ["采用下侧一张宽长笺，正文留白占主体，上沿保留小姓名签和可选小型人物剪影窗，右下只画简洁继续图形；长笺外侧背景服从所选规范，不画山水背景或装饰书法。"],
++    interactionNotes: ["阅读区域位置稳定，角色切换不造成大幅布局跳动。", "字幕、对白历史或重看功能若提供，应保持原文和顺序。", "推进输入不与世界交互键在同一时刻重复触发。"],
++    stateNotes: ["旁白与角色发言有可辨身份，不只改变墨色。", "大字和多行文本不压住继续操作。", "无肖像模式仍保留清楚的说话者信息。"],
++  }),
++  preset({
++    id: "game-ui-crafting-wood-paper", kind: "crafting", style: "wood-paper", label: "制作 · 配方与材料",
++    description: "配方清单、材料与产物同屏，制作成本靠近确认区。", width: 384, height: 256, aspectRatio: "3:2",
++    subject: "中国南方乡村生活游戏的制作UI美术，竹木与纸面，展示少量竹编、农具和乡村加工物品的精致像素图标。",
++    promptRules: ["左侧为简洁配方缩略图列表，右上为所选产物展示与空白说明区，右中为材料图标格及空白拥有/需要数量区，右下为制作数量、成本与确认的空白操作分区。"],
++    interactionNotes: ["选配方后同时可见产物、所需材料与拥有数量。", "制作前明确数量和成本，失败不消耗材料。", "制作成功后更新库存并保持当前配方，支持继续制作。"],
++    stateNotes: ["未解锁、缺材料、容器满和可制作需说明不同条件。", "数量为零或最大可制作数变化时应恢复合理值。", "材料来自背包或仓库的范围按真实规则注明。"],
++  }),
++  preset({
++    id: "game-ui-crafting-cloth-grid", kind: "crafting", style: "cloth-grid", label: "制作 · 工具布卷",
++    description: "原料到产物的清楚关系，辅以紧凑配方选择。", width: 320, height: 240, aspectRatio: "4:3",
++    subject: "中国南方乡村生活游戏的手作制作UI美术，平铺工具布卷、米白信息衬片与竹木工具图标，材质克制。",
++    promptRules: ["上沿是简洁配方图标选择带，中部左边为3个原料图标槽，经过一个细小方向图形连接右边独立产物槽，下方为材料说明、数量与制作操作留白；布卷为平面分区隐喻，不画完整透视工作台。"],
++    interactionNotes: ["原料与产物关系需和真实配方一致，不以装饰槽暗示自由合成。", "选择配方后再决定数量并确认。", "若有制作时间，明确进行中是否允许离开或取消。"],
++    stateNotes: ["材料不足仍可检视配方而不误触制作。", "进行中、已完成和领取失败按实际计时机制提供。", "没有计时机制时不展示虚假进度条。"],
++  }),
++  preset({
++    id: "game-ui-crafting-ink-ledger", kind: "crafting", style: "ink-ledger", label: "制作 · 手作札记",
++    description: "纸本目录与材料账目，预留清楚的可制作条件。", width: 384, height: 256, aspectRatio: "3:2",
++    subject: "中国南方乡村生活游戏的水墨色块手作札记UI美术，米白纸面、灰墨分区和少量朱红重点，产物保留项目自然原色。",
++    promptRules: ["左边为带小图标的配方目录条目，右边以产物大图标、空白用途说明、下方材料账目行和确认区组织；每条材料行保留独立数量空白，不在纸面写书法或伪造配方文字。"],
++    interactionNotes: ["目录组织和制作规则一致，可查看未满足条件的原因。", "选择配方时保留目录位置，制作后继续核对材料。", "条件、数量和确认应能在同一查看范围理解。"],
++    stateNotes: ["已解锁、可制作和已选中是不同状态。", "长配方名与多种材料允许重排，不能靠缩小文字解决。", "制作失败后保留配方与数量并反馈实际原因。"],
++  }),
++]);
++
++/** Looking up a preset does not apply it, modify a prompt or call a provider. */
++export function getGameUiPromptPreset(id: string): GameUiPromptPreset | undefined {
++  return GAME_UI_PROMPT_PRESETS.find(item => item.id === id);
++}
+diff --git a/src/lib/pixel-studio/game-ui-reference-catalog.json b/src/lib/pixel-studio/game-ui-reference-catalog.json
+new file mode 100644
+index 0000000..f6146e1
+--- /dev/null
++++ b/src/lib/pixel-studio/game-ui-reference-catalog.json
+@@ -0,0 +1,595 @@
++[
++  {
++    "id": "inventory-moonlighter",
++    "kind": "inventory",
++    "game": "Moonlighter",
++    "title": "书页背包与人物装备并排",
++    "sourceUrl": "https://store.steampowered.com/app/606150/",
++    "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/606150/ss_c7c33eb041627f7a5fdbdefb0e41269178faf372.1920x1080.jpg?t=1793636738",
++    "observed": [
++      "米白书页面板配青绿色符号，仍能看见暗下去的地牢背景。",
++      "左页是物品格和数量，右页是人物、装备位置及竖排属性。",
++      "底部实际写有Grab/Hold Grab Stack、Back、Quick Equip等按键提示。"
++    ],
++    "layout": [
++      "背包与穿戴信息左右并排，书页中央成为自然分隔。",
++      "人物预览比格子大，属性汇总放在最右的独立竖条。",
++      "操作提示沿底部排列，顶部仍保留少量游戏HUD。"
++    ],
++    "interactionEvidence": {
++      "status": "documented",
++      "description": "截图明确给出拾取/长按整堆与快捷装备提示；没有实机验证拖动、分堆和关闭时暂持物的恢复。",
++      "sources": [
++        {
++          "title": "Moonlighter开发者公开商店截图",
++          "url": "https://store.steampowered.com/app/606150/"
++        }
++      ]
++    },
++    "transfer": [
++      "可把乡村背包、手持工具和人物衣着放在一张并排画面，详情对准当前选择。",
++      "借鉴纸面与强调色的层级，重做原创边框、图标、服饰和文本，不复制书页造型。"
++    ],
++    "limits": [
++      "这是地牢冒险的背包与装备页，不是商店或制作界面。",
++      "图中文字和手柄布局不能直接当成本项目已验证交互。",
++      "商业截图仅作远程研究参考。"
++    ],
++    "artStyle": "精致像素 · 书页与青绿强调色",
++    "layoutModel": "背包格＋人物装备＋属性"
++  },
++  {
++    "id": "inventory-backpack-hero",
++    "kind": "inventory",
++    "game": "Backpack Hero",
++    "title": "空间拼装背包与局部物品说明",
++    "sourceUrl": "https://store.steampowered.com/app/1970580/",
++    "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1970580/ss_e39025fae7fd8cc1f0f9c15cc7c66748e92d4773.1920x1080.jpg?t=1771527569",
++    "observed": [
++      "背包区域占画面上部，物品具有不同长宽及占格形状。",
++      "选中物品旁弹出物品说明卡，图中为Feather Armor。",
++      "下部仍保留人物、敌人和End Turn按钮，背包直接参与战斗画面。"
++    ],
++    "layout": [
++      "大背包作为主操作区域，战斗场景位于下方。",
++      "物品说明紧邻所选对象，避免另外一整页详情。",
++      "不同口袋/区域由袋体形状和底纹区分。"
++    ],
++    "interactionEvidence": {
++      "status": "documented",
++      "description": "开发者商店说明明确写到物品摆放位置影响力量；截图可见Reorganize和End Turn。具体拖放、旋转和相邻判定未实机测试。",
++      "sources": [
++        {
++          "title": "Backpack Hero官方商店：物品摆放与能力关系",
++          "url": "https://store.steampowered.com/app/1970580/"
++        }
++      ]
++    },
++    "transfer": [
++      "如果物品尺寸本身有玩法意义，可使用可见占格和邻近说明；普通农具背包则不必强加拼图负担。",
++      "可迁移“选中物→邻近详情”的局部结构，让主画面保持上下文。"
++    ],
++    "limits": [
++      "库存整理是此作的核心战斗机制，不能只复制外形而忽略规则。",
++      "本图包含角色专属口袋构造，不是所有背包的通用布局。",
++      "商业截图仅作远程研究参考。"
++    ],
++    "artStyle": "高对比像素 · 大物品剪影",
++    "layoutModel": "空间拼装袋＋邻近物品说明"
++  },
++  {
++    "id": "inventory-grand-bazaar",
++    "kind": "inventory",
++    "game": "STORY OF SEASONS: Grand Bazaar",
++    "title": "生活模拟背包、详情与动作选择",
++    "sourceUrl": "https://www.storyofseasons.com/grandbazaar/manuals/xbox/01/",
++    "imageUrl": "https://www.storyofseasons.com/grandbazaar/manuals/xbox/img/ph/0109.png",
++    "observed": [
++      "背包左侧为工具栏与多排物品格，右侧为所选食物信息。",
++      "信息包含品质、价格、鲜度和效果，未解锁行用锁标记。",
++      "中央可见Eat、Throw away、Do nothing三项动作，底部有Confirm与Quit。"
++    ],
++    "layout": [
++      "上方为其他生活系统的页签，主内容采取左格子右详情。",
++      "动作选择在中央二级浮层中出现；并没有永久堆出所有动作按钮。",
++      "浅米白、棕线和圆角构成温暖、较低对比的手绘界面。"
++    ],
++    "interactionEvidence": {
++      "status": "documented",
++      "description": "官方手册说明物品进入背包、满包需要储存或丢弃；截图明确展示所选物的动作菜单与确认/退出提示。未实机验证取消后焦点位置。",
++      "sources": [
++        {
++          "title": "Grand Bazaar官方手册：Your Bag、Storage",
++          "url": "https://www.storyofseasons.com/grandbazaar/manuals/xbox/01/"
++        }
++      ]
++    },
++    "transfer": [
++      "可借“背包格子→物品详情→按需动作”的三级关系，减少乡村背包常驻按钮。",
++      "农产品若启用品质或鲜度，应给数量、品质、易腐性独立且稳定的位置；未启用的维度不要照抄。"
++    ],
++    "limits": [
++      "这张是手绘UI覆盖三维世界，不是像素美术技术规范。",
++      "需要把图中价格和鲜度等规则视为参考作品规则，不默认成为本项目机制。",
++      "官方截图仅作远程研究参考。"
++    ],
++    "artStyle": "3D游戏配2D菜单 · 简洁暖色",
++    "layoutModel": "左物品格＋右详情＋二级动作"
++  },
++  {
++    "id": "crafting-travellers-rest",
++    "kind": "crafting",
++    "game": "Travellers Rest",
++    "title": "分类配方格与所需材料同屏",
++    "sourceUrl": "https://store.steampowered.com/app/1139980/",
++    "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1139980/ss_d2730da225b405884172a1539dc12a988a4d8ab7.1920x1080.jpg?t=1793007805",
++    "observed": [
++      "画面标题是Oven，顶部有食材/菜品类别图标与肩键提示。",
++      "中部是一整块菜谱图标格，已选Omurice在上部显示名称、耗时、燃料和材料数量。",
++      "缺少的材料以红底和0/2等数量提示，底部有名称搜索框，右下有条目说明。"
++    ],
++    "layout": [
++      "类别在上，配方格在中，选中配方摘要集中在顶栏。",
++      "缺料信息靠近当前配方，没有让玩家离开配方页查另一张背包。",
++      "温暖木框与米黄内容区，选中、缺料和可用配方用形状/色彩共同区分。"
++    ],
++    "interactionEvidence": {
++      "status": "inferred",
++      "description": "截图支持“切类别/搜索→选配方→检查用料”的推论；没有实机验证批量制作、按键、取消和队列的具体行为。",
++      "sources": [
++        {
++          "title": "Travellers Rest开发者公开商店截图",
++          "url": "https://store.steampowered.com/app/1139980/"
++        }
++      ]
++    },
++    "transfer": [
++      "原创乡村制作页可将配方列表、所需/已有材料、耗时和产出集中同屏。",
++      "缺料同时用数量和状态符号表达；不要只靠红色底。"
++    ],
++    "limits": [
++      "本图是烹饪设备Oven的配方界面，不是普通背包。",
++      "图中数值和全部类别不可当成本项目配方规范。",
++      "商业截图仅作远程研究参考。"
++    ],
++    "artStyle": "精致生活像素 · 米色与深棕",
++    "layoutModel": "分类＋配方格＋材料摘要"
++  },
++  {
++    "id": "crafting-grand-bazaar",
++    "kind": "crafting",
++    "game": "STORY OF SEASONS: Grand Bazaar",
++    "title": "配方选择、材料步骤与生产线",
++    "sourceUrl": "https://www.storyofseasons.com/grandbazaar/manuals/xbox/01/",
++    "imageUrl": "https://www.storyofseasons.com/grandbazaar/manuals/xbox/img/ph/0149.png",
++    "observed": [
++      "标题为Select Recipe，顶部显示Recipe→Materials步骤关系。",
++      "左侧是带类别和滚动条的配方格，右侧显示Cheese的成品、材料、售价和加工时间。",
++      "底部明确有View material list、View production line、Quit和Confirm提示。"
++    ],
++    "layout": [
++      "配方格与成品/材料详情按左右主从关系组织。",
++      "物品是否可用由颜色和选择角标呈现，右侧保留较大的产品预览。",
++      "生产线是单独可查看的界面，不与全部配方信息混在同一层。"
++    ],
++    "interactionEvidence": {
++      "status": "documented",
++      "description": "官方手册说明风车可加工不同物品、加工时间受类型和数量影响，并可查看同时运行的生产线；此截图给出选配方到材料步骤及生产线入口。",
++      "sources": [
++        {
++          "title": "Grand Bazaar官方手册：Crafting New Items、Production Lines",
++          "url": "https://www.storyofseasons.com/grandbazaar/manuals/xbox/01/"
++        }
++      ]
++    },
++    "transfer": [
++      "可迁移“配方→材料→确认”的清楚顺序；像晒谷、磨米等等待型工艺才需要生产队列。",
++      "保留成品图和所需材料的直接对应，不照抄参考作品的机械和农业规则。"
++    ],
++    "limits": [
++      "这是等待型生产，不是所有制作都需要时间条或生产队列。",
++      "手绘界面只提供布局参考，最终像素组件须重设计。",
++      "官方截图仅作远程研究参考。"
++    ],
++    "artStyle": "3D游戏配2D菜单 · 色块状态",
++    "layoutModel": "左配方格＋右成品与用料"
++  },
++  {
++    "id": "crafting-moonlighter",
++    "kind": "crafting",
++    "game": "Moonlighter",
++    "title": "NPC加工服务与材料可用性",
++    "sourceUrl": "https://store.steampowered.com/app/606150/",
++    "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/606150/ss_99f46056bb1d647adf3ea8f044bf016a8a3da428.1920x1080.jpg?t=1793636738",
++    "observed": [
++      "左侧为提供服务的NPC，中部为Potion List药剂格。",
++      "右侧显示所选药剂的效果、拥有数量、费用及Recipe材料。",
++      "材料逐项列Req和Owned，满足用对勾，缺少用叉与零数量。"
++    ],
++    "layout": [
++      "NPC身份、产品选择和费用/材料分三块同屏呈现。",
++      "产品大图与效果位于右上，消耗材料位于其下。",
++      "米白纸面与青绿强调色继续沿用背包页的组件语言。"
++    ],
++    "interactionEvidence": {
++      "status": "documented",
++      "description": "截图明确列出费用、Req/Owned与对勾/叉，底部给出Grab、Back、Close提示；只证明可见的加工服务入口与条件，不声称已实机验证扣料和产出。",
++      "sources": [
++        {
++          "title": "Moonlighter开发者公开药剂服务截图",
++          "url": "https://store.steampowered.com/app/606150/"
++        }
++      ]
++    },
++    "transfer": [
++      "村中木匠、裁缝或磨坊可用“人物身份→可做产品→材料和工钱”的原创服务界面。",
++      "材料不足与资金不足分开表达，数量与状态保持同一顺序。"
++    ],
++    "limits": [
++      "这是NPC服务式制作，不能作为玩家随身手工制作的同义界面。",
++      "NPC造型、纸框和产品图不能直接挪作素材。",
++      "商业截图仅作远程研究参考。"
++    ],
++    "artStyle": "精致像素 · 青绿布面与纸页",
++    "layoutModel": "NPC加工＋产品格＋用料费用"
++  },
++  {
++    "id": "crafting-potion-craft",
++    "kind": "crafting",
++    "game": "Potion Craft: Alchemist Simulator",
++    "title": "工具、材料与结果地图的空间式制作",
++    "sourceUrl": "https://store.steampowered.com/app/1210320/",
++    "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1210320/ss_a5197ad5bb35e9899c9e751820cdb9dbc0ceb308.1920x1080.jpg?t=1793194728",
++    "observed": [
++      "炼药器具位于下方，中央/左上为带轨迹的炼金地图。",
++      "右侧固定展示材料库存，左侧显示当前药剂相关信息。",
++      "配色、字体、材料插图和器具共用纸本炼金手稿风格。"
++    ],
++    "layout": [
++      "工作台、地图和材料栏围绕当前制作任务分区，而不是只有配方格。",
++      "器具以大物件呈现，库存用小图标格，尺度服从用途。",
++      "较安静的底色承接路线和材料标记，但长文字与纹理存在对比风险。"
++    ],
++    "interactionEvidence": {
++      "status": "documented",
++      "description": "开发者商店说明可直接操作工具与材料来炼药；具体研磨、搅拌、路线和试错节奏未在本轮实机操作。",
++      "sources": [
++        {
++          "title": "Potion Craft官方商店：physically interact with tools and ingredients",
++          "url": "https://store.steampowered.com/app/1210320/"
++        }
++      ]
++    },
++    "transfer": [
++      "若烹饪/手艺是核心，可把灶台、砧板和材料作为实际操作对象，让结果状态与操作同屏。",
++      "日常自动制作仍可使用简单配方页；不要为了“拟物”强迫所有物品都做小游戏。"
++    ],
++    "limits": [
++      "这是手绘空间式炼药界面，不是像素配方格的现成母版。",
++      "静图不证明实际拖放命中、动画时序、误操作恢复或完整玩法。",
++      "商业截图仅作远程研究参考。"
++    ],
++    "artStyle": "手绘炼金插画 · 纸本工具台",
++    "layoutModel": "空间工作台＋地图＋材料栏"
++  },
++  {
++    "id": "stardew-shop",
++    "kind": "shop",
++    "game": "Stardew Valley",
++    "title": "Pierre买种：商人、价目与背包同屏",
++    "sourceUrl": "https://store.steampowered.com/app/413150/Stardew_Valley/?l=german",
++    "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/413150/ss_5e4780b155a2e56f32ebeca67e102fea6ddd9bf7.1920x1080.jpg",
++    "observed": [
++      "左边是商人头像和欢迎语，右边列出四行种子，每行有图标、名称、价格和货币符号",
++      "四行可见价格为20、60、80、50；余额显示500，背包中种子数量显示15",
++      "右边有垂直滚动条，上角有关闭叉号；不是普通背包页面"
++    ],
++    "layout": [
++      "暖色木边框和浅纸底；商人身份区、商品列表区、背包区分开",
++      "重复商品行便于纵向比较，价格靠同一右侧列对齐",
++      "背包放商品列表下方，余额紧贴交易内容；背景场景仍可辨认"
++    ],
++    "interactionEvidence": {
++      "status": "inferred",
++      "description": "截图证明货目、余额和背包同屏，但没有独立确认购买按钮；本次未运行该游戏，不据静图推断点击/批购/撤销规则。",
++      "sources": [
++        {
++          "title": "开发者/发行方官方Steam商店截图",
++          "url": "https://store.steampowered.com/app/413150/Stardew_Valley/?l=german"
++        }
++      ]
++    },
++    "transfer": [
++      "原创乡村种子铺可沿用“人—货—持有物”三块信息关系，改为自己的店主、农作物和竹木/纸材质",
++      "商品行先容纳图标、长中文名、单价与库存；成长季节和天数在选中详情中展开",
++      "余额与购买数量变化应在同屏反馈；可售罄、钱不足和背包满需有独立状态"
++    ],
++    "limits": [
++      "德语官方商店截图；不证明中文字体/换行已合格",
++      "原游戏图、头像、边框和货币图标仅作研究，不提取为生产素材",
++      "截图文件是1920×1080，不能据此断言原生逻辑分辨率或所有元素同倍像素"
++    ],
++    "artStyle": "明亮像素 · 暖木与浅纸",
++    "layoutModel": "商人身份＋货目列表＋背包"
++  },
++  {
++    "id": "moonlighter-shop",
++    "kind": "shop",
++    "game": "Moonlighter",
++    "title": "The Wooden Hat：材料加金币的药水商人服务",
++    "sourceUrl": "https://store.steampowered.com/app/606150/Moonlighter/",
++    "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/606150/ss_99f46056bb1d647adf3ea8f044bf016a8a3da428.1920x1080.jpg",
++    "observed": [
++      "左侧有商人立绘、名字招牌，中央是药水网格，当前药水有绿色角标",
++      "右侧显示药水名、图标、持有数和恢复效果；下半页显示205金币与两项材料需求",
++      "材料一项持有11且有勾，另一项持有0且有叉；底部显示Grab、Back、Close手柄提示"
++    ],
++    "layout": [
++      "商人身份在左，商品网格居中，效果/费用/材料在右",
++      "绿色布面与浅纸页成一组；内容区较安静、纹理集中在纸边",
++      "当前选择的图标、效果与条件分区同屏，不需靠记忆比较材料是否够"
++    ],
++    "interactionEvidence": {
++      "status": "inferred",
++      "description": "可见按键提示和材料勾叉；根据布局可推断选择药水后查看条件，但未验证完整兑换流程、连购和成交后的返回位置。",
++      "sources": [
++        {
++          "title": "开发者/发行方官方Steam商店截图",
++          "url": "https://store.steampowered.com/app/606150/Moonlighter/"
++        }
++      ]
++    },
++    "transfer": [
++      "适合乡村工匠、药铺、加工服务；只有机制确实需要材料时才添加材料区",
++      "商品图标和价格可以共享统一画风，材料足够/不足同时用勾叉和数值表达",
++      "半身店主作为身份与气氛，不挤占物品效果、成本和主操作"
++    ],
++    "limits": [
++      "这不是普通纯金币买种界面，不能照搬材料换药机制",
++      "英文/手柄静图不证明中文、键鼠焦点或长列表体验",
++      "大立绘与小图标属于不同用途，不意味着可以随意混合像素密度"
++    ],
++    "artStyle": "精致像素 · 绿布与纸页",
++    "layoutModel": "商人＋商品格＋效果与条件"
++  },
++  {
++    "id": "ui-1210320-4",
++    "kind": "shop",
++    "game": "Potion Craft",
++    "title": "双侧货物与天平：讨价还价交易",
++    "sourceUrl": "https://store.steampowered.com/app/1210320/",
++    "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1210320/ss_8f4f9d55123855952e4c83710b6801f6ffab1965.1920x1080.jpg?t=1793194728",
++    "observed": [
++      "左右两列均有货物图标、价格与数量，上方分别显示商人金币和玩家数值",
++      "中间包含话题说明、利润好坏示意、讨价还价条及Haggle按钮",
++      "下方人物与天平同屏，天平两边放物件袋和金币，交易关系用物件隐喻表达"
++    ],
++    "layout": [
++      "两侧长栏装双方货物，中部上方装议价信息，中下方装人物/交换物",
++      "纸面、线描植物与天平构成整体手绘语言，不是像素风",
++      "类别图标、排序符号和多个信息面板使信息密度明显高于简单买种页"
++    ],
++    "interactionEvidence": {
++      "status": "documented",
++      "description": "官方Steam介绍明确说明可从旅商购买原料，成功议价可节省金币；本图对应双方货物、天平与Haggle入口。完整议价小游戏的操作顺序、失败恢复和手柄行为仍未实测。",
++      "sources": [
++        {
++          "title": "Potion Craft 官方Steam介绍：购买原料与议价",
++          "url": "https://store.steampowered.com/app/1210320/"
++        }
++      ]
++    },
++    "transfer": [
++      "乡村集市可借“双方给出什么/换回什么/差价多少”同时可见的结构，使用自有秤盘、柜台与竹筐语汇",
++      "若首版没有议价玩法，不生成假议价条；可改成清楚的买入/卖出和合计",
++      "借纸面静区与成组信息，不复制欧洲炼金纹样或极密的分类栏"
++    ],
++    "limits": [
++      "手绘UI只能借布局、材质关系和交换隐喻，不冒充像素艺术范本",
++      "原截图信息量很高，不能不加筛选地塞进小尺寸乡村游戏",
++      "本次没有验证触控、手柄、中文和错误恢复"
++    ],
++    "artStyle": "手绘插画 · 纸面与线描",
++    "layoutModel": "双方货物＋议价＋交换物"
++  },
++  {
++    "id": "ui-413150-4",
++    "kind": "dialogue",
++    "game": "Stardew Valley",
++    "title": "底部宽对白框与右侧表情头像",
++    "sourceUrl": "https://store.steampowered.com/app/413150/",
++    "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/413150/ss_10628b4a811c0a925a1433d4323f78c7017dbbe4.1920x1080.jpg?t=1786554168",
++    "observed": [
++      "底部大对白框左侧承载多行文字，右侧是人物头像与姓名Governor",
++      "框体右下有小型继续提示图形；上方场景和人物仍可见",
++      "场景为节日多人环境；当前帧只显示单个说话者，没有选择列表"
++    ],
++    "layout": [
++      "底部对白层约占画面下方四成，文字区明显宽于头像区",
++      "同一木纸边界包住文字和身份区，姓名位于头像下方",
++      "没有用大立绘遮住场景上半部"
++    ],
++    "interactionEvidence": {
++      "status": "inferred",
++      "description": "可见单页对白与继续提示，但截图不能证明逐字速度、快进、回看、自动播放和选项确认规则。",
++      "sources": [
++        {
++          "title": "开发者/发行方官方Steam商店截图",
++          "url": "https://store.steampowered.com/app/413150/"
++        }
++      ]
++    },
++    "transfer": [
++      "适合村民日常对白：固定身份区、表情区、三到四行中文静区，保留村落场景",
++      "名字和正文保留为真实可变文字层；只生成可拉伸面板与独立头像",
++      "继续提示、选项列表和长对白拆页分别设计，不把它们烘焙进背景"
++    ],
++    "limits": [
++      "未显示选项，不能用此图证明分支选择布局",
++      "头像原始分辨率和人物48px标尺是两回事",
++      "不要复制原角色面孔、具体木框像素和节日内容"
++    ],
++    "artStyle": "温暖像素 · 木纸头像框",
++    "layoutModel": "底部固定框：文字＋右头像"
++  },
++  {
++    "id": "977880-3",
++    "kind": "dialogue",
++    "game": "Eastward",
++    "title": "场景内近角色气泡与姓名",
++    "sourceUrl": "https://store.steampowered.com/app/977880/",
++    "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/977880/ss_ddd76431b1df70e234494c92370e2391680c98ef.1920x1080.jpg?t=1782290198",
++    "observed": [
++      "浅色对白气泡位于场景上部，包含说话者Masao Ayukawa的姓名和多行对白",
++      "气泡尾部朝向下方说话人物，右下有向下三角形",
++      "人物、鱼摊和其他NPC仍可见；没有独立大头像或全宽底部文字条"
++    ],
++    "layout": [
++      "文本气泡靠近说话者而非固定占满下方",
++      "姓名用较浅颜色与正文分层；面板边框细，正文区大",
++      "气泡避开人物头部，同时可能遮住说话者上方的环境内容"
++    ],
++    "interactionEvidence": {
++      "status": "inferred",
++      "description": "尾部、姓名和继续图标表明对话归属；本帧无法证明气泡是否总跟随、避让算法、逐字播放或多说话人规则。",
++      "sources": [
++        {
++          "title": "开发者/发行方官方Steam商店截图",
++          "url": "https://store.steampowered.com/app/977880/"
++        }
++      ]
++    },
++    "transfer": [
++      "短句、叫卖、村民闲聊可使用近角色气泡，强调人物仍属于世界",
++      "原创长对白可切换固定面板；用同一色彩/字形规则保持身份，不强求同一几何布局",
++      "自动检测屏边和头顶遮挡，给气泡限定最大宽度及中文换行"
++    ],
++    "limits": [
++      "不应把一帧气泡推断为全游戏所有对白都采用同布局",
++      "世界锚定不自动等同完全“世界内UI”，是否属于角色能看见的文字是另一维度",
++      "不复制此图的城市鱼摊、人物和具体句子"
++    ],
++    "artStyle": "生活质感像素 · 轻边框",
++    "layoutModel": "近说话者的气泡＋姓名层级"
++  },
++  {
++    "id": "1244090-11",
++    "kind": "dialogue",
++    "game": "Sea of Stars",
++    "title": "深色轻面板与左侧情绪肖像",
++    "sourceUrl": "https://store.steampowered.com/app/1244090/",
++    "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1244090/ss_6c1428488a9c2aeecea2afe5f5e906be488b4dc0.1920x1080.jpg?t=1780931183",
++    "observed": [
++      "上方偏中的深色面板显示说话者Garl姓名和两行白色正文",
++      "大表情头像位于面板左端，头像形状伸出矩形上缘",
++      "右下角有小型继续箭头；画面仍清楚显示场景中拥抱的角色与营火"
++    ],
++    "layout": [
++      "肖像在左、正文在右，姓名用上沿的小标签定位",
++      "细边深色底与白字形成对比；头像色彩明显比面板更活跃",
++      "对白框放在主要人物上方，没有占据整个画面宽度"
++    ],
++    "interactionEvidence": {
++      "status": "inferred",
++      "description": "当前帧可核对情绪肖像、说话者与继续提示；未验证按键、停顿、历史、分支或相机移动后的面板行为。",
++      "sources": [
++        {
++          "title": "开发者/发行方官方Steam商店截图",
++          "url": "https://store.steampowered.com/app/1244090/"
++        }
++      ]
++    },
++    "transfer": [
++      "适合关键剧情与表情演出：自有村民头像配安静深色文字区，让身体动作仍可见",
++      "乡村材质不一定必须全木框，可用靛蓝灰与米白字搭竹木小角饰",
++      "肖像与48px场景角色保留同一身份特征，但各自按观看尺寸绘制"
++    ],
++    "limits": [
++      "本图没有选择列表或对白历史，不能凭静图补出这些“原作功能”",
++      "不能把高清肖像最近邻缩成48px后称为人物模板完成",
++      "英文两行布局需另测最长中文和更小窗口"
++    ],
++    "artStyle": "精致JRPG像素 · 深色浅字",
++    "layoutModel": "左头像＋右正文＋姓名签"
++  },
++  {
++    "id": "1205520-13",
++    "kind": "dialogue",
++    "game": "Pentiment",
++    "title": "多人对答的书页式气泡",
++    "sourceUrl": "https://store.steampowered.com/app/1205520/",
++    "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1205520/ss_da0031df40364b45964a37c16813c81a95034ee2.1920x1080.jpg?t=1759874806",
++    "observed": [
++      "Andreas和Guy各自有姓名条与独立浅色气泡，文本框尾部对应场景人物",
++      "左侧Andreas气泡中有黑色与红色段落，并有手形指示图标",
++      "人物没有脱离场景另放大肖像；文字气泡覆盖在手绘作坊场景上"
++    ],
++    "layout": [
++      "两位说话者的内容并列在画面中上部，靠姓名、位置、尾部保持归属",
++      "纸面安静、正文高对比；字形和框边具有书写/纸卷感",
++      "两个气泡采用不同宽高配合文字，不是相同尺寸的卡片网格"
++    ],
++    "interactionEvidence": {
++      "status": "inferred",
++      "description": "当前可见红字段落与手形指示，可能涉及选项/焦点，但本次没有用官方手册确认其具体含义，因此只按可见事实记录，不宣称已验证分支。",
++      "sources": [
++        {
++          "title": "开发者/发行方官方Steam商店截图",
++          "url": "https://store.steampowered.com/app/1205520/"
++        }
++      ]
++    },
++    "transfer": [
++      "可借多说话者归属、姓名与颜色的辅助编码，为乡村多人议事或对答组织信息",
++      "中国乡村原创可改为简洁纸签、话笺，不照搬欧洲中世纪字体和修道院书页",
++      "日常场景可减少同时出现的文本块，保证对话顺序与当前可操作项明确"
++    ],
++    "limits": [
++      "这是实际对白帧，和官方截图0/1的人物背景选择页不同",
++      "不是像素画范本；中文不能照搬黑体哥特字的装饰复杂度",
++      "手形和红字的动态语义未核实，不作为模板默认交互规则"
++    ],
++    "artStyle": "手绘印刷书页 · 纸卷气泡",
++    "layoutModel": "双人对答＋姓名与气泡归属"
++  },
++  {
++    "id": "1229240-0",
++    "kind": "dialogue",
++    "game": "Chained Echoes",
++    "title": "底部细长对白条与场景外接肖像",
++    "sourceUrl": "https://store.steampowered.com/app/1229240/",
++    "imageUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1229240/ss_b25ed2e671e7b616ec14e7ed3a2f483909e368c4.1920x1080.jpg?t=1788522273",
++    "observed": [
++      "底部浅色细长对白条显示一行正文，左端大肖像在框外向下延伸",
++      "姓名Glenn位于文字条左上方；右端可见继续三角形",
++      "大部分画面留给角色和巨兽，当前帧没有分支选项"
++    ],
++    "layout": [
++      "底部条比Stardew的多行框更浅，肖像以外接形式增加人物表现",
++      "正文与背景有强色值对比，边框装饰较克制",
++      "尾状边缘将文本框和肖像连接成一体"
++    ],
++    "interactionEvidence": {
++      "status": "inferred",
++      "description": "可确认单句对白、身份与继续标记；未验证自动换行、长句拆页、快进和多语言。",
++      "sources": [
++        {
++          "title": "开发者/发行方官方Steam商店截图",
++          "url": "https://store.steampowered.com/app/1229240/"
++        }
++      ]
++    },
++    "transfer": [
++      "适合较短剧情台词，让场景动作和对峙保持主导；可作为固定底部对白的轻量变体",
++      "用原创乡村头像和窄纸签保留亲切感，长中文自动增加行高或换为标准框",
++      "既保留修长场景人物，又通过独立头像展示表情，避免强迫48px小脸承担所有情绪"
++    ],
++    "limits": [
++      "窄条只凭当前英文短句成立，最长中文必须另测",
++      "不能从这张场景截图推断巨兽战斗的UI或操作流程",
++      "肖像位置/连接结构可借，具体边框像素与角色不可提取"
++    ],
++    "artStyle": "JRPG像素 · 深色浅底线",
++    "layoutModel": "底部浅高对白条＋外接肖像"
++  }
++]
+diff --git a/src/lib/pixel-studio/game-ui-references.ts b/src/lib/pixel-studio/game-ui-references.ts
+new file mode 100644
+index 0000000..77fbb99
+--- /dev/null
++++ b/src/lib/pixel-studio/game-ui-references.ts
+@@ -0,0 +1,13 @@
++import catalog from "./game-ui-reference-catalog.json";
++import type { GameUiPresetKind } from "./game-ui-prompt-presets";
++export interface GameUiReference {
++  readonly id: string; readonly kind: GameUiPresetKind; readonly game: string; readonly title: string;
++  readonly sourceUrl: string; readonly imageUrl: string;
++  readonly artStyle?: string; readonly layoutModel?: string;
++  readonly observed: readonly string[]; readonly layout: readonly string[];
++  readonly interactionEvidence: { readonly status: "documented" | "inferred"; readonly description: string; readonly sources: readonly { readonly title: string; readonly url: string }[] };
++  readonly transfer: readonly string[]; readonly limits: readonly string[];
++}
++/** Read-only study material; never becomes an asset, workflow input or provider reference. */
++export const GAME_UI_REFERENCES: readonly GameUiReference[] = Object.freeze(catalog.map(entry => Object.freeze(entry as GameUiReference)));
++export function getGameUiReferences(kind: GameUiPresetKind): readonly GameUiReference[] { return GAME_UI_REFERENCES.filter(entry => entry.kind === kind); }
+diff --git a/src/lib/pixel-studio/generation-prompt-templates.ts b/src/lib/pixel-studio/generation-prompt-templates.ts
+index 157325c..0f86dfd 100644
+--- a/src/lib/pixel-studio/generation-prompt-templates.ts
++++ b/src/lib/pixel-studio/generation-prompt-templates.ts
+@@ -1,4 +1,5 @@
+ import { createUiIconSheetStandard, normalizePixelGenerationStandardOptions, type PixelGenerationStandardOptions } from "./pixel-generation-standard";
++import { GAME_UI_PROMPT_PRESETS } from "./game-ui-prompt-presets";
+ import { CHARACTER_STYLES, type CharacterStyleId } from "./character-styles";
+ import { RURAL_ADULT_48_SCALE, RURAL_ADULT_48_SCALE_ID } from "./character-scale-standard";
+ 
+@@ -152,6 +153,11 @@ const templates: GenerationPromptTemplate[] = [
+     standard: standard("world-prop", 256, 192), aspectRatio: "4:3",
+   },
+   ruralUiIconSheet(9), ruralUiIconSheet(16),
++  ...GAME_UI_PROMPT_PRESETS.map(preset => ({
++    id: preset.id, category: "ui" as const, label: preset.label, description: preset.description, subject: preset.subject,
++    standard: standard("ui-panel", preset.width, preset.height, { uiPreset: preset.id }), aspectRatio: preset.aspectRatio,
++    galleryFamily: Object.freeze({ id: `game-ui-${preset.kind}`, label: ({ inventory: "背包 UI", shop: "商店 UI", dialogue: "对白 UI", crafting: "制作 UI" })[preset.kind] }),
++  })),
+ ];
+ export const GENERATION_PROMPT_TEMPLATES: readonly GenerationPromptTemplate[] = Object.freeze(templates.map(template => Object.freeze(template)));
+ 
+diff --git a/src/lib/pixel-studio/pixel-generation-standard.ts b/src/lib/pixel-studio/pixel-generation-standard.ts
+index 200975e..2ef6eec 100644
+--- a/src/lib/pixel-studio/pixel-generation-standard.ts
++++ b/src/lib/pixel-studio/pixel-generation-standard.ts
+@@ -1,3 +1,4 @@
++import { getGameUiPromptPreset } from "./game-ui-prompt-presets";
+ import { CHARACTER_STYLES, isCharacterStyle, type CharacterStyleId } from "./character-styles";
+ import { RURAL_ADULT_48_SCALE, RURAL_ADULT_48_SCALE_ID, type CharacterScaleId } from "./character-scale-standard";
+ 
+@@ -30,6 +31,8 @@ export interface PixelGenerationStandardOptions {
+   purpose?: "world-prop" | "character" | "ui-icon" | "ui-panel";
+   /** Component packing is explicit and independent of the user's subject. */
+   layout?: "nine-slice" | "button-states";
++  /** Full game-interface art brief, independently preserved from the user subject. */
++  uiPreset?: string;
+   /** Explicit opt-in; absent character specifications remain single-frame. */
+   animation?: CharacterAnimationOptions;
+   /** Explicit atlas contract; omitted UI specifications remain single icons. */
+@@ -67,7 +70,7 @@ export const DEFAULT_PIXEL_GENERATION_STANDARD: Readonly<PixelGenerationStandard
+ export const PIXEL_GENERATION_SIZE_PRESETS = Object.freeze([16, 24, 32, 48, 64, 96, 128, 160, 256] as const);
+ export const PIXEL_GENERATION_STANDARD_NOTICE = "内置规范会作为约束块合并到本次请求的提示词，不是服务商独立的 system 角色。主体描述如含不同视角或描边要求，应先消除冲突，并以所选规范为生产约束；模型不保证遵守，真实像素网格、透明与轮廓仍须本地校验，后处理也不保证自动修好抖边。";
+ 
+-const KEYS = new Set(["version", "enabled", "view", "purpose", "layout", "animation", "iconSheet", "characterStyle", "characterScale", "framing", "logicalWidth", "logicalHeight", "outline", "background"]);
++const KEYS = new Set(["version", "enabled", "view", "purpose", "layout", "uiPreset", "animation", "iconSheet", "characterStyle", "characterScale", "framing", "logicalWidth", "logicalHeight", "outline", "background"]);
+ function record(value: unknown): value is Record<string, unknown> {
+   return !!value && typeof value === "object" && !Array.isArray(value);
+ }
+@@ -136,6 +139,12 @@ export function normalizePixelGenerationStandardOptions(input: unknown): PixelGe
+   if (input.background !== "neutral" && input.background !== "transparent") throw new Error("请选择中性纯色或透明背景");
+   const logicalWidth = dimension(input.logicalWidth, "逻辑宽度"), logicalHeight = dimension(input.logicalHeight, "逻辑高度");
+   const iconSheet = iconSheetOptions(input.iconSheet, input, logicalWidth, logicalHeight);
++  if (input.uiPreset !== undefined) {
++    const preset = typeof input.uiPreset === "string" ? getGameUiPromptPreset(input.uiPreset) : undefined;
++    if (!preset) throw new Error("游戏界面方案无效，请重新选择模板");
++    if (input.purpose !== "ui-panel" || input.layout !== undefined || input.iconSheet !== undefined || input.animation !== undefined) throw new Error("游戏界面方案仅用于独立UI面板，不能混入九宫格、按钮状态或图集");
++    if (logicalWidth < 256 || logicalHeight < (preset.kind === "dialogue" ? 96 : 192)) throw new Error("完整游戏界面需要至少256px宽；对白至少96px高，其他界面至少192px高");
++  }
+   const animation = animationOptions(input.animation, input.purpose, input.view, logicalWidth, logicalHeight);
+   if (input.characterStyle !== undefined && (input.purpose !== "character" || !isCharacterStyle(input.characterStyle))) throw new Error("人物画风只支持已提供的人物风格");
+   if (input.framing !== undefined && (input.purpose !== "character" || input.framing !== "full-body" && input.framing !== "portrait")) throw new Error("人物构图请选择全身或半身肖像");
+@@ -156,6 +165,7 @@ export function normalizePixelGenerationStandardOptions(input: unknown): PixelGe
+     outline: input.outline, background: input.background,
+     ...(input.purpose === undefined ? {} : { purpose: input.purpose }),
+     ...(input.layout === undefined ? {} : { layout: input.layout }),
++    ...(input.uiPreset === undefined ? {} : { uiPreset: input.uiPreset as string }),
+     ...(animation ? { animation } : {}),
+     ...(iconSheet ? { iconSheet } : {}),
+     ...(input.characterStyle === undefined ? {} : { characterStyle: input.characterStyle as CharacterStyleId }),
+@@ -187,6 +197,8 @@ function rules(options: PixelGenerationStandardOptions): string[] {
+   const margin = Math.max(1, Math.round(Math.min(options.logicalWidth, options.logicalHeight) / 16));
+   const contentRule = iconSheet
+     ? `内容：仅生成一张包含${iconSheet.items.length}枚不同图标的同一套UI图标集，不是${iconSheet.items.length}张独立PNG请求。各格按清单制作不同功能，不把同一个图标复制成多格，不增加清单外的图标；不画完整HUD、界面布局、人物插画或场景，图标不带文字、数字、序号、水印、可见格线或展示底座。`
++    : options.uiPreset
++    ? "内容：生成一张完整游戏UI静态美术稿，按所选界面方案组织功能区域。主体描述决定具体题材、物件和指定原色；所请求的头像或物品图形可进入各自区域，不额外添加外部场景。中文、数值和操作标签保持可变文本的空白区域，实际交互由游戏实现。"
+     : ui
+     ? "内容：主体描述决定界面用途、材质、指定颜色、数量和布局；仅制作请求的UI组件或图标。完整保留外轮廓与必要留白，不加入场景、人物插画、设备样机、色卡、水印、可见网格或切片辅助线。文字、数值与交互标签留给运行时排版，不把示例字烘焙进素材；不因使用九宫格制作法而把面板画成九张图片。"
+     : animation
+@@ -231,9 +243,10 @@ function rules(options: PixelGenerationStandardOptions): string[] {
+       : "人物细节：先保留头发、服饰主色和姿态等身份特征，再按实际逻辑尺寸分配五官、手和衣褶；尺寸增加用于清晰的形体与材质，不以增加随机纹理代替精度。",
+   ] : purpose === "ui-icon" ? [
+     `图标规格：在${options.logicalWidth}×${options.logicalHeight}画布内居中，四边至少留${margin}个逻辑像素，视觉重心稳定。优先辨认剪影与主要功能，保留必要的柄、扣环与镂空；16像素级只保留核心符号与少量高对比色簇，不画细字或密集纹理。`,
+-  ] : purpose === "ui-panel" ? [
++  ] : purpose === "ui-panel" && !options.uiPreset ? [
+     "组件规格：按主体明确请求的单个面板或多状态组件布局绘制，不擅自增加状态或拆成展示海报。九宫格面板的四角保持固定逻辑尺寸，横边只沿横向、竖边只沿纵向重复，角与边连续衔接；中心低纹理并留出完整安静文字区，不画九宫格辅助线。按钮状态若被请求，各状态的外框尺寸、内边距、中心轴与像素密度必须一致，状态差异集中在边框/压下位置，不靠重画主体或模糊缩放表达。",
+   ] : [];
++  if (options.uiPreset) purposeRules.push(...getGameUiPromptPreset(options.uiPreset)!.promptRules);
+   if (characterScale) purposeRules.push(
+     `统一人物标尺为${characterScale.id}。成年人物自然站立时，从包含头发的身体最高可见像素至鞋底最低可见像素，纵向实高为${characterScale.visibleHeight}逻辑像素。单帧为${characterScale.frameWidth}×${characterScale.frameHeight}，从0开始计数，站立身体顶行为y=${characterScale.topPixelY}，脚底像素锚点为(${characterScale.footAnchor.x},${characterScale.footAnchor.y})，从y=${characterScale.topPixelY}到y=${characterScale.footAnchor.y}包含两端。`,
+     "人物实高测量包含头发，计算时排除经独立图层或明确遮罩标记的可拆卸高帽、发饰、武器等配件。配件高出身体范围时记录超出标尺的例外。缺少这些标记时须人工确认身体范围，不能自动推断帽子与身体分界。生成后须在原生逻辑网格上实际测量身体实高、留白和脚底坐标，提示词本身不能证明已达到标尺。",
+@@ -280,7 +293,7 @@ export function compilePixelGenerationPrompt(userPrompt: string, input?: unknown
+     transport: "appended-prompt", requiresLocalValidation: true,
+   };
+   const names = { "world-prop": "精致中式乡村素材", character: "像素人物单帧", "ui-icon": "像素UI图标", "ui-panel": "像素UI组件" };
+-  const name = options.iconSheet ? "成套像素UI图标" : options.animation ? `像素人物八帧${options.animation.action === "walk" ? "行走" : "待机"}` : options.framing === "portrait" ? "像素人物半身肖像" : names[options.purpose ?? "world-prop"];
++  const name = options.uiPreset ? getGameUiPromptPreset(options.uiPreset)!.label : options.iconSheet ? "成套像素UI图标" : options.animation ? `像素人物八帧${options.animation.action === "walk" ? "行走" : "待机"}` : options.framing === "portrait" ? "像素人物半身肖像" : names[options.purpose ?? "world-prop"];
+   const block = [`【Pixel Studio 内置像素生成规范：${name} v1】`, ...compiledRules.map(rule => `- ${rule}`), "【规范结束；以上内容合并到请求提示词，输出仍须本地校验】"].join("\n");
+   return { userPrompt, prompt: `${userPrompt}\n\n${block}`, standardSnapshot };
+ }
+diff --git a/src/lib/pixel-studio/providers.ts b/src/lib/pixel-studio/providers.ts
+index 2c1e058..e7b3bda 100644
+--- a/src/lib/pixel-studio/providers.ts
++++ b/src/lib/pixel-studio/providers.ts
+@@ -32,10 +32,10 @@ export function validateGenerationInput(body: Record<string, unknown>): Generati
+   }
+   try {
+     const options = normalizePixelGenerationStandardOptions(body.generationStandard);
+-    if (options?.iconSheet) {
++    if (options?.iconSheet || options?.uiPreset) {
+       const sheetRatio = uiIconSheetAspectRatio(options);
+-      if (!sheetRatio) throw new Error("图标集排列比例暂不支持，请调整列数或单格尺寸");
+-      if (body.aspectRatio !== undefined && aspectRatio !== sheetRatio) throw new Error(`图标集请求比例须为${sheetRatio}，请与图标排列保持一致`);
++      if (!sheetRatio) throw new Error(options.uiPreset ? "游戏界面比例暂不支持，请调整逻辑尺寸" : "图标集排列比例暂不支持，请调整列数或单格尺寸");
++      if (body.aspectRatio !== undefined && aspectRatio !== sheetRatio) throw new Error(options.uiPreset ? `游戏界面请求比例须为${sheetRatio}，请与逻辑画布保持一致` : `图标集请求比例须为${sheetRatio}，请与图标排列保持一致`);
+       aspectRatio = sheetRatio;
+     }
+     const generationStandard: PixelGenerationStandardInput | undefined = body.generationStandard === undefined ? undefined : options ?? { enabled: false };
+diff --git a/src/lib/pixel-studio/ui-icon-sheet-aspect.ts b/src/lib/pixel-studio/ui-icon-sheet-aspect.ts
+index 4a42398..0aee9da 100644
+--- a/src/lib/pixel-studio/ui-icon-sheet-aspect.ts
++++ b/src/lib/pixel-studio/ui-icon-sheet-aspect.ts
+@@ -3,7 +3,7 @@ import type { PixelGenerationStandardOptions } from "./pixel-generation-standard
+ 
+ /** Exact geometry only; no nearest-ratio approximation or implicit stretching. */
+ export function uiIconSheetAspectRatio(spec: PixelGenerationStandardOptions): string | undefined {
+-  if (!spec.iconSheet) return;
++  if (!spec.iconSheet && !spec.uiPreset) return;
+   const width = spec.logicalWidth, height = spec.logicalHeight;
+   if (!Number.isSafeInteger(width) || !Number.isSafeInteger(height) || width <= 0 || height <= 0) return;
+   return GENERATION_ASPECT_RATIOS.find(ratio => {

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 216" role="img" aria-labelledby="title" shape-rendering="crispEdges">
+<title id="title">对白 · 墨色长笺布局示意，非生成成品</title>
+<rect width="384" height="216" fill="#f4f4f5"/>
+<rect x="23" y="73" width="92" height="15" fill="#e1eaf6" stroke="#a1a1aa"/>
+<text x="69" y="80.5" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="8" fill="#3f3f46">姓名留白</text>
+<rect x="23" y="100" width="54" height="56" fill="#ffffff" stroke="#a1a1aa"/>
+<text x="50" y="128" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="8" fill="#3f3f46">可选剪影窗</text>
+<rect x="96" y="98" width="242" height="56" fill="#ffffff" stroke="#a1a1aa"/>
+<text x="217" y="126" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="8" fill="#3f3f46">长笺正文</text>
+<rect x="349" y="161" width="12" height="10" fill="#ffffff" stroke="#a1a1aa"/>
+<text x="355" y="166" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="8" fill="#3f3f46">继续图形</text>
+<text x="8" y="208" font-family="sans-serif" font-size="9" fill="#52525b">布局示意 · 非生成成品 · 384×192</text>
+</svg>

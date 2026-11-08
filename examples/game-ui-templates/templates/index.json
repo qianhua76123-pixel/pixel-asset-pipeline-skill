@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "count": 12,
+  "sourceCommit": "a4bc94db0061f1121ae9acdfe8a58da0498be401",
+  "templates": [
+    {
+      "id": "game-ui-inventory-wood-paper",
+      "kind": "inventory",
+      "style": "wood-paper",
+      "label": "背包 · 竹木纸面",
+      "width": 384,
+      "height": 256,
+      "aspectRatio": "3:2",
+      "path": "templates/game-ui-inventory-wood-paper.json",
+      "promptPath": "prompts/game-ui-inventory-wood-paper.txt",
+      "diagramPath": "diagrams/game-ui-inventory-wood-paper.svg"
+    },
+    {
+      "id": "game-ui-inventory-cloth-grid",
+      "kind": "inventory",
+      "style": "cloth-grid",
+      "label": "背包 · 布包分区",
+      "width": 320,
+      "height": 240,
+      "aspectRatio": "4:3",
+      "path": "templates/game-ui-inventory-cloth-grid.json",
+      "promptPath": "prompts/game-ui-inventory-cloth-grid.txt",
+      "diagramPath": "diagrams/game-ui-inventory-cloth-grid.svg"
+    },
+    {
+      "id": "game-ui-inventory-ink-ledger",
+      "kind": "inventory",
+      "style": "ink-ledger",
+      "label": "背包 · 墨色货目",
+      "width": 384,
+      "height": 256,
+      "aspectRatio": "3:2",
+      "path": "templates/game-ui-inventory-ink-ledger.json",
+      "promptPath": "prompts/game-ui-inventory-ink-ledger.txt",
+      "diagramPath": "diagrams/game-ui-inventory-ink-ledger.svg"
+    },
+    {
+      "id": "game-ui-shop-wood-paper",
+      "kind": "shop",
+      "style": "wood-paper",
+      "label": "商店 · 柜台货架",
+      "width": 384,
+      "height": 256,
+      "aspectRatio": "3:2",
+      "path": "templates/game-ui-shop-wood-paper.json",
+      "promptPath": "prompts/game-ui-shop-wood-paper.txt",
+      "diagramPath": "diagrams/game-ui-shop-wood-paper.svg"
+    },
+    {
+      "id": "game-ui-shop-cloth-grid",
+      "kind": "shop",
+      "style": "cloth-grid",
+      "label": "商店 · 摊布陈列",
+      "width": 320,
+      "height": 240,
+      "aspectRatio": "4:3",
+      "path": "templates/game-ui-shop-cloth-grid.json",
+      "promptPath": "prompts/game-ui-shop-cloth-grid.txt",
+      "diagramPath": "diagrams/game-ui-shop-cloth-grid.svg"
+    },
+    {
+      "id": "game-ui-shop-ink-ledger",
+      "kind": "shop",
+      "style": "ink-ledger",
+      "label": "商店 · 对开账本",
+      "width": 384,
+      "height": 256,
+      "aspectRatio": "3:2",
+      "path": "templates/game-ui-shop-ink-ledger.json",
+      "promptPath": "prompts/game-ui-shop-ink-ledger.txt",
+      "diagramPath": "diagrams/game-ui-shop-ink-ledger.svg"
+    },
+    {
+      "id": "game-ui-dialogue-wood-paper",
+      "kind": "dialogue",
+      "style": "wood-paper",
+      "label": "对白 · 横向纸框",
+      "width": 320,
+      "height": 160,
+      "aspectRatio": "2:1",
+      "path": "templates/game-ui-dialogue-wood-paper.json",
+      "promptPath": "prompts/game-ui-dialogue-wood-paper.txt",
+      "diagramPath": "diagrams/game-ui-dialogue-wood-paper.svg"
+    },
+    {
+      "id": "game-ui-dialogue-cloth-grid",
+      "kind": "dialogue",
+      "style": "cloth-grid",
+      "label": "对白 · 便签选项",
+      "width": 384,
+      "height": 256,
+      "aspectRatio": "3:2",
+      "path": "templates/game-ui-dialogue-cloth-grid.json",
+      "promptPath": "prompts/game-ui-dialogue-cloth-grid.txt",
+      "diagramPath": "diagrams/game-ui-dialogue-cloth-grid.svg"
+    },
+    {
+      "id": "game-ui-dialogue-ink-ledger",
+      "kind": "dialogue",
+      "style": "ink-ledger",
+      "label": "对白 · 墨色长笺",
+      "width": 384,
+      "height": 192,
+      "aspectRatio": "2:1",
+      "path": "templates/game-ui-dialogue-ink-ledger.json",
+      "promptPath": "prompts/game-ui-dialogue-ink-ledger.txt",
+      "diagramPath": "diagrams/game-ui-dialogue-ink-ledger.svg"
+    },
+    {
+      "id": "game-ui-crafting-wood-paper",
+      "kind": "crafting",
+      "style": "wood-paper",
+      "label": "制作 · 配方与材料",
+      "width": 384,
+      "height": 256,
+      "aspectRatio": "3:2",
+      "path": "templates/game-ui-crafting-wood-paper.json",
+      "promptPath": "prompts/game-ui-crafting-wood-paper.txt",
+      "diagramPath": "diagrams/game-ui-crafting-wood-paper.svg"
+    },
+    {
+      "id": "game-ui-crafting-cloth-grid",
+      "kind": "crafting",
+      "style": "cloth-grid",
+      "label": "制作 · 工具布卷",
+      "width": 320,
+      "height": 240,
+      "aspectRatio": "4:3",
+      "path": "templates/game-ui-crafting-cloth-grid.json",
+      "promptPath": "prompts/game-ui-crafting-cloth-grid.txt",
+      "diagramPath": "diagrams/game-ui-crafting-cloth-grid.svg"
+    },
+    {
+      "id": "game-ui-crafting-ink-ledger",
+      "kind": "crafting",
+      "style": "ink-ledger",
+      "label": "制作 · 手作札记",
+      "width": 384,
+      "height": 256,
+      "aspectRatio": "3:2",
+      "path": "templates/game-ui-crafting-ink-ledger.json",
+      "promptPath": "prompts/game-ui-crafting-ink-ledger.txt",
+      "diagramPath": "diagrams/game-ui-crafting-ink-ledger.svg"
+    }
+  ]
+}

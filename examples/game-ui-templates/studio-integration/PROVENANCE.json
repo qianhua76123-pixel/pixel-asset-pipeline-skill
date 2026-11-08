@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "upstreamRepository": "https://github.com/shrimbly/node-banana",
+  "upstreamLicense": "MIT",
+  "localBaseCommit": "7bd21318e632a8e0b1e6a853db284a870d7989f3",
+  "localTargetCommit": "a4bc94db0061f1121ae9acdfe8a58da0498be401",
+  "targetCommitPubliclyAvailableUpstream": false,
+  "artifact": "game-ui-templates.patch",
+  "sha256": "95405b59f9052b1bd0df80f4ea5b57a5e54762d57253e6db1bbb5cfd5629bc60",
+  "scope": "Existing Pixel Studio integration only; not the complete application or its preceding local history.",
+  "notices": "Retain LICENSE.upstream. External screenshots are remote study links, not distributed game artwork."
+}

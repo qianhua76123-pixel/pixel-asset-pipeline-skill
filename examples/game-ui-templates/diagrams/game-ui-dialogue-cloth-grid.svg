@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 280" role="img" aria-labelledby="title" shape-rendering="crispEdges">
+<title id="title">对白 · 便签选项布局示意，非生成成品</title>
+<rect width="384" height="280" fill="#f4f4f5"/>
+<rect x="23" y="20" width="46" height="56" fill="#e1eaf6" stroke="#a1a1aa"/>
+<text x="46" y="48" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="8" fill="#3f3f46">村民肖像</text>
+<rect x="84" y="20" width="115" height="20" fill="#ffffff" stroke="#a1a1aa"/>
+<text x="141.5" y="30" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="8" fill="#3f3f46">姓名留白</text>
+<rect x="84" y="54" width="276" height="64" fill="#ffffff" stroke="#a1a1aa"/>
+<text x="222" y="86" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="8" fill="#3f3f46">对白正文</text>
+<rect x="31" y="138" width="323" height="26" fill="#ffffff" stroke="#a1a1aa"/>
+<text x="192.5" y="151" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="8" fill="#3f3f46">选择一</text>
+<rect x="31" y="172" width="323" height="26" fill="#ffffff" stroke="#a1a1aa"/>
+<text x="192.5" y="185" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="8" fill="#3f3f46">选择二</text>
+<rect x="31" y="205" width="323" height="26" fill="#ffffff" stroke="#a1a1aa"/>
+<text x="192.5" y="218" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="8" fill="#3f3f46">选择三</text>
+<text x="8" y="272" font-family="sans-serif" font-size="9" fill="#52525b">布局示意 · 非生成成品 · 384×256</text>
+</svg>

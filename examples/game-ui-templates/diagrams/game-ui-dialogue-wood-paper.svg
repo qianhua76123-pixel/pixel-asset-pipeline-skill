@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 184" role="img" aria-labelledby="title" shape-rendering="crispEdges">
+<title id="title">对白 · 横向纸框布局示意，非生成成品</title>
+<rect width="320" height="184" fill="#f4f4f5"/>
+<rect x="19" y="69" width="64" height="64" fill="#e1eaf6" stroke="#a1a1aa"/>
+<text x="51" y="101" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="8" fill="#3f3f46">村民肖像</text>
+<rect x="99" y="59" width="70" height="14" fill="#ffffff" stroke="#a1a1aa"/>
+<text x="134" y="66" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="8" fill="#3f3f46">姓名留白</text>
+<rect x="99" y="82" width="179" height="46" fill="#ffffff" stroke="#a1a1aa"/>
+<text x="188.5" y="105" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="8" fill="#3f3f46">对白正文</text>
+<rect x="291" y="133" width="10" height="8" fill="#ffffff" stroke="#a1a1aa"/>
+<text x="296" y="137" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="8" fill="#3f3f46">继续图形</text>
+<text x="8" y="176" font-family="sans-serif" font-size="9" fill="#52525b">布局示意 · 非生成成品 · 320×160</text>
+</svg>

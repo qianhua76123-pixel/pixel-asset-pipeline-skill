@@ -12,6 +12,12 @@
 
 按项目要求归档了[南乡纸娃娃研发检查点](examples/nancun-paperdoll/README.md)：可运行的44px独立发眼/体型/衣装小样、四向Godot骨架、饰品剑锄原型、自有工作流来源，以及[外部分层方案调研](examples/nancun-paperdoll/docs/research/README.md)。当前美术仍待优化，三个原型尚未合成生产系统。案例单独存放，不随`skills/pixel-asset-pipeline`安装，也不作为算法默认效果或已通过美术验收的示例。
 
+## 游戏UI研究与提示词模板
+
+[常用游戏UI详细资料](examples/game-ui-templates/README.md)拆分背包、商店、对白和制作：10款游戏、14张官方远程实际截图、15项用途记录，以及12套精致像素静态美术模板。包含区域内容与字段、画风与布局、证据明确的交互分析、状态与动效建议、完整编译提示词、两种背景JSON、布局示意和Pixel Studio集成补丁。
+
+可用`node examples/game-ui-templates/scripts/ui-brief.mjs list`列出方案，或用`build --id <模板ID> --subject <主体> --format prompt`导出完整简报。脚本只准备文本，不调用图片API。商业截图只是研究链接；12套模板本轮没有新生成成品，游戏交互尚需另行实现。本案例不改变已安装Skill的命令或算法默认值。
+
 ## 从生图到导出
 
 ```sh

@@ -1,0 +1,343 @@
+{
+  "schemaVersion": 1,
+  "createdOn": "2026-11-08",
+  "scope": "Detailed static game-UI research and Pixel Studio integration example",
+  "documentationSourceCommit": "b733053",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "2ea6928a10e03a0ab97378f2e6571334d9218d452558457d652811e968ad27af",
+      "bytes": 5309
+    },
+    {
+      "path": "crafting.md",
+      "sha256": "abec299c57298639c43e36c7f119aa30a7d7c7b148218fe4b439caf6f36ea766",
+      "bytes": 18799
+    },
+    {
+      "path": "diagrams/game-ui-crafting-cloth-grid.svg",
+      "sha256": "0f42be096816879f937830da781258e2ca6e76f7ee7c68abff9ed011ac78b0f1",
+      "bytes": 1739
+    },
+    {
+      "path": "diagrams/game-ui-crafting-ink-ledger.svg",
+      "sha256": "abfcca8c362c41e7dc94ec0e1f2728cd3c6220499f68d0bf7e350b92efa318fe",
+      "bytes": 1516
+    },
+    {
+      "path": "diagrams/game-ui-crafting-wood-paper.svg",
+      "sha256": "231173bb3a3e80e19b320817cec0825c60c20179743be85719b8d6f2712aa142",
+      "bytes": 1752
+    },
+    {
+      "path": "diagrams/game-ui-dialogue-cloth-grid.svg",
+      "sha256": "79bd577e338cafccbac582a086d41316d0c3e9091db6a750a5ba6e117263d3b4",
+      "bytes": 1721
+    },
+    {
+      "path": "diagrams/game-ui-dialogue-ink-ledger.svg",
+      "sha256": "147f14cfa36bdbad589092265c94b7036cae56e4d4e1aba14eb051358c6461f0",
+      "bytes": 1280
+    },
+    {
+      "path": "diagrams/game-ui-dialogue-wood-paper.svg",
+      "sha256": "eaf35602aabb6b7cf3649f12fd8c7100afe7341462eb2c78d57a86075d86aacc",
+      "bytes": 1276
+    },
+    {
+      "path": "diagrams/game-ui-inventory-cloth-grid.svg",
+      "sha256": "771c26fdc3fd5e95b4fffbdd07b1e18764e0733fba23c5a879ec11256044661a",
+      "bytes": 1505
+    },
+    {
+      "path": "diagrams/game-ui-inventory-ink-ledger.svg",
+      "sha256": "ba10697c2c2999bc85b7f6e911bfb71bb26d9b15fdad406d0c3e1e3456293983",
+      "bytes": 1292
+    },
+    {
+      "path": "diagrams/game-ui-inventory-wood-paper.svg",
+      "sha256": "cce747fe843b9eb10d044245f2c21ad41c8b368cfb18260f90e53f79336cd318",
+      "bytes": 1519
+    },
+    {
+      "path": "diagrams/game-ui-shop-cloth-grid.svg",
+      "sha256": "fb2465aad14b2f65e51fe49d89a607661273b82458102b4ffc311ca38af3a7e3",
+      "bytes": 1291
+    },
+    {
+      "path": "diagrams/game-ui-shop-ink-ledger.svg",
+      "sha256": "a88662a5619d1f540f43f2a373de38e5a1d7d6ba9b96c78e0165d1a36cb7cd42",
+      "bytes": 1519
+    },
+    {
+      "path": "diagrams/game-ui-shop-wood-paper.svg",
+      "sha256": "9ee7916e76df0873ae066bde9d0315cfe8a37b596c81ae767c9a72419c6214cf",
+      "bytes": 1741
+    },
+    {
+      "path": "dialogue.md",
+      "sha256": "7ad9113e0afce74b3188b9ff6b30afd71cf6fa146114f237fd1743d098a5129c",
+      "bytes": 16517
+    },
+    {
+      "path": "interaction-states.md",
+      "sha256": "7728e6de22782c3c43da5ff2ac4b104cf99359cf58e4a2aa93cc55a7238a76a7",
+      "bytes": 7303
+    },
+    {
+      "path": "inventory.md",
+      "sha256": "32245af2ab2120b76942607d2497900c2c2718febd9b95f853c3e2434dcb1a50",
+      "bytes": 15044
+    },
+    {
+      "path": "prompts/game-ui-crafting-cloth-grid.txt",
+      "sha256": "205f6d234ec7088c587214a0115d7f86695ad1b99659463e99c2c5456faab4c7",
+      "bytes": 5183
+    },
+    {
+      "path": "prompts/game-ui-crafting-ink-ledger.txt",
+      "sha256": "7d1c117471d74b6fb63802792634febce2110a7f1871efb23120111be4affac4",
+      "bytes": 5185
+    },
+    {
+      "path": "prompts/game-ui-crafting-wood-paper.txt",
+      "sha256": "3fdd058c709e4e59d25372d49e60027c3ea7214786ec3a939c586eb4604cd7b7",
+      "bytes": 5174
+    },
+    {
+      "path": "prompts/game-ui-dialogue-cloth-grid.txt",
+      "sha256": "32d00ae2aca982a1ffb0e8c5aa43b5ccaad1c9ed091ba0178dd58018bd84a3cf",
+      "bytes": 5162
+    },
+    {
+      "path": "prompts/game-ui-dialogue-ink-ledger.txt",
+      "sha256": "d463b912128d08a68e42bdb485d0b5f167f3d1fb65ec571d96ecc21fc95d4931",
+      "bytes": 5164
+    },
+    {
+      "path": "prompts/game-ui-dialogue-wood-paper.txt",
+      "sha256": "8e58419a7184df8188b89e04ee8aefca2ebc7252e746773453a022c01949273c",
+      "bytes": 5225
+    },
+    {
+      "path": "prompts/game-ui-inventory-cloth-grid.txt",
+      "sha256": "a628730289b761f717a5de6a7e5b82bf6b7b89905f2a726f216dfe6adc88ed2c",
+      "bytes": 5148
+    },
+    {
+      "path": "prompts/game-ui-inventory-ink-ledger.txt",
+      "sha256": "5505e10bb052d5f2d33aed35b1b92648fdb646749ad868e6d4ad0e2dda4b9b84",
+      "bytes": 5123
+    },
+    {
+      "path": "prompts/game-ui-inventory-wood-paper.txt",
+      "sha256": "9d37d5b9d296e44dc445c5a370f169f0e8a7e9ee279ab5ade20c13883a808603",
+      "bytes": 5176
+    },
+    {
+      "path": "prompts/game-ui-shop-cloth-grid.txt",
+      "sha256": "fe5369a4b67dc76bf813dd04e2b8b262d6154c20de966ba4444a5dbed478cdd3",
+      "bytes": 5163
+    },
+    {
+      "path": "prompts/game-ui-shop-ink-ledger.txt",
+      "sha256": "76e135e77f4d9d38b276b4f3f57ac3a23e31576b605e08b140eca1376f45a199",
+      "bytes": 5173
+    },
+    {
+      "path": "prompts/game-ui-shop-wood-paper.txt",
+      "sha256": "9886ce1f1a74d085f8aa8841a82398618085458e78fa1e5f2d2d8d16fe99b509",
+      "bytes": 5209
+    },
+    {
+      "path": "reference-atlas.md",
+      "sha256": "1f54a8dc80f7c87172fee16267ee110b7948c414e4d1816197117f245a837957",
+      "bytes": 28515
+    },
+    {
+      "path": "references/catalog.json",
+      "sha256": "42cd7ce2f54c1bb7a32fb7c4982c36477c3a332cff6c8372c5f47cc738a77ba5",
+      "bytes": 30520
+    },
+    {
+      "path": "scripts/ui-brief.mjs",
+      "sha256": "9606d729b41c8e2b5917b95d7956107ed5f8a23ba54996739754bd0e6ee47b88",
+      "bytes": 3652
+    },
+    {
+      "path": "scripts/validate-study.mjs",
+      "sha256": "81a7f36d05af32ea7dce9866ab0f0d012fdbd678dae40582f876612cd5e5c3de",
+      "bytes": 4024
+    },
+    {
+      "path": "shop.md",
+      "sha256": "1799dcd02f57895efc14302e1b61f3381eba9a0f323c0cc73767529ff8afd498",
+      "bytes": 16826
+    },
+    {
+      "path": "software-integration.md",
+      "sha256": "4fbcd01767c3c2498c2c1e6439f941ef5f206d7c275ad36da9c83e13e3d8d7de",
+      "bytes": 7155
+    },
+    {
+      "path": "studio-integration/.gitattributes",
+      "sha256": "85a90ddc7a4de4386e779e3984d1238a83ffd1ddd921122f2c2c4f2b34637ed3",
+      "bytes": 100
+    },
+    {
+      "path": "studio-integration/LICENSE.upstream",
+      "sha256": "3989f2def04373048122d4565626a75af61eba5ffee94a40a0460cdff3b7f9f7",
+      "bytes": 1072
+    },
+    {
+      "path": "studio-integration/PROVENANCE.json",
+      "sha256": "7692ef1b71488dcd0b68e053a98a72b1c634a9da1df4b88023fefff504123baf",
+      "bytes": 648
+    },
+    {
+      "path": "studio-integration/game-ui-templates.patch",
+      "sha256": "95405b59f9052b1bd0df80f4ea5b57a5e54762d57253e6db1bbb5cfd5629bc60",
+      "bytes": 160430
+    },
+    {
+      "path": "templates/game-ui-crafting-cloth-grid.json",
+      "sha256": "02fb436ad4e090db621112b805d79e5b5f9a289987cf04b7a4e3b3d6636691fa",
+      "bytes": 36367
+    },
+    {
+      "path": "templates/game-ui-crafting-cloth-grid.md",
+      "sha256": "58b7bd828d07e799d5e6e5592d6a0d6d7b5f4d354f183906da4f681a7b9712b3",
+      "bytes": 10680
+    },
+    {
+      "path": "templates/game-ui-crafting-ink-ledger.json",
+      "sha256": "a905c33225db2ebeedd32b6ed09a612c64832655b6bdbdfb655f098062b4b3bc",
+      "bytes": 36211
+    },
+    {
+      "path": "templates/game-ui-crafting-ink-ledger.md",
+      "sha256": "b364dd38ae254efe7dc5f577bacac34de1dd5a765d57c0237bd7bb7e8041ced2",
+      "bytes": 10649
+    },
+    {
+      "path": "templates/game-ui-crafting-wood-paper.json",
+      "sha256": "e86776d11181ceb402efe321e3572da0b4769bd47f095b1d488547ee3982eff5",
+      "bytes": 36315
+    },
+    {
+      "path": "templates/game-ui-crafting-wood-paper.md",
+      "sha256": "e9ce6590501d897969322e6e40d39502f4cb272669507e57e451fbc7e0d2de47",
+      "bytes": 10706
+    },
+    {
+      "path": "templates/game-ui-dialogue-cloth-grid.json",
+      "sha256": "04a1193b5c22e1554f1bcadc3a19ff2179eaccc01b06d36ba23c880d0af08b1d",
+      "bytes": 36124
+    },
+    {
+      "path": "templates/game-ui-dialogue-cloth-grid.md",
+      "sha256": "04674f8365403e6f4a427661ed7d5476ecd30414cb96ea46840ea1cdf1b55721",
+      "bytes": 10619
+    },
+    {
+      "path": "templates/game-ui-dialogue-ink-ledger.json",
+      "sha256": "510c593180fbaf7ae17a57e4d6c7c2814dface073cdfb1e52efcb2e89b7b36cd",
+      "bytes": 35972
+    },
+    {
+      "path": "templates/game-ui-dialogue-ink-ledger.md",
+      "sha256": "813d9d864b7c18dff4c6cb413596433df2c056b2bf92aa6d12b6c79279d5339e",
+      "bytes": 10515
+    },
+    {
+      "path": "templates/game-ui-dialogue-wood-paper.json",
+      "sha256": "533497552a05545c97d5c872074b97fddf378205ff5c01e9422fb15e429d7e6e",
+      "bytes": 36360
+    },
+    {
+      "path": "templates/game-ui-dialogue-wood-paper.md",
+      "sha256": "3d00a38f25a5489e7512f22c71777ac2ee43e0069047d81183dae0cd365be724",
+      "bytes": 10612
+    },
+    {
+      "path": "templates/game-ui-inventory-cloth-grid.json",
+      "sha256": "c644f44ed9579472cb2b85a28f4923f5a6bee05920529f48badbf1dd74f25f6c",
+      "bytes": 35975
+    },
+    {
+      "path": "templates/game-ui-inventory-cloth-grid.md",
+      "sha256": "97b749c5ded627e101f3e2e95fafb34ff990ad0960eef3973f3ff12220404afc",
+      "bytes": 10414
+    },
+    {
+      "path": "templates/game-ui-inventory-ink-ledger.json",
+      "sha256": "d0b03b64e7451d1e2b1328e360a1530295ac846755ad87bb18637a0101adf2fd",
+      "bytes": 35622
+    },
+    {
+      "path": "templates/game-ui-inventory-ink-ledger.md",
+      "sha256": "8232c197eb39b635715eee239daab8c040962c44e43901dd082c1f0198aa7bf5",
+      "bytes": 10272
+    },
+    {
+      "path": "templates/game-ui-inventory-wood-paper.json",
+      "sha256": "f972433c21b7f0fa290671bfe8ee9eafed30919d8c12d569afaebc7e6c8fef90",
+      "bytes": 36140
+    },
+    {
+      "path": "templates/game-ui-inventory-wood-paper.md",
+      "sha256": "16a06aefcbb6ca35765163a930324e0b6bd8fd3c27cb6480b8b01d2927584019",
+      "bytes": 10538
+    },
+    {
+      "path": "templates/game-ui-shop-cloth-grid.json",
+      "sha256": "a7ab41c6c98f2c41430d8817b73af164d4f3e17589cf2017dafc261aebcd6742",
+      "bytes": 35778
+    },
+    {
+      "path": "templates/game-ui-shop-cloth-grid.md",
+      "sha256": "c442f2d20dfbcd08d2868c969a22cae1d443cb6915fe2eb466d906e795ab1c26",
+      "bytes": 10307
+    },
+    {
+      "path": "templates/game-ui-shop-ink-ledger.json",
+      "sha256": "2c0ab1f954529f6a21f3633034dbfa66da5098cf2a0ad329aeb6ffc0916db4f8",
+      "bytes": 36061
+    },
+    {
+      "path": "templates/game-ui-shop-ink-ledger.md",
+      "sha256": "f70625b1677233dc279fd65cd75d5dfed2c55d68151dc87a5c93f97808054569",
+      "bytes": 10445
+    },
+    {
+      "path": "templates/game-ui-shop-wood-paper.json",
+      "sha256": "352749185f477e62d3a909e6dbe2e720ee5adb0f7f0dda82353a914d07d81a93",
+      "bytes": 36333
+    },
+    {
+      "path": "templates/game-ui-shop-wood-paper.md",
+      "sha256": "b307570fe345b1748a750fad0021c16595cbc282ed1418e552f13e384f19ff61",
+      "bytes": 10583
+    },
+    {
+      "path": "templates/index.json",
+      "sha256": "bde31c1e15349d5401c2028b9c7f903fbea011aa4e2718e70532f6e3a44ac365",
+      "bytes": 4977
+    },
+    {
+      "path": "tests/ui-brief.test.mjs",
+      "sha256": "ca1854a9d17274f01df0536f866aee5427fed9e6340c9a47bd30ce4462c70cc0",
+      "bytes": 2255
+    },
+    {
+      "path": "validation.md",
+      "sha256": "15808406f79b2cf896c8059260ecb7e3a45eda4603fe46f22111cf676c19378f",
+      "bytes": 4453
+    },
+    {
+      "path": "visual-system.md",
+      "sha256": "ea0781efb241b53f028fc8d765b4ba7a250b3464896cf4d771b6be9df759b526",
+      "bytes": 7536
+    }
+  ]
+}

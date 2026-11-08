@@ -1,5 +1,22 @@
 # Third-party notices
 
+## Game UI research and Studio integration example
+
+`examples/game-ui-templates/studio-integration/game-ui-templates.patch` preserves
+the local Pixel Studio change from `7bd21318e632a8e0b1e6a853db284a870d7989f3`
+to `a4bc94db0061f1121ae9acdfe8a58da0498be401`, based on
+[shrimbly/node-banana](https://github.com/shrimbly/node-banana). These identify
+local modified snapshots, not commits asserted to exist in the upstream repo.
+The upstream MIT notice is included verbatim as `LICENSE.upstream` beside the
+patch; its SHA-256 and scope are recorded in `PROVENANCE.json`.
+
+The example's commercial game screenshots are external official research links,
+not bundled artwork or a grant to reuse game images. Game names and imagery
+remain the property of their respective rightsholders. Authored layout SVGs are
+explicitly labeled specification diagrams, not generated art or working game UI.
+
+## Pixel refinement runtime
+
 The pixel refinement modules in `skills/pixel-asset-pipeline/scripts/runtime/vendor/`
 derive from the local Pixel Studio checkout at commit
 `40e333545b84285d7f135eef1abfd29d2f376ffb`, based on
